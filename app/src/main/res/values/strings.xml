@@ -5,6 +5,7 @@
     <string name="interstitial_id" translatable="false">ca-app-pub-2565194561479895/3047537490</string>
     <string name="banner_id" translatable="false">ca-app-pub-2565194561479895~6802400933</string>
     <string name="native_ad" translatable="false">ca-app-pub-2565194561479895/7916720793</string>
+    <string name="yam_id">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
 
 
     <!--Test-->
