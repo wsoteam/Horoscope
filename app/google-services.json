@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "30222226075",
-    "firebase_url": "https://horoscope-c68d5.firebaseio.com",
-    "project_id": "horoscope-c68d5",
-    "storage_bucket": "horoscope-c68d5.appspot.com"
+    "project_number": "1065812351663",
+    "firebase_url": "https://horoscope-301fd.firebaseio.com",
+    "project_id": "horoscope-301fd",
+    "storage_bucket": "horoscope-301fd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:30222226075:android:f50c93dfe745577f5fec3e",
+        "mobilesdk_app_id": "1:1065812351663:android:fefe3204ed1252da15925a",
         "android_client_info": {
-          "package_name": "com.wsoteam.horoscope"
+          "package_name": "com.wsoteam.horoscopes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "30222226075-meaenhegtfms3nmtvivdkslatr52e8pd.apps.googleusercontent.com",
+          "client_id": "1065812351663-35a7k4s7rqjjsjhv7ad6hf7retafq5m2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC4VWsLOe9AP0-BHScytfq2qWSMJv0_OAU"
+          "current_key": "AIzaSyCMg81q43sG1-7_2RHSwuU-jMcUXsNnlRs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "30222226075-meaenhegtfms3nmtvivdkslatr52e8pd.apps.googleusercontent.com",
+              "client_id": "1065812351663-35a7k4s7rqjjsjhv7ad6hf7retafq5m2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

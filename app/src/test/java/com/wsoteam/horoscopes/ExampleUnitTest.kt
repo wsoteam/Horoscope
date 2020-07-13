@@ -1,4 +1,4 @@
-package com.wsoteam.horoscope
+package com.wsoteam.horoscopes
 
 import org.junit.Test
 
