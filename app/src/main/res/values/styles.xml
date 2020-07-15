@@ -37,5 +37,27 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
 
+    <style name="WeekAppearance">
+        <item name="android:textColor">#de000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="DateAppearance">
+        <item name="android:textColor">#de000000</item>
+        <item name="android:colorFocusedHighlight">#ed2d2d</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="CalendarTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="colorAccent">#2e2c5c</item>
+    </style>
+
 
 </resources>
