@@ -9,14 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.wsoteam.horoscopes.MainActivity">
+        <activity android:name="com.wsoteam.horoscopes.SplashActivity"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.SplashActivity" />
+        <activity android:name=".presentation.FormActivity"
+            android:theme="@style/Form"/>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

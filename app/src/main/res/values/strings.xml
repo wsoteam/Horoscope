@@ -1,16 +1,28 @@
 <resources>
     <string name="app_name">Horoscope</string>
 
-    <string name="admob_key" translatable="false">ca-app-pub-2565194561479895~6802400933</string>
-    <string name="interstitial_id" translatable="false">ca-app-pub-2565194561479895/3047537490</string>
-    <string name="banner_id" translatable="false">ca-app-pub-2565194561479895~6802400933</string>
-    <string name="native_ad" translatable="false">ca-app-pub-2565194561479895/7916720793</string>
-    <string name="yam_id">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
-
-
     <!--Test-->
-    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>-->
+    <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
+
+    <!--<string name="admob_key" translatable="false">ca-app-pub-2565194561479895~6802400933</string>
+    <string name="interstitial_id" translatable="false">ca-app-pub-2565194561479895/3047537490</string>
+    <string name="banner_id" translatable="false">ca-app-pub-2565194561479895~6802400933</string>
+    <string name="native_ad" translatable="false">ca-app-pub-2565194561479895/7916720793</string>-->
+
+    <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
+
+    <!--Splash-->
+    <string name="splash_title">Horoscope</string>
+
+    <!--FormActivity-->
+    <string name="enter_your_details">Enter your details</string>
+    <string name="text_title">We will customize the horoscope for you personally</string>
+    <string name="name">Name</string>
+    <string name="birth">Date of birth</string>
+    <string name="bottom_text">You can change the data later in the settings</string>
+
+
 </resources>

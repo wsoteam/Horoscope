@@ -1,18 +1,34 @@
-package com.wsoteam.horoscopes.presentation
+package com.wsoteam.horoscopes
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
+import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.presentation.FormActivity
+import com.wsoteam.horoscopes.utils.AdProvider
+import kotlinx.android.synthetic.main.splash_activity.*
 
 
 class SplashActivity : AppCompatActivity() {
 
+    var counter = 0
+    val MAX = 1
+
+    private fun goNext(){
+        counter++
+        if (counter >= MAX){
+            startActivity(Intent(this, FormActivity::class.java))
+            finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
+        AdProvider.init(this)
         trackUser()
     }
 
@@ -51,6 +67,8 @@ class SplashActivity : AppCompatActivity() {
         mFirebaseAnalytics!!.logEvent("traffic_id", bundle)
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
+
+        goNext()
     }
 
     private fun getClickId(s: String): String {
