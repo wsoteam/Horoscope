@@ -12,7 +12,7 @@ import com.wsoteam.horoscopes.utils.AdProvider
 import kotlinx.android.synthetic.main.splash_activity.*
 
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
     val MAX = 1
@@ -27,7 +27,6 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash_activity)
         AdProvider.init(this)
         trackUser()
     }

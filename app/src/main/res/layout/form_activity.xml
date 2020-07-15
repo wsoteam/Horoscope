@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/form_back">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/form_back">
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,20 +45,21 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="36dp"
         app:errorTextAppearance="@style/TextInputStyle.Error"
-        app:hintTextAppearance="@style/TextInputStyle.Hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/civFilter">
+        app:hintTextAppearance="@style/TextInputStyle.Hint">
 
         <EditText
             android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:fontFamily="@font/roboto"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#de000000"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="8sp"
             android:hint="@string/name"
             android:inputType="textCapSentences"
-            android:maxLength="50"
-            android:textColor="#d9424242"
+            android:maxLength="30"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,10 +71,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="36dp"
         app:errorTextAppearance="@style/TextInputStyle.Error"
-        app:hintTextAppearance="@style/TextInputStyle.Hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/civFilter">
+        app:hintTextAppearance="@style/TextInputStyle.Hint">
 
         <EditText
             android:id="@+id/edtBirthdate"
@@ -94,5 +96,14 @@
         android:lineSpacingExtra="4sp"
         android:text="@string/bottom_text"
         />
-
 </LinearLayout>
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/ivNext"/>
+
+</FrameLayout>
