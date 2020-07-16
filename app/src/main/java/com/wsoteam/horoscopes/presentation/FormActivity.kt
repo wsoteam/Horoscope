@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.DateDialog
+import com.wsoteam.horoscopes.presentation.premium.PremiumActivity
 import com.wsoteam.horoscopes.utils.Preferences
 import kotlinx.android.synthetic.main.form_activity.*
 
@@ -73,7 +74,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         ivNext.setOnClickListener {
             Preferences.setName(edtName.text.toString())
             Preferences.setBirthday(edtBirthdate.text.toString())
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, PremiumActivity::class.java))
             finish()
         }
     }

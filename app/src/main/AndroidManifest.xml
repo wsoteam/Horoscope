@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".presentation.FormActivity"
             android:theme="@style/Form"/>
+        <activity android:name=".presentation.premium.PremiumActivity"
+            android:theme="@style/Form"/>
         <activity android:name=".MainActivity" />
 
         <meta-data

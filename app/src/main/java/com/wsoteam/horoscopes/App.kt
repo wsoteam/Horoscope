@@ -9,6 +9,7 @@ class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        sInstance = this
         SubscriptionProvider.init(this)
         val config =
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()

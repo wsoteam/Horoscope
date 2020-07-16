@@ -6,6 +6,7 @@
 
 
     <color name="main_violet">#2e2c5c</color>
+    <color name="main_violet_hard">#2d2c52</color>
     <color name="form_back">#f4e6d8
     </color>
 </resources>

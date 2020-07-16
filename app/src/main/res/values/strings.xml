@@ -26,5 +26,10 @@
     <string name="cancel_date_picker">CANCEL</string>
     <string name="ok_date_picker">OK</string>
 
+    <!--Premium-->
+    <string name="remove_ads">Remove ADS</string>
+    <string name="prem4">7 days for free.</string>
+    <string name="prem5">Further subscription for a month</string>
+
 
 </resources>
