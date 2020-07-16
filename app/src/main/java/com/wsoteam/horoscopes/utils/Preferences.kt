@@ -8,6 +8,9 @@ object Preferences {
     private const val AD = "AD_STATUS"
     private const val PRICE_TAG = "PRICE_TAG"
     private const val DEF_PRICE = "433 RUB"
+    private const val NAME_TAG = "NAME_TAG"
+    private const val BIRTH_TAG = "BIRTH_TAG"
+
 
     fun getInstance(): SharedPreferences? {
         val sp =  App.getInstance().getSharedPreferences(
@@ -24,5 +27,11 @@ object Preferences {
 
     fun setPrice(price: String) = editor { it?.putString(PRICE_TAG, price)}
     fun getPrice() = getInstance()?.getString(PRICE_TAG, DEF_PRICE)
+
+    fun setName(name: String) = editor { it?.putString(NAME_TAG, name)}
+    fun getName() = getInstance()?.getString(NAME_TAG, "")
+
+    fun setBirthday(date: String) = editor { it?.putString(BIRTH_TAG, date)}
+    fun getBirthday() = getInstance()?.getString(BIRTH_TAG, "")
 
 }
