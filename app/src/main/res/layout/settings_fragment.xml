@@ -51,7 +51,8 @@
     <FrameLayout
         android:id="@+id/flDateBirth"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground">
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,6 +105,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="12dp"
             android:layout_marginEnd="16dp"
+            android:tint="@color/main_violet"
             tools:srcCompat = "@drawable/ic_tools_sing"/>
 
 

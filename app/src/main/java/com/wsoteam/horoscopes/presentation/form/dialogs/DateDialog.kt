@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.FormActivity
+import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.dialog_date.*
 
 class DateDialog : DialogFragment() {
@@ -29,7 +31,14 @@ class DateDialog : DialogFragment() {
         }
 
         tvOk.setOnClickListener {
-            (activity as FormActivity).setDate("${"%02d".format(dpCalendar.dayOfMonth)}.${"%02d".format(dpCalendar.month)}.${dpCalendar.year}")
+            val date =
+                "${"%02d".format(dpCalendar.dayOfMonth)}.${"%02d".format(dpCalendar.month + 1)}.${dpCalendar.year}"
+            if (activity is FormActivity) {
+                (activity as FormActivity).setDate(date)
+            } else {
+                PreferencesProvider.setBirthday(date)
+                (targetFragment as SettingsFragment).setDate(date)
+            }
             dismiss()
         }
     }
