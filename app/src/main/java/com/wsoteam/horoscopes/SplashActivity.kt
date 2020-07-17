@@ -5,12 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
-import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.presentation.FormActivity
 import com.wsoteam.horoscopes.utils.AdProvider
-import com.wsoteam.horoscopes.utils.Preferences
-import kotlinx.android.synthetic.main.splash_activity.*
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
@@ -22,7 +20,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         counter++
         if (counter >= MAX){
             var intent = Intent()
-            if(Preferences.getName() != "" && Preferences.getBirthday() != ""){
+            if(PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != ""){
                 intent = Intent(this, MainActivity::class.java)
             }else{
                 intent = Intent(this, FormActivity::class.java)

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.wsoteam.horoscopes.App
 
-object Preferences {
+object PreferencesProvider {
     private const val AD = "AD_STATUS"
     private const val PRICE_TAG = "PRICE_TAG"
     private const val DEF_PRICE = "433 RUB"

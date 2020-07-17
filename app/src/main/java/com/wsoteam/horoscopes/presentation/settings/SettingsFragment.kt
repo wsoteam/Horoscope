@@ -5,12 +5,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.settings_fragment.*
 
 class SettingsFragment : Fragment(R.layout.settings_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDate(PreferencesProvider.getBirthday()!!, 0)
         showPrem()
         swNotif.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
@@ -19,6 +21,10 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
                 hideTimeNotif()
             }
         }
+    }
+
+    private fun setDate(birthday: String, signIndex: Int) {
+        tvDate.text = birthday
     }
 
     private fun showTimeNotif() {

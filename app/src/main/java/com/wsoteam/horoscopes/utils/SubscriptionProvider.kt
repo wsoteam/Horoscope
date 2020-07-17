@@ -58,7 +58,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
             if (result != null && result!!.purchasesList.size > 0) {
                 isADEnabled = false
             }
-            Preferences.setADStatus(isADEnabled)
+            PreferencesProvider.setADStatus(isADEnabled)
         }
     }
 
@@ -91,7 +91,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList.isNotEmpty()){
                         try {
-                            Preferences.setPrice(skuDetailsList[0].price)
+                            PreferencesProvider.setPrice(skuDetailsList[0].price)
                         }catch (ex: Exception){
                             YandexMetrica.reportEvent("error price set")
                         }

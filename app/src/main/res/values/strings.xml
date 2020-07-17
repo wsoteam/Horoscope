@@ -14,6 +14,37 @@
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
 
+    <!--Signs-->
+    <integer-array name="icons_signs">
+        <item>@drawable/ic_sign_0</item>
+        <item>@drawable/ic_sign_1</item>
+        <item>@drawable/ic_sign_2</item>
+        <item>@drawable/ic_sign_3</item>
+        <item>@drawable/ic_sign_4</item>
+        <item>@drawable/ic_sign_5</item>
+        <item>@drawable/ic_sign_6</item>
+        <item>@drawable/ic_sign_7</item>
+        <item>@drawable/ic_sign_8</item>
+        <item>@drawable/ic_sign_9</item>
+        <item>@drawable/ic_sign_10</item>
+        <item>@drawable/ic_sign_11</item>
+    </integer-array>
+
+    <string-array name="names_signs">
+        <item>Aries</item>
+        <item>Taurus</item>
+        <item>Gemini</item>
+        <item>Cancer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Scorpio</item>
+        <item>Sagittarius</item>
+        <item>Capricorn</item>
+        <item>Aquarius</item>
+        <item>Pisces</item>
+    </string-array>
+
     <!--Splash-->
     <string name="splash_title">Horoscope</string>
 

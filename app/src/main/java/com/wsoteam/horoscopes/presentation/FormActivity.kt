@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.premium.PremiumActivity
-import com.wsoteam.horoscopes.utils.Preferences
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity(R.layout.form_activity) {
@@ -72,8 +72,8 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         isCanGoNext = true
         Glide.with(this).load(R.drawable.ic_active_next).into(ivNext)
         ivNext.setOnClickListener {
-            Preferences.setName(edtName.text.toString())
-            Preferences.setBirthday(edtBirthdate.text.toString())
+            PreferencesProvider.setName(edtName.text.toString())
+            PreferencesProvider.setBirthday(edtBirthdate.text.toString())
             startActivity(Intent(this, PremiumActivity::class.java))
             finish()
         }
