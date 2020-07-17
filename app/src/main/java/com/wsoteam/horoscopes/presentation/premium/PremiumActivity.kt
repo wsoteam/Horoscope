@@ -30,14 +30,14 @@ class PremiumActivity : AppCompatActivity(R.layout.premium_activity) {
             })
         }
 
-        tvCancel.setOnClickListener {
+        ivClose.setOnClickListener {
             openNextScreen()
         }
         setPrice()
     }
 
     private fun setPrice() {
-        tvPrice.text = "${getString(R.string.prem4)}\n ${getString(R.string.prem5)} ${Preferences.getPrice()}"
+        tvPrice.text = "${getString(R.string.prem4)} \n ${getString(R.string.prem5)} ${Preferences.getPrice()}"
     }
 
     private fun handlInApp() {
