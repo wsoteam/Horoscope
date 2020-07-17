@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.presentation.FormActivity
 import com.wsoteam.horoscopes.utils.AdProvider
+import com.wsoteam.horoscopes.utils.Preferences
 import kotlinx.android.synthetic.main.splash_activity.*
 
 
@@ -20,7 +21,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun goNext(){
         counter++
         if (counter >= MAX){
-            startActivity(Intent(this, FormActivity::class.java))
+            var intent = Intent()
+            if(Preferences.getName() != "" && Preferences.getBirthday() != ""){
+                intent = Intent(this, MainActivity::class.java)
+            }else{
+                intent = Intent(this, FormActivity::class.java)
+            }
+            startActivity(intent)
             finish()
         }
     }
