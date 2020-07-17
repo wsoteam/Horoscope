@@ -31,5 +31,14 @@
     <string name="prem4">7 days for free.</string>
     <string name="prem5">Further subscription for a month</string>
 
+    <!--Settings-->
+    <string name="prem_set">Premium</string>
+    <string name="empty_prem">Remove ADS</string>
+    <string name="date_title">Date of birthday</string>
+    <string name="notifications">Notifications</string>
+    <string name="notif_time_title">Receive notifications</string>
+    <string name="you_have_subscribed">You have subscribed</string>
+    <string name="ok_alert">OK</string>
+
 
 </resources>

@@ -26,6 +26,13 @@
         <item name="colorAccent">#2e2c5c</item>
     </style>
 
+    <style name="Main" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#c8bdb2</item>
+        <item name="colorPrimaryDark">#c8bdb2</item>
+        <item name="colorAccent">#2e2c5c</item>
+
+    </style>
+
     <style name="TextInputStyle.Hint" parent="TextAppearance.AppCompat">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#51000000</item>
