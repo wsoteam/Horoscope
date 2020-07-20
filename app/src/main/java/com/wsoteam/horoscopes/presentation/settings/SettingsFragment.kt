@@ -1,34 +1,39 @@
 package com.wsoteam.horoscopes.presentation.settings
 
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.DialogFragment
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
+import com.wsoteam.horoscopes.presentation.settings.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ZodiacChoiser
 import kotlinx.android.synthetic.main.settings_fragment.*
-import java.util.*
+
 
 class SettingsFragment : Fragment(R.layout.settings_fragment) {
 
     val INFO_DIALOG = "INFO_DIALOG"
     val DATE_DIALOG = "DATE_DIALOG"
+    val TIME_DIALOG = "TIME_DIALOG"
 
     lateinit var infoDialog: InfoDialog
+    lateinit var timeDialog: TimeDialog
     lateinit var dateDialog: DateDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindDialogs()
+        bindSwitch()
+        setDate(PreferencesProvider.getBirthday()!!)
+        showPrem()
         flDateBirth.setOnClickListener {
             dateDialog.show(activity!!.supportFragmentManager, DATE_DIALOG)
         }
-        setDate(PreferencesProvider.getBirthday()!!)
-        showPrem()
         swNotif.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 showTimeNotif()
@@ -38,10 +43,27 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         }
     }
 
+    private fun bindSwitch() {
+        if (PreferencesProvider.getNotifStatus()!!){
+            swNotif.isChecked = true
+            showTimeNotif()
+        } else{
+            swNotif.isChecked = false
+            hideTimeNotif()
+        }
+    }
+
     private fun bindDialogs() {
         infoDialog = InfoDialog()
         dateDialog = DateDialog()
         dateDialog.setTargetFragment(this, 0)
+
+        timeDialog = TimeDialog()
+        timeDialog.setTargetFragment(this, 0)
+    }
+
+    fun setTime(time : String){
+        tvTime.text = time
     }
 
     fun setDate(birthday: String) {
@@ -53,14 +75,17 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     }
 
     private fun showTimeNotif() {
+        PreferencesProvider.setNotifStatus(true)
+        tvTime.text = PreferencesProvider.getNotifTime()
         llNotifTime.visibility = View.VISIBLE
         llNotifTime.setOnClickListener {
-
+            timeDialog.show(activity!!.supportFragmentManager, TIME_DIALOG)
         }
     }
 
     private fun hideTimeNotif() {
         llNotifTime.visibility = View.GONE
+        PreferencesProvider.setNotifStatus(false)
     }
 
     private fun showPrem() {

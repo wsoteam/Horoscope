@@ -70,6 +70,8 @@
     <string name="notif_time_title">Receive notifications</string>
     <string name="you_have_subscribed">You have subscribed</string>
     <string name="ok_alert">OK</string>
+    <string name="pm">PM</string>
+    <string name="am">AM</string>
 
 
 </resources>

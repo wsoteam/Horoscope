@@ -72,5 +72,11 @@
         <item name="colorAccent">#2e2c5c</item>
     </style>
 
+    <style name="timePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#2e2c5c</item>
+        <item name="colorControlActivated">#2e2c5c</item>
+        <item name="android:textColorPrimary">#de000000</item>
+    </style>
+
 
 </resources>

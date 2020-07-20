@@ -5,11 +5,16 @@ import android.content.SharedPreferences
 import com.wsoteam.horoscopes.App
 
 object PreferencesProvider {
+
     private const val AD = "AD_STATUS"
     private const val PRICE_TAG = "PRICE_TAG"
     private const val DEF_PRICE = "433 RUB"
     private const val NAME_TAG = "NAME_TAG"
     private const val BIRTH_TAG = "BIRTH_TAG"
+    private const val NOTIF_STATUS_TAG = "NOTIF_STATUS_TAG"
+    private const val NOTIF_TAG = "NOTIF_TAG"
+
+    const val DEFAULT_TIME_NOTIFY = "18:00 PM"
 
 
     fun getInstance(): SharedPreferences? {
@@ -33,5 +38,11 @@ object PreferencesProvider {
 
     fun setBirthday(date: String) = editor { it?.putString(BIRTH_TAG, date)}
     fun getBirthday() = getInstance()?.getString(BIRTH_TAG, "")
+
+    fun setNotifStatus(isEnabled: Boolean) = editor { it?.putBoolean(NOTIF_STATUS_TAG, isEnabled)}
+    fun getNotifStatus() = getInstance()?.getBoolean(NOTIF_STATUS_TAG, true)
+
+    fun setNotifTime(time: String) = editor { it?.putString(NOTIF_TAG, time)}
+    fun getNotifTime() = getInstance()?.getString(NOTIF_TAG, DEFAULT_TIME_NOTIFY)
 
 }
