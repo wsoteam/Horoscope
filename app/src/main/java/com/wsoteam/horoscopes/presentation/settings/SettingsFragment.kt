@@ -11,7 +11,7 @@ import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.ZodiacChoiser
+import com.wsoteam.horoscopes.utils.choiceSign
 import kotlinx.android.synthetic.main.settings_fragment.*
 
 
@@ -67,7 +67,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     }
 
     fun setDate(birthday: String) {
-        val index = ZodiacChoiser.choiceSign(birthday)
+        val index = choiceSign(birthday)
         tvDate.text = birthday
         tvSign.text = resources.getStringArray(R.array.names_signs)[index]
         ivSign.setBackgroundResource(resources.obtainTypedArray(R.array.icons_signs).getResourceId(index, -1))
