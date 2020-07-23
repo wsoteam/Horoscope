@@ -23,5 +23,6 @@
         app:itemTextAppearance="@style/DrawerItemText"
         app:menu="@menu/activity_main_drawer"
         app:itemIconTint="@drawable/selector_drawer_text"
-        app:itemTextColor="@drawable/selector_drawer_text"/>
+        app:itemTextColor="@drawable/selector_drawer_text"
+        app:itemBackground="@drawable/selector_drawer_back"/>
 </androidx.drawerlayout.widget.DrawerLayout>

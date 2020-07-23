@@ -86,7 +86,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">0.04</item>
         <item name="android:lineSpacingExtra">4.6sp</item>
-        <item name="background">@drawable/selector_drawer_back</item>
+        <item name="itemBackground">@drawable/selector_drawer_back</item>
     </style>
 
 

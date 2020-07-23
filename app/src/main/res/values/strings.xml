@@ -45,6 +45,21 @@
         <item>Pisces</item>
     </string-array>
 
+    <integer-array name="imgs_signs">
+        <item>@drawable/img_sign_aries</item>
+        <item>@drawable/img_sign_taurus</item>
+        <item>@drawable/img_sign_gemini</item>
+        <item>@drawable/img_sign_cancer</item>
+        <item>@drawable/img_sign_leo</item>
+        <item>@drawable/img_sign_virgo</item>
+        <item>@drawable/img_sign_libra</item>
+        <item>@drawable/img_sign_scorpio</item>
+        <item>@drawable/img_sign_sagittarius</item>
+        <item>@drawable/img_sign_capricorn</item>
+        <item>@drawable/img_sign_aquarius</item>
+        <item>@drawable/img_sign_pisces</item>
+    </integer-array>
+
     <!--Splash-->
     <string name="splash_title">Horoscope</string>
 
