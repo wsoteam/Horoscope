@@ -60,6 +60,21 @@
         <item>@drawable/img_sign_pisces</item>
     </integer-array>
 
+    <integer-array name="imgs_signs_matches">
+        <item>@drawable/ic_aries_matches</item>
+        <item>@drawable/ic_taurus_matches</item>
+        <item>@drawable/ic_gemini_matches</item>
+        <item>@drawable/ic_cancer_matches</item>
+        <item>@drawable/ic_leo_matches</item>
+        <item>@drawable/ic_virgo_matches</item>
+        <item>@drawable/ic_libra_matches</item>
+        <item>@drawable/ic_scorpio_matches</item>
+        <item>@drawable/ic_sagittarius_matches</item>
+        <item>@drawable/ic_capricorn_matches</item>
+        <item>@drawable/ic_aquarius_matches</item>
+        <item>@drawable/ic_pisces_matches</item>
+    </integer-array>
+
     <!--Splash-->
     <string name="splash_title">Horoscope</string>
 
@@ -87,6 +102,11 @@
     <string name="ok_alert">OK</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
 
 
 </resources>
