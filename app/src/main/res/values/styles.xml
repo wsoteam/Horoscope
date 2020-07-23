@@ -27,7 +27,7 @@
     </style>
 
     <style name="Main" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#c8bdb2</item>
+        <item name="colorPrimary">#f4e6d8</item>
         <item name="colorPrimaryDark">#c8bdb2</item>
         <item name="colorAccent">#2e2c5c</item>
 
@@ -81,6 +81,13 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DrawerItemText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineSpacingExtra">4.6sp</item>
+        <item name="background">@drawable/selector_drawer_back</item>
+    </style>
 
 
 </resources>

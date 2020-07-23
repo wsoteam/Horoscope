@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this, "sdf", Toast.LENGTH_LONG).show()
         return true
     }
 }
