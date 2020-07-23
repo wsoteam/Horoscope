@@ -2,9 +2,12 @@ package com.wsoteam.horoscopes.presentation.settings
 
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
@@ -71,7 +74,8 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         tvDate.text = birthday
         tvSign.text = resources.getStringArray(R.array.names_signs)[index]
         ivSign.setBackgroundResource(resources.obtainTypedArray(R.array.icons_signs).getResourceId(index, -1))
-        ivSign.setColorFilter(resources.getColor(R.color.main_violet))
+        //ImageViewCompat.setImageTintList()
+        //ivSign.setColorFilter(ContextCompat.getColor(activity!!, R.color.main_violet), android.graphics.PorterDuff.Mode.MULTIPLY)
     }
 
     private fun showTimeNotif() {
