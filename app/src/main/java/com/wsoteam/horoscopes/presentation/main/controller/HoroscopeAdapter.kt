@@ -14,6 +14,7 @@ class HoroscopeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return when(viewType){
             TEXT_TYPE -> TextVH(LayoutInflater.from(parent.context), parent)
             MATCH_TYPE -> MatchVH(LayoutInflater.from(parent.context), parent)
+            MOOD_TYPE -> MoodVH(LayoutInflater.from(parent.context), parent)
             else -> TextVH(LayoutInflater.from(parent.context), parent)
         }
     }
@@ -26,6 +27,7 @@ class HoroscopeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when(getItemViewType(position)){
             TEXT_TYPE -> (holder as TextVH).bind("Jul 12, 2020 - The possibility of some future houseguests might have you checking your home to see what needs to be done to make it presentable. It may need a few minor repairs, Aries, and you could do some online shopping to dress the place up a little. Books might give you some workable ideas. Your mind might be working more quickly than your body, however. Take care not to push yourself too hard.")
             MATCH_TYPE -> (holder as MatchVH).bind(0, 1, 3)
+            MOOD_TYPE -> (holder as MoodVH).bind(5, 1, 3, 4)
         }
     }
 

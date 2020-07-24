@@ -111,6 +111,11 @@
     <string name="love">Love</string>
     <string name="friendship">Friendship</string>
     <string name="career">Career</string>
+    <string name="general_mood">General Mood</string>
+    <string name="sex">Sex</string>
+    <string name="hustle">Hustle</string>
+    <string name="vibe">Vibe</string>
+    <string name="success">Success</string>
 
 
 </resources>

@@ -46,8 +46,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivLove"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
                     android:layout_marginTop="12dp"
                     android:layout_gravity="center_horizontal"
                     tools:srcCompat="@drawable/ic_aries_matches" />
@@ -83,8 +83,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivFriend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="12dp"
                     tools:srcCompat="@drawable/ic_aries_matches" />
@@ -121,8 +121,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivCareer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="12dp"
                     tools:srcCompat="@drawable/ic_aries_matches" />

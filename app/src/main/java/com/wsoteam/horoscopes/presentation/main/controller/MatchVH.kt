@@ -4,13 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.wsoteam.horoscopes.R
+import kotlinx.android.synthetic.main.match_vh.view.*
 
 class MatchVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerView.ViewHolder(
     layoutInflater.inflate(
         R.layout.match_vh, viewGroup, false
     )
 ) {
-    fun bind(love: Int, friend: Int, career: Int) {
+    fun bind(loveId: Int, friendId: Int, careerId: Int) {
+        itemView.ivLove.setBackgroundResource(
+            itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
+                .getResourceId(loveId, -1)
+        )
+        itemView.ivCareer.setBackgroundResource(
+            itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
+                .getResourceId(careerId, -1)
+        )
+        itemView.ivFriend.setBackgroundResource(
+            itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
+                .getResourceId(friendId, -1)
+        )
 
+        itemView.tvCareer.text = itemView.resources.getStringArray(R.array.names_signs)[careerId]
+        itemView.tvFriend.text = itemView.resources.getStringArray(R.array.names_signs)[friendId]
+        itemView.tvLove.text = itemView.resources.getStringArray(R.array.names_signs)[loveId]
     }
 }
