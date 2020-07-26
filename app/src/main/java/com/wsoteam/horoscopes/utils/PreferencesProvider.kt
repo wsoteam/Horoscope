@@ -40,9 +40,9 @@ object PreferencesProvider {
     fun getBirthday() = getInstance()?.getString(BIRTH_TAG, "")
 
     fun setNotifStatus(isEnabled: Boolean) = editor { it?.putBoolean(NOTIF_STATUS_TAG, isEnabled)}
-    fun getNotifStatus() = getInstance()?.getBoolean(NOTIF_STATUS_TAG, true)
+    fun getNotifStatus() = getInstance()?.getBoolean(NOTIF_STATUS_TAG, true) ?: true
 
     fun setNotifTime(time: String) = editor { it?.putString(NOTIF_TAG, time)}
-    fun getNotifTime() = getInstance()?.getString(NOTIF_TAG, DEFAULT_TIME_NOTIFY)
+    fun getNotifTime() = getInstance()?.getString(NOTIF_TAG, DEFAULT_TIME_NOTIFY) ?: ""
 
 }

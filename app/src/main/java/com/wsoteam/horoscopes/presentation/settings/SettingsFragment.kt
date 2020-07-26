@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.TimeDialog
@@ -81,6 +82,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         llNotifTime.setOnClickListener {
             timeDialog.show(activity!!.supportFragmentManager, TIME_DIALOG)
         }
+        AlarmReceiver.startNotification(context)
     }
 
     private fun hideTimeNotif() {
