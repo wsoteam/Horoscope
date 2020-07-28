@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ZodiacChoiser
@@ -29,6 +31,7 @@ import kotlinx.coroutines.withContext
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var vm: MainVM
+    var signIndex = -1
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -44,8 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
 
-        supportFragmentManager.beginTransaction().replace(R.id.clContainer, SettingsFragment()).commit()
-
         var toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.nav_app_bar_open_drawer_description,
             R.string.nav_app_bar_open_drawer_description
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
         setFirstUI()
+
+        ivToolPrem.setOnClickListener {
+            openPrem()
+        }
     }
 
     private fun setFirstUI() {
@@ -65,15 +70,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         onNavigationItemSelected(nav_view.menu.getItem(it + 1))
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Log.e("LOL", listIndexes.indexOf(item.itemId).toString())
-
-        if (item.itemId == R.id.nav_gemini){
-
-        }
-        return true
+    private fun openPrem(){
+        startActivity(Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_MAIN))
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when {
+            listIndexes.indexOf(item.itemId) != -1 -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.clContainer, MainFragment.newInstance(listIndexes.indexOf(item.itemId)))
+                    .commit()
+                tvToolTitle.text = resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
+                return true
+            }
+            item.itemId == R.id.nav_settings -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.clContainer, SettingsFragment())
+                    .commit()
+                tvToolTitle.text = getString(R.string.settings)
+                return true
+            }
+            else -> {
+                openPrem()
+                return false
+            }
+        }
+    }
 
 }
 

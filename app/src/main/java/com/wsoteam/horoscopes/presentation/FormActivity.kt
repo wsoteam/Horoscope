@@ -6,9 +6,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
-import com.wsoteam.horoscopes.presentation.premium.PremiumActivity
+import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.form_activity.*
 
@@ -74,7 +75,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         ivNext.setOnClickListener {
             PreferencesProvider.setName(edtName.text.toString())
             PreferencesProvider.setBirthday(edtBirthdate.text.toString())
-            startActivity(Intent(this, PremiumActivity::class.java))
+            startActivity(Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_REG))
             finish()
         }
     }

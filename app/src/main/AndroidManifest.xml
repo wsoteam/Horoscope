@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".presentation.FormActivity"
             android:theme="@style/Form"/>
-        <activity android:name=".presentation.premium.PremiumActivity"
+        <activity android:name=".presentation.premium.PremiumHostActivity"
             android:theme="@style/Premium"/>
         <activity android:name=".MainActivity"
             android:theme="@style/Main"/>

@@ -3,18 +3,22 @@ package com.wsoteam.horoscopes.presentation.premium
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
-import kotlinx.android.synthetic.main.premium_activity.*
+import kotlinx.android.synthetic.main.premium_fragment.*
 
-class PremiumActivity : AppCompatActivity(R.layout.premium_activity) {
+class PremiumHostActivity : AppCompatActivity(R.layout.premium_fragment) {
+
+    var open_from = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        open_from = intent.getStringExtra(Config.OPEN_PREM)
 
         btnPay.setOnClickListener { _ ->
             SubscriptionProvider.startChoiseSub(this, "id", object :
@@ -26,7 +30,11 @@ class PremiumActivity : AppCompatActivity(R.layout.premium_activity) {
         }
 
         ivClose.setOnClickListener {
-            openNextScreen()
+            if (open_from == Config.OPEN_PREM_FROM_REG) {
+                openNextScreen()
+            }else{
+                onBackPressed()
+            }
         }
         setPrice()
     }

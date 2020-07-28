@@ -24,9 +24,12 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     val DATE_DIALOG = "DATE_DIALOG"
     val TIME_DIALOG = "TIME_DIALOG"
 
+
     lateinit var infoDialog: InfoDialog
     lateinit var timeDialog: TimeDialog
     lateinit var dateDialog: DateDialog
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

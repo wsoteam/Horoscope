@@ -3,4 +3,8 @@ package com.wsoteam.horoscopes
 object Config {
     const val DEFAULT_TIME_NOTIFY = "18:00"
     const val VPN_DATA_URL = "https://mobtracks.ru/horo/"
+
+    const val OPEN_PREM = "OPEN_PREM"
+    const val OPEN_PREM_FROM_MAIN = "OPEN_PREM_FROM_MAIN"
+    const val OPEN_PREM_FROM_REG = "OPEN_PREM_FROM_REG"
 }
