@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProviders
@@ -36,6 +37,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (PreferencesProvider.isADEnabled()){
+            ivToolPrem.visibility = View.VISIBLE
+        }else{
+            ivToolPrem.visibility = View.GONE
+        }
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
 
