@@ -1,18 +1,14 @@
 package com.wsoteam.horoscopes
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.lifecycle.Observer
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
@@ -22,16 +18,12 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ZodiacChoiser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.android.synthetic.main.settings_fragment.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var vm: MainVM
-    var signIndex = -1
+    var birthSignIndex = -1
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -59,15 +51,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ivToolPrem.setOnClickListener {
             openPrem()
         }
+
+        ivToolSign.setOnClickListener {
+            if (ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!) != listIndexes.indexOf(nav_view.checkedItem!!.itemId)){
+                setSelectedItem(ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!))
+            }
+        }
     }
 
     private fun setFirstUI() {
-        setSignUI(ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!))
+        birthSignIndex = ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!)
+        setSelectedItem(birthSignIndex)
     }
 
-    private fun setSignUI(it: Int) {
-        nav_view.menu.getItem(it + 1).isChecked = true
-        onNavigationItemSelected(nav_view.menu.getItem(it + 1))
+    private fun setSelectedItem(index : Int){
+        nav_view.menu.getItem(index + 1).isChecked = true
+        onNavigationItemSelected(nav_view.menu.getItem(index + 1))
     }
 
     private fun openPrem(){
@@ -82,6 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .replace(R.id.clContainer, MainFragment.newInstance(listIndexes.indexOf(item.itemId)))
                     .commit()
                 tvToolTitle.text = resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
+                bindToolbar(listIndexes.indexOf(item.itemId))
                 return true
             }
             item.itemId == R.id.nav_settings -> {
@@ -97,6 +97,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return false
             }
         }
+    }
+
+    private fun bindToolbar(indexOf: Int) {
+        var drawable = VectorDrawableCompat.create(resources,
+            resources.obtainTypedArray(R.array.icons_signs).getResourceId(birthSignIndex, -1), null) as Drawable
+        drawable = DrawableCompat.wrap(drawable)
+        if (indexOf == birthSignIndex){
+            DrawableCompat.setTint(drawable, resources.getColor(R.color.active_tool_sign))
+        }else{
+            DrawableCompat.setTint(drawable, resources.getColor(R.color.inactive_tool_sign))
+        }
+        ivToolSign.setImageDrawable(drawable)
     }
 
 }
