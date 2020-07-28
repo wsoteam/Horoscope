@@ -12,7 +12,6 @@
         android:id="@+id/llPrem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
         android:orientation="horizontal"
         android:background="?selectableItemBackground">
 
@@ -105,7 +104,6 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="12dp"
             android:layout_marginEnd="16dp"
-            android:tint="@color/main_violet"
             tools:srcCompat = "@drawable/ic_sign_3"/>
 
 

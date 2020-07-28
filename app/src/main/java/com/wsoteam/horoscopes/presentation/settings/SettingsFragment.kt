@@ -3,12 +3,16 @@ package com.wsoteam.horoscopes.presentation.settings
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.res.ColorStateList
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
@@ -76,9 +80,12 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         val index = ZodiacChoiser.choiceSign(birthday)
         tvDate.text = birthday
         tvSign.text = resources.getStringArray(R.array.names_signs)[index]
-        ivSign.setBackgroundResource(resources.obtainTypedArray(R.array.icons_signs).getResourceId(index, -1))
-        //ImageViewCompat.setImageTintList()
-        //ivSign.setColorFilter(ContextCompat.getColor(activity!!, R.color.main_violet), android.graphics.PorterDuff.Mode.MULTIPLY)
+        //ivSign.setBackgroundResource(resources.obtainTypedArray(R.array.icons_signs).getResourceId(index, -1))
+        var drawable = VectorDrawableCompat.create(resources,
+            resources.obtainTypedArray(R.array.icons_signs).getResourceId(index, -1), null) as Drawable
+        drawable = DrawableCompat.wrap(drawable)
+        DrawableCompat.setTint(drawable, resources.getColor(R.color.main_violet))
+        ivSign.setImageDrawable(drawable)
     }
 
     private fun showTimeNotif() {
