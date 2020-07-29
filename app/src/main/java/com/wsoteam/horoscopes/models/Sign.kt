@@ -10,8 +10,8 @@ data class Sign (@SerializedName("today")
                  var week : Week,
                  @SerializedName("month")
                  var month : Month,
-                 /*@SerializedName("year")
-                 var year : Year,*/
+                 @SerializedName("year")
+                 var year : Year,
                  @SerializedName("yesterday")
                  var yesterday : Yesterday) {
 }

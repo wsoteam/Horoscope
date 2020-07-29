@@ -4,13 +4,16 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.material.navigation.NavigationView
+import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
@@ -45,6 +48,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
+        vm.setupCachedData()
+        vm.getLD().observe(this,
+            Observer<List<Sign>> {
+                Log.e("LOL", "${it.size}")
+            })
 
         var toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.nav_app_bar_open_drawer_description,
@@ -64,6 +72,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setSelectedItem(ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!))
             }
         }
+
+
     }
 
     private fun setFirstUI() {
