@@ -10,17 +10,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RepositoryGets {
 
-    lateinit var api : RetrofitAPI
+    lateinit var api: RetrofitAPI
 
-    fun getAPI() : RetrofitAPI{
+    fun getAPI(): RetrofitAPI {
         return api
     }
 
     init {
         var client = OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor()
-                .setLevel(if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-                else HttpLoggingInterceptor.Level.NONE))
+            .addInterceptor(
+                HttpLoggingInterceptor()
+                    .setLevel(
+                        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+                        else HttpLoggingInterceptor.Level.NONE
+                    )
+            )
             .build()
 
         var retrofit = Retrofit.Builder()
@@ -29,5 +33,7 @@ object RepositoryGets {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
+
+        api = retrofit.create(RetrofitAPI::class.java)
     }
 }

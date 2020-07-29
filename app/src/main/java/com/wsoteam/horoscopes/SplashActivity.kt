@@ -2,19 +2,28 @@ package com.wsoteam.horoscopes
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.FormActivity
 import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.net.RepositoryGets
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
     val MAX = 1
+
+    private var job : Job? = null
 
     private fun goNext(){
         counter++
@@ -32,8 +41,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val result = getData()
+            Log.e("LOL", result.size.toString())
+        }
         AdProvider.init(this)
         trackUser()
+    }
+
+    private suspend fun getData(): List<Sign> {
+        return RepositoryGets.getAPI().getData().await()
     }
 
     private fun trackUser() {
@@ -72,7 +89,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
 
-        goNext()
+        //goNext()
     }
 
     private fun getClickId(s: String): String {
