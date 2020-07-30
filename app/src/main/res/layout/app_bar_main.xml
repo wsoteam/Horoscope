@@ -14,7 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -22,12 +22,11 @@
                 android:id="@+id/tvToolTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#2e2c5c"
                 android:letterSpacing="0.06"
                 android:lineSpacingExtra="5.7sp"
                 android:text="Gemini"
-                />
+                android:textColor="#2e2c5c"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,25 +38,25 @@
                     android:id="@+id/ivToolSign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:layout_gravity="center_vertical"
+                    android:padding="10dp"
                     tools:srcCompat="@drawable/ic_sign_0" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivToolShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:layout_gravity="center_vertical"
+                    android:padding="10dp"
                     app:srcCompat="@drawable/ic_share" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivToolPrem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginEnd="6dp"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="6dp"
+                    android:padding="10dp"
                     app:srcCompat="@drawable/ic_crown" />
 
 
@@ -67,6 +66,19 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f4e6d8"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/flContainer"/>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

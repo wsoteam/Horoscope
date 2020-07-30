@@ -25,7 +25,17 @@ class HoroscopeAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return when {
+            ratings.isNotEmpty() -> {
+                3
+            }
+            matches.isNotEmpty() -> {
+                2
+            }
+            else -> {
+                1
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

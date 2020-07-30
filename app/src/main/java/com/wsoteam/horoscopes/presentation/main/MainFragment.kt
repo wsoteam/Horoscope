@@ -63,7 +63,14 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun getFragmentsList(): List<Fragment> {
-        var list = listOf<Fragment>(PageFragment(), PageFragment())
+        var list = listOf<Fragment>(
+            PageFragment.newInstance(signData.yesterday),
+            PageFragment.newInstance(signData.today),
+            PageFragment.newInstance(signData.tomorrow),
+            PageFragment.newInstance(signData.week),
+            PageFragment.newInstance(signData.month),
+            PageFragment.newInstance(signData.year)
+        )
         return list
     }
 }

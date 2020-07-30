@@ -5,9 +5,9 @@ import java.io.Serializable
 
 data class Tomorrow(
     @SerializedName("text")
-    var text : String,
+    override var text : String,
     @SerializedName("matches")
-    var matches : List<Int>,
+    override var matches : List<Int>,
     @SerializedName("ratings")
-    var ratings : List<Int>): Serializable {
+    override var ratings : List<Int>): Serializable, TimeInterval() {
 }

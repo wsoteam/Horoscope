@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             index != -1 -> {
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.clContainer, MainFragment.newInstance(index, vm.getLD().value!![index - 1]))
+                    .replace(R.id.flContainer, MainFragment.newInstance(index, vm.getLD().value!![index]))
                     .commit()
                 tvToolTitle.text = resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
                 bindToolbar(listIndexes.indexOf(item.itemId))
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             item.itemId == R.id.nav_settings -> {
                 supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.clContainer, SettingsFragment())
+                    .add(R.id.flContainer, SettingsFragment())
                     .commit()
                 tvToolTitle.text = getString(R.string.settings)
                 return true
