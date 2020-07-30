@@ -19,7 +19,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        edtBirthdate.setOnFocusChangeListener { v, hasFocus ->
+        edtBirthdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 DateDialog()
                     .show(supportFragmentManager, "")

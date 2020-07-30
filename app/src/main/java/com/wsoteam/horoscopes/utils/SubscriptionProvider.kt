@@ -55,7 +55,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
             var isADEnabled = true
             var result = playStoreBillingClient.queryPurchases(BillingClient.SkuType.SUBS)
-            if (result != null && result!!.purchasesList.size > 0) {
+            if (result != null && result.purchasesList.size > 0) {
                 isADEnabled = false
             }
             PreferencesProvider.setADStatus(isADEnabled)

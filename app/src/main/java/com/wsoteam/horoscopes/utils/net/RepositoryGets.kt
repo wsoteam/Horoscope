@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RepositoryGets {
 
-    lateinit var api: RetrofitAPI
+    var api: RetrofitAPI
 
     fun getAPI(): RetrofitAPI {
         return api

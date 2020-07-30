@@ -45,7 +45,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         flDateBirth.setOnClickListener {
             dateDialog.show(activity!!.supportFragmentManager, DATE_DIALOG)
         }
-        swNotif.setOnCheckedChangeListener { buttonView, isChecked ->
+        swNotif.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 showTimeNotif()
             }else{
@@ -55,7 +55,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     }
 
     private fun bindSwitch() {
-        if (PreferencesProvider.getNotifStatus()!!){
+        if (PreferencesProvider.getNotifStatus()){
             swNotif.isChecked = true
             showTimeNotif()
         } else{

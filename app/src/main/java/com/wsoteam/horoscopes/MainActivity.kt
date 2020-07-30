@@ -19,7 +19,7 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.ZodiacChoiser
+import com.wsoteam.horoscopes.utils.choiceSign
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.settings_fragment.*
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         ivToolSign.setOnClickListener {
-            if (ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!) != listIndexes.indexOf(nav_view.checkedItem!!.itemId)){
-                setSelectedItem(ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!))
+            if (choiceSign(PreferencesProvider.getBirthday()!!) != listIndexes.indexOf(nav_view.checkedItem!!.itemId)){
+                setSelectedItem(choiceSign(PreferencesProvider.getBirthday()!!))
             }
         }
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setFirstUI() {
-        birthSignIndex = ZodiacChoiser.choiceSign(PreferencesProvider.getBirthday()!!)
+        birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)
         setSelectedItem(birthSignIndex)
     }
 

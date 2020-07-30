@@ -91,9 +91,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         bundle.putString(FirebaseAnalytics.Param.CONTENT, clickId)
         bundle.putString(FirebaseAnalytics.Param.CP1, clickId)
         bundle.putString(FirebaseAnalytics.Param.VALUE, clickId)
-        mFirebaseAnalytics!!.logEvent("traffic_id", bundle)
-        mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
-        mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
+        mFirebaseAnalytics.logEvent("traffic_id", bundle)
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
 
         postGoNext()
     }
