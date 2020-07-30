@@ -31,8 +31,9 @@ class DateDialog : DialogFragment() {
         }
 
         tvOk.setOnClickListener {
-            val date =
-                "${"%02d".format(dpCalendar.dayOfMonth)}.${"%02d".format(dpCalendar.month + 1)}.${dpCalendar.year}"
+            val date = "%02d.%02d.%d".format(dpCalendar.dayOfMonth, dpCalendar.month + 1, dpCalendar.year)
+//            "${"%02d".format(dpCalendar.dayOfMonth)}.${"%02d".format(dpCalendar.month + 1)}.${dpCalendar.year}"
+
             if (activity is FormActivity) {
                 (activity as FormActivity).setDate(date)
             } else {
