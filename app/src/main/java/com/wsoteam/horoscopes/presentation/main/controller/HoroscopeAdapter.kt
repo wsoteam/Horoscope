@@ -4,11 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class HoroscopeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HoroscopeAdapter(
+    val text: String,
+    val matches: List<Int>,
+    val ratings: List<Int>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val TEXT_TYPE = 0
     val MATCH_TYPE = 1
     val MOOD_TYPE = 2
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
@@ -25,9 +30,9 @@ class HoroscopeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            TEXT_TYPE -> (holder as TextVH).bind("Jul 12, 2020 - The possibility of some future houseguests might have you checking your home to see what needs to be done to make it presentable. It may need a few minor repairs, Aries, and you could do some online shopping to dress the place up a little. Books might give you some workable ideas. Your mind might be working more quickly than your body, however. Take care not to push yourself too hard.")
-            MATCH_TYPE -> (holder as MatchVH).bind(0, 1, 3)
-            MOOD_TYPE -> (holder as MoodVH).bind(5, 1, 3, 4)
+            TEXT_TYPE -> (holder as TextVH).bind(text)
+            MATCH_TYPE -> (holder as MatchVH).bind(matches[0], matches[1], matches[2])
+            MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3])
         }
     }
 

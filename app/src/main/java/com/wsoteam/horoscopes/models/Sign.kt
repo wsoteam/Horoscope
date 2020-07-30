@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Sign (@SerializedName("today")
                  var today : Today,
@@ -13,5 +14,5 @@ data class Sign (@SerializedName("today")
                  @SerializedName("year")
                  var year : Year,
                  @SerializedName("yesterday")
-                 var yesterday : Yesterday) {
+                 var yesterday : Yesterday) : Serializable {
 }

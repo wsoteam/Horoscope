@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         vm.setupCachedData()
         vm.getLD().observe(this,
             Observer<List<Sign>> {
-                Log.e("LOL", "${it.size}")
+                setFirstUI()
             })
 
         var toggle = ActionBarDrawerToggle(
@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
-        setFirstUI()
 
         ivToolPrem.setOnClickListener {
             openPrem()
@@ -91,11 +90,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val index = listIndexes.indexOf(item.itemId)
         when {
-            listIndexes.indexOf(item.itemId) != -1 -> {
+            index != -1 -> {
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.clContainer, MainFragment.newInstance(listIndexes.indexOf(item.itemId)))
+                    .replace(R.id.clContainer, MainFragment.newInstance(index, vm.getLD().value!![index - 1]))
                     .commit()
                 tvToolTitle.text = resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
                 bindToolbar(listIndexes.indexOf(item.itemId))

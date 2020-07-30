@@ -17,7 +17,7 @@ class MainVM : ViewModel() {
     private var job = Job()
     private val vmScope = CoroutineScope(Dispatchers.Main + job)
 
-    val dataLD = MutableLiveData<List<Sign>>()
+    private val dataLD = MutableLiveData<List<Sign>>()
 
     fun preLoadData() {
         job = vmScope.launch {
