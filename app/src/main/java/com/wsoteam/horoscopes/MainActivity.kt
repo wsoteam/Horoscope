@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
@@ -41,9 +43,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (PreferencesProvider.isADEnabled()){
+        if (PreferencesProvider.isADEnabled()) {
             ivToolPrem.visibility = View.VISIBLE
-        }else{
+        } else {
             ivToolPrem.visibility = View.GONE
         }
 
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         ivToolSign.setOnClickListener {
-            if (choiceSign(PreferencesProvider.getBirthday()!!) != listIndexes.indexOf(nav_view.checkedItem!!.itemId)){
+            if (choiceSign(PreferencesProvider.getBirthday()!!) != listIndexes.indexOf(nav_view.checkedItem!!.itemId)) {
                 setSelectedItem(choiceSign(PreferencesProvider.getBirthday()!!))
             }
         }
@@ -80,13 +82,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSelectedItem(birthSignIndex)
     }
 
-    private fun setSelectedItem(index : Int){
+    private fun setSelectedItem(index: Int) {
         nav_view.menu.getItem(index + 1).isChecked = true
         onNavigationItemSelected(nav_view.menu.getItem(index + 1))
     }
 
-    private fun openPrem(){
-        startActivity(Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_MAIN))
+    private fun openPrem() {
+        startActivity(
+            Intent(this, PremiumHostActivity::class.java).putExtra(
+                Config.OPEN_PREM,
+                Config.OPEN_PREM_FROM_MAIN
+            )
+        )
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -95,10 +102,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             index != -1 -> {
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.flContainer, MainFragment.newInstance(index, vm.getLD().value!![index]))
+                    .replace(
+                        R.id.flContainer,
+                        MainFragment.newInstance(index, vm.getLD().value!![index])
+                    )
                     .commit()
-                tvToolTitle.text = resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
+                tvToolTitle.text =
+                    resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
                 bindToolbar(listIndexes.indexOf(item.itemId))
+                drawer_layout.closeDrawers()
                 return true
             }
             item.itemId == R.id.nav_settings -> {
@@ -107,6 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .add(R.id.flContainer, SettingsFragment())
                     .commit()
                 tvToolTitle.text = getString(R.string.settings)
+                drawer_layout.closeDrawers()
                 return true
             }
             else -> {
@@ -117,16 +130,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun bindToolbar(indexOf: Int) {
-        var drawable = VectorDrawableCompat.create(resources,
-            resources.obtainTypedArray(R.array.icons_signs).getResourceId(birthSignIndex, -1), null) as Drawable
+        var drawable = VectorDrawableCompat.create(
+            resources,
+            resources.obtainTypedArray(R.array.icons_signs).getResourceId(birthSignIndex, -1), null
+        ) as Drawable
         drawable = DrawableCompat.wrap(drawable)
-        if (indexOf == birthSignIndex){
+        if (indexOf == birthSignIndex) {
             DrawableCompat.setTint(drawable, resources.getColor(R.color.active_tool_sign))
-        }else{
+        } else {
             DrawableCompat.setTint(drawable, resources.getColor(R.color.inactive_tool_sign))
         }
         ivToolSign.setImageDrawable(drawable)
     }
 
+    override fun onBackPressed() {
+        if (!drawer_layout.isDrawerOpen(GravityCompat.START)){
+            super.onBackPressed()
+        }else{
+            drawer_layout.closeDrawers()
+        }
+    }
 }
 
