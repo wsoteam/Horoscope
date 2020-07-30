@@ -110,6 +110,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 tvToolTitle.text =
                     resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
                 bindToolbar(listIndexes.indexOf(item.itemId))
+                if (llTools.visibility != View.VISIBLE){
+                    llTools.visibility = View.VISIBLE
+                }
                 drawer_layout.closeDrawers()
                 return true
             }
@@ -119,6 +122,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .add(R.id.flContainer, SettingsFragment())
                     .commit()
                 tvToolTitle.text = getString(R.string.settings)
+                if (llTools.visibility == View.VISIBLE){
+                    llTools.visibility = View.INVISIBLE
+                }
                 drawer_layout.closeDrawers()
                 return true
             }

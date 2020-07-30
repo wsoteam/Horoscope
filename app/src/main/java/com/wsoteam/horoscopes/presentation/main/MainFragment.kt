@@ -62,6 +62,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        vpHoroscope.setCurrentItem(1, true)
+    }
+
     private fun getFragmentsList(): List<Fragment> {
         var list = listOf<Fragment>(
             PageFragment.newInstance(signData.yesterday),
