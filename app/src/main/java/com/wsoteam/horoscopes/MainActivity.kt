@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
         R.id.nav_gemini, R.id.nav_cancer, R.id.nav_leo, R.id.nav_virgo,
-        R.id.nav_libra, R.id.nav_scorpio, R.id.nav_sagittarius, R.id.nav_sagittarius,
+        R.id.nav_libra, R.id.nav_scorpio, R.id.nav_sagittarius,
         R.id.nav_capricorn, R.id.nav_aquarius, R.id.nav_pisces
     )
 
