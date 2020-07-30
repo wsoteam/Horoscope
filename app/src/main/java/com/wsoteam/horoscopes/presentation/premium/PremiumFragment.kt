@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.InAppCallback
@@ -17,7 +18,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(activity!!, "null", object :
+            SubscriptionProvider.startChoiseSub(activity!!, Config.ID_PRICE, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()

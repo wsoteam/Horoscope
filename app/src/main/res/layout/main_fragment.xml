@@ -42,6 +42,12 @@
             android:layout="@layout/tab_lat_tomorrow" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tiWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/tab_lat_week" />
+
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/tiMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
