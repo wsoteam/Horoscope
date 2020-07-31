@@ -13,15 +13,16 @@ class MatchVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerVi
     )
 ) {
     fun bind(loveId: Int, friendId: Int, careerId: Int) {
-        itemView.ivLove.setBackgroundResource(
+        Log.e("LOL", "$loveId $friendId $careerId")
+        itemView.ivLove.setImageResource(
             itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
                 .getResourceId(loveId - 1, -1)
         )
-        itemView.ivCareer.setBackgroundResource(
+        itemView.ivCareer.setImageResource(
             itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
                 .getResourceId(careerId - 1, -1)
         )
-        itemView.ivFriend.setBackgroundResource(
+        itemView.ivFriend.setImageResource(
             itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
                 .getResourceId(friendId - 1, -1)
         )

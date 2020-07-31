@@ -37,7 +37,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         super.onViewCreated(view, savedInstanceState)
         index = arguments!!.getInt(INDEX_KEY)
         signData = arguments!!.getSerializable(DATA_KEY) as Sign
-        ivMain.setBackgroundResource(
+        ivMain.setImageResource(
             resources.obtainTypedArray(R.array.imgs_signs)
                 .getResourceId(index, -1)
         )
