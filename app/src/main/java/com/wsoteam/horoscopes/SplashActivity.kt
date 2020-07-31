@@ -52,7 +52,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         var vm =  ViewModelProviders
             .of(this)
             .get(MainVM::class.java)
-        //vm.preLoadData()
+        vm.preLoadData()
         AdProvider.init(this)
         trackUser()
     }

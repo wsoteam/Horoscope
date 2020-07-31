@@ -16,12 +16,15 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
+import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
+import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.choiceSign
+import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.settings_fragment.*
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
         if (PreferencesProvider.isADEnabled()) {
             ivToolPrem.visibility = View.VISIBLE
         } else {
@@ -55,6 +58,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Observer<List<Sign>> {
                 setFirstUI()
             })
+
+        if (!NetState.isConnected()){
+            supportFragmentManager.beginTransaction().replace(R.id.flContainer, ConnectionFragment()).commit()
+        }
+
 
         var toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.nav_app_bar_open_drawer_description,
@@ -73,9 +81,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setSelectedItem(choiceSign(PreferencesProvider.getBirthday()!!))
             }
         }
-
-
     }
+
+
+    fun reloadNetState(){
+        if (NetState.isConnected()){
+            supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
+            vm.reloadData()
+        }else{
+            NetState.showNetLost(this)
+        }
+    }
+
+
 
     private fun setFirstUI() {
         birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)

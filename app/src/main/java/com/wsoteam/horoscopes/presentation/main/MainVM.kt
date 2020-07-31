@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.net.RepositoryGets
+import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,22 +20,26 @@ class MainVM : ViewModel() {
     private val dataLD = MutableLiveData<List<Sign>>()
 
     fun preLoadData() {
-        job = vmScope.launch {
-            CacheData.setCachedData(getData())
+        if (NetState.isConnected()) {
+            job = vmScope.launch {
+                CacheData.setCachedData(getData())
+            }
         }
     }
 
     fun reloadData() {
-        job = vmScope.launch {
-            dataLD.value = getData()
+        if (NetState.isConnected()) {
+            job = vmScope.launch {
+                dataLD.value = getData()
+            }
         }
     }
 
-    fun setupCachedData(){
-        if (CacheData.getCachedData() != null){
+    fun setupCachedData() {
+        if (CacheData.getCachedData() != null) {
             dataLD.value = CacheData.getCachedData()
             CacheData.clearCache()
-        }else{
+        } else {
             reloadData()
         }
     }

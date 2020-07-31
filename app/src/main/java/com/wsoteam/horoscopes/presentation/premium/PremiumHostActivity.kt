@@ -21,7 +21,7 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_fragment) {
         open_from = intent.getStringExtra(Config.OPEN_PREM)
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, "id", object :
+            SubscriptionProvider.startChoiseSub(this, Config.ID_PRICE, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
