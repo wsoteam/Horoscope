@@ -18,7 +18,8 @@
 
 
         <activity android:name="com.wsoteam.horoscopes.SplashActivity"
-            android:theme="@style/Splash">
+            android:theme="@style/Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,11 +27,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.FormActivity"
-            android:theme="@style/Form"/>
+            android:theme="@style/Form"
+            android:screenOrientation="portrait"/>
         <activity android:name=".presentation.premium.PremiumHostActivity"
-            android:theme="@style/Premium"/>
+            android:theme="@style/Premium"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
-            android:theme="@style/Main"/>
+            android:theme="@style/Main"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.main
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -14,12 +15,18 @@ import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
     var index = -1
     lateinit var signData: Sign
     var isFirstSet = true
+    var timer: CountDownTimer? = null
 
     companion object {
 
@@ -60,18 +67,33 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
+                if (isFirstSet) {
+                    isFirstSet = false
+                } else {
+                    showInterAwait()
+                }
                 tlTime.getTabAt(position)!!.select()
-
             }
         })
         tlTime.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoroscope))
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         vpHoroscope.setCurrentItem(1, true)
+
     }
+
+    private fun showInterAwait() {
+        if (timer == null){
+            timer = object : CountDownTimer(200, 100){
+                override fun onFinish() {
+                    AdWorker.showInter()
+                    timer = null
+                }
+
+                override fun onTick(millisUntilFinished: Long) {
+                }
+            }.start()
+        }
+    }
+    
 
     private fun getFragmentsList(): List<Fragment> {
         var list = listOf<Fragment>(
