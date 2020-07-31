@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,12 +12,14 @@ import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.main.controller.HoroscopeAdapter
 import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
     var index = -1
     lateinit var signData: Sign
+    var isFirstSet = true
 
     companion object {
 
@@ -35,6 +38,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("LOL", "show")
         index = arguments!!.getInt(INDEX_KEY)
         signData = arguments!!.getSerializable(DATA_KEY) as Sign
         ivMain.setImageResource(
@@ -52,10 +56,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
+
             }
 
             override fun onPageSelected(position: Int) {
                 tlTime.getTabAt(position)!!.select()
+
             }
         })
         tlTime.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoroscope))

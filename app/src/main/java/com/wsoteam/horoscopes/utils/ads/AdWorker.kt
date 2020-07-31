@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
+import androidx.core.R
 import com.google.android.gms.ads.*
 
 object AdWorker {
@@ -11,18 +12,19 @@ object AdWorker {
     var isFailedLoad = false
     private const val MAX_QUERY = 3
     private var counterFailed = 0
+    var adCallbacks: AdCallbacks? = null
 
 
-    fun init(context: Context?, afterInit: () -> Unit){
+    fun init(context: Context?){
         if (context == null) return
         MobileAds.initialize(context) {
-            afterInit()
             isInit = true
             mInterstitialAd = InterstitialAd(context)
-            //mInterstitialAd?.adUnitId = context.getString(R.string.interstitial_id)
+            mInterstitialAd?.adUnitId = context.getString(com.wsoteam.horoscopes.R.string.interstitial_id)
             mInterstitialAd?.loadAd(AdRequest.Builder().build())
             mInterstitialAd?.adListener = object : AdListener() {
                 override fun onAdClosed() {
+                    adCallbacks?.onAdClosed()
                     isNeedShowInter = false
                     mInterstitialAd?.loadAd(AdRequest.Builder().build())
                 }
@@ -39,6 +41,7 @@ object AdWorker {
                     if (counterFailed <= MAX_QUERY){
                         reload()
                     }else{
+                        adCallbacks?.onAdClosed()
                         isFailedLoad = true
                     }
                 }
@@ -68,7 +71,7 @@ object AdWorker {
         }
     }
 
-    /*fun showInterWithCallbacks(adCallbacks: AdCallbacks){
+    fun showInterWithCallbacks(adCallbacks: AdCallbacks){
         this.adCallbacks = adCallbacks
         if (isInit && mInterstitialAd?.isLoaded == true) {
             mInterstitialAd?.show()
@@ -81,7 +84,7 @@ object AdWorker {
 
     fun unSubscribe(){
         this.adCallbacks = null
-    }*/
+    }
 
     fun showInterIsNeed(){
         if(isNeedShowInter) showInter()

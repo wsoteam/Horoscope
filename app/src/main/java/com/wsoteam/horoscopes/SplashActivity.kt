@@ -14,6 +14,8 @@ import com.wsoteam.horoscopes.presentation.FormActivity
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdCallbacks
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.net.RepositoryGets
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,10 +26,7 @@ import kotlinx.coroutines.launch
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
-    val MAX = 1
-    lateinit var signData : List<Sign>
-
-    private var job : Job? = null
+    val MAX = 2
 
     private fun postGoNext(){
         counter ++
@@ -49,6 +48,18 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdWorker.init(this)
+        if (PreferencesProvider.isADEnabled()){
+            AdWorker.isNeedShowInter = true
+            AdWorker.adCallbacks = object : AdCallbacks {
+                override fun onAdClosed() {
+                    postGoNext()
+                    AdWorker.unSubscribe()
+                }
+            }
+        }else{
+            postGoNext()
+        }
         var vm =  ViewModelProviders
             .of(this)
             .get(MainVM::class.java)

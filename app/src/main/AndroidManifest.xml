@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_key" />
+
+
         <activity android:name="com.wsoteam.horoscopes.SplashActivity"
             android:theme="@style/Splash">
             <intent-filter>

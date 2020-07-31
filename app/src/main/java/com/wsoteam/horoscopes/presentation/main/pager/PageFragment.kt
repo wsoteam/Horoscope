@@ -10,6 +10,7 @@ import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.models.TimeInterval
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.controller.HoroscopeAdapter
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.page_fragment.*
 import java.io.Serializable
 

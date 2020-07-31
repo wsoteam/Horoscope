@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import com.google.android.gms.ads.AdRequest
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
@@ -46,6 +47,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (PreferencesProvider.isADEnabled()){
+            adView.loadAd(AdRequest.Builder().build())
+        }
         supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
         if (PreferencesProvider.isADEnabled()) {
             ivToolPrem.visibility = View.VISIBLE
