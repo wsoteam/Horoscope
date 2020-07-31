@@ -50,6 +50,6 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_fragment) {
 
     private fun openNextScreen(){
         startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        finishAffinity()
     }
 }

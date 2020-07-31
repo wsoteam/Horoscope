@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes
 
 import androidx.multidex.MultiDexApplication
+import com.bugsee.library.Bugsee
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
@@ -15,6 +16,7 @@ class App : MultiDexApplication() {
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
+        Bugsee.launch(this, "5dfe90be-88f9-491b-9f76-86370af970b7");
     }
 
     companion object {
