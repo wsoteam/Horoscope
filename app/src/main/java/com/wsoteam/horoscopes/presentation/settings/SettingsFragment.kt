@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes.presentation.settings
 
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
@@ -13,9 +14,11 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
+import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -41,7 +44,11 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         bindDialogs()
         bindSwitch()
         setDate(PreferencesProvider.getBirthday()!!)
-        showPrem()
+        if (PreferencesProvider.isADEnabled()) {
+            hidePrem()
+        }else{
+            showPrem()
+        }
         flDateBirth.setOnClickListener {
             dateDialog.show(activity!!.supportFragmentManager, DATE_DIALOG)
         }
@@ -116,7 +123,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         ivPrem.visibility = View.GONE
         tvPrem.text = getString(R.string.empty_prem)
         llPrem.setOnClickListener {
-
+            startActivity(Intent(activity!!, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_MAIN))
         }
     }
 }
