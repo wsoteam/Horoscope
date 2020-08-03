@@ -30,12 +30,12 @@ import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.settings_fragment.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var vm: MainVM
     var birthSignIndex = -1
+    var lastIndex = 0
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (PreferencesProvider.isADEnabled()){
+        if (PreferencesProvider.isADEnabled()) {
             adView.loadAd(AdRequest.Builder().build())
         }
         supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
@@ -65,8 +65,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setFirstUI()
             })
 
-        if (!NetState.isConnected()){
-            supportFragmentManager.beginTransaction().replace(R.id.flContainer, ConnectionFragment()).commit()
+        if (!NetState.isConnected()) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.flContainer, ConnectionFragment()).commit()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
 
@@ -91,17 +92,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    fun reloadNetState(){
-        if (NetState.isConnected()){
-            supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
+    fun reloadNetState() {
+        if (NetState.isConnected()) {
+            supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment())
+                .commit()
             vm.reloadData()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             AdWorker.init(this)
-        }else{
+        } else {
             NetState.showNetLost(this)
         }
     }
-
 
 
     private fun setFirstUI() {
@@ -125,40 +126,45 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val index = listIndexes.indexOf(item.itemId)
+        var transaction = supportFragmentManager.beginTransaction()
         when {
             index != -1 -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                            R.id.flContainer,
-                            MainFragment.newInstance(index, vm.getLD().value!![index])
-                        )
-                        .commit()
-                    tvToolTitle.text =
-                        resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
-                    bindToolbar(listIndexes.indexOf(item.itemId))
-                    if (llTools.visibility != View.VISIBLE) {
-                        llTools.visibility = View.VISIBLE
-                    }
-                    drawer_layout.closeDrawers()
-                    return true
+                transaction
+                    .replace(
+                        R.id.flContainer,
+                        MainFragment.newInstance(index, vm.getLD().value!![index])
+                    )
+                    .commit()
+                tvToolTitle.text =
+                    resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
+                bindToolbar(listIndexes.indexOf(item.itemId))
+                if (llTools.visibility != View.VISIBLE) {
+                    llTools.visibility = View.VISIBLE
+                }
+                drawer_layout.closeDrawers()
+                lastIndex = index
+                return true
             }
             item.itemId == R.id.nav_settings -> {
-                supportFragmentManager
-                    .beginTransaction()
+                transaction
                     .add(R.id.flContainer, SettingsFragment())
-                    .commit()
+                if (supportFragmentManager.backStackEntryCount == 0){
+                    transaction.addToBackStack(null)
+                }
+                transaction.commit()
+
                 tvToolTitle.text = getString(R.string.settings)
-                if (llTools.visibility == View.VISIBLE){
+                if (llTools.visibility == View.VISIBLE) {
                     llTools.visibility = View.INVISIBLE
                 }
                 drawer_layout.closeDrawers()
+                Log.e("LOL", supportFragmentManager.backStackEntryCount.toString())
                 return true
             }
             else -> {
                 if (PreferencesProvider.isADEnabled()) {
                     openPrem()
-                }else{
+                } else {
                     InfoDialog().show(supportFragmentManager, "")
                 }
                 return false
@@ -181,9 +187,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        if (!drawer_layout.isDrawerOpen(GravityCompat.START)){
-            super.onBackPressed()
-        }else{
+        if (!drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            if (supportFragmentManager.backStackEntryCount != 0) {
+                supportFragmentManager
+                    .popBackStack()
+                setSelectedItem(lastIndex)
+            } else {
+                super.onBackPressed()
+            }
+        } else {
             drawer_layout.closeDrawers()
         }
     }
