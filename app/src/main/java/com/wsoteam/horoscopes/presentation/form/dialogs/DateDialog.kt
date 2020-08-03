@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.presentation.FormActivity
+import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.dialog_date.*

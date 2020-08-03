@@ -1,21 +1,15 @@
 package com.wsoteam.horoscopes.presentation.settings.dialogs
 
-import android.app.Dialog
-import android.app.TimePickerDialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.presentation.FormActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import kotlinx.android.synthetic.main.dialog_date.*
 import kotlinx.android.synthetic.main.dialog_time.*
-import java.text.DateFormat
 
 class TimeDialog : DialogFragment() {
 

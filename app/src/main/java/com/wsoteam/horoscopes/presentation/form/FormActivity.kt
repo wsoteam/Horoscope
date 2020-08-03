@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation
+package com.wsoteam.horoscopes.presentation.form
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity(R.layout.form_activity) {
@@ -19,6 +20,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         edtBirthdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 DateDialog()

@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.presentation.FormActivity
-import kotlinx.android.synthetic.main.dialog_date.*
 import kotlinx.android.synthetic.main.dialog_date.tvOk
-import kotlinx.android.synthetic.main.dialog_info.*
 
 class InfoDialog : DialogFragment() {
 

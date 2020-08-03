@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.FormActivity"
+        <activity android:name=".presentation.form.FormActivity"
             android:theme="@style/Form"
             android:screenOrientation="portrait"/>
         <activity android:name=".presentation.premium.PremiumHostActivity"

@@ -8,7 +8,7 @@ object PreferencesProvider {
 
     private const val AD = "AD_STATUS"
     private const val PRICE_TAG = "PRICE_TAG"
-    private const val DEF_PRICE = "433 RUB"
+    private const val DEF_PRICE = "280 RUB"
     private const val NAME_TAG = "NAME_TAG"
     private const val BIRTH_TAG = "BIRTH_TAG"
     private const val NOTIF_STATUS_TAG = "NOTIF_STATUS_TAG"

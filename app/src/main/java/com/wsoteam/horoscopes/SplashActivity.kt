@@ -2,13 +2,12 @@ package com.wsoteam.horoscopes
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.wsoteam.horoscopes.presentation.FormActivity
+import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -16,7 +15,6 @@ import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
@@ -64,8 +62,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     MAX++
                 }
             }
-        } else {
-            postGoNext(2)
         }
         var vm = ViewModelProviders
             .of(this)
