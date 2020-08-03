@@ -158,7 +158,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     llTools.visibility = View.INVISIBLE
                 }
                 drawer_layout.closeDrawers()
-                Log.e("LOL", supportFragmentManager.backStackEntryCount.toString())
                 return true
             }
             else -> {

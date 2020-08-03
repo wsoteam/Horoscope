@@ -31,6 +31,7 @@ object AdWorker {
 
                 override fun onAdLoaded() {
                     super.onAdLoaded()
+                    adCallbacks?.onAdLoaded()
                     if (isNeedShowInter){
                         showInter()
                     }

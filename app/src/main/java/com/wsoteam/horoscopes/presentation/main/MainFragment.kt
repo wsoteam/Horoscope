@@ -13,6 +13,7 @@ import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.main.controller.HoroscopeAdapter
 import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.CoroutineScope
@@ -70,7 +71,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 if (isFirstSet) {
                     isFirstSet = false
                 } else {
-                    showInterAwait()
+                    if (PreferencesProvider.isADEnabled()) {
+                        showInterAwait()
+                    }
                 }
                 tlTime.getTabAt(position)!!.select()
             }
@@ -81,8 +84,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun showInterAwait() {
-        if (timer == null){
-            timer = object : CountDownTimer(200, 100){
+        if (timer == null) {
+            timer = object : CountDownTimer(200, 100) {
                 override fun onFinish() {
                     AdWorker.showInter()
                     timer = null

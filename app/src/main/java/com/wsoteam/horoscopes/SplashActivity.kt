@@ -4,71 +4,85 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.FormActivity
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
-import com.wsoteam.horoscopes.utils.net.RepositoryGets
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
-    val MAX = 2
+    var MAX = 2
+    var isNextScreenLoading = false
 
-    private fun postGoNext(){
-        counter ++
-        if (counter >= MAX){
-            goNext()
+
+    private fun postGoNext(i: Int) {
+        counter += i
+        if (counter >= MAX) {
+            if (!isNextScreenLoading) {
+                isNextScreenLoading = true
+                goNext()
+            }
         }
     }
 
-    private fun goNext(){
-            var intent : Intent
-            if(PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != ""){
-                intent = Intent(this, MainActivity::class.java)
-            }else{
-                intent = Intent(this, FormActivity::class.java)
-            }
-            startActivity(intent)
-            finish()
+    private fun goNext() {
+        var intent: Intent
+        if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
+            intent = Intent(this, MainActivity::class.java)
+        } else {
+            intent = Intent(this, FormActivity::class.java)
+        }
+        startActivity(intent)
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AdWorker.init(this)
-        if (PreferencesProvider.isADEnabled()){
+        if (PreferencesProvider.isADEnabled()) {
             AdWorker.isNeedShowInter = true
             AdWorker.adCallbacks = object : AdCallbacks {
                 override fun onAdClosed() {
-                    postGoNext()
+                    postGoNext(2)
                     AdWorker.unSubscribe()
                 }
+
+                override fun onAdLoaded() {
+                    MAX++
+                }
             }
-        }else{
-            postGoNext()
+        } else {
+            postGoNext(2)
         }
-        var vm =  ViewModelProviders
+        var vm = ViewModelProviders
             .of(this)
             .get(MainVM::class.java)
         vm.preLoadData()
         AdProvider.init(this)
         trackUser()
+        CoroutineScope(Dispatchers.IO).launch {
+            TimeUnit.SECONDS.sleep(4)
+            postGoNext(1)
+        }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        AdWorker.unSubscribe()
+    }
 
     private fun trackUser() {
         var client = InstallReferrerClient.newBuilder(this).build()
@@ -106,7 +120,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
 
-        postGoNext()
+        postGoNext(1)
     }
 
     private fun getClickId(s: String): String {
