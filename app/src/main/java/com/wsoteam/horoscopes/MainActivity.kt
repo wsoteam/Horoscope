@@ -25,6 +25,7 @@ import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (!NetState.isConnected()){
             supportFragmentManager.beginTransaction().replace(R.id.flContainer, ConnectionFragment()).commit()
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
 
 
@@ -93,6 +95,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (NetState.isConnected()){
             supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
             vm.reloadData()
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            AdWorker.init(this)
         }else{
             NetState.showNetLost(this)
         }
@@ -123,21 +127,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val index = listIndexes.indexOf(item.itemId)
         when {
             index != -1 -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.flContainer,
-                        MainFragment.newInstance(index, vm.getLD().value!![index])
-                    )
-                    .commit()
-                tvToolTitle.text =
-                    resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
-                bindToolbar(listIndexes.indexOf(item.itemId))
-                if (llTools.visibility != View.VISIBLE){
-                    llTools.visibility = View.VISIBLE
-                }
-                drawer_layout.closeDrawers()
-                return true
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(
+                            R.id.flContainer,
+                            MainFragment.newInstance(index, vm.getLD().value!![index])
+                        )
+                        .commit()
+                    tvToolTitle.text =
+                        resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
+                    bindToolbar(listIndexes.indexOf(item.itemId))
+                    if (llTools.visibility != View.VISIBLE) {
+                        llTools.visibility = View.VISIBLE
+                    }
+                    drawer_layout.closeDrawers()
+                    return true
             }
             item.itemId == R.id.nav_settings -> {
                 supportFragmentManager

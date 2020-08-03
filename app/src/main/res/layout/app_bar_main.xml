@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.06"
                 android:lineSpacingExtra="5.7sp"
-                android:text="Gemini"
+                tools:text="Gemini"
                 android:textColor="#2e2c5c"
                 android:textSize="20sp" />
 

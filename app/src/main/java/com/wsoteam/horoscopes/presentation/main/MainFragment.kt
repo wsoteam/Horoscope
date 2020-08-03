@@ -93,7 +93,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }.start()
         }
     }
-    
+
 
     private fun getFragmentsList(): List<Fragment> {
         var list = listOf<Fragment>(
