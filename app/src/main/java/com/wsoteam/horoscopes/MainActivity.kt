@@ -89,6 +89,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setSelectedItem(choiceSign(PreferencesProvider.getBirthday()!!))
             }
         }
+
+        ivToolShare.setOnClickListener {
+            share()
+        }
+    }
+
+    private fun share(){
+        var intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, PreferencesProvider.getLastText() + "\n"
+                + "https://play.google.com/store/apps/details?id="
+                + packageName)
+        startActivity(intent)
     }
 
 
