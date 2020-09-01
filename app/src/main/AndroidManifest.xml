@@ -36,9 +36,6 @@
             android:theme="@style/Main"
             android:screenOrientation="portrait"/>
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_key" />
 
         <service
             android:name=".notification.NotificationService"

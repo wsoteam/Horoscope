@@ -52,4 +52,13 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_fragment) {
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
     }
+
+    override fun onBackPressed() {
+        if (open_from == Config.OPEN_PREM_FROM_REG) {
+            openNextScreen()
+        }else{
+            super.onBackPressed()
+        }
+
+    }
 }

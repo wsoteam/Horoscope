@@ -7,8 +7,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
@@ -39,7 +41,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun goNext() {
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
-            intent = Intent(this, MainActivity::class.java)
+            if(PreferencesProvider.isADEnabled()){
+                intent = Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_REG)
+            }else{
+                intent = Intent(this, MainActivity::class.java)
+            }
         } else {
             intent = Intent(this, FormActivity::class.java)
         }
@@ -49,6 +55,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        refreshNotifications()
         AdWorker.init(this)
         if (PreferencesProvider.isADEnabled()) {
             AdWorker.isNeedShowInter = true
@@ -72,6 +79,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
             postGoNext(1)
+        }
+    }
+
+    private fun refreshNotifications() {
+        if (PreferencesProvider.getNotifTime() == PreferencesProvider.DEFAULT_TIME_NOTIFY){
+            AlarmReceiver.startNotification(this, 18, 0)
         }
     }
 

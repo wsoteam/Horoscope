@@ -21,16 +21,10 @@ class AlarmReceiver : BroadcastReceiver() {
     companion object {
         private val CHANNEL_ID = ".channelId"
 
-        fun startNotification(context: Context?){
+        fun startNotification(context: Context?, hours : Int, minutes : Int){
             val calendar = Calendar.getInstance()
             val now = Calendar.getInstance()
-
-            Log.d("kkk", "PreferencesProvider.getNotifTime() = ${PreferencesProvider.getNotifTime()}")
-
             try {
-                val (hours, minutes) = PreferencesProvider.getNotifTime().split(":").map { it.toInt() }
-
-                Log.d("kkk", "hours = $hours, minutes = $minutes")
 
                 calendar.set(Calendar.HOUR_OF_DAY, hours)
                 calendar.set(Calendar.MINUTE, minutes)

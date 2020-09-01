@@ -22,7 +22,8 @@ class NotificationService: JobIntentService() {
         //TODO добавить вызовы методов стартующих уведомления
 
         if(PreferencesProvider.getNotifStatus()){
-            AlarmReceiver.startNotification(applicationContext)
+            val (hours, minutes) = PreferencesProvider.getNotifTime().split(":").map { it.toInt() }
+            AlarmReceiver.startNotification(applicationContext, hours, minutes)
         }
     }
 

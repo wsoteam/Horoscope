@@ -18,7 +18,7 @@ object PreferencesProvider {
     const val DEFAULT_TIME_NOTIFY = "18:00 PM"
 
 
-    fun getInstance(): SharedPreferences? {
+    private fun getInstance(): SharedPreferences? {
         val sp =  App.getInstance().getSharedPreferences(
             App.getInstance().packageName + ".SharedPreferences",
             Context.MODE_PRIVATE
