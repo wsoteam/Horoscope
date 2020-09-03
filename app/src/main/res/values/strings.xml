@@ -122,5 +122,13 @@
     <string name="try_again">Try again</string>
     <string name="check_connection">Сheck your internet connection</string>
 
+    <string-array name="notifications_text">
+        <item>An incredible adventure awaits you today</item>
+        <item>You need to be careful today...</item>
+        <item>Beware of a dirty trick from a loved one!</item>
+        <item>Today you are lucky...</item>
+        <item>The planets speak of great success...</item>
+    </string-array>
+
 
 </resources>

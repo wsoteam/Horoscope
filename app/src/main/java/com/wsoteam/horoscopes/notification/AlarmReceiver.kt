@@ -62,11 +62,11 @@ class AlarmReceiver : BroadcastReceiver() {
         val builder = Notification.Builder(context)
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
-        val notification = builder.setContentTitle("Title")
-            .setContentText("Content Text")
+        val notification = builder.setContentTitle("Daily Horoscope")
+            .setContentText(getNotificationText(context))
             .setAutoCancel(true)
             .setVibrate(VIBRATE_PATTERN)
-            .setSmallIcon(R.drawable.ic_stat_name)
+            .setSmallIcon(R.drawable.ic_notifications)
             .setDefaults(Notification.DEFAULT_SOUND)
             .setSound(NOTIFICATION_SOUND_URI)
             .setContentIntent(pendingIntent).build()
@@ -104,5 +104,16 @@ class AlarmReceiver : BroadcastReceiver() {
 //        Analytics.showNotification()
 
         notificationManager.notify(0, notification)
+    }
+
+    private fun getNotificationText(context: Context?): String {
+        var number = PreferencesProvider.getNotifCount()
+        var text = context!!.resources.getStringArray(R.array.notifications_text)[number]
+        if (number >= context!!.resources.getStringArray(R.array.notifications_text).size - 1){
+            number = 0
+        }
+        number ++
+        PreferencesProvider.setNotifCount(number)
+        return text
     }
 }

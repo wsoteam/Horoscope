@@ -14,6 +14,7 @@ object PreferencesProvider {
     private const val NOTIF_STATUS_TAG = "NOTIF_STATUS_TAG"
     private const val NOTIF_TAG = "NOTIF_TAG"
     private const val TEXT_TAG = "TEXT_TAG"
+    private const val COUNT_NOTIF = "COUNT_NOTIF"
 
     const val DEFAULT_TIME_NOTIFY = "18:00 PM"
 
@@ -48,5 +49,8 @@ object PreferencesProvider {
 
     fun setLastText(text: String) = editor { it?.putString(TEXT_TAG, text)}
     fun getLastText() = getInstance()?.getString(TEXT_TAG, "") ?: ""
+
+    fun setNotifCount(count: Int) = editor { it?.putInt(COUNT_NOTIF, count)}
+    fun getNotifCount() = getInstance()?.getInt(COUNT_NOTIF, 0) ?: 0
 
 }

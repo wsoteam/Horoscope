@@ -84,7 +84,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun refreshNotifications() {
         if (PreferencesProvider.getNotifTime() == PreferencesProvider.DEFAULT_TIME_NOTIFY){
-            AlarmReceiver.startNotification(this, 18, 0)
+            AlarmReceiver.startNotification(this, 9, 43)
         }
     }
 
