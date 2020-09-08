@@ -10,6 +10,7 @@
     <string name="admob_key" translatable="false">ca-app-pub-3050564412171997~8214816263</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3050564412171997/6733271683</string>
     <string name="banner_id" translatable="false">ca-app-pub-3050564412171997/9336326247</string>
+    <string name="native_ad" translatable="false">ca-app-pub-3050564412171997/4688649542</string>
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
 
