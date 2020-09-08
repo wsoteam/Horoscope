@@ -2,11 +2,14 @@ package com.wsoteam.horoscopes
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import com.amplitude.api.Amplitude
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.main.MainVM
@@ -16,6 +19,7 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +29,7 @@ import java.util.concurrent.TimeUnit
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
-    var MAX = 2
+    var MAX = 3
     var isNextScreenLoading = false
 
 
@@ -57,6 +61,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         NativeProvider.loadNative()
+        bindTest()
         refreshNotifications()
         AdWorker.init(this)
         if (PreferencesProvider.isADEnabled()) {
@@ -82,6 +87,27 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             TimeUnit.SECONDS.sleep(4)
             postGoNext(1)
         }
+    }
+
+    private fun bindTest() {
+        val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        firebaseRemoteConfig.setDefaults(R.xml.default_config)
+
+        firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                firebaseRemoteConfig.activateFetched()
+                Amplitude.getInstance().logEvent("norm_ab")
+            } else {
+                Amplitude.getInstance().logEvent("crash_ab")
+            }
+            setABTestConfig(firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING))
+        }
+    }
+
+    private fun setABTestConfig(version: String) {
+        Log.e("LOL", version)
+        PreferencesProvider.setVersion(version)
+        postGoNext(1)
     }
 
     private fun refreshNotifications() {

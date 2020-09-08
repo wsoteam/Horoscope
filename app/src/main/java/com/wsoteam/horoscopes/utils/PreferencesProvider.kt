@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.wsoteam.horoscopes.App
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 
 object PreferencesProvider {
 
@@ -15,6 +16,7 @@ object PreferencesProvider {
     private const val NOTIF_TAG = "NOTIF_TAG"
     private const val TEXT_TAG = "TEXT_TAG"
     private const val COUNT_NOTIF = "COUNT_NOTIF"
+    private const val VER_TAG = "VER_TAG"
 
     const val DEFAULT_TIME_NOTIFY = "18:00 PM"
 
@@ -52,5 +54,19 @@ object PreferencesProvider {
 
     fun setNotifCount(count: Int) = editor { it?.putInt(COUNT_NOTIF, count)}
     fun getNotifCount() = getInstance()?.getInt(COUNT_NOTIF, 0) ?: 0
+
+    fun setVersion(ver: String) = editor { it?.putString(VER_TAG, ver) }
+    fun getVersion() = getInstance()?.getString(VER_TAG, "")
+
+    fun getVersionIndex() = intoIndex(getVersion())
+
+    private fun intoIndex(version: String?): Int {
+        return when (version) {
+            ABConfig.A -> 0
+            ABConfig.B -> 1
+            ABConfig.C -> 2
+            else -> 0
+        }
+    }
 
 }
