@@ -4,17 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:cardElevation="3dp">
-
         <com.google.android.gms.ads.formats.UnifiedNativeAdView
             android:id="@+id/ad_view"
             android:layout_width="match_parent"
@@ -55,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto"
+                    android:textColor="@color/white"
                     android:textSize="10sp"
                     card_view:layout_constraintEnd_toEndOf="@+id/ad_body"
                     card_view:layout_constraintStart_toStartOf="@+id/ad_body"
@@ -69,7 +59,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     card_view:layout_constraintEnd_toStartOf="@+id/ad_icon"
                     card_view:layout_constraintHorizontal_bias="0.0"
@@ -82,11 +72,13 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/shape_ad_types"
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:textColor="@color/main_violet"
                     android:textSize="10sp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintStart_toStartOf="@+id/ad_body"
@@ -103,9 +95,17 @@
                     card_view:layout_constraintStart_toEndOf="@+id/ad_call_to_action"
                     card_view:layout_constraintTop_toTopOf="@+id/ad_call_to_action" />
 
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#14ffffff"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </com.google.android.gms.ads.formats.UnifiedNativeAdView>
-    </androidx.cardview.widget.CardView>
 </FrameLayout>
