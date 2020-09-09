@@ -52,7 +52,9 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         rvMain.adapter = adapter
         NativeProvider.observeOnNativeList(object : NativeSpeaker{
             override fun loadFin(nativeAd: ArrayList<UnifiedNativeAd>) {
-                adapter.insertAds(nativeAd)
+                if (PreferencesProvider.isADEnabled()) {
+                    adapter.insertAds(nativeAd)
+                }
             }
         })
         text = signData.text.substring(0, 100) + "..."
