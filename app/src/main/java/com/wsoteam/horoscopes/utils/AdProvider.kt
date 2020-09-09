@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.utils
 import android.content.Context
 import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 
 object AdProvider {
 
@@ -19,6 +20,12 @@ object AdProvider {
         mInterstitialAd?.adUnitId = context.resources.getString(R.string.interstitial_id)
         mInterstitialAd?.loadAd(AdRequest.Builder().build())
         mInterstitialAd?.adListener = object : AdListener() {
+
+            override fun onAdClicked() {
+                super.onAdClicked()
+                Analytic.clickAD()
+            }
+
             override fun onAdClosed() {
                 mInterstitialAd?.loadAd(AdRequest.Builder().build())
             }

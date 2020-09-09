@@ -100,13 +100,17 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private fun getFragmentsList(): List<Fragment> {
         var list = listOf<Fragment>(
-            PageFragment.newInstance(signData.yesterday),
-            PageFragment.newInstance(signData.today),
-            PageFragment.newInstance(signData.tomorrow),
-            PageFragment.newInstance(signData.week),
-            PageFragment.newInstance(signData.month),
-            PageFragment.newInstance(signData.year)
+            PageFragment.newInstance(signData.yesterday, 0),
+            PageFragment.newInstance(signData.today, 1),
+            PageFragment.newInstance(signData.tomorrow, 2),
+            PageFragment.newInstance(signData.week, 3),
+            PageFragment.newInstance(signData.month, 4),
+            PageFragment.newInstance(signData.year, 5)
         )
         return list
+    }
+
+     fun setOpenTab(){
+        vpHoroscope.currentItem = 4
     }
 }

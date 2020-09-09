@@ -21,6 +21,7 @@ import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.main.ld.ScreensLD
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
@@ -38,6 +39,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var birthSignIndex = -1
     var lastIndex = 0
 
+    var screensObserver = Observer<Int> {
+        Log.e("LOL", "kek $it")
+        if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()){
+            (supportFragmentManager.findFragmentById(R.id.flContainer) as MainFragment).setOpenTab()
+            openPrem()
+        }
+    }
+
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
         R.id.nav_gemini, R.id.nav_cancer, R.id.nav_leo, R.id.nav_virgo,
@@ -45,10 +54,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         R.id.nav_capricorn, R.id.nav_aquarius, R.id.nav_pisces
     )
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ScreensLD.screensLD.observeForever(screensObserver)
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         if (PreferencesProvider.isADEnabled()) {
             adView.visibility = View.VISIBLE
@@ -214,5 +223,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer_layout.closeDrawers()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ScreensLD.screensLD.removeObserver(screensObserver)
+    }
+
 }
 
