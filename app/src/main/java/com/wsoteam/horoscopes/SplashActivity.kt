@@ -19,6 +19,7 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -105,8 +106,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setABTestConfig(version: String) {
-        Log.e("LOL", version)
         PreferencesProvider.setVersion(version)
+        Analytic.setABVersion(version)
+        Analytic.setVersion()
         postGoNext(1)
     }
 

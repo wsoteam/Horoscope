@@ -11,6 +11,7 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.premium_fragment.*
 
 class PremiumHostActivity : AppCompatActivity() {
@@ -56,6 +57,7 @@ class PremiumHostActivity : AppCompatActivity() {
     }
 
     private fun handlInApp() {
+        Analytic.makePurchase()
         PreferencesProvider.setADStatus(false)
         openNextScreen()
     }
