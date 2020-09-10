@@ -18,7 +18,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tlTime"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="36dp"
         android:layout_marginTop="32dp"
         app:tabIndicatorColor="#f4e6d8"
         app:tabMode="scrollable">
