@@ -204,9 +204,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ) as Drawable
         drawable = DrawableCompat.wrap(drawable)
         if (indexOf == birthSignIndex) {
-            DrawableCompat.setTint(drawable, resources.getColor(R.color.active_tool_sign))
-        } else {
             DrawableCompat.setTint(drawable, resources.getColor(R.color.inactive_tool_sign))
+        } else {
+            DrawableCompat.setTint(drawable, resources.getColor(R.color.active_tool_sign))
         }
         ivToolSign.setImageDrawable(drawable)
     }
