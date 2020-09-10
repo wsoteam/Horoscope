@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import java.nio.charset.StandardCharsets
 import kotlin.random.Random
 
 class HoroscopeAdapter(
@@ -59,6 +60,7 @@ class HoroscopeAdapter(
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(3)])
         }
     }
+
 
     override fun getItemViewType(position: Int): Int {
         return if (nativeList.isNotEmpty() || position == 0){

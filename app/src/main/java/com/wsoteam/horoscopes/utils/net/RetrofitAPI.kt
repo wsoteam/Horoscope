@@ -9,6 +9,6 @@ interface RetrofitAPI {
     @GET("output.php")
     fun getData() : Deferred<List<Sign>>
 
-    /*@GET("output.php?lang=pt")
-    fun getData() : Deferred<List<Sign>>*/
+    @GET("output.php?lang=pt")
+    fun getPTData() : Deferred<List<Sign>>
 }

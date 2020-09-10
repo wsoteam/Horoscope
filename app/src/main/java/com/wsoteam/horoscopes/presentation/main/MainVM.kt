@@ -11,8 +11,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainVM : ViewModel() {
+
+    private val PT_LOCALE = "pt"
 
     private var job = Job()
     private val vmScope = CoroutineScope(Dispatchers.Main + job)
@@ -45,7 +48,11 @@ class MainVM : ViewModel() {
     }
 
     private suspend fun getData(): List<Sign> {
-        return RepositoryGets.getAPI().getData().await()
+        return if (Locale.getDefault().language == PT_LOCALE){
+            RepositoryGets.getAPI().getPTData().await()
+        }else{
+            RepositoryGets.getAPI().getData().await()
+        }
     }
 
     fun getLD(): MutableLiveData<List<Sign>> {

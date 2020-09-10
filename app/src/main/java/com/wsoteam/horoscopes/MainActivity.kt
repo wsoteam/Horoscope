@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         ScreensLD.screensLD.observeForever(screensObserver)
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         if (PreferencesProvider.isADEnabled()) {
