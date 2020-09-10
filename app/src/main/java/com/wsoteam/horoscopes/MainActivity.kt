@@ -23,6 +23,7 @@ import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.main.ld.ScreensLD
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
+import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -172,7 +173,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return true
             }
             item.itemId == R.id.nav_settings -> {
-                transaction
+                /*transaction
                     .add(R.id.flContainer, SettingsFragment())
                 if (supportFragmentManager.backStackEntryCount == 0){
                     transaction.addToBackStack(null)
@@ -183,8 +184,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if (llTools.visibility == View.VISIBLE) {
                     llTools.visibility = View.INVISIBLE
                 }
-                drawer_layout.closeDrawers()
-                return true
+                drawer_layout.closeDrawers()*/
+                startActivity(Intent(this, SettingsActivity::class.java))
+                return false
             }
             else -> {
                 if (PreferencesProvider.isADEnabled()) {

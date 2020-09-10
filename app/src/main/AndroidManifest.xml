@@ -36,6 +36,10 @@
             android:theme="@style/Main"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".presentation.settings.SettingsActivity"
+            android:theme="@style/Main"
+            android:screenOrientation="portrait"/>
+
 
         <service
             android:name=".notification.NotificationService"
