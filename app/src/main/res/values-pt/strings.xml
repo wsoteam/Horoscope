@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Horóscopo</string>
+
+
+    <string-array name="names_signs">
+        <item>Áries</item>
+        <item>Touro</item>
+        <item>Gêmeos</item>
+        <item>Câncer</item>
+        <item>Leo</item>
+        <item>Virgem</item>
+        <item>Libra</item>
+        <item>Escorpião</item>
+        <item>Sagitário</item>
+        <item>Capricórnio</item>
+        <item>Aquário</item>
+        <item>Peixes</item>
+    </string-array>
+
+
+    <!--Splash-->
+    <string name="splash_title">Horóscopo</string>
+
+    <!--FormActivity-->
+    <string name="enter_your_details">Digite seus detalhes</string>
+    <string name="text_title">Vamos personalizar o horóscopo para você pessoalmente</string>
+    <string name="name">Nome</string>
+    <string name="birth">Data de nascimento</string>
+    <string name="bottom_text">Você pode alterar os dados mais tarde nas configurações</string>
+    <string name="cancel_date_picker">CANCELAR</string>
+    <string name="ok_date_picker">OK</string>
+
+    <!--Premium-->
+    <string name="remove_ads">Remover ADS</string>
+    <string name="prem4">7 dias grátis.</string>
+    <string name="prem5">Mais assinaturas por um mês</string>
+
+    <!--Settings-->
+    <string name="prem_set">Premium</string>
+    <string name="empty_prem">Remover ADS</string>
+    <string name="date_title">Data de nascimento</string>
+    <string name="notifications">Notificações</string>
+    <string name="notif_time_title">Receber notificações</string>
+    <string name="you_have_subscribed">Você se inscreveu</string>
+    <string name="ok_alert">OK</string>
+    <string name="pm">PM</string>
+    <string name="am">AM</string>
+    <string name="yesterday">Ontem</string>
+    <string name="today">Hoje</string>
+    <string name="tomorrow">Amanhã</string>
+    <string name="month">Mês</string>
+    <string name="year">Ano</string>
+    <string name="today_apos_s_matches">Jogos de hoje</string>
+    <string name="love">Amor</string>
+    <string name="friendship">Amizade</string>
+    <string name="career">Carreira</string>
+    <string name="general_mood">Humor geral</string>
+    <string name="sex">Sexo</string>
+    <string name="hustle">Encontrão</string>
+    <string name="vibe">Atividade</string>
+    <string name="success">Sucesso</string>
+    <string name="settings">Configurações</string>
+    <string name="week">Semana</string>
+    <string name="no_internet_connection">Sem conexão de internet</string>
+    <string name="check_your_internet_connection">Verifique sua conexão com a Internet e tente novamente</string>
+    <string name="try_again">Tente novamente</string>
+    <string name="check_connection">Verifique sua conexão com a internet</string>
+
+    <string-array name="notifications_text">
+        <item>Uma incrível aventura espera por você hoje</item>
+        <item>Você precisa ter cuidado hoje...</item>
+        <item>Cuidado com o truque sujo de um ente querido!</item>
+        <item>Hoje você está com sorte....</item>
+        <item>Os planetas falam de grande sucesso ...</item>
+    </string-array>
+
+
+</resources>
