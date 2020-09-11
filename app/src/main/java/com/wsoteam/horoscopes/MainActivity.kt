@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var screensObserver = Observer<Int> {
         Log.e("LOL", "kek $it")
-        if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()){
+        if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()) {
             (supportFragmentManager.findFragmentById(R.id.flContainer) as MainFragment).setOpenTab()
             openPrem()
         }
@@ -74,10 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()
-        vm.getLD().observe(this,
-            Observer<List<Sign>> {
-                setFirstUI()
-            })
+
 
         if (!NetState.isConnected()) {
             supportFragmentManager.beginTransaction()
@@ -109,12 +106,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun share(){
+    override fun onResume() {
+        super.onResume()
+        vm.getLD().observe(this,
+            Observer<List<Sign>> {
+                Log.e("LOL", "observe")
+                setFirstUI()
+            })
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    private fun share() {
         var intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, PreferencesProvider.getLastText() + "\n"
-                + "https://play.google.com/store/apps/details?id="
-                + packageName)
+        intent.putExtra(
+            Intent.EXTRA_TEXT, PreferencesProvider.getLastText() + "\n"
+                    + "https://play.google.com/store/apps/details?id="
+                    + packageName
+        )
         startActivity(intent)
     }
 
@@ -133,8 +145,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private fun setFirstUI() {
-        birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)
-        setSelectedItem(birthSignIndex)
+        if (birthSignIndex != choiceSign(PreferencesProvider.getBirthday()!!)) {
+            birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)
+            setSelectedItem(birthSignIndex)
+        }
     }
 
     private fun setSelectedItem(index: Int) {
@@ -186,6 +200,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 drawer_layout.closeDrawers()*/
                 startActivity(Intent(this, SettingsActivity::class.java))
+                drawer_layout.closeDrawers()
                 return false
             }
             else -> {
