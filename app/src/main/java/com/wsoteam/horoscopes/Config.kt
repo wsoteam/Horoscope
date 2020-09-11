@@ -10,4 +10,8 @@ object Config {
     const val OPEN_PREM = "OPEN_PREM"
     const val OPEN_PREM_FROM_MAIN = "OPEN_PREM_FROM_MAIN"
     const val OPEN_PREM_FROM_REG = "OPEN_PREM_FROM_REG"
+
+    const val OPEN_FROM_NOTIFY = "OPEN_FROM_NOTIFY"
+
+
 }

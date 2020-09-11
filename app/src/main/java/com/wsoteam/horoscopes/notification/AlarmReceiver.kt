@@ -10,9 +10,11 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.SplashActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import java.lang.NumberFormatException
 import java.util.*
 
@@ -47,8 +49,9 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
+        Analytic.showNotif()
         val notificationIntent = Intent(context, SplashActivity::class.java)
-//            .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY_DAY)
+            .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY)
 
         val VIBRATE_PATTERN = longArrayOf(0, 500)
         val NOTIFICATION_COLOR = Color.RED

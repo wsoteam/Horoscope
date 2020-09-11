@@ -6,6 +6,8 @@ import com.amplitude.api.Identify
 object Analytic {
     private val make_purchase = "make_purchase"
     private val ad_click = "ad_click"
+    private val open_from_notif = "open_from_notif"
+    private val show_notif = "show_notif"
 
     private val set_ver = "set_ver"
     private val AB = "AB"
@@ -20,6 +22,14 @@ object Analytic {
 
     fun clickAD() {
         Amplitude.getInstance().logEvent(ad_click)
+    }
+
+    fun openFromNotif() {
+        Amplitude.getInstance().logEvent(open_from_notif)
+    }
+
+    fun showNotif() {
+        Amplitude.getInstance().logEvent(show_notif)
     }
 
     fun setABVersion(version: String) {

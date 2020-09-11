@@ -92,6 +92,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             TimeUnit.SECONDS.sleep(4)
             postGoNext(1)
         }
+        if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null && intent.getStringExtra(Config.OPEN_FROM_NOTIFY) == Config.OPEN_FROM_NOTIFY){
+            Analytic.openFromNotif()
+        }
     }
 
     private fun bindTest() {
