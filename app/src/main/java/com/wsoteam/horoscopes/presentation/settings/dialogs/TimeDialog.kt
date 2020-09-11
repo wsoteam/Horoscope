@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes.presentation.settings.dialogs
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class TimeDialog : DialogFragment() {
         tvSave.setOnClickListener {
             val time =
                 "${"%02d".format(tpNotif.currentHour)}:${"%02d".format(tpNotif.currentMinute)}"
+            Log.e("LOL", time)
             PreferencesProvider.setNotifTime(time)
             (targetFragment as SettingsFragment).setTime(time)
             dismiss()
