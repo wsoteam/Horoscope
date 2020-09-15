@@ -131,5 +131,39 @@
         <item>The planets speak of great success...</item>
     </string-array>
 
+    <string name="d_of_d">%d of %d</string>
+    <string name="tap_ball">Tap to ball</string>
+    <string name="ask">Ask the question</string>
+    <string name="answer_init">\?</string>
+
+    <string name="access_will">Access will open through:</string>
+    <string name="alert_title">The limit of questions has been reached</string>
+    <string name="or">or</string>
+    <string name="connect_premium">Connect PREMIUM and get:</string>
+    <string name="full_access">Full access</string>
+    <string name="no_ads">No ADS</string>
+    <string name="get_premium">Get Premium</string>
+    <string name="premium">Premium</string>
+    <string name="get_vip">Get vip version</string>
+    <string name="hour_short">h</string>
+
+
+    <string-array name="answers">
+        <item>No\ndoubt</item>
+        <item>Very\nlikely</item>
+        <item>Count\non it</item>
+        <item>Ask\nlater</item>
+        <item>No</item>
+        <item>Yes</item>
+        <item>Go for\nit</item>
+        <item>Wait for\nit!</item>
+        <item>Certainly</item>
+        <item>Cannot tell\nnow</item>
+        <item>I think\nyes</item>
+        <item>I think\nno</item>
+    </string-array>
+
+    <string name="time_format" translatable="false">%02d:%02d:%02d</string>
+
 
 </resources>

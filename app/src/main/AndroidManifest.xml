@@ -16,6 +16,10 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_key" />
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
 
         <activity android:name="com.wsoteam.horoscopes.SplashActivity"
             android:theme="@style/Splash"
@@ -38,6 +42,9 @@
 
         <activity android:name=".presentation.settings.SettingsActivity"
             android:theme="@style/Main"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".presentation.ball.BallActivity"
             android:screenOrientation="portrait"/>
 
 

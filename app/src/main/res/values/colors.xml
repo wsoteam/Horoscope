@@ -12,4 +12,12 @@
 
     <color name="active_tool_sign">#2e2c5c</color>
     <color name="inactive_tool_sign">#91899a</color>
+
+    <color name="toolbarText">#5CFFFFFF</color>
+    <color name="whiteText">#DEFFFFFF</color>
+    <color name="yellow">#E4DA05</color>
+
+    <color name="colorPrimaryBall">#0C0057</color>
+    <color name="colorPrimaryDarkBall">#000000</color>
+    <color name="colorAccentBall">#ffffff</color>
 </resources>

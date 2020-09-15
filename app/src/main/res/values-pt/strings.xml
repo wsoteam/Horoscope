@@ -74,5 +74,36 @@
         <item>Os planetas falam de grande sucesso ...</item>
     </string-array>
 
+    <string name="d_of_d">%d de %d</string>
+    <string name="tap_ball">Toque para bola</string>
+    <string name="ask">Faça a pergunta</string>
+    <string name="answer_init">\?</string>
+
+    <string name="access_will">O acesso será aberto por meio de:</string>
+    <string name="alert_title">O limite de perguntas foi atingido</string>
+    <string name="or">ou</string>
+    <string name="connect_premium">Conecte PREMIUM e obtenha:</string>
+    <string name="full_access">Acesso totals</string>
+    <string name="no_ads">Sem ADS</string>
+    <string name="get_premium">Obter Premium</string>
+    <string name="premium">Premium</string>
+    <string name="get_vip">Obter versão vip</string>
+    <string name="hour_short">h</string>
+
+    <string-array name="answers">
+        <item>Sem\ndúvida\n</item>
+        <item>Muito\nprovável\n\n</item>
+        <item>Conte com\nisso</item>
+        <item>Pergunte\nmais\ntarde</item>
+        <item>Não</item>
+        <item>Sim</item>
+        <item>Aja</item>
+        <item>Não se\napresse\n</item>
+        <item>Certa-\nmente</item>
+        <item>Sem\nresposta\n\n</item>
+        <item>Acho que\nsim</item>
+        <item>Eu acho\nque não\n</item>
+    </string-array>
+
 
 </resources>
