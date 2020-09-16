@@ -17,6 +17,7 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.gms.ads.AdRequest
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
+import com.wsoteam.horoscopes.presentation.ball.BallActivity
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
@@ -104,6 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ivToolShare.setOnClickListener {
             share()
         }
+        startActivity(Intent(this, BallActivity::class.java))
     }
 
     override fun onResume() {
