@@ -88,6 +88,8 @@ dependencies {
 
     implementation 'com.amplitude:android-sdk:2.23.2'
 
+    implementation 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
+
 
 
 }

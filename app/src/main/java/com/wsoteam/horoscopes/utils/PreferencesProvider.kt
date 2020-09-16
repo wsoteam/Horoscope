@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.wsoteam.horoscopes.App
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 
 object PreferencesProvider {
@@ -19,6 +20,9 @@ object PreferencesProvider {
     private const val VER_TAG = "VER_TAG"
 
     const val DEFAULT_TIME_NOTIFY = "18:00 PM"
+
+    private const val TIME = "TIME"
+    private const val ATTEMPTS = "ATTEMPTS"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -68,5 +72,13 @@ object PreferencesProvider {
             else -> 0
         }
     }
+
+    var timeMillis: Long
+        get() = getInstance()?.getLong(TIME, 0)!!
+        set(value) = editor { it?.putLong(TIME, value) }!!
+
+    var attempts: Int
+        get() = getInstance()?.getInt(ATTEMPTS, Config.ATTEMPTS_FOR_DAY)!!
+        set(value) = editor { it?.putInt(ATTEMPTS, value) }!!
 
 }

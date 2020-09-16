@@ -11,7 +11,7 @@ class BallActivity : AppCompatActivity(R.layout.ball_activity),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        replaceFragment()
+        replaceFragment(BallFragment())
     }
 
     override fun addBackStackFragment(fragment: Fragment) {
