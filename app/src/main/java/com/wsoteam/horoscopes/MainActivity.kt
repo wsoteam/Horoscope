@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,6 +17,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.gms.ads.AdRequest
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.ball.BallActivity
@@ -42,7 +46,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var lastIndex = 0
 
     var screensObserver = Observer<Int> {
-        Log.e("LOL", "kek $it")
         if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()) {
             (supportFragmentManager.findFragmentById(R.id.flContainer) as MainFragment).setOpenTab()
             openPrem()
@@ -55,6 +58,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         R.id.nav_libra, R.id.nav_scorpio, R.id.nav_sagittarius,
         R.id.nav_capricorn, R.id.nav_aquarius, R.id.nav_pisces
     )
+
+    var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
+
+        when(it.itemId){
+            R.id.bnv_main -> {
+                changeNavigationState(true)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bnv_prem ->  {
+                changeNavigationState(false)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bnv_balls -> {
+                changeNavigationState(false)
+                return@OnNavigationItemSelectedListener true
+            }
+            else -> {
+                return@OnNavigationItemSelectedListener false
+            }
+        }
+
+    }
+
+    private fun changeNavigationState(isVisible : Boolean){
+        var container = clContainer as ConstraintLayout
+        var params = container.layoutParams as CoordinatorLayout.LayoutParams
+        if (isVisible){
+            params.behavior = AppBarLayout.ScrollingViewBehavior()
+            container.requestLayout()
+            ablMain.visibility = View.VISIBLE
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        }else{
+            params.behavior = null
+            container.requestLayout()
+            ablMain.visibility = View.GONE
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +133,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
 
+
         ivToolPrem.setOnClickListener {
             openPrem()
         }
@@ -105,6 +147,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ivToolShare.setOnClickListener {
             share()
         }
+
+
+        bnvMain.setOnNavigationItemSelectedListener(bnvListener)
     }
 
     override fun onResume() {
