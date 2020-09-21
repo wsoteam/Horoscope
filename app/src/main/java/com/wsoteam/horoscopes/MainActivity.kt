@@ -105,7 +105,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ivToolShare.setOnClickListener {
             share()
         }
-        startActivity(Intent(this, BallActivity::class.java))
     }
 
     override fun onResume() {

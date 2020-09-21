@@ -101,6 +101,23 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnv_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#353366"
+            android:theme="@style/Widget.BottomNavigationView"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemIconTint="@drawable/bnv_selector"
+            app:itemTextAppearanceActive="@style/BnvTextActive"
+            app:itemTextAppearanceInactive="@style/BnvTextInActive"
+            app:labelVisibilityMode="auto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginEnd="@dimen/cardview_default_radius"
+            app:menu="@menu/bottom_navigation_main" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

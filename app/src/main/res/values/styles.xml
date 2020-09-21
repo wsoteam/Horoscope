@@ -34,7 +34,7 @@
         <item name="colorPrimaryDark">#c8bdb2</item>
         <item name="colorAccent">#2e2c5c</item>
         <item name="drawerArrowStyle">@style/BurgerIconStyle</item>
-        <item name="android:navigationBarColor">#f4e6d8</item>
+        <item name="android:navigationBarColor">#353366</item>
     </style>
 
     <style name="BurgerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
@@ -96,6 +96,29 @@
         <item name="android:letterSpacing">0.04</item>
         <item name="android:lineSpacingExtra">4.6sp</item>
         <item name="itemBackground">@drawable/selector_drawer_back</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="BnvTextActive">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">@color/active_bnv</item>
+    </style>
+
+    <style name="BnvTextInActive">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">@color/inactive_bnv</item>
     </style>
 
 
