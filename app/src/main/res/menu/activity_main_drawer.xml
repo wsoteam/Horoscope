@@ -3,68 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:id="@+id/nav_off_ads_group"
-        android:checkableBehavior="single">
-        <item android:id="@+id/nav_off_ads"
-            android:title="OFF ADS"
-            android:icon="@drawable/ic_nav_off_ads"/>
-    </group>
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_aries"
-            android:title="Aries"
+            android:title="@string/aries"
             android:icon="@drawable/ic_sign_0"/>
         <item
             android:id="@+id/nav_taurus"
-            android:title="Taurus"
+            android:title="@string/taurus"
             android:icon="@drawable/ic_sign_1"/>
         <item
             android:id="@+id/nav_gemini"
-            android:title="Gemini"
+            android:title="@string/gemini"
             android:icon="@drawable/ic_sign_2"/>
         <item
             android:id="@+id/nav_cancer"
-            android:title="Cancer"
+            android:title="@string/cancer"
             android:icon="@drawable/ic_sign_3"/>
         <item
             android:id="@+id/nav_leo"
-            android:title="Leo"
+            android:title="@string/leo"
             android:icon="@drawable/ic_sign_4"/>
         <item
             android:id="@+id/nav_virgo"
-            android:title="Virgo"
+            android:title="@string/virgo"
             android:icon="@drawable/ic_sign_5"/>
         <item
             android:id="@+id/nav_libra"
-            android:title="Libra"
+            android:title="@string/libra"
             android:icon="@drawable/ic_sign_6"/>
         <item
             android:id="@+id/nav_scorpio"
-            android:title="Scorpio"
+            android:title="@string/scorpio"
             android:icon="@drawable/ic_sign_7"/>
         <item
             android:id="@+id/nav_sagittarius"
-            android:title="Sagittarius"
+            android:title="@string/sagittarius"
             android:icon="@drawable/ic_sign_8"/>
         <item
             android:id="@+id/nav_capricorn"
-            android:title="Capricorn"
+            android:title="@string/capricorn"
             android:icon="@drawable/ic_sign_9"/>
         <item
             android:id="@+id/nav_aquarius"
-            android:title="Aquarius"
+            android:title="@string/aquarius"
             android:icon="@drawable/ic_sign_10"/>
         <item
             android:id="@+id/nav_pisces"
-            android:title="Pisces"
+            android:title="@string/pisces"
             android:icon="@drawable/ic_sign_11"/>
     </group>
 
     <group android:id="@+id/nav_settings_group"
         android:checkableBehavior="single">
         <item android:id="@+id/nav_settings"
-            android:title="Settings"
+            android:title="@string/settings"
             android:icon="@drawable/ic_nav_settings"/>
+
+        <item android:id="@+id/nav_off_ads"
+            android:title="@string/off_ads"
+            android:icon="@drawable/ic_ads"/>
     </group>
 </menu>
