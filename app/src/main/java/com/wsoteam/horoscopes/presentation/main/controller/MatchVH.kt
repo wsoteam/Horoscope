@@ -1,6 +1,5 @@
 package com.wsoteam.horoscopes.presentation.main.controller
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,6 @@ class MatchVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : RecyclerVi
     )
 ) {
     fun bind(loveId: Int, friendId: Int, careerId: Int) {
-        Log.e("LOL", "$loveId $friendId $careerId")
         itemView.ivLove.setImageResource(
             itemView.resources.obtainTypedArray(R.array.imgs_signs_matches)
                 .getResourceId(loveId - 1, -1)

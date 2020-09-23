@@ -90,6 +90,4 @@ dependencies {
 
     implementation 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
 
-
-
 }

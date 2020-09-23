@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:id="@+id/flContainer"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tvText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
-        android:letterSpacing="0.03"
-        android:lineSpacingExtra="4.9sp"
-        android:layout_marginTop="19dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        />
-
-    <View
-        android:id="@+id/divider5"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#14ffffff"
-        android:layout_marginTop="19dp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="4.9sp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="normal"/>
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="19dp"
+            android:background="#14ffffff" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivBlur"
+        android:visibility="gone"
+        android:src="@drawable/blur"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="100dp"/>
+
+</FrameLayout>

@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
-import java.nio.charset.StandardCharsets
 import kotlin.random.Random
 
 class HoroscopeAdapter(
     val text: String,
     val matches: List<Int>,
     val ratings: List<Int>,
-    var nativeList: ArrayList<UnifiedNativeAd>
+    var nativeList: ArrayList<UnifiedNativeAd>,
+    var isLocked : Boolean
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val TEXT_TYPE = 0
@@ -40,6 +40,9 @@ class HoroscopeAdapter(
 
     override fun getItemCount(): Int {
         return when {
+            isLocked -> {
+                1
+            }
             ratings.isNotEmpty() -> {
                 4 + nativeDiff
             }
@@ -54,7 +57,7 @@ class HoroscopeAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            TEXT_TYPE -> (holder as TextVH).bind(text)
+            TEXT_TYPE -> (holder as TextVH).bind(text, isLocked)
             MATCH_TYPE -> (holder as MatchVH).bind(matches[0], matches[1], matches[2])
             MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3])
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(3)])

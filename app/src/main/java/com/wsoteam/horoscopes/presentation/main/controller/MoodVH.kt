@@ -8,7 +8,12 @@ import kotlinx.android.synthetic.main.mood_vh.view.*
 
 class MoodVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.mood_vh, viewGroup, false)) {
-    fun bind(sex: Int, hustle: Int, vibe: Int, success: Int) {
+    fun bind(
+        sex: Int,
+        hustle: Int,
+        vibe: Int,
+        success: Int
+    ) {
         itemView.rvSex.setRating(sex)
         itemView.rvHustle.setRating(hustle)
         itemView.rvVibe.setRating(vibe)

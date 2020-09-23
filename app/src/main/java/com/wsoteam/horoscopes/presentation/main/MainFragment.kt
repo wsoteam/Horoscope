@@ -46,7 +46,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("LOL", "show")
         index = arguments!!.getInt(INDEX_KEY)
         signData = arguments!!.getSerializable(DATA_KEY) as Sign
         ivMain.setImageResource(

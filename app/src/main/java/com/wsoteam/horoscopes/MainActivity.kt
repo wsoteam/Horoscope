@@ -45,12 +45,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var birthSignIndex = -1
     var lastIndex = 0
 
-    var screensObserver = Observer<Int> {
-        if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()) {
+    /*var screensObserver = Observer<Int> {
+        *//*if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()) {
             (supportFragmentManager.findFragmentById(R.id.flContainer) as MainFragment).setOpenTab()
             openPrem()
-        }
-    }
+        }*//*
+    }*/
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ScreensLD.screensLD.observeForever(screensObserver)
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         if (PreferencesProvider.isADEnabled()) {
             adView.visibility = View.VISIBLE
@@ -159,10 +158,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.e("LOL", "observe")
                 setFirstUI()
             })
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     private fun share() {
@@ -290,7 +285,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onDestroy() {
         super.onDestroy()
-        ScreensLD.screensLD.removeObserver(screensObserver)
+        //ScreensLD.screensLD.removeObserver(screensObserver)
     }
 
 }
