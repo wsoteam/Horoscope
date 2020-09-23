@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.TimeInterval
 import com.wsoteam.horoscopes.presentation.main.controller.HoroscopeAdapter
+import com.wsoteam.horoscopes.presentation.main.controller.IGetPrem
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.ads.NativeSpeaker
@@ -41,7 +43,11 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         var signData = arguments!!.getSerializable(DATA_KEY) as TimeInterval
         index = arguments!!.getInt(INDEX_KEY)
         rvMain.layoutManager = LinearLayoutManager(this.context)
-        adapter = HoroscopeAdapter(signData.text, signData.matches, signData.ratings, arrayListOf(), isLocked())
+        adapter = HoroscopeAdapter(signData.text, signData.matches, signData.ratings, arrayListOf(), isLocked(), object : IGetPrem{
+            override fun getPrem() {
+                (activity as MainActivity).openPremSection()
+            }
+        })
         rvMain.adapter = adapter
         NativeProvider.observeOnNativeList(object : NativeSpeaker{
             override fun loadFin(nativeAd: ArrayList<UnifiedNativeAd>) {

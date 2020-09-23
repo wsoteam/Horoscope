@@ -97,6 +97,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    fun openPremSection(){
+        Log.e("LOL", "openPremSection")
+        bnvMain.selectedItemId = R.id.bnv_prem
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

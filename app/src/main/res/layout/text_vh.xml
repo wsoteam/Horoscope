@@ -34,13 +34,61 @@
 
     </LinearLayout>
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ivBlur"
-        android:visibility="gone"
-        android:src="@drawable/blur"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="100dp"/>
+        android:id="@+id/llLock"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:layout_marginTop="220dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_crown_prem"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="5.1sp"
+            android:gravity="center_horizontal"
+            android:text="@string/get_a_premium_subscription"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="3.2sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/full_information_is_available_by_subscription"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4.6sp"
+            android:text="@string/get_access"
+            android:background="@drawable/shape_lock_prem"
+            android:paddingStart="46dp"
+            android:paddingRight="46dp"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btnLockPrem"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

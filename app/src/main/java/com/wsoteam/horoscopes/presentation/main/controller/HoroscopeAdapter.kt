@@ -11,7 +11,8 @@ class HoroscopeAdapter(
     val matches: List<Int>,
     val ratings: List<Int>,
     var nativeList: ArrayList<UnifiedNativeAd>,
-    var isLocked : Boolean
+    var isLocked : Boolean,
+    var iGetPrem: IGetPrem
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val TEXT_TYPE = 0
@@ -30,11 +31,11 @@ class HoroscopeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            TEXT_TYPE -> TextVH(LayoutInflater.from(parent.context), parent)
+            TEXT_TYPE -> TextVH(LayoutInflater.from(parent.context), parent, iGetPrem)
             MATCH_TYPE -> MatchVH(LayoutInflater.from(parent.context), parent)
             MOOD_TYPE -> MoodVH(LayoutInflater.from(parent.context), parent)
             AD_TYPE -> NativeVH(LayoutInflater.from(parent.context), parent)
-            else -> TextVH(LayoutInflater.from(parent.context), parent)
+            else -> TextVH(LayoutInflater.from(parent.context), parent, iGetPrem)
         }
     }
 
