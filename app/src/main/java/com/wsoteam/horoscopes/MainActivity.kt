@@ -27,6 +27,7 @@ import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.main.ld.ScreensLD
+import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.bnv_prem ->  {
                 changeNavigationState(false)
-                supportFragmentManager.beginTransaction().replace()
+                supportFragmentManager.beginTransaction().replace(R.id.flContainer, PremiumFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_balls -> {

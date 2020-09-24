@@ -13,13 +13,9 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.premium_fragment.*
+import kotlinx.android.synthetic.main.premium_host_activity.*
 
-class PremiumHostActivity : AppCompatActivity() {
-
-
-    /*var layouts = listOf(R.layout.premium_fragment, R.layout.premium_fragment_sign, R.layout.premium_fragment_lock)
-    var tvsPrices = listOf(R.id.tvPrice, R.id.tvPriceSign, R.id.tvPriceLock)
-    var buttons = listOf(R.id.btnPay, R.id.btnPaySign, R.id.btnPayLock)
+class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
 
     var open_from = ""
     var version = 0
@@ -28,38 +24,19 @@ class PremiumHostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         version = PreferencesProvider.getVersionIndex()
-        setContentView(layouts[version])
         open_from = intent.getStringExtra(Config.OPEN_PREM)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flContainer, PremiumFragment())
+            .commit()
 
-        findViewById<Button>(buttons[version]).setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ID_PRICE, object :
-                InAppCallback {
-                override fun trialSucces() {
-                    handlInApp()
-                }
-            })
-        }
-
-        *//*ivClose.setOnClickListener {
+        ivClose.setOnClickListener {
             if (open_from == Config.OPEN_PREM_FROM_REG) {
                 openNextScreen()
             }else{
                 onBackPressed()
             }
-        }*//*
-        setPrice()
-    }
-
-    private fun setPrice() {
-        var price =
-            "${getString(R.string.prem4)} \n ${getString(R.string.prem5)} ${PreferencesProvider.getPrice()}"
-        findViewById<TextView>(tvsPrices[version]).text = price
-    }
-
-    private fun handlInApp() {
-        Analytic.makePurchase()
-        PreferencesProvider.setADStatus(false)
-        openNextScreen()
+        }
     }
 
     private fun openNextScreen(){
@@ -74,5 +51,5 @@ class PremiumHostActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
-    }*/
+    }
 }
