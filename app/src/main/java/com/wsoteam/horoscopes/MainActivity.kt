@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     )
 
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
-
         when(it.itemId){
             R.id.bnv_main -> {
                 changeNavigationState(true)
@@ -155,6 +154,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         bnvMain.setOnNavigationItemSelectedListener(bnvListener)
+        if (!PreferencesProvider.isADEnabled()){
+            bnvMain.menu.removeItem(R.id.bnv_prem)
+            nav_view.menu.removeItem(R.id.nav_off_ads)
+        }
     }
 
     override fun onResume() {
