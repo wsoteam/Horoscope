@@ -36,6 +36,9 @@
         <activity android:name=".presentation.premium.PremiumHostActivity"
             android:theme="@style/Premium"
             android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.premium.PaySuccessActivity"
+            android:theme="@style/Premium"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:theme="@style/Main"
             android:screenOrientation="portrait"/>

@@ -39,7 +39,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
     }
 
     private fun openNextScreen(){
-        startActivity(Intent(activity, MainActivity::class.java))
+        startActivity(Intent(activity, PaySuccessActivity::class.java))
         activity!!.finish()
     }
 }
