@@ -13,6 +13,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
@@ -46,12 +47,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var birthSignIndex = -1
     var lastIndex = 0
 
-    /*var screensObserver = Observer<Int> {
-        *//*if (it == ScreensLD.LOCK_INDEX && PreferencesProvider.isADEnabled()) {
-            (supportFragmentManager.findFragmentById(R.id.flContainer) as MainFragment).setOpenTab()
-            openPrem()
-        }*//*
-    }*/
+    var premFragment = PremiumFragment()
+    var mainFragment = LoadFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -63,12 +60,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when(it.itemId){
             R.id.bnv_main -> {
+                changeCurrentFragment(0)
                 changeNavigationState(true)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_prem ->  {
+                changeCurrentFragment(1)
                 changeNavigationState(false)
-                supportFragmentManager.beginTransaction().replace(R.id.flContainer, PremiumFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_balls -> {
@@ -80,6 +78,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
+    }
+
+    private fun changeCurrentFragment(index : Int) {
+        var transaction = supportFragmentManager.beginTransaction()
+        when(index){
+            0 -> {
+                if (premFragment.isAdded){
+                    transaction.hide(premFragment)
+                }
+                if (!mainFragment.isAdded){
+                    transaction.add(R.id.flContainer, mainFragment)
+                }
+                transaction.show(mainFragment)
+            }
+            1 -> {
+                if (mainFragment.isAdded){
+                    transaction.hide(mainFragment)
+                }
+                if (!premFragment.isAdded){
+                    transaction.add(R.id.flContainer, premFragment)
+                }
+                transaction.show(premFragment)
+            }
+        }
+        transaction.commit()
     }
 
     private fun changeNavigationState(isVisible : Boolean){
@@ -155,7 +178,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         bnvMain.setOnNavigationItemSelectedListener(bnvListener)
         if (!PreferencesProvider.isADEnabled()){
-            bnvMain.menu.removeItem(R.id.bnv_prem)
+            //bnvMain.menu.removeItem(R.id.bnv_prem)
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
     }
@@ -220,10 +243,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var transaction = supportFragmentManager.beginTransaction()
         when {
             index != -1 -> {
+                mainFragment = MainFragment.newInstance(index, vm.getLD().value!![index])
                 transaction
                     .replace(
                         R.id.flContainer,
-                        MainFragment.newInstance(index, vm.getLD().value!![index])
+                        mainFragment
                     )
                     .commit()
                 tvToolTitle.text =

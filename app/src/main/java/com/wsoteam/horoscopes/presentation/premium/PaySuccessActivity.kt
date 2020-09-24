@@ -11,7 +11,7 @@ class PaySuccessActivity : AppCompatActivity(R.layout.pay_success_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var cdTimer = object : CountDownTimer(700, 100){
+        var cdTimer = object : CountDownTimer(2000, 100){
             override fun onFinish() {
                 startActivity(Intent(this@PaySuccessActivity, MainActivity::class.java))
             }
