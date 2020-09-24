@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.premium_fragment.*
 class PremiumHostActivity : AppCompatActivity() {
 
 
-    var layouts = listOf(R.layout.premium_fragment, R.layout.premium_fragment_sign, R.layout.premium_fragment_lock)
+    /*var layouts = listOf(R.layout.premium_fragment, R.layout.premium_fragment_sign, R.layout.premium_fragment_lock)
     var tvsPrices = listOf(R.id.tvPrice, R.id.tvPriceSign, R.id.tvPriceLock)
     var buttons = listOf(R.id.btnPay, R.id.btnPaySign, R.id.btnPayLock)
 
@@ -40,13 +40,13 @@ class PremiumHostActivity : AppCompatActivity() {
             })
         }
 
-        ivClose.setOnClickListener {
+        *//*ivClose.setOnClickListener {
             if (open_from == Config.OPEN_PREM_FROM_REG) {
                 openNextScreen()
             }else{
                 onBackPressed()
             }
-        }
+        }*//*
         setPrice()
     }
 
@@ -74,5 +74,5 @@ class PremiumHostActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
-    }
+    }*/
 }

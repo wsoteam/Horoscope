@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.bnv_prem ->  {
                 changeNavigationState(false)
+                supportFragmentManager.beginTransaction().replace()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_balls -> {
@@ -98,7 +99,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun openPremSection(){
-        Log.e("LOL", "openPremSection")
         bnvMain.selectedItemId = R.id.bnv_prem
     }
 
