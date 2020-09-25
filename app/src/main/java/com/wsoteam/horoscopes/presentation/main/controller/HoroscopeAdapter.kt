@@ -11,12 +11,12 @@ class HoroscopeAdapter(
     val matches: List<Int>,
     val ratings: List<Int>,
     var nativeList: ArrayList<UnifiedNativeAd>,
-    var isLocked : Boolean,
+    var isLocked: Boolean,
     var iGetPrem: IGetPrem
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val TEXT_TYPE = 0
-    val AD_TYPE = 1
+    val TEXT_TYPE = 1
+    val AD_TYPE = 0
     val MATCH_TYPE = 2
     val MOOD_TYPE = 3
 
@@ -67,9 +67,11 @@ class HoroscopeAdapter(
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (nativeList.isNotEmpty() || position == 0){
+        return if (isLocked) {
+            TEXT_TYPE
+        } else if (nativeList.isNotEmpty() || position == 0) {
             position
-        }else {
+        } else {
             position + 1
         }
     }
