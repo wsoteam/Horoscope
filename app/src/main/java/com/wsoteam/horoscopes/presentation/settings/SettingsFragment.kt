@@ -37,8 +37,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     lateinit var timeDialog: TimeDialog
     lateinit var dateDialog: DateDialog
 
-
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindDialogs()

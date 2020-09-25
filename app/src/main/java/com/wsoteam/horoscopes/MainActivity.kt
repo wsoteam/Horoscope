@@ -36,6 +36,7 @@ import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
@@ -193,6 +194,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun share() {
+        Analytic.share()
         var intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(

@@ -2,6 +2,8 @@ package com.wsoteam.horoscopes.utils.analytics
 
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
+import org.json.JSONException
+import org.json.JSONObject
 
 object Analytic {
     private val make_purchase = "make_purchase"
@@ -12,6 +14,104 @@ object Analytic {
     private val set_ver = "set_ver"
     private val AB = "AB"
 
+    //New analytics consts
+    private val BIRTHDAY = "birthday"
+    private val date = "date"
+
+    private val SIGN = "sign"
+    private val zodiac = "zodiac"
+
+    private val HOROSCOPE = "horoscope"
+    private val horoscope_type = "horoscope_type"
+    private val yesterday = "yesterday"
+    private val tommorow = "tommorow"
+    private val week = "week"
+    private val month = "month"
+    private val year = "year"
+
+
+    private val PREMIUM_PAGE = "premium_page"
+    private val premium_page_from = "from"
+    private val start_premium = "start"
+    private val crown_premium = "crown"
+    private val burger_premium = "burger"
+    private val nav_premium = "nav"
+    private val month_premium = "month"
+    private val year_premium = "year"
+    private val love_premium = "love"
+
+
+    private val PREMIUM_TRIAL = "premium_trial"
+    private val trial_from = "from"
+    private val OTHER_SIGN = "other_sign"
+    private val SHARE_SOCIAL = "share_social"
+    private val SETTINGS = "settings_page"
+
+    ////New analytics
+
+    fun setBirthday(birth : String){
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(date, birth)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(BIRTHDAY, eventProperties)
+    }
+
+    fun setSign(sign : String){
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(zodiac, sign)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(SIGN, eventProperties)
+    }
+
+    fun showHoro(property : String){
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(horoscope_type, property)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(HOROSCOPE, eventProperties)
+    }
+
+    fun showPrem(property : String){
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(premium_page_from, property)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(PREMIUM_PAGE, eventProperties)
+    }
+
+    fun makePurchase(property : String){
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(trial_from, property)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(PREMIUM_TRIAL, eventProperties)
+    }
+
+    fun changeSign(){
+        Amplitude.getInstance().logEvent(OTHER_SIGN)
+    }
+
+    fun share(){
+        Amplitude.getInstance().logEvent(SHARE_SOCIAL)
+    }
+
+    fun openSettings(){
+        Amplitude.getInstance().logEvent(SETTINGS)
+    }
+
+//////////////////////////////////////////////////////////////////////
     fun setVersion() {
         Amplitude.getInstance().logEvent(set_ver)
     }
