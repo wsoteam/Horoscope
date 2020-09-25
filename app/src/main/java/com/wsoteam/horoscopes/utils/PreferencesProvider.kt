@@ -19,6 +19,7 @@ object PreferencesProvider {
     private const val COUNT_NOTIF = "COUNT_NOTIF"
     private const val VER_TAG = "VER_TAG"
     private const val WHERE_TAG = "WHERE_TAG"
+    private const val PREM_SHOW_TAG = "PREM_SHOW_TAG"
 
     const val DEFAULT_TIME_NOTIFY = "18:00 PM"
 
@@ -65,6 +66,13 @@ object PreferencesProvider {
 
     fun setBeforePremium(where: String) = editor { it?.putString(WHERE_TAG, where) }
     fun getBeforePremium() = getInstance()?.getString(WHERE_TAG, "")
+
+    private fun setPremShowState(state : Boolean) = editor { it?.putBoolean(PREM_SHOW_TAG, state) }
+    fun getPremShowState() : Boolean {
+        var pastState = getInstance()?.getBoolean(PREM_SHOW_TAG, true)!!
+        setPremShowState(!pastState)
+        return pastState
+    }
 
     fun getVersionIndex() = intoIndex(getVersion())
 
