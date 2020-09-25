@@ -12,6 +12,8 @@ import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.choiceSign
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity(R.layout.form_activity) {
@@ -20,6 +22,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PreferencesProvider.setBeforePremium(Analytic.form_premium)
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         edtBirthdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -77,6 +80,8 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         ivNext.setOnClickListener {
             PreferencesProvider.setName(edtName.text.toString())
             PreferencesProvider.setBirthday(edtBirthdate.text.toString())
+            Analytic.setBirthday(edtBirthdate.text.toString())
+            Analytic.setSign(resources.getStringArray(R.array.names_signs)[choiceSign(edtBirthdate.text.toString())])
             startActivity(Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_REG))
             finish()
         }

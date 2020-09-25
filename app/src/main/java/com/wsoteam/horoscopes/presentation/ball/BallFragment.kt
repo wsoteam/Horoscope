@@ -21,6 +21,7 @@ import com.google.android.gms.ads.AdRequest
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.fragment_magic_ball.*
 import java.util.*
 
@@ -36,6 +37,7 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        PreferencesProvider.setBeforePremium(Analytic.ball_premium)
         bigSize(answerField)
 
         answersArray = resources.getStringArray(R.array.answers)

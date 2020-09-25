@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.main.pager
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.wsoteam.horoscopes.presentation.main.controller.IGetPrem
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.ads.NativeSpeaker
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.page_fragment.*
 
 class PageFragment : Fragment(R.layout.page_fragment) {
@@ -45,6 +47,11 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         rvMain.layoutManager = LinearLayoutManager(this.context)
         adapter = HoroscopeAdapter(signData.text, signData.matches, signData.ratings, arrayListOf(), isLocked(), object : IGetPrem{
             override fun getPrem() {
+                if (index == 4){
+                    PreferencesProvider.setBeforePremium(Analytic.month_premium)
+                }else if (index == 5){
+                    PreferencesProvider.setBeforePremium(Analytic.year_premium)
+                }
                 (activity as MainActivity).openPremSection()
             }
         })
@@ -69,6 +76,7 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         super.onResume()
         if (userVisibleHint) {
             PreferencesProvider.setLastText(text)
+            Analytic.showHoro(index)
         }
     }
 }

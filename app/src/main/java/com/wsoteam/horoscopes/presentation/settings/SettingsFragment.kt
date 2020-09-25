@@ -22,6 +22,7 @@ import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.presentation.settings.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
 import kotlinx.android.synthetic.main.settings_fragment.*
 
@@ -37,7 +38,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     lateinit var timeDialog: TimeDialog
     lateinit var dateDialog: DateDialog
 
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindDialogs()
@@ -124,6 +125,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         ivPrem.visibility = View.GONE
         tvPrem.text = getString(R.string.empty_prem)
         llPrem.setOnClickListener {
+            PreferencesProvider.setBeforePremium(Analytic.settings_premium)
             startActivity(Intent(activity!!, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_MAIN))
         }
     }

@@ -10,6 +10,7 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.dialog_date.*
 
 class DateDialog : DialogFragment() {
@@ -33,6 +34,10 @@ class DateDialog : DialogFragment() {
         tvOk.setOnClickListener {
             val date = "%02d.%02d.%d".format(dpCalendar.dayOfMonth, dpCalendar.month + 1, dpCalendar.year)
 //            "${"%02d".format(dpCalendar.dayOfMonth)}.${"%02d".format(dpCalendar.month + 1)}.${dpCalendar.year}"
+
+            if(PreferencesProvider.getBirthday() != ""){
+                Analytic.changeSign()
+            }
 
             if (activity is FormActivity) {
                 (activity as FormActivity).setDate(date)

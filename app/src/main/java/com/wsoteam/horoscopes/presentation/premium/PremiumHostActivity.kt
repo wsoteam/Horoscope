@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes.presentation.premium
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
         version = PreferencesProvider.getVersionIndex()
         open_from = intent.getStringExtra(Config.OPEN_PREM)
         supportFragmentManager

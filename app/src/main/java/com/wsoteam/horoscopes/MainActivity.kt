@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_prem ->  {
+                PreferencesProvider.setBeforePremium(Analytic.nav_premium)
                 changeCurrentFragment(1)
                 changeNavigationState(false)
                 return@OnNavigationItemSelectedListener true
@@ -101,6 +102,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     transaction.add(R.id.flContainer, premFragment)
                 }
                 transaction.show(premFragment)
+                Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
             }
         }
         transaction.commit()
@@ -163,6 +165,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         ivToolPrem.setOnClickListener {
+            PreferencesProvider.setBeforePremium(Analytic.crown_premium)
             openPrem()
         }
 
@@ -281,6 +284,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             else -> {
                 if (PreferencesProvider.isADEnabled()) {
+                    PreferencesProvider.setBeforePremium(Analytic.burger_premium)
                     openPrem()
                 } else {
                     InfoDialog().show(supportFragmentManager, "")
