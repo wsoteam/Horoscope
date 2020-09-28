@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.ball
+package com.wsoteam.horoscopes.presentation.ball.dialogs
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,10 +11,12 @@ import android.view.Window
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment
-import kotlinx.android.synthetic.main.fragment_magic_ball.*
+import kotlinx.android.synthetic.main.dialog_fragment_no_attempts.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -42,11 +44,16 @@ class NoAttemptsDialogFragment : SupportBlurDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //view.findViewById<View>(R.id.actionClose).setOnClickListener { dismiss() }
+        view.findViewById<View>(R.id.actionClose).setOnClickListener {
+            dismiss()
+            AdWorker.showInter()
+        }
         view.findViewById<View>(R.id.actionPremium).setOnClickListener {  }
-        //time = view.findViewById(R.id.timer)
+        time = view.findViewById(R.id.timer)
 
-        //actionPremium.setOnClickListener { billingViewModel.buyPremium() }
+        actionPremium.setOnClickListener {
+            (activity as MainActivity).openPrem()
+        }
     }
 
     override fun onStart() {

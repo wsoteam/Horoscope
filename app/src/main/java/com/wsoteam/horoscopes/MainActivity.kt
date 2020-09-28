@@ -22,16 +22,14 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
-import com.wsoteam.horoscopes.presentation.ball.BallActivity
+import com.wsoteam.horoscopes.presentation.ball.BallFragment
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
-import com.wsoteam.horoscopes.presentation.main.ld.ScreensLD
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
-import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
@@ -50,6 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var premFragment = PremiumFragment()
     var mainFragment = LoadFragment() as Fragment
+    var ballFragment = BallFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -61,18 +60,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when(it.itemId){
             R.id.bnv_main -> {
-                changeCurrentFragment(0)
-                changeNavigationState(true)
+                openMainFragment()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_prem ->  {
                 PreferencesProvider.setBeforePremium(Analytic.nav_premium)
-                changeCurrentFragment(1)
-                changeNavigationState(false)
+                openPremiumFragment()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_balls -> {
-                changeNavigationState(false)
+                openBallFragment()
                 return@OnNavigationItemSelectedListener true
             }
             else -> {
@@ -82,31 +79,53 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    private fun changeCurrentFragment(index : Int) {
+    fun openMainFragment(){
         var transaction = supportFragmentManager.beginTransaction()
-        when(index){
-            0 -> {
-                if (premFragment.isAdded){
-                    transaction.hide(premFragment)
-                }
-                if (!mainFragment.isAdded){
-                    transaction.add(R.id.flContainer, mainFragment)
-                }
-                transaction.show(mainFragment)
-            }
-            1 -> {
-                if (mainFragment.isAdded){
-                    transaction.hide(mainFragment)
-                }
-                if (!premFragment.isAdded){
-                    transaction.add(R.id.flContainer, premFragment)
-                }
-                transaction.show(premFragment)
-                Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
-            }
+        if (premFragment.isAdded){
+            transaction.hide(premFragment)
         }
-        transaction.commit()
+        if (ballFragment.isAdded){
+            transaction.hide(ballFragment)
+        }
+        if (!mainFragment.isAdded){
+            transaction.add(R.id.flContainer, mainFragment)
+        }
+        transaction.show(mainFragment).commit()
+        changeNavigationState(true)
     }
+
+    fun openPremiumFragment(){
+        var transaction = supportFragmentManager.beginTransaction()
+        if (mainFragment.isAdded){
+            transaction.hide(mainFragment)
+        }
+        if (ballFragment.isAdded){
+            transaction.hide(ballFragment)
+        }
+        if (!premFragment.isAdded){
+            transaction.add(R.id.flContainer, premFragment)
+        }
+        transaction.show(premFragment).commit()
+        changeNavigationState(false)
+        Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
+    }
+
+    fun openBallFragment(){
+        var transaction = supportFragmentManager.beginTransaction()
+        if (mainFragment.isAdded){
+            transaction.hide(mainFragment)
+        }
+        if (premFragment.isAdded){
+            transaction.hide(premFragment)
+        }
+        if (!ballFragment.isAdded){
+            transaction.add(R.id.flContainer, ballFragment)
+        }
+        transaction.show(ballFragment).commit()
+        changeNavigationState(false)
+
+    }
+
 
     private fun changeNavigationState(isVisible : Boolean){
         var container = clContainer as ConstraintLayout
@@ -131,6 +150,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainer, PremiumFragment())
+            .add(R.id.flContainer, BallFragment())
+            .commit()
 
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         if (PreferencesProvider.isADEnabled()) {
@@ -167,6 +192,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         ivToolPrem.setOnClickListener {
             PreferencesProvider.setBeforePremium(Analytic.crown_premium)
             openPrem()
+            //bnvMain.selectedItemId = R.id.bnv_prem
         }
 
         ivToolSign.setOnClickListener {
@@ -234,7 +260,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         onNavigationItemSelected(nav_view.menu.getItem(index + 1))
     }
 
-    private fun openPrem() {
+     fun openPrem() {
         startActivity(
             Intent(this, PremiumHostActivity::class.java).putExtra(
                 Config.OPEN_PREM,
@@ -320,11 +346,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             drawer_layout.closeDrawers()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //ScreensLD.screensLD.removeObserver(screensObserver)
     }
 
 }

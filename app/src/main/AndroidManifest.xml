@@ -47,9 +47,6 @@
             android:theme="@style/Main"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".presentation.ball.BallActivity"
-            android:screenOrientation="portrait"/>
-
 
         <service
             android:name=".notification.NotificationService"

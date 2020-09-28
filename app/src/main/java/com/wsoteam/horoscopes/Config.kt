@@ -15,9 +15,10 @@ object Config {
 
     const val OPEN_FROM_NOTIFY = "OPEN_FROM_NOTIFY"
 
-    const val ATTEMPTS_FOR_DAY = 100000
+    const val ATTEMPTS_FOR_DAY = 3
 
     val MILLIS_FOR_NEW_ATTEMPTS = TimeUnit.HOURS.toMillis(24)
+    val ADS_FREQUENCY = 50
 
 
 

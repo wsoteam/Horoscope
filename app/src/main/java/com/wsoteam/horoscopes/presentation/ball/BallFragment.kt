@@ -19,9 +19,13 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.google.android.gms.ads.AdRequest
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.presentation.ball.dialogs.NoAttemptsDialogFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_magic_ball.*
 import java.util.*
 
@@ -37,7 +41,6 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        PreferencesProvider.setBeforePremium(Analytic.ball_premium)
         bigSize(answerField)
 
         answersArray = resources.getStringArray(R.array.answers)
@@ -46,12 +49,10 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
         ballBackground.setOnClickListener(this::clickOnBall)
         actionPremium.setOnClickListener(this::openPremium)
 
-        banner.loadAd(AdRequest.Builder().build())
         updateUI()
 
         if (!firstShow) {
             firstShow = true
-            //(activity as Navigator).addBackStackFragment(PremiumFragment.newInstance())
         }
     }
 
@@ -61,7 +62,7 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
     }
 
     private fun openPremium(view: View) {
-        //(activity as Navigator).addBackStackFragment(PremiumFragment.newInstance())
+        (activity as MainActivity).openPrem()
     }
 
     private fun clickOnBall(view: View) {
@@ -87,12 +88,10 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
 
     private fun updateUI() {
         if (!PreferencesProvider.isADEnabled()) {
-            banner.visibility = View.GONE
             attemptsText.visibility = View.INVISIBLE
             actionPremium.visibility = View.INVISIBLE
         } else {
-            banner.visibility = View.VISIBLE
-            //attemptsText.visibility = View.VISIBLE
+            attemptsText.visibility = View.VISIBLE
             actionPremium.visibility = View.VISIBLE
             attemptsText.text =
                 getString(R.string.d_of_d, PreferencesProvider.attempts, Config.ATTEMPTS_FOR_DAY)
@@ -208,10 +207,7 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
 
                         override fun onAnimationEnd(animation: Animator?) {
                             setButtonEnabled(true)
-                            if (counter % 2 == 0) {
-                                //(activity as AdManager).showInter()
-                            }
-
+                            AdWorker.showInter()
                         }
 
                         override fun onAnimationCancel(animation: Animator?) {}

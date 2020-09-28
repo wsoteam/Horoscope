@@ -3,6 +3,8 @@ package com.wsoteam.horoscopes.utils.ads
 import android.content.Context
 import androidx.core.R
 import com.google.android.gms.ads.*
+import com.wsoteam.horoscopes.Config
+import kotlin.random.Random
 
 object AdWorker {
 
@@ -64,12 +66,21 @@ object AdWorker {
 
     fun showInter(){
         if (isInit && mInterstitialAd?.isLoaded == true) {
-            mInterstitialAd?.show()
+            if(needShow()) {
+                mInterstitialAd?.show()
+            }else{
+                adCallbacks?.onAdClosed()
+            }
         } else if(isFailedLoad){
             counterFailed = 0
             isFailedLoad = false
             reload()
         }
+    }
+
+    private fun needShow(): Boolean {
+        return Random.nextInt(100) <= Config.ADS_FREQUENCY
+
     }
 
     fun showInterWithCallbacks(adCallbacks: AdCallbacks){

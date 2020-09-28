@@ -48,7 +48,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun goNext() {
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
-            if (PreferencesProvider.isADEnabled() && PreferencesProvider.getPremShowState()) {
+            if (PreferencesProvider.isADEnabled()) {
                 intent = Intent(this, PremiumHostActivity::class.java).putExtra(
                     Config.OPEN_PREM,
                     Config.OPEN_PREM_FROM_REG
