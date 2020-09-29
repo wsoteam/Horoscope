@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.R
 import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import kotlin.random.Random
 
 object AdWorker {
@@ -25,6 +26,12 @@ object AdWorker {
             mInterstitialAd?.adUnitId = context.getString(com.wsoteam.horoscopes.R.string.interstitial_id)
             mInterstitialAd?.loadAd(AdRequest.Builder().build())
             mInterstitialAd?.adListener = object : AdListener() {
+
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    FBAnalytic.logAdClickEvent(context, "interstitial")
+                }
+
                 override fun onAdClosed() {
                     adCallbacks?.onAdClosed()
                     isNeedShowInter = false

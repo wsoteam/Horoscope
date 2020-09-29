@@ -90,4 +90,6 @@ dependencies {
 
     implementation 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
 
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+
 }

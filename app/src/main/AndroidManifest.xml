@@ -2,15 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wsoteam.horoscopes">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security">
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/fb_login_protocol_scheme" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -21,40 +32,47 @@
             android:resource="@array/preloaded_fonts" />
 
 
-        <activity android:name="com.wsoteam.horoscopes.SplashActivity"
-            android:theme="@style/Splash"
-            android:screenOrientation="portrait">
+        <activity
+            android:name="com.wsoteam.horoscopes.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.form.FormActivity"
-            android:theme="@style/Form"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".presentation.premium.PremiumHostActivity"
-            android:theme="@style/Premium"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".presentation.premium.PaySuccessActivity"
-            android:theme="@style/Premium"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:theme="@style/Main"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.form.FormActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Form" />
+        <activity
+            android:name=".presentation.premium.PremiumHostActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Premium" />
+        <activity
+            android:name=".presentation.premium.PaySuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Premium" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main" />
 
-        <activity android:name=".presentation.settings.SettingsActivity"
-            android:theme="@style/Main"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main" />
 
 
         <service
             android:name=".notification.NotificationService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".notification.AlarmReceiver" />
 
-        <receiver android:name=".notification.BootReceiver"
+        <receiver
+            android:name=".notification.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

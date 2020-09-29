@@ -13,6 +13,8 @@
     <string name="native_ad" translatable="false">ca-app-pub-3050564412171997/4688649542</string>-->
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
+    <string name="facebook_app_id" translatable="false">448083649486159</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb448083649486159</string>
 
     <!--Signs-->
     <integer-array name="icons_signs">
