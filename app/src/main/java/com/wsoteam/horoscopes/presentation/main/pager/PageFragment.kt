@@ -22,14 +22,14 @@ class PageFragment : Fragment(R.layout.page_fragment) {
 
     var text = ""
     var index = -1
-    lateinit var adapter : HoroscopeAdapter
+    lateinit var adapter: HoroscopeAdapter
 
     companion object {
 
         val DATA_KEY = "DATA_KEY"
         val INDEX_KEY = "INDEX_KEY"
 
-        fun newInstance(sign: TimeInterval, index : Int): PageFragment {
+        fun newInstance(sign: TimeInterval, index: Int): PageFragment {
             var bundle = Bundle()
             bundle.putSerializable(DATA_KEY, sign)
             bundle.putInt(INDEX_KEY, index)
@@ -45,20 +45,32 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         var signData = arguments!!.getSerializable(DATA_KEY) as TimeInterval
         index = arguments!!.getInt(INDEX_KEY)
         rvMain.layoutManager = LinearLayoutManager(this.context)
-        adapter = HoroscopeAdapter(signData.text, signData.matches, signData.ratings, arrayListOf(), isLocked(), object : IGetPrem{
-            override fun getPrem() {
-                if (index == 4){
-                    PreferencesProvider.setBeforePremium(Analytic.month_premium)
-                }else if (index == 5){
-                    PreferencesProvider.setBeforePremium(Analytic.year_premium)
-                }else{
-                    PreferencesProvider.setBeforePremium(Analytic.love_premium)
+        adapter = HoroscopeAdapter(
+            signData.text,
+            signData.matches,
+            signData.ratings,
+            arrayListOf(),
+            isLocked(),
+            object : IGetPrem {
+                override fun getPrem() {
+                    var before = when (index) {
+                        4 -> {
+                            Analytic.month_premium
+                        }
+                        5 -> {
+                            Analytic.year_premium
+                        }
+                        else -> {
+                            Analytic.love_premium
+                        }
+                    }
+                    PreferencesProvider.setBeforePremium(before)
+                    Analytic.showPrem(before)
+                    (activity as MainActivity).openPremSection()
                 }
-                (activity as MainActivity).openPremSection()
-            }
-        })
+            })
         rvMain.adapter = adapter
-        NativeProvider.observeOnNativeList(object : NativeSpeaker{
+        NativeProvider.observeOnNativeList(object : NativeSpeaker {
             override fun loadFin(nativeAd: ArrayList<UnifiedNativeAd>) {
                 if (PreferencesProvider.isADEnabled()) {
                     adapter.insertAds(nativeAd)
