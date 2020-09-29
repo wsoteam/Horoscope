@@ -70,7 +70,7 @@ class HoroscopeAdapter(
     override fun getItemViewType(position: Int): Int {
         return if (isLocked) {
             TEXT_TYPE
-        } else if (nativeList.isNotEmpty() || position == 0) {
+        } else if (nativeList.isNotEmpty()) {
             position
         } else {
             position + 1

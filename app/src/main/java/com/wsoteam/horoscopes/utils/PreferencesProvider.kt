@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.remote.ABConfig
@@ -67,11 +68,12 @@ object PreferencesProvider {
     fun setBeforePremium(where: String) = editor { it?.putString(WHERE_TAG, where) }
     fun getBeforePremium() = getInstance()?.getString(WHERE_TAG, "")
 
-    private fun setPremShowState(state : Boolean) = editor { it?.putBoolean(PREM_SHOW_TAG, state) }
-    fun getPremShowState() : Boolean {
-        var pastState = getInstance()?.getBoolean(PREM_SHOW_TAG, true)!!
-        setPremShowState(!pastState)
-        return pastState
+    private fun setEnterCount(newCount : Int) = editor { it?.putInt(PREM_SHOW_TAG, newCount) }
+
+    fun getPremShowPossibility() : Boolean {
+        var pastCount = getInstance()?.getInt(PREM_SHOW_TAG, 0)!!
+        setEnterCount(pastCount + 1)
+        return pastCount == 0 || pastCount == Config.PREM_SHOW_FREQUENCY
     }
 
     fun getVersionIndex() = intoIndex(getVersion())

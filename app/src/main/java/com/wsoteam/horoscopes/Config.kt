@@ -19,6 +19,7 @@ object Config {
 
     val MILLIS_FOR_NEW_ATTEMPTS = TimeUnit.HOURS.toMillis(24)
     val ADS_FREQUENCY = 50
+    val PREM_SHOW_FREQUENCY = 10
 
 
 
