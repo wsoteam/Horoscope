@@ -208,7 +208,9 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
 
                         override fun onAnimationEnd(animation: Animator?) {
                             setButtonEnabled(true)
-                            AdWorker.showInter()
+                            if (PreferencesProvider.isADEnabled()) {
+                                AdWorker.showInter()
+                            }
                         }
 
                         override fun onAnimationCancel(animation: Animator?) {}
