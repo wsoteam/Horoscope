@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlin.random.Random
 
 class HoroscopeAdapter(
@@ -33,7 +34,7 @@ class HoroscopeAdapter(
         return when (viewType) {
             TEXT_TYPE -> TextVH(LayoutInflater.from(parent.context), parent, iGetPrem)
             MATCH_TYPE -> MatchVH(LayoutInflater.from(parent.context), parent)
-            MOOD_TYPE -> MoodVH(LayoutInflater.from(parent.context), parent)
+            MOOD_TYPE -> MoodVH(LayoutInflater.from(parent.context), parent, iGetPrem)
             AD_TYPE -> NativeVH(LayoutInflater.from(parent.context), parent)
             else -> TextVH(LayoutInflater.from(parent.context), parent, iGetPrem)
         }
@@ -60,7 +61,7 @@ class HoroscopeAdapter(
         when (getItemViewType(position)) {
             TEXT_TYPE -> (holder as TextVH).bind(text, isLocked)
             MATCH_TYPE -> (holder as MatchVH).bind(matches[0], matches[1], matches[2])
-            MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3])
+            MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3], PreferencesProvider.isADEnabled())
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(3)])
         }
     }
