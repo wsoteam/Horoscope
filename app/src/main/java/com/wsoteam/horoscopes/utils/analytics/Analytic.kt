@@ -43,6 +43,7 @@ object Analytic {
     val month_premium = "month"
     val year_premium = "year"
     val love_premium = "love"
+    val ball_alert_premium = "ball_alert"
 
 
     private val PREMIUM_TRIAL = "premium_trial"

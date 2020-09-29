@@ -15,6 +15,7 @@ import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment
 import kotlinx.android.synthetic.main.dialog_fragment_no_attempts.*
 import java.util.*
@@ -52,6 +53,7 @@ class NoAttemptsDialogFragment : SupportBlurDialogFragment() {
         time = view.findViewById(R.id.timer)
 
         actionPremium.setOnClickListener {
+            PreferencesProvider.setBeforePremium(Analytic.ball_alert_premium)
             (activity as MainActivity).openPrem()
         }
     }

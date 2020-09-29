@@ -62,6 +62,7 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
     }
 
     private fun openPremium(view: View) {
+        PreferencesProvider.setBeforePremium(Analytic.ball_premium)
         (activity as MainActivity).openPrem()
     }
 

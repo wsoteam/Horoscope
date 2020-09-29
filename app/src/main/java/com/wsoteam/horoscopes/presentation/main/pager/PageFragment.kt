@@ -51,6 +51,8 @@ class PageFragment : Fragment(R.layout.page_fragment) {
                     PreferencesProvider.setBeforePremium(Analytic.month_premium)
                 }else if (index == 5){
                     PreferencesProvider.setBeforePremium(Analytic.year_premium)
+                }else{
+                    PreferencesProvider.setBeforePremium(Analytic.love_premium)
                 }
                 (activity as MainActivity).openPremSection()
             }
