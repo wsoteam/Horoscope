@@ -105,5 +105,29 @@
         <item>Eu acho\nque não\n</item>
     </string-array>
 
+    <string name="horoscope">Horóscopo</string>
+    <string name="magic_ball">Bola mágica</string>
+    <string name="aries">Áries</string>
+    <string name="taurus">Touro</string>
+    <string name="gemini">Gêmeos</string>
+    <string name="cancer">Câncer</string>
+    <string name="leo">Leo</string>
+    <string name="virgo">Virgem</string>
+    <string name="libra">Libra</string>
+    <string name="scorpio">Escorpião</string>
+    <string name="sagittarius">Sagitário</string>
+    <string name="capricorn">Capricórnio</string>
+    <string name="aquarius">Aquário</string>
+    <string name="pisces">Peixes</string>
+    <string name="off_ads">OFF ADS</string>
+    <string name="get_a_premium_subscription">Obtenha uma assinatura premium</string>
+    <string name="full_information_is_available_by_subscription">A informação completa está disponível por assinatura</string>
+    <string name="get_access">Conseguir acesso</string>
+    <string name="no_advertising">Sem publicidade</string>
+    <string name="full_access_to_horoscopes">Acesso total aos horóscopos</string>
+    <string name="unlimited_questions_to_the_magic_ball">Perguntas ilimitadas para a bola mágica</string>
+    <string name="try_free_trial">Teste grátis</string>
+
+
 
 </resources>
