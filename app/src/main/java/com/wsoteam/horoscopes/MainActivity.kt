@@ -1,13 +1,15 @@
 package com.wsoteam.horoscopes
 
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.drawable.DrawableCompat
@@ -39,6 +41,7 @@ import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -91,6 +94,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             transaction.add(R.id.flContainer, mainFragment)
         }
         transaction.show(mainFragment).commit()
+        window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(true)
     }
 
@@ -106,6 +110,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             transaction.add(R.id.flContainer, premFragment)
         }
         transaction.show(premFragment).commit()
+        window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(false)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
     }
@@ -122,6 +127,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             transaction.add(R.id.flContainer, ballFragment)
         }
         transaction.show(ballFragment).commit()
+        window.statusBarColor = Color.rgb(0, 0, 0)
         changeNavigationState(false)
 
     }
@@ -146,6 +152,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun openPremSection(){
         bnvMain.selectedItemId = R.id.bnv_prem
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

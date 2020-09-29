@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.utils.analytics
 
+import android.util.Log
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
 import org.json.JSONException
@@ -94,6 +95,7 @@ object Analytic {
     }
 
     fun showPrem(property : String){
+        Log.e("LOL", "showPrem")
         val eventProperties = JSONObject()
         try {
             eventProperties.put(premium_page_from, property)
