@@ -277,6 +277,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.e("LOL", "onNavigationItemSelected")
         val index = listIndexes.indexOf(item.itemId)
         var transaction = supportFragmentManager.beginTransaction()
         when {
@@ -311,6 +312,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     llTools.visibility = View.INVISIBLE
                 }
                 drawer_layout.closeDrawers()*/
+                Log.e("LOL", "click settings")
                 startActivity(Intent(this, SettingsActivity::class.java))
                 drawer_layout.closeDrawers()
                 return false
