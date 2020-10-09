@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun openBallFragment(){
+        Analytic.showBalls()
         var transaction = supportFragmentManager.beginTransaction()
         if (mainFragment.isAdded){
             transaction.hide(mainFragment)

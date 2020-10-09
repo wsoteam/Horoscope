@@ -53,7 +53,22 @@ object Analytic {
     private val SHARE_SOCIAL = "share_social"
     private val SETTINGS = "settings_page"
 
-    ////New analytics
+
+    private val BALL_PAGE = "ball_page"
+    private val ASK_BALL = "ask_ball"
+
+
+    fun touchBalls(){
+        Amplitude.getInstance().logEvent(ASK_BALL)
+    }
+
+
+    fun showBalls(){
+        Amplitude.getInstance().logEvent(BALL_PAGE)
+    }
+
+
+///////////////////New analytics
 
     fun setBirthday(birth : String){
         val eventProperties = JSONObject()

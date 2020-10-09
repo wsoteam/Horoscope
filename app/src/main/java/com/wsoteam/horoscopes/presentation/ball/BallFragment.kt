@@ -67,6 +67,7 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
     }
 
     private fun clickOnBall(view: View) {
+        Analytic.touchBalls()
         counter++
         setButtonEnabled(false)
         animator.start()
