@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes
 
+import android.os.Handler
 import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
 import com.bugsee.library.Bugsee
@@ -8,6 +9,9 @@ import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 
 class App : MultiDexApplication() {
+
+    @Volatile
+    var applicationHandler: Handler? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -24,6 +28,9 @@ class App : MultiDexApplication() {
             .enableForegroundTracking(this)
 
         Amplitude.getInstance().logEvent("EVENT_NAME_HERE")
+
+        applicationHandler =  Handler(applicationContext.getMainLooper());
+
     }
 
     companion object {
