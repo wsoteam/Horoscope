@@ -54,7 +54,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     Config.OPEN_PREM_FROM_REG
                 )
             } else {*/
-                intent = Intent(this, MainActivity::class.java)
+                intent = Intent(this, PremiumHostActivity::class.java)
             /*}*/
         } else {
             intent = Intent(this, FormActivity::class.java)

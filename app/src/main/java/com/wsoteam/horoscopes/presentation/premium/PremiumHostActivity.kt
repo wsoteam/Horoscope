@@ -26,10 +26,10 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
         version = PreferencesProvider.getVersionIndex()
-        open_from = intent.getStringExtra(Config.OPEN_PREM)
+        //open_from = intent.getStringExtra(Config.OPEN_PREM)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.flContainer, PremiumFragment())
+            .replace(R.id.flContainer, PremiumFragmentSlide())
             .commit()
 
         ivClose.setOnClickListener {
