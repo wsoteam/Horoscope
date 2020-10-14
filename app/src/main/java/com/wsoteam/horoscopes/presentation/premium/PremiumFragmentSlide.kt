@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.premium.pager.OnboardAdapter
 import com.wsoteam.horoscopes.utils.InAppCallback
@@ -79,13 +81,22 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
     }
 
     private fun handlInApp() {
+        Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
+        FirebaseAnalytics.getInstance(requireContext()).logEvent("trial", null)
         FBAnalytic.logTrial(activity!!)
         PreferencesProvider.setADStatus(false)
         openNextScreen()
     }
 
+    private fun getPlacement(): String {
+        return if (activity!! is MainActivity){
+            Analytic.main
+        }else{
+            Analytic.form
+        }
+    }
+
     private fun openNextScreen() {
-        Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!)
         startActivity(Intent(activity, PaySuccessActivity::class.java))
         activity!!.finish()
     }

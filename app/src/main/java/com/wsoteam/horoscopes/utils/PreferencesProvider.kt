@@ -82,7 +82,6 @@ object PreferencesProvider {
         return when (version) {
             ABConfig.A -> 0
             ABConfig.B -> 1
-            ABConfig.C -> 2
             else -> 0
         }
     }

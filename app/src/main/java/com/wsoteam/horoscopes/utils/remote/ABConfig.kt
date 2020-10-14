@@ -2,10 +2,9 @@ package com.wsoteam.horoscopes.utils.remote
 
 object ABConfig {
 
-    const val REQUEST_STRING = "prem"
+    const val REQUEST_STRING = "prem_test_1410"
 
-    const val A = "ads"
-    const val B = "sign"
-    const val C = "lock"
+    const val A = "slide"
+    const val B = "def"
 
 }

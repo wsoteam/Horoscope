@@ -47,8 +47,11 @@ object Analytic {
     val ball_alert_premium = "ball_alert"
 
 
-    private val PREMIUM_TRIAL = "premium_trial"
+    private val PREMIUM_TRIAL = "premium_trial_make"
     private val trial_from = "from"
+    private val where = "where"
+    val form = "form"
+    val main = "main"
     private val OTHER_SIGN = "other_sign"
     private val SHARE_SOCIAL = "share_social"
     private val SETTINGS = "settings_page"
@@ -58,19 +61,19 @@ object Analytic {
     private val ASK_BALL = "ask_ball"
 
 
-    fun touchBalls(){
+    fun touchBalls() {
         Amplitude.getInstance().logEvent(ASK_BALL)
     }
 
 
-    fun showBalls(){
+    fun showBalls() {
         Amplitude.getInstance().logEvent(BALL_PAGE)
     }
 
 
 ///////////////////New analytics
 
-    fun setBirthday(birth : String){
+    fun setBirthday(birth: String) {
         val eventProperties = JSONObject()
         try {
             eventProperties.put(date, birth)
@@ -80,7 +83,7 @@ object Analytic {
         Amplitude.getInstance().logEvent(BIRTHDAY, eventProperties)
     }
 
-    fun setSign(sign : String){
+    fun setSign(sign: String) {
         val eventProperties = JSONObject()
         try {
             eventProperties.put(zodiac, sign)
@@ -90,8 +93,8 @@ object Analytic {
         Amplitude.getInstance().logEvent(SIGN, eventProperties)
     }
 
-    fun showHoro(index : Int){
-        var property = when(index){
+    fun showHoro(index: Int) {
+        var property = when (index) {
             0 -> yesterday
             1 -> today
             2 -> tommorow
@@ -109,7 +112,7 @@ object Analytic {
         Amplitude.getInstance().logEvent(HOROSCOPE, eventProperties)
     }
 
-    fun showPrem(property : String){
+    fun showPrem(property: String) {
         Log.e("LOL", "showPrem")
         val eventProperties = JSONObject()
         try {
@@ -120,29 +123,31 @@ object Analytic {
         Amplitude.getInstance().logEvent(PREMIUM_PAGE, eventProperties)
     }
 
-    fun makePurchase(property : String){
+    fun makePurchase(property: String, wherePurchase: String) {
         val eventProperties = JSONObject()
         try {
             eventProperties.put(trial_from, property)
+            eventProperties.put(where, wherePurchase)
         } catch (exception: JSONException) {
             exception.printStackTrace()
         }
         Amplitude.getInstance().logEvent(PREMIUM_TRIAL, eventProperties)
+        Log.e("LOL", "$property -- $wherePurchase")
     }
 
-    fun changeSign(){
+    fun changeSign() {
         Amplitude.getInstance().logEvent(OTHER_SIGN)
     }
 
-    fun share(){
+    fun share() {
         Amplitude.getInstance().logEvent(SHARE_SOCIAL)
     }
 
-    fun openSettings(){
+    fun openSettings() {
         Amplitude.getInstance().logEvent(SETTINGS)
     }
 
-//////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
     fun setVersion() {
         Amplitude.getInstance().logEvent(set_ver)
     }

@@ -54,7 +54,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     Config.OPEN_PREM_FROM_REG
                 )
             } else {*/
-                intent = Intent(this, PremiumHostActivity::class.java)
+                intent = Intent(this, MainActivity::class.java)
             /*}*/
         } else {
             intent = Intent(this, FormActivity::class.java)
@@ -114,6 +114,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setABTestConfig(version: String) {
+        Log.e("LOL", version)
         PreferencesProvider.setVersion(version)
         Analytic.setABVersion(version)
         Analytic.setVersion()
