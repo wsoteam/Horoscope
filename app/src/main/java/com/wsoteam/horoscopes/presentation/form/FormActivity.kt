@@ -80,8 +80,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         ivNext.setOnClickListener {
             PreferencesProvider.setName(edtName.text.toString())
             PreferencesProvider.setBirthday(edtBirthdate.text.toString())
-            Analytic.setBirthday(edtBirthdate.text.toString())
-            Analytic.setSign(resources.getStringArray(R.array.names_signs)[choiceSign(edtBirthdate.text.toString())])
+
             startActivity(Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_REG))
             finish()
         }

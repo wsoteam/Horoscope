@@ -79,23 +79,15 @@ object Analytic {
 ///////////////////New analytics
 
     fun setBirthday(birth: String) {
-        val eventProperties = JSONObject()
-        try {
-            eventProperties.put(date, birth)
-        } catch (exception: JSONException) {
-            exception.printStackTrace()
-        }
-        Amplitude.getInstance().logEvent(BIRTHDAY, eventProperties)
+        Log.e("LOL", birth)
+        var identify = Identify().set(BIRTHDAY, birth)
+        Amplitude.getInstance().identify(identify)
     }
 
     fun setSign(sign: String) {
-        val eventProperties = JSONObject()
-        try {
-            eventProperties.put(zodiac, sign)
-        } catch (exception: JSONException) {
-            exception.printStackTrace()
-        }
-        Amplitude.getInstance().logEvent(SIGN, eventProperties)
+        Log.e("LOL", sign)
+        var identify = Identify().set(SIGN, sign)
+        Amplitude.getInstance().identify(identify)
     }
 
     fun showHoro(index: Int) {
@@ -174,7 +166,7 @@ object Analytic {
     }
 
     fun setABVersion(version: String) {
-        var identify = Identify().setOnce(AB, version)
+        var identify = Identify().set(AB, version)
         Amplitude.getInstance().identify(identify)
     }
 

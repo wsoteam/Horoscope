@@ -264,8 +264,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setSelectedItem(index: Int) {
-        nav_view.menu.getItem(index + 1).isChecked = true
-        onNavigationItemSelected(nav_view.menu.getItem(index + 1))
+        nav_view.menu.getItem(index).isChecked = true
+        onNavigationItemSelected(nav_view.menu.getItem(index))
     }
 
      fun openPrem() {
