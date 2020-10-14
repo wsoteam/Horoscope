@@ -59,6 +59,11 @@ object Analytic {
 
     private val BALL_PAGE = "ball_page"
     private val ASK_BALL = "ask_ball"
+    private val START = "start"
+
+    fun start() {
+        Amplitude.getInstance().logEvent(START)
+    }
 
 
     fun touchBalls() {
