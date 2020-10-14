@@ -9,6 +9,9 @@ buildscript {
         maven { url 'https://jitpack.io' }
         maven { url "https://maven.google.com" }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+        maven{
+            url 'https://sdk.uxcam.com/android/'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
@@ -29,7 +32,9 @@ allprojects {
         }
         google()
         jcenter()
-        
+        maven{
+            url 'https://sdk.uxcam.com/android/'
+        }
     }
 }
 

@@ -13,8 +13,8 @@ android {
         applicationId "com.wsoteam.horoscopes"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 9
-        versionName "1.0.8"
+        versionCode 10
+        versionName "1.0.9"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -93,6 +93,6 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
     implementation 'com.github.tizisdeepan:dots:1.0.1'
-
+    implementation 'com.uxcam:uxcam:3.3.1@aar'
 
 }
