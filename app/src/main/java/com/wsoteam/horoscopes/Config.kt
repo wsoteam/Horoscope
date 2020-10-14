@@ -21,6 +21,8 @@ object Config {
     val ADS_FREQUENCY = 50
     val PREM_SHOW_FREQUENCY = 10
 
+    val IS_NEED_LOGGING = true
+
 
 
 

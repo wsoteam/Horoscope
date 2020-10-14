@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.RepositoryGets
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +24,7 @@ class MainVM : ViewModel() {
     private val dataLD = MutableLiveData<List<Sign>>()
 
     fun preLoadData() {
+        L.log("preLoadData")
         if (NetState.isConnected()) {
             job = vmScope.launch {
                 CacheData.setCachedData(getData())
@@ -31,6 +33,7 @@ class MainVM : ViewModel() {
     }
 
     fun reloadData() {
+        L.log("reloadData")
         if (NetState.isConnected()) {
             job = vmScope.launch {
                 dataLD.value = getData()
@@ -39,6 +42,7 @@ class MainVM : ViewModel() {
     }
 
     fun setupCachedData() {
+        L.log("setupCachedData")
         if (CacheData.getCachedData() != null) {
             dataLD.value = CacheData.getCachedData()
             CacheData.clearCache()
@@ -48,6 +52,7 @@ class MainVM : ViewModel() {
     }
 
     private suspend fun getData(): List<Sign> {
+        L.log("getData")
         return if (Locale.getDefault().language == PT_LOCALE){
             RepositoryGets.getAPI().getPTData().await()
         }else{
@@ -56,6 +61,7 @@ class MainVM : ViewModel() {
     }
 
     fun getLD(): MutableLiveData<List<Sign>> {
+        L.log("getLD")
         return dataLD
     }
 

@@ -38,6 +38,7 @@ import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
+import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun openMainFragment(){
+        L.log("openMainFragment")
         var transaction = supportFragmentManager.beginTransaction()
         if (premFragment.isAdded){
             transaction.hide(premFragment)
@@ -99,6 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun openPremiumFragment(){
+        L.log("openPremiumFragment")
         var transaction = supportFragmentManager.beginTransaction()
         if (mainFragment.isAdded){
             transaction.hide(mainFragment)
@@ -116,6 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun openBallFragment(){
+        L.log("openBallFragment")
         Analytic.showBalls()
         var transaction = supportFragmentManager.beginTransaction()
         if (mainFragment.isAdded){
@@ -135,6 +139,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private fun changeNavigationState(isVisible : Boolean){
+        L.log("changeNavigationState -- $isVisible")
         var container = clContainer as ConstraintLayout
         var params = container.layoutParams as CoordinatorLayout.LayoutParams
         if (isVisible){
@@ -182,6 +187,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         if (!NetState.isConnected()) {
+            L.log("ConnectionFragment")
             supportFragmentManager.beginTransaction()
                 .replace(R.id.flContainer, ConnectionFragment()).commit()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -257,13 +263,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private fun setFirstUI() {
+        L.log("setFirstUI")
         if (birthSignIndex != choiceSign(PreferencesProvider.getBirthday()!!)) {
+            L.log("birthSignIndex !=")
             birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)
             setSelectedItem(birthSignIndex)
+        }else{
+            L.log("birthSignIndex ==")
         }
     }
 
     private fun setSelectedItem(index: Int) {
+        L.log("setSelectedItem")
         nav_view.menu.getItem(index).isChecked = true
         onNavigationItemSelected(nav_view.menu.getItem(index))
     }
@@ -278,11 +289,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Log.e("LOL", "onNavigationItemSelected")
+        L.log("onNavigationItemSelected")
         val index = listIndexes.indexOf(item.itemId)
         var transaction = supportFragmentManager.beginTransaction()
         when {
             index != -1 -> {
+                L.log("sign item")
                 mainFragment = MainFragment.newInstance(index, vm.getLD().value!![index])
                 transaction
                     .replace(
@@ -313,7 +325,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     llTools.visibility = View.INVISIBLE
                 }
                 drawer_layout.closeDrawers()*/
-                Log.e("LOL", "click settings")
+                L.log("nav_settings")
                 startActivity(Intent(this, SettingsActivity::class.java))
                 drawer_layout.closeDrawers()
                 return false
@@ -345,6 +357,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
+        L.log("onBackPressed")
         if (!drawer_layout.isDrawerOpen(GravityCompat.START)) {
             if (supportFragmentManager.backStackEntryCount != 0) {
                 supportFragmentManager

@@ -7,6 +7,7 @@ import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.form_activity.*
 
@@ -51,6 +52,7 @@ object PreferencesProvider {
     fun getName() = getInstance()?.getString(NAME_TAG, "")
 
     fun setBirthday(date: String) {
+        L.log("setBirthday $date")
         editor { it?.putString(BIRTH_TAG, date)}
         Analytic.setBirthday(date)
         Analytic.setSign(App.getInstance().applicationContext.resources.getStringArray(R.array.names_signs)[choiceSign(date)])

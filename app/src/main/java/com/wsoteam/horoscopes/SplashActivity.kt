@@ -21,6 +21,7 @@ import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +38,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
 
     private fun postGoNext(i: Int) {
+        L.log("postGoNext")
         counter += i
         if (counter >= MAX) {
             if (!isNextScreenLoading) {
@@ -47,6 +49,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun goNext() {
+        L.log("goNext")
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
             /*if (PreferencesProvider.isADEnabled() && PreferencesProvider.getPremShowPossibility()) {
@@ -55,10 +58,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     Config.OPEN_PREM_FROM_REG
                 )
             } else {*/
-                intent = Intent(this, MainActivity::class.java)
+            intent = Intent(this, MainActivity::class.java)
+            L.log("main activity enter")
             /*}*/
         } else {
             intent = Intent(this, FormActivity::class.java)
+            L.log("formActivity enter")
         }
         startActivity(intent)
         finish()
@@ -96,7 +101,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             TimeUnit.SECONDS.sleep(4)
             postGoNext(1)
         }
-        if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null && intent.getStringExtra(Config.OPEN_FROM_NOTIFY) == Config.OPEN_FROM_NOTIFY){
+        if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null && intent.getStringExtra(Config.OPEN_FROM_NOTIFY) == Config.OPEN_FROM_NOTIFY) {
             Analytic.openFromNotif()
         }
     }
@@ -117,6 +122,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setABTestConfig(version: String) {
+        L.log("set test")
         PreferencesProvider.setVersion(version)
         Analytic.setABVersion(version)
         Analytic.setVersion()
@@ -126,6 +132,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun refreshNotifications() {
         if (PreferencesProvider.getNotifTime() == PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
             AlarmReceiver.startNotification(this, 18, 0)
+            L.log("refreshNotifications")
         } else if (PreferencesProvider.getNotifTime() != "") {
             val (hours, minutes) = PreferencesProvider.getNotifTime().split(":").map { it.toInt() }
             AlarmReceiver.startNotification(this, hours, minutes)
