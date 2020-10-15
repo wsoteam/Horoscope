@@ -14,6 +14,7 @@ class PaySuccessActivity : AppCompatActivity(R.layout.pay_success_activity) {
         var cdTimer = object : CountDownTimer(2000, 100){
             override fun onFinish() {
                 startActivity(Intent(this@PaySuccessActivity, MainActivity::class.java))
+                finishAffinity()
             }
 
             override fun onTick(millisUntilFinished: Long) {
