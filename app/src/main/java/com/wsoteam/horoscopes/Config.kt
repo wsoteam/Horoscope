@@ -14,6 +14,7 @@ object Config {
     const val OPEN_PREM_FROM_REG = "OPEN_PREM_FROM_REG"
 
     const val OPEN_FROM_NOTIFY = "OPEN_FROM_NOTIFY"
+    const val OPEN_FROM_EVENING_NOTIF = "OPEN_FROM_EVENING_NOTIF"
 
     const val ATTEMPTS_FOR_DAY = 3
 

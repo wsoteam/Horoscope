@@ -70,6 +70,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".notification.AlarmReceiver" />
+        <receiver android:name=".notification.EveningAlarmReceiver" />
 
         <receiver
             android:name=".notification.BootReceiver"

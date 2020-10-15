@@ -37,7 +37,7 @@ class EveningAlarmReceiver : BroadcastReceiver() {
             if (now.after(calendar)) {
                 calendar.add(Calendar.DAY_OF_MONTH, 1)
             }
-            val intent = Intent(context, AlarmReceiver::class.java)
+            val intent = Intent(context, EveningAlarmReceiver::class.java)
             val pendingIntent = PendingIntent
                 .getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
             val alarmManager = context?.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
@@ -51,63 +51,69 @@ class EveningAlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        Analytic.showNotif()
-        val notificationIntent = Intent(context, SplashActivity::class.java)
-            .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY)
+        if (isShowTodayNotifEarly()) {
+            Analytic.showEveningNotif()
+            val notificationIntent = Intent(context, SplashActivity::class.java)
+                .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_EVENING_NOTIF)
 
-        val VIBRATE_PATTERN = longArrayOf(0, 500)
-        val NOTIFICATION_COLOR = Color.RED
-        val NOTIFICATION_SOUND_URI =
-            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val VIBRATE_PATTERN = longArrayOf(0, 500)
+            val NOTIFICATION_COLOR = Color.RED
+            val NOTIFICATION_SOUND_URI =
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
-        val stackBuilder = TaskStackBuilder.create(context)
-        stackBuilder.addNextIntent(notificationIntent)
+            val stackBuilder = TaskStackBuilder.create(context)
+            stackBuilder.addNextIntent(notificationIntent)
 
-        val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val builder = Notification.Builder(context)
-        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val builder = Notification.Builder(context)
+            val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
-        val notification = builder.setContentTitle("Daily Horoscope")
-            .setContentText("")
-            .setAutoCancel(true)
-            .setVibrate(VIBRATE_PATTERN)
-            //.setSmallIcon(R.drawable.ic_notifications)
-            .setSmallIcon(R.drawable.ic_horos_bnv)
-            .setDefaults(Notification.DEFAULT_SOUND)
-            .setSound(NOTIFICATION_SOUND_URI)
-            .setContentIntent(pendingIntent).build()
+            val notification = builder.setContentTitle("Daily Horoscope")
+                .setContentText(context!!.getString(R.string.evening_alarm))
+                .setAutoCancel(true)
+                .setVibrate(VIBRATE_PATTERN)
+                //.setSmallIcon(R.drawable.ic_notifications)
+                .setSmallIcon(R.drawable.ic_horos_bnv)
+                .setDefaults(Notification.DEFAULT_SOUND)
+                .setSound(NOTIFICATION_SOUND_URI)
+                .setContentIntent(pendingIntent).build()
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder.setChannelId(CHANNEL_ID)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                builder.setChannelId(CHANNEL_ID)
+            }
+
+            val notificationManager =
+                context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel = NotificationChannel(
+                    CHANNEL_ID,
+                    context.resources.getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                )
+                val audioAttributes = AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .build()
+                channel.enableLights(true)
+                channel.setSound(alarmSound, audioAttributes)
+                channel.lightColor = NOTIFICATION_COLOR
+                channel.vibrationPattern = VIBRATE_PATTERN
+                channel.enableVibration(true)
+                channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
+                notificationManager.createNotificationChannel(channel)
+            }
+
+            notificationManager.notify(0, notification)
         }
-
-        val notificationManager =
-            context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                context.resources.getString(R.string.app_name),
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            val audioAttributes = AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                .build()
-            channel.enableLights(true)
-            channel.setSound(alarmSound, audioAttributes)
-            channel.lightColor = NOTIFICATION_COLOR
-            channel.vibrationPattern = VIBRATE_PATTERN
-            channel.enableVibration(true)
-            channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        notificationManager.notify(0, notification)
     }
 
+    private fun isShowTodayNotifEarly(): Boolean {
+        return PreferencesProvider.getLastDayNotification()!! == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+
+    }
 
 
 }

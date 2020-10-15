@@ -25,6 +25,8 @@ object PreferencesProvider {
     private const val VER_TAG = "VER_TAG"
     private const val WHERE_TAG = "WHERE_TAG"
     private const val PREM_SHOW_TAG = "PREM_SHOW_TAG"
+    private const val TODAY_NOTIF_TAG = "TODAY_NOTIF_TAG"
+    const val DEF_TODAY_NOTIF = -1
 
     const val DEFAULT_TIME_NOTIFY = "09:00 AM"
 
@@ -33,42 +35,48 @@ object PreferencesProvider {
 
 
     private fun getInstance(): SharedPreferences? {
-        val sp =  App.getInstance().getSharedPreferences(
+        val sp = App.getInstance().getSharedPreferences(
             App.getInstance().packageName + ".SharedPreferences",
             Context.MODE_PRIVATE
         )
         return sp
     }
 
-    private fun editor(put: (SharedPreferences.Editor?) -> SharedPreferences.Editor?) = put(getInstance()?.edit())?.apply()
+    private fun editor(put: (SharedPreferences.Editor?) -> SharedPreferences.Editor?) =
+        put(getInstance()?.edit())?.apply()
 
     fun setADStatus(isEnabled: Boolean) = editor { it?.putBoolean(AD, isEnabled) }
     fun isADEnabled() = getInstance()?.getBoolean(AD, true) ?: true
 
-    fun setPrice(price: String) = editor { it?.putString(PRICE_TAG, price)}
+    fun setPrice(price: String) = editor { it?.putString(PRICE_TAG, price) }
     fun getPrice() = getInstance()?.getString(PRICE_TAG, DEF_PRICE)
 
-    fun setName(name: String) = editor { it?.putString(NAME_TAG, name)}
+    fun setName(name: String) = editor { it?.putString(NAME_TAG, name) }
     fun getName() = getInstance()?.getString(NAME_TAG, "")
 
     fun setBirthday(date: String) {
         L.log("setBirthday $date")
-        editor { it?.putString(BIRTH_TAG, date)}
+        editor { it?.putString(BIRTH_TAG, date) }
         Analytic.setBirthday(date)
-        Analytic.setSign(App.getInstance().applicationContext.resources.getStringArray(R.array.names_signs)[choiceSign(date)])
+        Analytic.setSign(
+            App.getInstance().applicationContext.resources.getStringArray(R.array.names_signs)[choiceSign(
+                date
+            )]
+        )
     }
+
     fun getBirthday() = getInstance()?.getString(BIRTH_TAG, "")
 
-    fun setNotifStatus(isEnabled: Boolean) = editor { it?.putBoolean(NOTIF_STATUS_TAG, isEnabled)}
+    fun setNotifStatus(isEnabled: Boolean) = editor { it?.putBoolean(NOTIF_STATUS_TAG, isEnabled) }
     fun getNotifStatus() = getInstance()?.getBoolean(NOTIF_STATUS_TAG, true) ?: true
 
-    fun setNotifTime(time: String) = editor { it?.putString(NOTIF_TAG, time)}
+    fun setNotifTime(time: String) = editor { it?.putString(NOTIF_TAG, time) }
     fun getNotifTime() = getInstance()?.getString(NOTIF_TAG, DEFAULT_TIME_NOTIFY) ?: ""
 
-    fun setLastText(text: String) = editor { it?.putString(TEXT_TAG, text)}
+    fun setLastText(text: String) = editor { it?.putString(TEXT_TAG, text) }
     fun getLastText() = getInstance()?.getString(TEXT_TAG, "") ?: ""
 
-    fun setNotifCount(count: Int) = editor { it?.putInt(COUNT_NOTIF, count)}
+    fun setNotifCount(count: Int) = editor { it?.putInt(COUNT_NOTIF, count) }
     fun getNotifCount() = getInstance()?.getInt(COUNT_NOTIF, 0) ?: 0
 
     fun setVersion(ver: String) = editor { it?.putString(VER_TAG, ver) }
@@ -77,9 +85,12 @@ object PreferencesProvider {
     fun setBeforePremium(where: String) = editor { it?.putString(WHERE_TAG, where) }
     fun getBeforePremium() = getInstance()?.getString(WHERE_TAG, "")
 
-    private fun setEnterCount(newCount : Int) = editor { it?.putInt(PREM_SHOW_TAG, newCount) }
+    fun setLastDayNotification(dayOfYear: Int) = editor { it?.putInt(TODAY_NOTIF_TAG, dayOfYear) }
+    fun getLastDayNotification() = getInstance()?.getInt(TODAY_NOTIF_TAG, DEF_TODAY_NOTIF)
 
-    fun getPremShowPossibility() : Boolean {
+    private fun setEnterCount(newCount: Int) = editor { it?.putInt(PREM_SHOW_TAG, newCount) }
+
+    fun getPremShowPossibility(): Boolean {
         var pastCount = getInstance()?.getInt(PREM_SHOW_TAG, 0)!!
         setEnterCount(pastCount + 1)
         return pastCount == 0 || pastCount == Config.PREM_SHOW_FREQUENCY

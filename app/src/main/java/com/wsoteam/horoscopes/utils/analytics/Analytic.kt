@@ -10,7 +10,9 @@ object Analytic {
     private val make_purchase = "make_purchase"
     private val ad_click = "ad_click"
     private val open_from_notif = "open_from_notif"
+    private val open_from_evening_notif = "open_from_evening_notif"
     private val show_notif = "show_notif"
+    private val show_evening_notif = "show_evening_notif"
 
     private val set_ver = "set_ver"
     private val AB = "AB"
@@ -161,8 +163,16 @@ object Analytic {
         Amplitude.getInstance().logEvent(open_from_notif)
     }
 
+    fun openFromEveningNotif() {
+        Amplitude.getInstance().logEvent(open_from_evening_notif)
+    }
+
     fun showNotif() {
         Amplitude.getInstance().logEvent(show_notif)
+    }
+
+    fun showEveningNotif() {
+        Amplitude.getInstance().logEvent(show_evening_notif)
     }
 
     fun setABVersion(version: String) {

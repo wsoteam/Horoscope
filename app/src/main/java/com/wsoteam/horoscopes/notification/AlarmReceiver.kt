@@ -75,6 +75,8 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
+        setDayAsLast()
+
         val builder = Notification.Builder(context)
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
@@ -116,6 +118,10 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         notificationManager.notify(0, notification)
+    }
+
+    private fun setDayAsLast() {
+        PreferencesProvider.setLastDayNotification(Calendar.getInstance().get(Calendar.DAY_OF_YEAR))
     }
 
     private fun getNotificationText(context: Context?): String {
