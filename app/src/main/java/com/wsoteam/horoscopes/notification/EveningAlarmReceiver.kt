@@ -15,9 +15,10 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.SplashActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import java.lang.NumberFormatException
 import java.util.*
 
-class AlarmReceiver : BroadcastReceiver() {
+class EveningAlarmReceiver : BroadcastReceiver() {
 
     companion object {
         private val CHANNEL_ID = ".channelId"
@@ -47,17 +48,6 @@ class AlarmReceiver : BroadcastReceiver() {
                 pendingIntent
             )
         }
-
-        fun getNotificationText(): String {
-            var calendar = Calendar.getInstance()
-            var nameMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US)
-            var day = calendar.get(Calendar.DAY_OF_MONTH)
-            var dayString = "$day"
-            if (day < 10){
-                dayString = "0$dayString"
-            }
-            return "${App.getInstance().applicationContext.getString(R.string.first_part_notif)} $nameMonth $dayString ${App.getInstance().applicationContext.getString(R.string.second_part_notif)}"
-        }
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -79,7 +69,7 @@ class AlarmReceiver : BroadcastReceiver() {
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         val notification = builder.setContentTitle("Daily Horoscope")
-            .setContentText(getNotificationText())
+            .setContentText("")
             .setAutoCancel(true)
             .setVibrate(VIBRATE_PATTERN)
             //.setSmallIcon(R.drawable.ic_notifications)
@@ -118,16 +108,6 @@ class AlarmReceiver : BroadcastReceiver() {
         notificationManager.notify(0, notification)
     }
 
-    private fun getNotificationText(context: Context?): String {
-        var number = PreferencesProvider.getNotifCount()
-        var text = context!!.resources.getStringArray(R.array.notifications_text)[number]
-        if (number >= context!!.resources.getStringArray(R.array.notifications_text).size - 1) {
-            number = 0
-        }
-        number++
-        PreferencesProvider.setNotifCount(number)
-        return text
-    }
 
 
 }

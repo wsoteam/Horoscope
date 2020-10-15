@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.loger.L
 import kotlinx.android.synthetic.main.dialog_time.*
 
 class TimeDialog : DialogFragment() {
@@ -29,7 +30,7 @@ class TimeDialog : DialogFragment() {
         tvSave.setOnClickListener {
             val time =
                 "${"%02d".format(tpNotif.currentHour)}:${"%02d".format(tpNotif.currentMinute)}"
-            Log.e("LOL", time)
+            L.log(time)
             PreferencesProvider.setNotifTime(time)
             (targetFragment as SettingsFragment).setTime(time)
             dismiss()

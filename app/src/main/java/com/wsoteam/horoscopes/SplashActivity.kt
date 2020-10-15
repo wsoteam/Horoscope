@@ -71,7 +71,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        UXCam.startWithKey("9xbgtoyhh5e4oip");
+        L.log(AlarmReceiver.getNotificationText())
+        UXCam.startWithKey("9xbgtoyhh5e4oip")
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
@@ -131,10 +132,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun refreshNotifications() {
         if (PreferencesProvider.getNotifTime() == PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
-            AlarmReceiver.startNotification(this, 18, 0)
+            AlarmReceiver.startNotification(this, 9, 0)
             L.log("refreshNotifications")
-        } else if (PreferencesProvider.getNotifTime() != "") {
+        } else if (PreferencesProvider.getNotifTime() != PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
             val (hours, minutes) = PreferencesProvider.getNotifTime().split(":").map { it.toInt() }
+            L.log("$hours $minutes refresh")
             AlarmReceiver.startNotification(this, hours, minutes)
         }
     }

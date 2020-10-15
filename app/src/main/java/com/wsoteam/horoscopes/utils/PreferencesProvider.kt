@@ -26,7 +26,7 @@ object PreferencesProvider {
     private const val WHERE_TAG = "WHERE_TAG"
     private const val PREM_SHOW_TAG = "PREM_SHOW_TAG"
 
-    const val DEFAULT_TIME_NOTIFY = "18:00 PM"
+    const val DEFAULT_TIME_NOTIFY = "09:00 AM"
 
     private const val TIME = "TIME"
     private const val ATTEMPTS = "ATTEMPTS"

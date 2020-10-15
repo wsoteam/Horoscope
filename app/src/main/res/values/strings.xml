@@ -199,5 +199,8 @@
         <item>Unlimited questions to the magic ball</item>
     </string-array>
 
+    <string name="first_part_notif">Your</string>
+    <string name="second_part_notif">horoscope is ready! Click to learn more</string>
+
 
 </resources>
