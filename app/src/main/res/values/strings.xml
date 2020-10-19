@@ -15,6 +15,7 @@
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
     <string name="facebook_app_id" translatable="false">448083649486159</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb448083649486159</string>
+    <string name="uxcam_id" translatable="false">9xbgtoyhh5e4oip</string>
 
     <!--Signs-->
     <integer-array name="icons_signs">
@@ -202,6 +203,7 @@
     <string name="first_part_notif">Your</string>
     <string name="second_part_notif">horoscope is ready! Click to learn more</string>
     <string name="evening_alarm">Still don\'t know what destiny prepared to you? So what are you waiting for?</string>
+
 
 
 </resources>

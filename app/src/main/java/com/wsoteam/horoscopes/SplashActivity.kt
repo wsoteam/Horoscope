@@ -72,8 +72,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        L.log(AlarmReceiver.getNotificationText())
-        UXCam.startWithKey("9xbgtoyhh5e4oip")
+        UXCam.startWithKey(getString(R.string.uxcam_id))
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
@@ -139,14 +138,14 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun refreshNotifications() {
         if (PreferencesProvider.getNotifTime() == PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
-            AlarmReceiver.startNotification(this, 9, 0)
-            EveningAlarmReceiver.startNotification(this, 18, 0)
+            AlarmReceiver.startNotification(this, Config.DEF_HOUR_NOTIF, Config.DEF_MIN_NOTIF)
+            EveningAlarmReceiver.startNotification(this, Config.DEF_HOUR_EVENING_NOTIF, Config.DEF_MIN_EVENING_NOTIF)
             L.log("refreshNotifications")
         } else if (PreferencesProvider.getNotifTime() != PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
             val (hours, minutes) = PreferencesProvider.getNotifTime().split(":").map { it.toInt() }
             L.log("$hours $minutes refresh")
             AlarmReceiver.startNotification(this, hours, minutes)
-            EveningAlarmReceiver.startNotification(this, 18, 0)
+            EveningAlarmReceiver.startNotification(this, Config.DEF_HOUR_EVENING_NOTIF, Config.DEF_MIN_EVENING_NOTIF)
         }
     }
 

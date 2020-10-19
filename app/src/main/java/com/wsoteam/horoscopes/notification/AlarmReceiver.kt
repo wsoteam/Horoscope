@@ -15,6 +15,7 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.SplashActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.loger.L
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -115,6 +116,7 @@ class AlarmReceiver : BroadcastReceiver() {
             channel.enableVibration(true)
             channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
             notificationManager.createNotificationChannel(channel)
+
         }
 
         notificationManager.notify(0, notification)
@@ -122,6 +124,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun setDayAsLast() {
         PreferencesProvider.setLastDayNotification(Calendar.getInstance().get(Calendar.DAY_OF_YEAR))
+        L.log("${PreferencesProvider.getLastDayNotification()}")
     }
 
     private fun getNotificationText(context: Context?): String {

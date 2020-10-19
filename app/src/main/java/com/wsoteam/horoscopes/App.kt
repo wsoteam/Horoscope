@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes
 import android.os.Handler
 import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
+import com.bugfender.sdk.Bugfender
 import com.bugsee.library.Bugsee
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.yandex.metrica.YandexMetrica
@@ -28,6 +29,11 @@ class App : MultiDexApplication() {
             .enableForegroundTracking(this)
 
         applicationHandler =  Handler(applicationContext.getMainLooper());
+
+        Bugfender.init(this, "nMMITxQP2vlSvBuuHLxNDrQxRpw2r21I", BuildConfig.DEBUG)
+        Bugfender.enableCrashReporting()
+        Bugfender.enableUIEventLogging(this)
+        Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
     }
 
     companion object {
