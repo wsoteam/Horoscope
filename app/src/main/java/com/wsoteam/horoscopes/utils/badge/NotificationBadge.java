@@ -448,11 +448,12 @@ public class NotificationBadge {
                 Object miuiNotification = miuiNotificationClass.newInstance();
                 Field field = miuiNotification.getClass().getDeclaredField("messageCount");
                 field.setAccessible(true);
-                field.set(miuiNotification, 3);
+                field.set(miuiNotification, String.valueOf(badgeCount == 0 ? "" : badgeCount));
             } catch (Throwable e) {
                 final Intent localIntent = new Intent(INTENT_ACTION);
                 localIntent.putExtra(EXTRA_UPDATE_APP_COMPONENT_NAME, componentName.getPackageName() + "/" + componentName.getClassName());
                 localIntent.putExtra(EXTRA_UPDATE_APP_MSG_TEXT, String.valueOf(badgeCount == 0 ? "" : badgeCount));
+                App.Companion.getInstance().getApplicationContext().sendBroadcast(localIntent);
                 if (canResolveBroadcast(localIntent)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -627,8 +628,7 @@ public class NotificationBadge {
     private static boolean canResolveBroadcast(Intent intent) {
         PackageManager packageManager = App.Companion.getInstance().getApplicationContext().getPackageManager();
         List<ResolveInfo> receivers = packageManager.queryBroadcastReceivers(intent, 0);
-        //return receivers != null && receivers.size() > 0;
-        return true;
+        return receivers != null && receivers.size() > 0;
     }
 
     public static void close(Cursor cursor) {
