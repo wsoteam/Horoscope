@@ -22,6 +22,7 @@ import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.badge.NotificationBadge
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
@@ -72,6 +73,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        NotificationBadge.applyCount(1)
+
         UXCam.startWithKey(getString(R.string.uxcam_id))
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)

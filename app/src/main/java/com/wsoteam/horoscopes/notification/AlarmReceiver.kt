@@ -15,6 +15,8 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.SplashActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.badge.NotificationBadge
+import com.wsoteam.horoscopes.utils.badge.NotificationBadge.applyCount
 import com.wsoteam.horoscopes.utils.loger.L
 import java.util.*
 
@@ -62,6 +64,7 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
+        NotificationBadge.applyCount(1)
         Analytic.showNotif()
         val notificationIntent = Intent(context, SplashActivity::class.java)
             .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY)
@@ -91,6 +94,8 @@ class AlarmReceiver : BroadcastReceiver() {
             .setSound(NOTIFICATION_SOUND_URI)
             .setContentIntent(pendingIntent).build()
 
+        notification.number = 1
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(CHANNEL_ID)
@@ -115,6 +120,7 @@ class AlarmReceiver : BroadcastReceiver() {
             channel.vibrationPattern = VIBRATE_PATTERN
             channel.enableVibration(true)
             channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
+            channel.setShowBadge(true)
             notificationManager.createNotificationChannel(channel)
 
         }
