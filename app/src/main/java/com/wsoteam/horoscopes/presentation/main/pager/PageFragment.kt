@@ -81,7 +81,8 @@ class PageFragment : Fragment(R.layout.page_fragment) {
     }
 
     private fun isLocked(): Boolean {
-        return (index == 5 || index == 4) && PreferencesProvider.isADEnabled()
+        //return (index == 5 || index == 4) && PreferencesProvider.isADEnabled()
+        return false
     }
 
 
