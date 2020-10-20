@@ -15,12 +15,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:letterSpacing="0.04"
+        android:letterSpacing="0.16"
         android:lineSpacingExtra="6.8sp"
         android:textColor="#ffffff"
         android:layout_gravity="center"
         android:layout_marginTop="230dp"
-        android:textSize="24sp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textSize="32sp"
         android:text="@string/splash_title" />
 
 </FrameLayout>

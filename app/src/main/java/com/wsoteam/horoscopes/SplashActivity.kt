@@ -73,8 +73,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NotificationBadge.applyCount(1)
-
         UXCam.startWithKey(getString(R.string.uxcam_id))
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)

@@ -79,7 +79,7 @@
     </integer-array>
 
     <!--Splash-->
-    <string name="splash_title">Horoscope</string>
+    <string name="splash_title">Astropedia</string>
 
     <!--FormActivity-->
     <string name="enter_your_details">Enter your details</string>

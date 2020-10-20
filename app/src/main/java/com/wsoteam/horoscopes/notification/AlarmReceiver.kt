@@ -64,7 +64,6 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        NotificationBadge.applyCount(1)
         Analytic.showNotif()
         val notificationIntent = Intent(context, SplashActivity::class.java)
             .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY)
