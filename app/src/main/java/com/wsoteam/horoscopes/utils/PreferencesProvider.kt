@@ -35,6 +35,7 @@ object PreferencesProvider {
 
     private const val ID_TAG = "ID_TAG"
     const val ID_EMPTY = "ID_EMPTY"
+    const val FIRST_ENTER_TAG = "FIRST_ENTER_TAG"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -108,6 +109,10 @@ object PreferencesProvider {
             else -> 0
         }
     }
+
+    var firstEnter: Int
+        get() = getInstance()?.getInt(FIRST_ENTER_TAG, -1)!!
+        set(value) = editor { it?.putInt(FIRST_ENTER_TAG, value) }!!
 
     var userID: String
         get() = getInstance()?.getString(ID_TAG, ID_EMPTY)!!

@@ -24,6 +24,7 @@ import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
@@ -31,6 +32,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -105,6 +107,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindRetention()
         UXCam.startWithKey(getString(R.string.uxcam_id))
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
@@ -145,6 +148,19 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             }
         }
     }
+
+    private fun bindRetention() {
+        var currentDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+        if (PreferencesProvider.firstEnter == -1){
+            PreferencesProvider.firstEnter = currentDay
+        }else{
+            when(currentDay - PreferencesProvider.firstEnter){
+                2 -> FBAnalytic.logTwoDays(this)
+                7 -> FBAnalytic.logSevenDays(this)
+            }
+        }
+    }
+
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()

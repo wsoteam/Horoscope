@@ -26,4 +26,16 @@ object FBAnalytic {
             .newLogger(context)
             .logEvent(AppEventsConstants.EVENT_NAME_AD_CLICK, params)
     }
+
+    fun logTwoDays(context: Context) {
+        AppEventsLogger
+            .newLogger(context)
+            .logEvent("second_day")
+    }
+
+    fun logSevenDays(context: Context) {
+        AppEventsLogger
+            .newLogger(context)
+            .logEvent("seventh_day")
+    }
 }

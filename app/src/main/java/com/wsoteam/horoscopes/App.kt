@@ -40,11 +40,6 @@ class App : MultiDexApplication() {
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
         //Qonversion.initialize(this, "rUC-czxB0dMVbaQHM8LOuRtZ1RQr2BE9", Creator.getId())
-
-        FacebookSdk.sdkInitialize(this);
-        FacebookSdk.setAutoLogAppEventsEnabled(true)
-        AppEventsLogger.activateApp(this, getString(R.string.facebook_app_id));
-
     }
 
     companion object {

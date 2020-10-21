@@ -90,7 +90,7 @@ dependencies {
 
     implementation 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
 
-    implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
     implementation 'com.github.tizisdeepan:dots:1.0.1'
 
