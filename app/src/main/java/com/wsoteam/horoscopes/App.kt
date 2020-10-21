@@ -5,6 +5,8 @@ import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
 import com.bugsee.library.Bugsee
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.qonversion.android.sdk.Qonversion
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.id.Creator
@@ -24,7 +26,7 @@ class App : MultiDexApplication() {
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
-        Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
+        //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
 
         Amplitude.getInstance()
             .initialize(this, "3031a61ead2f7482d87c899794cec751")
@@ -38,6 +40,11 @@ class App : MultiDexApplication() {
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
         //Qonversion.initialize(this, "rUC-czxB0dMVbaQHM8LOuRtZ1RQr2BE9", Creator.getId())
+
+        FacebookSdk.sdkInitialize(this);
+        FacebookSdk.setAutoLogAppEventsEnabled(true)
+        AppEventsLogger.activateApp(this, getString(R.string.facebook_app_id));
+
     }
 
     companion object {

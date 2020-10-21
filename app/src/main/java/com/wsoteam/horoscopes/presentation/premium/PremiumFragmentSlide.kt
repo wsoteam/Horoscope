@@ -15,11 +15,12 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.loger.L
 import kotlinx.android.synthetic.main.premium_slide_fragment.*
 
 class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
 
-    var onboardImagesIds = listOf<Int>(
+    private var onboardImagesIds = listOf<Int>(
         R.drawable.ic_img_1_adv,
         R.drawable.ic_img_2_access,
         R.drawable.ic_img_3_magicball
@@ -37,6 +38,10 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
         )
         diOnboard.setViewPager(vpOnboard)
         vpOnboard.adapter?.registerDataSetObserver(diOnboard.dataSetObserver)
+        vpOnboard.setOnDragListener { v, event ->
+            L.log("drag")
+            true
+        }
 
 
         btnPay.setOnClickListener { _ ->

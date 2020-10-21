@@ -48,6 +48,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+        <meta-data
+            android:name="com.facebook.sdk.CodelessDebugLogEnabled"
+            android:value="true" />
+
 
         <activity
             android:name="com.wsoteam.horoscopes.SplashActivity"
