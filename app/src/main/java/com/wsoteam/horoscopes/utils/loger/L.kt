@@ -6,7 +6,7 @@ import com.wsoteam.horoscopes.Config
 object L {
     fun log(log: String) {
         if (Config.IS_NEED_LOGGING) {
-            Log.e("LOL", log)
+            Log.i("LOL", log)
         }
     }
 }

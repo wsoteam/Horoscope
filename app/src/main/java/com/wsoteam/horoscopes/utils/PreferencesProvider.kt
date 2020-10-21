@@ -33,6 +33,9 @@ object PreferencesProvider {
     private const val TIME = "TIME"
     private const val ATTEMPTS = "ATTEMPTS"
 
+    private const val ID_TAG = "ID_TAG"
+    const val ID_EMPTY = "ID_EMPTY"
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -105,6 +108,10 @@ object PreferencesProvider {
             else -> 0
         }
     }
+
+    var userID: String
+        get() = getInstance()?.getString(ID_TAG, ID_EMPTY)!!
+        set(value) = editor { it?.putString(ID_TAG, value) }!!
 
     var timeMillis: Long
         get() = getInstance()?.getLong(TIME, 0)!!

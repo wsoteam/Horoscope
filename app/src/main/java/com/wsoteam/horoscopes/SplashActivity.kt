@@ -1,7 +1,10 @@
 package com.wsoteam.horoscopes
 
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
@@ -15,20 +18,19 @@ import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.main.MainVM
-import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
-import com.wsoteam.horoscopes.utils.badge.NotificationBadge
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.util.concurrent.TimeUnit
 
 
@@ -70,6 +72,36 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         startActivity(intent)
         finish()
     }
+
+    fun printKeyHash(context: Context) {
+        try {
+            val info = context.packageManager
+                .getPackageInfo(
+                    "com.wsoteam.horoscopes",
+                    PackageManager.GET_SIGNATURES
+                )
+            for (signature in info.signatures) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d(
+                    "LOL",
+                    "KeyHash: " + Base64.encodeToString(
+                        md.digest(),
+                        Base64.DEFAULT
+                    )
+                )
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            L.log("${e.localizedMessage}")
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+            L.log("${e.localizedMessage}")
+
+        }
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

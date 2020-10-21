@@ -5,7 +5,9 @@ import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
 import com.bugsee.library.Bugsee
+import com.qonversion.android.sdk.Qonversion
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
+import com.wsoteam.horoscopes.utils.id.Creator
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 
@@ -16,7 +18,7 @@ class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        sInstance = this as App
+        sInstance = this
         SubscriptionProvider.init(this)
         val config =
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
@@ -28,12 +30,14 @@ class App : MultiDexApplication() {
             .initialize(this, "3031a61ead2f7482d87c899794cec751")
             .enableForegroundTracking(this)
 
-        applicationHandler =  Handler(applicationContext.getMainLooper());
+        applicationHandler =  Handler(applicationContext.mainLooper)
 
         Bugfender.init(this, "nMMITxQP2vlSvBuuHLxNDrQxRpw2r21I", BuildConfig.DEBUG)
         Bugfender.enableCrashReporting()
         Bugfender.enableUIEventLogging(this)
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
+
+        //Qonversion.initialize(this, "rUC-czxB0dMVbaQHM8LOuRtZ1RQr2BE9", Creator.getId())
     }
 
     companion object {
