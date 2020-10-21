@@ -8,6 +8,25 @@ import com.yandex.metrica.YandexMetrica
 
 object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListener {
 
+    override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
+        if (billingResult!!.responseCode == BillingClient.BillingResponseCode.OK) {
+            if (purchases != null && purchases.size > 0 && purchases[0].purchaseState == Purchase.PurchaseState.PURCHASED){
+                inAppCallback?.trialSucces()
+                if(!purchases[0].isAcknowledged){
+                    val params = AcknowledgePurchaseParams
+                        .newBuilder()
+                        .setPurchaseToken(purchases[0].purchaseToken)
+                        .build()
+                    var listener = AcknowledgePurchaseResponseListener {
+                        Log.e("LOL", "confirmed")
+                    }
+                    playStoreBillingClient.acknowledgePurchase(params, listener)
+                }
+            }
+
+        }
+    }
+
     private lateinit var playStoreBillingClient: BillingClient
     private var inAppCallback: InAppCallback? = null
 
@@ -28,24 +47,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         return false
     }
 
-    override fun onPurchasesUpdated(billingResult: BillingResult?, purchases: MutableList<Purchase>?) {
-        if (billingResult!!.responseCode == BillingClient.BillingResponseCode.OK) {
-            if (purchases != null && purchases.size > 0 && purchases[0].purchaseState == Purchase.PurchaseState.PURCHASED){
-                inAppCallback?.trialSucces()
-                if(!purchases[0].isAcknowledged){
-                    val params = AcknowledgePurchaseParams
-                        .newBuilder()
-                        .setPurchaseToken(purchases[0].purchaseToken)
-                        .build()
-                    var listener = AcknowledgePurchaseResponseListener {
-                        Log.e("LOL", "confirmed")
-                    }
-                    playStoreBillingClient.acknowledgePurchase(params, listener)
-                }
-            }
 
-        }
-    }
 
     override fun onBillingServiceDisconnected() {
 
@@ -55,7 +57,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
             var isADEnabled = true
             var result = playStoreBillingClient.queryPurchases(BillingClient.SkuType.SUBS)
-            if (result != null && result.purchasesList.size > 0) {
+            if (result != null && result.purchasesList!!.size > 0) {
                 isADEnabled = false
             }
             PreferencesProvider.setADStatus(isADEnabled)
@@ -70,7 +72,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList.orEmpty().isNotEmpty()) {
-                        skuDetailsList.forEach {
+                        skuDetailsList!!.forEach {
                             val perchaseParams = BillingFlowParams.newBuilder().setSkuDetails(it)
                                 .build()
                             playStoreBillingClient.launchBillingFlow(activity, perchaseParams)
@@ -89,9 +91,9 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
-                    if (skuDetailsList.isNotEmpty()){
+                    if (skuDetailsList!!.isNotEmpty()){
                         try {
-                            PreferencesProvider.setPrice(skuDetailsList[0].price)
+                            PreferencesProvider.setPrice(skuDetailsList!![0].price)
                         }catch (ex: Exception){
                             YandexMetrica.reportEvent("error price set")
                         }
