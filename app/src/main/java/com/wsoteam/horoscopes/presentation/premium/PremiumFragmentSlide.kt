@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
@@ -27,6 +28,7 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
     )
     var timer: CountDownTimer? = null
     var counter = 0
+    var isHand = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,10 +40,26 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
         )
         diOnboard.setViewPager(vpOnboard)
         vpOnboard.adapter?.registerDataSetObserver(diOnboard.dataSetObserver)
-        vpOnboard.setOnDragListener { v, event ->
-            L.log("drag")
-            true
-        }
+        vpOnboard.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+               if (isHand){
+                   timer?.cancel()
+                   counter = position
+                   timer?.start()
+               }
+            }
+        })
 
 
         btnPay.setOnClickListener { _ ->
@@ -59,7 +77,7 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
 
         setPrice()
 
-        timer = object : CountDownTimer(12000, 4000) {
+        timer = object : CountDownTimer(15000, 5000) {
             override fun onFinish() {
                 timer?.start()
             }
@@ -68,8 +86,10 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
                 if (counter > 2) {
                     counter = 0
                 }
+                isHand = false
                 vpOnboard.setCurrentItem(counter, true)
                 counter++
+                isHand = true
             }
         }
         timer!!.start()
