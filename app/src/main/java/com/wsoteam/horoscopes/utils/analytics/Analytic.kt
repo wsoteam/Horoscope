@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.utils.analytics
 import android.util.Log
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
+import com.yandex.metrica.YandexMetrica
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -131,6 +132,7 @@ object Analytic {
             exception.printStackTrace()
         }
         Amplitude.getInstance().logEvent(PREMIUM_TRIAL, eventProperties)
+        YandexMetrica.reportEvent("trial")
         Log.e("LOL", "$property -- $wherePurchase")
     }
 
