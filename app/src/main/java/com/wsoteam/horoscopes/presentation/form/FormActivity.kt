@@ -14,6 +14,7 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
+import com.wsoteam.horoscopes.utils.loger.L
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity(R.layout.form_activity) {
@@ -32,6 +33,10 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         }
         setNoCanGoNextState()
         setGoNextListener()
+        edtBirthdate.setOnClickListener {
+            DateDialog()
+                .show(supportFragmentManager, "")
+        }
     }
 
     private fun setGoNextListener() {

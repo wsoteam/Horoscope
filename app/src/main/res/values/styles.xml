@@ -76,7 +76,7 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="CalendarTheme" parent="Theme.AppCompat.Light">
+    <style name="CalendarTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColorPrimary">#000000</item>
         <item name="colorAccent">#2e2c5c</item>
     </style>
