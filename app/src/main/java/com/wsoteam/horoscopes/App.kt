@@ -26,20 +26,20 @@ class App : MultiDexApplication() {
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
-        //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
+        Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
 
         Amplitude.getInstance()
-            .initialize(this, "3031a61ead2f7482d87c899794cec751")
+            .initialize(this, getString(R.string.amplitude_id))
             .enableForegroundTracking(this)
 
         applicationHandler =  Handler(applicationContext.mainLooper)
 
-        Bugfender.init(this, "nMMITxQP2vlSvBuuHLxNDrQxRpw2r21I", BuildConfig.DEBUG)
+        Bugfender.init(this, getString(R.string.fender_id), BuildConfig.DEBUG)
         Bugfender.enableCrashReporting()
         Bugfender.enableUIEventLogging(this)
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
-        //Qonversion.initialize(this, "rUC-czxB0dMVbaQHM8LOuRtZ1RQr2BE9", Creator.getId())
+        Qonversion.initialize(this, getString(R.string.qonversion_id), Creator.getId())
     }
 
     companion object {

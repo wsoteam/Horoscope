@@ -108,14 +108,17 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindRetention()
-        UXCam.startWithKey(getString(R.string.uxcam_id))
+        if (BuildConfig.DEBUG) {
+            L.log("debug")
+            UXCam.startWithKey(getString(R.string.uxcam_id))
+        }
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
         bindTest()
         refreshNotifications()
         AdWorker.init(this)
-        if (PreferencesProvider.isADEnabled()) {
+        if (PreferencesProvider.isADEnabled() && PreferencesProvider.getBirthday() != "") {
             AdWorker.isNeedShowInter = true
             AdWorker.adCallbacks = object : AdCallbacks {
                 override fun onAdClosed() {

@@ -4,32 +4,49 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.android.billingclient.api.*
+import com.qonversion.android.sdk.Qonversion
+import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.utils.loger.L
 import com.yandex.metrica.YandexMetrica
 
 object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListener {
 
-    override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
+    private val skuDetails: MutableMap<String, SkuDetails?> =
+        HashMap()
+
+    override fun onPurchasesUpdated(
+        billingResult: BillingResult,
+        purchases: MutableList<Purchase>?
+    ) {
         if (billingResult!!.responseCode == BillingClient.BillingResponseCode.OK) {
-            if (purchases != null && purchases.size > 0 && purchases[0].purchaseState == Purchase.PurchaseState.PURCHASED){
+            if (purchases != null && purchases.size > 0 && purchases[0].purchaseState == Purchase.PurchaseState.PURCHASED) {
                 inAppCallback?.trialSucces()
-                if(!purchases[0].isAcknowledged){
+                if (!purchases[0].isAcknowledged) {
                     val params = AcknowledgePurchaseParams
                         .newBuilder()
                         .setPurchaseToken(purchases[0].purchaseToken)
                         .build()
                     var listener = AcknowledgePurchaseResponseListener {
-                        Log.e("LOL", "confirmed")
+                        L.log("confirmed")
                     }
                     playStoreBillingClient.acknowledgePurchase(params, listener)
+                    trackPurchase(skuDetails[Config.ID_PRICE]!!, purchases[0])
+
                 }
             }
 
         }
     }
 
+    private fun trackPurchase(
+        details: SkuDetails,
+        purchase: Purchase
+    ) {
+        Qonversion.instance!!.purchase(details, purchase)
+    }
+
     private lateinit var playStoreBillingClient: BillingClient
     private var inAppCallback: InAppCallback? = null
-
 
 
     fun init(context: Context) {
@@ -46,7 +63,6 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         }
         return false
     }
-
 
 
     override fun onBillingServiceDisconnected() {
@@ -73,6 +89,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList.orEmpty().isNotEmpty()) {
                         skuDetailsList!!.forEach {
+                            skuDetails[Config.ID_PRICE] = it
                             val perchaseParams = BillingFlowParams.newBuilder().setSkuDetails(it)
                                 .build()
                             playStoreBillingClient.launchBillingFlow(activity, perchaseParams)
@@ -85,16 +102,16 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         }
     }
 
-    fun startGettingPrice(id: String) : String{
+    fun startGettingPrice(id: String): String {
         val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(id))
             .setType(BillingClient.SkuType.SUBS).build()
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
-                    if (skuDetailsList!!.isNotEmpty()){
+                    if (skuDetailsList!!.isNotEmpty()) {
                         try {
                             PreferencesProvider.setPrice(skuDetailsList!![0].price)
-                        }catch (ex: Exception){
+                        } catch (ex: Exception) {
                             YandexMetrica.reportEvent("error price set")
                         }
                     }
