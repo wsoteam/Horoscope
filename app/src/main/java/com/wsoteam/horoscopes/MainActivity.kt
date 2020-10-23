@@ -98,6 +98,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.show(mainFragment).commit()
         window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(true)
+        if(PreferencesProvider.isADEnabled()){
+            adView.visibility = View.VISIBLE
+        }
     }
 
     fun openPremiumFragment(){
@@ -116,6 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(false)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
+        adView.visibility = View.GONE
     }
 
     fun openBallFragment(){
@@ -134,7 +138,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.show(ballFragment).commit()
         window.statusBarColor = Color.rgb(0, 0, 0)
         changeNavigationState(false)
-
+        if(PreferencesProvider.isADEnabled()){
+            adView.visibility = View.VISIBLE
+        }
     }
 
 
