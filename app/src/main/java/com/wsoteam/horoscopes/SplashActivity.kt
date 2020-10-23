@@ -104,14 +104,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindRetention()
-        if (BuildConfig.DEBUG) {
-            L.log("debug")
-            UXCam.startWithKey(getString(R.string.uxcam_id))
-        }
+        UXCam.startWithKey(getString(R.string.uxcam_id))
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
@@ -154,10 +150,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun bindRetention() {
         var currentDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-        if (PreferencesProvider.firstEnter == -1){
+        if (PreferencesProvider.firstEnter == -1) {
             PreferencesProvider.firstEnter = currentDay
-        }else{
-            when(currentDay - PreferencesProvider.firstEnter){
+        } else {
+            when (currentDay - PreferencesProvider.firstEnter) {
                 2 -> FBAnalytic.logTwoDays(this)
                 7 -> FBAnalytic.logSevenDays(this)
             }
@@ -191,13 +187,21 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun refreshNotifications() {
         if (PreferencesProvider.getNotifTime() == PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
             AlarmReceiver.startNotification(this, Config.DEF_HOUR_NOTIF, Config.DEF_MIN_NOTIF)
-            EveningAlarmReceiver.startNotification(this, Config.DEF_HOUR_EVENING_NOTIF, Config.DEF_MIN_EVENING_NOTIF)
+            EveningAlarmReceiver.startNotification(
+                this,
+                Config.DEF_HOUR_EVENING_NOTIF,
+                Config.DEF_MIN_EVENING_NOTIF
+            )
             L.log("refreshNotifications")
         } else if (PreferencesProvider.getNotifTime() != PreferencesProvider.DEFAULT_TIME_NOTIFY && PreferencesProvider.getNotifStatus()) {
             val (hours, minutes) = PreferencesProvider.getNotifTime().split(":").map { it.toInt() }
             L.log("$hours $minutes refresh")
             AlarmReceiver.startNotification(this, hours, minutes)
-            EveningAlarmReceiver.startNotification(this, Config.DEF_HOUR_EVENING_NOTIF, Config.DEF_MIN_EVENING_NOTIF)
+            EveningAlarmReceiver.startNotification(
+                this,
+                Config.DEF_HOUR_EVENING_NOTIF,
+                Config.DEF_MIN_EVENING_NOTIF
+            )
         }
     }
 
