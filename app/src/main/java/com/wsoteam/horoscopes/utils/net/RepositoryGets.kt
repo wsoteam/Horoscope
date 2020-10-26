@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RepositoryGets {
 
@@ -25,6 +26,8 @@ object RepositoryGets {
                         else HttpLoggingInterceptor.Level.NONE
                     )
             )
+            .connectTimeout(5, TimeUnit.MINUTES)
+            .readTimeout(5, TimeUnit.MINUTES)
             .build()
 
         var retrofit = Retrofit.Builder()
