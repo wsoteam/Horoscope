@@ -28,7 +28,7 @@ object PreferencesProvider {
     private const val TODAY_NOTIF_TAG = "TODAY_NOTIF_TAG"
     const val DEF_TODAY_NOTIF = -1
 
-    const val DEFAULT_TIME_NOTIFY = "09:00 AM"
+    const val DEFAULT_TIME_NOTIFY = "09:00"
 
     private const val TIME = "TIME"
     private const val ATTEMPTS = "ATTEMPTS"
