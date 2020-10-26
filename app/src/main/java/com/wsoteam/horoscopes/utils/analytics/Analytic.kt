@@ -63,6 +63,11 @@ object Analytic {
     private val BALL_PAGE = "ball_page"
     private val ASK_BALL = "ask_ball"
     private val START = "start"
+    private val CRASH_ATTR = "CRASH_ATTR"
+
+    fun crashAttr() {
+        Amplitude.getInstance().logEvent(CRASH_ATTR)
+    }
 
     fun start() {
         Amplitude.getInstance().logEvent(START)

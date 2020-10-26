@@ -30,6 +30,7 @@ import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -132,7 +133,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             .get(MainVM::class.java)
         vm.preLoadData()
         AdProvider.init(this)
-        trackUser()
+        try {
+            trackUser()
+        }catch (ex : Exception){
+            L.log("crash")
+            Analytic.crashAttr()
+        }
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
             postGoNext(1)
