@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.utils.analytics
 import android.util.Log
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
+import com.smartlook.sdk.smartlook.Smartlook
 import com.yandex.metrica.YandexMetrica
 import org.json.JSONException
 import org.json.JSONObject
@@ -67,21 +68,84 @@ object Analytic {
 
     fun crashAttr() {
         Amplitude.getInstance().logEvent(CRASH_ATTR)
+        Smartlook.trackCustomEvent(CRASH_ATTR)
+
     }
 
     fun start() {
         Amplitude.getInstance().logEvent(START)
+        Smartlook.trackCustomEvent(START)
     }
 
 
     fun touchBalls() {
         Amplitude.getInstance().logEvent(ASK_BALL)
+        Smartlook.trackCustomEvent(ASK_BALL)
+
     }
 
 
     fun showBalls() {
         Amplitude.getInstance().logEvent(BALL_PAGE)
+        Smartlook.trackCustomEvent(BALL_PAGE)
+
     }
+
+    fun changeSign() {
+        Amplitude.getInstance().logEvent(OTHER_SIGN)
+        Smartlook.trackCustomEvent(OTHER_SIGN)
+
+    }
+
+    fun share() {
+        Amplitude.getInstance().logEvent(SHARE_SOCIAL)
+        Smartlook.trackCustomEvent(SHARE_SOCIAL)
+
+    }
+
+    fun openSettings() {
+        Amplitude.getInstance().logEvent(SETTINGS)
+        Smartlook.trackCustomEvent(SETTINGS)
+
+    }
+
+    fun setVersion() {
+        Amplitude.getInstance().logEvent(set_ver)
+        Smartlook.trackCustomEvent(set_ver)
+
+    }
+
+    fun clickAD() {
+        Amplitude.getInstance().logEvent(ad_click)
+        Smartlook.trackCustomEvent(ad_click)
+
+    }
+
+    fun openFromNotif() {
+        Amplitude.getInstance().logEvent(open_from_notif)
+        Smartlook.trackCustomEvent(open_from_notif)
+
+    }
+
+    fun openFromEveningNotif() {
+        Amplitude.getInstance().logEvent(open_from_evening_notif)
+        Smartlook.trackCustomEvent(open_from_evening_notif)
+
+    }
+
+    fun showNotif() {
+        Amplitude.getInstance().logEvent(show_notif)
+        Smartlook.trackCustomEvent(show_notif)
+
+    }
+
+    fun showEveningNotif() {
+        Amplitude.getInstance().logEvent(show_evening_notif)
+        Smartlook.trackCustomEvent(show_evening_notif)
+
+    }
+
+    //////////Identify
 
     fun setBirthday(birth: String) {
         var identify = Identify().set(BIRTHDAY, birth)
@@ -92,6 +156,13 @@ object Analytic {
         var identify = Identify().set(SIGN, sign)
         Amplitude.getInstance().identify(identify)
     }
+
+    fun setABVersion(version: String) {
+        var identify = Identify().set(AB, version)
+        Amplitude.getInstance().identify(identify)
+    }
+
+    /////////Composite
 
     fun showHoro(index: Int) {
         var property = when (index) {
@@ -110,6 +181,8 @@ object Analytic {
             exception.printStackTrace()
         }
         Amplitude.getInstance().logEvent(HOROSCOPE, eventProperties)
+        Smartlook.trackCustomEvent(HOROSCOPE, eventProperties)
+
     }
 
     fun showPrem(property: String) {
@@ -121,6 +194,8 @@ object Analytic {
             exception.printStackTrace()
         }
         Amplitude.getInstance().logEvent(PREMIUM_PAGE, eventProperties)
+        Smartlook.trackCustomEvent(PREMIUM_PAGE, eventProperties)
+
     }
 
     fun makePurchase(property: String, wherePurchase: String) {
@@ -133,47 +208,11 @@ object Analytic {
         }
         Amplitude.getInstance().logEvent(PREMIUM_TRIAL, eventProperties)
         YandexMetrica.reportEvent("trial")
+        Smartlook.trackCustomEvent(PREMIUM_TRIAL, eventProperties)
+
     }
 
-    fun changeSign() {
-        Amplitude.getInstance().logEvent(OTHER_SIGN)
-    }
 
-    fun share() {
-        Amplitude.getInstance().logEvent(SHARE_SOCIAL)
-    }
 
-    fun openSettings() {
-        Amplitude.getInstance().logEvent(SETTINGS)
-    }
 
-    //////////////////////////////////////////////////////////////////////
-    fun setVersion() {
-        Amplitude.getInstance().logEvent(set_ver)
-    }
-
-    fun clickAD() {
-        Amplitude.getInstance().logEvent(ad_click)
-    }
-
-    fun openFromNotif() {
-        Amplitude.getInstance().logEvent(open_from_notif)
-    }
-
-    fun openFromEveningNotif() {
-        Amplitude.getInstance().logEvent(open_from_evening_notif)
-    }
-
-    fun showNotif() {
-        Amplitude.getInstance().logEvent(show_notif)
-    }
-
-    fun showEveningNotif() {
-        Amplitude.getInstance().logEvent(show_evening_notif)
-    }
-
-    fun setABVersion(version: String) {
-        var identify = Identify().set(AB, version)
-        Amplitude.getInstance().identify(identify)
-    }
 }

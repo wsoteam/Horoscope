@@ -9,8 +9,8 @@ buildscript {
         maven { url 'https://jitpack.io' }
         maven { url "https://maven.google.com" }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
-        maven{
-            url 'https://sdk.uxcam.com/android/'
+        maven {
+            url "https://sdk.smartlook.com/android/release"
         }
     }
     dependencies {
@@ -32,8 +32,8 @@ allprojects {
         }
         google()
         jcenter()
-        maven{
-            url 'https://sdk.uxcam.com/android/'
+        maven {
+            url "https://sdk.smartlook.com/android/release"
         }
     }
 }

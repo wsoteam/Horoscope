@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Horoscope</string>
+    <string name="app_name">Astropedia</string>
 
     <!--Test-->
     <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
@@ -207,7 +207,7 @@
     <string name="first_part_notif">Your</string>
     <string name="second_part_notif">horoscope is ready! Click to learn more</string>
     <string name="evening_alarm">Still don\'t know what destiny prepared to you? So what are you waiting for?</string>
-
+    <string name="smartlock_id">10fbeebdefaa79e2ee125c39e72105be3025253f</string>
 
 
 </resources>

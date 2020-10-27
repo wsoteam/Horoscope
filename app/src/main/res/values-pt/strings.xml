@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Horóscopo</string>
+    <string name="app_name">Astropedia</string>
 
 
     <string-array name="names_signs">
