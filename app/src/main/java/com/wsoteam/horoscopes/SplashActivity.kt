@@ -13,7 +13,6 @@ import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.uxcam.UXCam
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
@@ -108,7 +107,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindRetention()
-        UXCam.startWithKey(getString(R.string.uxcam_id))
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
