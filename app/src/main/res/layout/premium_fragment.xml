@@ -22,12 +22,12 @@
             android:textColor="#2e2c5c"
             android:textSize="20sp" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="72dp"
-            android:src="@drawable/img_diamond" />
+            app:srcCompat="@drawable/img_diamond" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
