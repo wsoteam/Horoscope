@@ -28,4 +28,8 @@ object Config {
 
     val IS_NEED_LOGGING = true
 
+    //Stories
+    val INDEX_SIGN = "INDEX_SIGN"
+    val SIGN_DATA = "SIGN_DATA"
+
 }

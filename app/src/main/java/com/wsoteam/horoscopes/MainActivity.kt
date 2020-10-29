@@ -247,14 +247,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun share() {
         Analytic.share()
-        /*var intent = Intent(Intent.ACTION_SEND)
+        var intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(
             Intent.EXTRA_TEXT, PreferencesProvider.getLastText() + "\n"
                     + "https://play.google.com/store/apps/details?id="
                     + packageName
         )
-        startActivity(intent)*/
+        startActivity(intent)
 
         /*var intent = Intent("com.instagram.share.ADD_TO_STORY")
         intent.putExtra("source_application", "com.wsoteam.horoscopes")
@@ -274,8 +274,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val activity: Activity = this
         activity.startActivityForResult(intent, 0)*/
-
-        startActivity(Intent(this, StoriesActivity::class.java))
     }
 
 

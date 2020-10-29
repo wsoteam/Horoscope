@@ -17,6 +17,7 @@ object ActivityToBitmap {
     fun convert(activity : AppCompatActivity) : Uri? {
         var view = activity.window.decorView.findViewById<View>(android.R.id.content)
         view.isDrawingCacheEnabled = true
+        view.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
         view.buildDrawingCache()
         val uri = saveImage(view.drawingCache, activity.applicationContext)
         view.isDrawingCacheEnabled = false

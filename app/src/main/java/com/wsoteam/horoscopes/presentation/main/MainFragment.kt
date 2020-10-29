@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.presentation.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -8,11 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.main.controller.HoroscopeAdapter
 import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
+import com.wsoteam.horoscopes.presentation.stories.StoriesActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -80,6 +83,16 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         tlTime.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoroscope))
         vpHoroscope.setCurrentItem(1, true)
 
+        tvGoTostories.setOnClickListener {
+            requireActivity().startActivity(makeIntent())
+        }
+    }
+
+    private fun makeIntent(): Intent {
+        var intent = Intent(activity, StoriesActivity::class.java)
+        intent.putExtra(Config.ID_PRICE, index)
+        intent.putExtra(Config.SIGN_DATA, signData.today)
+        return intent
     }
 
     private fun showInterAwait() {
