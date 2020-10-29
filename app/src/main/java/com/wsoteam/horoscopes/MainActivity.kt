@@ -1,13 +1,15 @@
 package com.wsoteam.horoscopes
 
+import android.app.Activity
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +35,7 @@ import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
+import com.wsoteam.horoscopes.presentation.stories.StoriesActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -62,12 +65,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     )
 
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        when(it.itemId){
+        when (it.itemId) {
             R.id.bnv_main -> {
                 openMainFragment()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.bnv_prem ->  {
+            R.id.bnv_prem -> {
                 PreferencesProvider.setBeforePremium(Analytic.nav_premium)
                 openPremiumFragment()
                 return@OnNavigationItemSelectedListener true
@@ -83,36 +86,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    fun openMainFragment(){
+    fun openMainFragment() {
         L.log("openMainFragment")
         var transaction = supportFragmentManager.beginTransaction()
-        if (premFragment.isAdded){
+        if (premFragment.isAdded) {
             transaction.hide(premFragment)
         }
-        if (ballFragment.isAdded){
+        if (ballFragment.isAdded) {
             transaction.hide(ballFragment)
         }
-        if (!mainFragment.isAdded){
+        if (!mainFragment.isAdded) {
             transaction.add(R.id.flContainer, mainFragment)
         }
         transaction.show(mainFragment).commit()
         window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(true)
-        if(PreferencesProvider.isADEnabled()){
+        if (PreferencesProvider.isADEnabled()) {
             adView.visibility = View.VISIBLE
         }
     }
 
-    fun openPremiumFragment(){
+    fun openPremiumFragment() {
         L.log("openPremiumFragment")
         var transaction = supportFragmentManager.beginTransaction()
-        if (mainFragment.isAdded){
+        if (mainFragment.isAdded) {
             transaction.hide(mainFragment)
         }
-        if (ballFragment.isAdded){
+        if (ballFragment.isAdded) {
             transaction.hide(ballFragment)
         }
-        if (!premFragment.isAdded){
+        if (!premFragment.isAdded) {
             transaction.add(R.id.flContainer, premFragment)
         }
         transaction.show(premFragment).commit()
@@ -122,38 +125,38 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         adView.visibility = View.GONE
     }
 
-    fun openBallFragment(){
+    fun openBallFragment() {
         L.log("openBallFragment")
         Analytic.showBalls()
         var transaction = supportFragmentManager.beginTransaction()
-        if (mainFragment.isAdded){
+        if (mainFragment.isAdded) {
             transaction.hide(mainFragment)
         }
-        if (premFragment.isAdded){
+        if (premFragment.isAdded) {
             transaction.hide(premFragment)
         }
-        if (!ballFragment.isAdded){
+        if (!ballFragment.isAdded) {
             transaction.add(R.id.flContainer, ballFragment)
         }
         transaction.show(ballFragment).commit()
         window.statusBarColor = Color.rgb(0, 0, 0)
         changeNavigationState(false)
-        if(PreferencesProvider.isADEnabled()){
+        if (PreferencesProvider.isADEnabled()) {
             adView.visibility = View.VISIBLE
         }
     }
 
 
-    private fun changeNavigationState(isVisible : Boolean){
+    private fun changeNavigationState(isVisible: Boolean) {
         L.log("changeNavigationState -- $isVisible")
         var container = clContainer as ConstraintLayout
         var params = container.layoutParams as CoordinatorLayout.LayoutParams
-        if (isVisible){
+        if (isVisible) {
             params.behavior = AppBarLayout.ScrollingViewBehavior()
             container.requestLayout()
             ablMain.visibility = View.VISIBLE
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        }else{
+        } else {
             params.behavior = null
             container.requestLayout()
             ablMain.visibility = View.GONE
@@ -161,7 +164,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun openPremSection(){
+    fun openPremSection() {
         bnvMain.selectedItemId = R.id.bnv_prem
     }
 
@@ -227,7 +230,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         bnvMain.setOnNavigationItemSelectedListener(bnvListener)
-        if (!PreferencesProvider.isADEnabled()){
+        if (!PreferencesProvider.isADEnabled()) {
             bnvMain.menu.removeItem(R.id.bnv_prem)
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
@@ -244,14 +247,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun share() {
         Analytic.share()
-        var intent = Intent(Intent.ACTION_SEND)
+        /*var intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(
             Intent.EXTRA_TEXT, PreferencesProvider.getLastText() + "\n"
                     + "https://play.google.com/store/apps/details?id="
                     + packageName
         )
-        startActivity(intent)
+        startActivity(intent)*/
+
+        /*var intent = Intent("com.instagram.share.ADD_TO_STORY")
+        intent.putExtra("source_application", "com.wsoteam.horoscopes")
+        startActivityForResult(intent, 0);*/
+
+        /*val backgroundAssetUri: Uri = Uri.parse("your-image-asset-uri-goes-here")
+        val attributionLinkUrl = "https://www.my-aweseome-app.com/p/BhzbIOUBval/"
+        val sourceApplication = "com.my.app"
+
+        val intent = Intent("com.instagram.share.ADD_TO_STORY")
+        intent.putExtra("source_application", sourceApplication)
+
+        intent.setDataAndType(backgroundAssetUri, "")
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        intent.putExtra("content_url", attributionLinkUrl)
+
+
+        val activity: Activity = this
+        activity.startActivityForResult(intent, 0)*/
+
+        startActivity(Intent(this, StoriesActivity::class.java))
     }
 
 
@@ -274,7 +298,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             L.log("birthSignIndex !=")
             birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)
             setSelectedItem(birthSignIndex)
-        }else{
+        } else {
             L.log("birthSignIndex ==")
         }
     }
@@ -285,7 +309,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         onNavigationItemSelected(nav_view.menu.getItem(index))
     }
 
-     fun openPrem() {
+    fun openPrem() {
         startActivity(
             Intent(this, PremiumHostActivity::class.java).putExtra(
                 Config.OPEN_PREM,

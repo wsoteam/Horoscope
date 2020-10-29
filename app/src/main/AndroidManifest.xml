@@ -97,6 +97,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
 
+        <activity
+            android:name=".presentation.stories.StoriesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main" />
+
 
         <service
             android:name=".notification.NotificationService"
@@ -115,6 +120,16 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.mydomain.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

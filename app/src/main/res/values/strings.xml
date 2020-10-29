@@ -208,6 +208,8 @@
     <string name="second_part_notif">horoscope is ready! Click to learn more</string>
     <string name="evening_alarm">Still don\'t know what destiny prepared to you? So what are you waiting for?</string>
     <string name="smartlock_id">10fbeebdefaa79e2ee125c39e72105be3025253f</string>
+    <string name="your_personal_horoscope">Your personal horoscope</string>
+    <string name="tips_and_predictions_for_every_day">Tips and predictions for every day</string>
 
 
 </resources>
