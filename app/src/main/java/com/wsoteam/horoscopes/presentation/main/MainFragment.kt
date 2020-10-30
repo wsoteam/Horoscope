@@ -1,29 +1,23 @@
 package com.wsoteam.horoscopes.presentation.main
 
+import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
-import com.wsoteam.horoscopes.presentation.main.controller.HoroscopeAdapter
 import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
-import com.wsoteam.horoscopes.presentation.stories.StoriesActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
+
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
@@ -84,15 +78,22 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         vpHoroscope.setCurrentItem(1, true)
 
         tvGoTostories.setOnClickListener {
-            requireActivity().startActivity(makeIntent())
+            sendStory()
         }
     }
 
-    private fun makeIntent(): Intent {
-        var intent = Intent(activity, StoriesActivity::class.java)
-        intent.putExtra(Config.ID_PRICE, index)
-        intent.putExtra(Config.SIGN_DATA, signData.today)
-        return intent
+    private fun sendStory() {
+        val uri = Uri.parse(PreferencesProvider.screenURI)
+
+        var intent = Intent("com.instagram.share.ADD_TO_STORY")
+        intent.putExtra("com.facebook.platform.extra.APPLICATION_ID", getString(R.string.facebook_app_id))
+        intent.putExtra("content_url", Uri.parse("https://play.google.com/store/apps/details?id=com.wsoteam.horoscopes"))
+        intent.setDataAndType(uri, "image/png")
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+
+
+        val activity: Activity = activity!!
+        activity.startActivityForResult(intent, 0)
     }
 
     private fun showInterAwait() {
@@ -120,9 +121,5 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             PageFragment.newInstance(signData.year, 5)
         )
         return list
-    }
-
-     fun setOpenTab(){
-        vpHoroscope.currentItem = 4
     }
 }

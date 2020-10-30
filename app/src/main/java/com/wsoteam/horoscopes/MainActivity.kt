@@ -194,7 +194,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()
 
-
         if (!NetState.isConnected()) {
             L.log("ConnectionFragment")
             supportFragmentManager.beginTransaction()
@@ -256,24 +255,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         startActivity(intent)
 
-        /*var intent = Intent("com.instagram.share.ADD_TO_STORY")
-        intent.putExtra("source_application", "com.wsoteam.horoscopes")
-        startActivityForResult(intent, 0);*/
-
-        /*val backgroundAssetUri: Uri = Uri.parse("your-image-asset-uri-goes-here")
-        val attributionLinkUrl = "https://www.my-aweseome-app.com/p/BhzbIOUBval/"
-        val sourceApplication = "com.my.app"
-
-        val intent = Intent("com.instagram.share.ADD_TO_STORY")
-        intent.putExtra("source_application", sourceApplication)
-
-        intent.setDataAndType(backgroundAssetUri, "")
-        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        intent.putExtra("content_url", attributionLinkUrl)
-
-
-        val activity: Activity = this
-        activity.startActivityForResult(intent, 0)*/
     }
 
 

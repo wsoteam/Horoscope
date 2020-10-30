@@ -2,36 +2,42 @@ package com.wsoteam.horoscopes
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
-import android.util.Base64
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
 import com.amplitude.api.Amplitude
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
+import com.wsoteam.horoscopes.presentation.main.CacheData
+import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.MainVM
-import com.wsoteam.horoscopes.utils.AdProvider
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
+import kotlinx.android.synthetic.main.stories_activity.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 import java.lang.Exception
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -39,13 +45,14 @@ import java.util.concurrent.TimeUnit
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
-    var MAX = 3
+    var MAX = 5
     var isNextScreenLoading = false
+    lateinit var vm: MainVM
 
 
-    private fun postGoNext(i: Int) {
-        L.log("postGoNext")
+    private fun postGoNext(i: Int, tag : String) {
         counter += i
+        L.log("postGoNext -- $counter -- $tag")
         if (counter >= MAX) {
             if (!isNextScreenLoading) {
                 isNextScreenLoading = true
@@ -58,15 +65,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         L.log("goNext")
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
-            /*if (PreferencesProvider.isADEnabled() && PreferencesProvider.getPremShowPossibility()) {
-                intent = Intent(this, PremiumHostActivity::class.java).putExtra(
-                    Config.OPEN_PREM,
-                    Config.OPEN_PREM_FROM_REG
-                )
-            } else {*/
             intent = Intent(this, MainActivity::class.java)
             L.log("main activity enter")
-            /*}*/
         } else {
             intent = Intent(this, FormActivity::class.java)
             L.log("formActivity enter")
@@ -75,37 +75,22 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         finish()
     }
 
-    fun printKeyHash(context: Context) {
-        try {
-            val info = context.packageManager
-                .getPackageInfo(
-                    "com.wsoteam.horoscopes",
-                    PackageManager.GET_SIGNATURES
-                )
-            for (signature in info.signatures) {
-                val md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                Log.d(
-                    "LOL",
-                    "KeyHash: " + Base64.encodeToString(
-                        md.digest(),
-                        Base64.DEFAULT
-                    )
-                )
-            }
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-            L.log("${e.localizedMessage}")
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
-            L.log("${e.localizedMessage}")
-
-        }
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var vm = ViewModelProviders
+            .of(this)
+            .get(MainVM::class.java)
+        vm.preLoadData()
+        if (PreferencesProvider.getBirthday() != ""){
+            CacheData.setObserver(object : ICachedData{
+                override fun cachedDataReady() {
+                    makeCurrentScreen(CacheData.getCachedData()!!)
+                    CacheData.removeObservers()
+                }
+            })
+        }
         bindRetention()
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
@@ -113,24 +98,22 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         bindTest()
         refreshNotifications()
         AdWorker.init(this)
-        if (PreferencesProvider.isADEnabled() && PreferencesProvider.getBirthday() != "") {
+        if (PreferencesProvider.getBirthday() != "") {
             AdWorker.isNeedShowInter = true
             AdWorker.adCallbacks = object : AdCallbacks {
                 override fun onAdClosed() {
-                    postGoNext(2)
+                    Log.e("LOL", "onAdClosed")
+
+                    postGoNext(2, "onAdClosed")
                     AdWorker.unSubscribe()
                 }
 
                 override fun onAdLoaded() {
+                    Log.e("LOL", "onAdLoaded")
                     MAX++
                 }
             }
         }
-        var vm = ViewModelProviders
-            .of(this)
-            .get(MainVM::class.java)
-        vm.preLoadData()
-        AdProvider.init(this)
         try {
             trackUser()
         }catch (ex : Exception){
@@ -139,7 +122,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
-            postGoNext(1)
+            postGoNext(1, "sleep4")
         }
         if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null) {
             when (intent.getStringExtra(Config.OPEN_FROM_NOTIFY)) {
@@ -150,6 +133,63 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Config.OPEN_FROM_EVENING_NOTIF -> Analytic.openFromEveningNotif()
             }
         }
+    }
+
+    private fun makeCurrentScreen(it: List<Sign>) {
+        val index = choiceSign(PreferencesProvider.getBirthday()!!)
+        tvTopTitleStories.text = resources.getStringArray(R.array.names_signs)[index]
+        ivSignStories.setImageResource(
+            resources.obtainTypedArray(R.array.imgs_signs)
+                .getResourceId(index, -1)
+        )
+        tvTitleStories.text = "${getString(R.string.my_horoscope_on)} ${Calendar.getInstance().get(Calendar.DAY_OF_MONTH)} ${Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US) }"
+        tvTextStories.setText(getCutText(it[index].today.text))
+
+        CoroutineScope(Dispatchers.IO).launch {
+            TimeUnit.SECONDS.sleep(2)
+            makeImage()
+        }
+    }
+
+    private fun makeImage() {
+        var view = findViewById<View>(R.id.llParentLayout)
+        view.isDrawingCacheEnabled = true
+        view.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
+        view.buildDrawingCache()
+        val uri = saveImage(view.drawingCache, applicationContext)
+        view.isDrawingCacheEnabled = false
+
+        PreferencesProvider.screenURI = uri.toString()
+        postGoNext(1, "screenURI")
+    }
+
+    private fun getCutText(text: String): String {
+        var array = text.split(" ")
+        var cutString = ""
+        for(i in 0..30){
+            cutString = "$cutString${array[i]} "
+        }
+        cutString = "$cutString ..."
+        return cutString
+    }
+
+    private fun saveImage(bitmap: Bitmap, context: Context) : Uri?{
+        var imagesFolder = File(context.cacheDir, "images")
+        var uri : Uri? = null
+
+        try {
+            imagesFolder.mkdirs()
+            var file = File(imagesFolder, "shared_image.png")
+
+            var outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, outputStream)
+            outputStream.flush()
+            outputStream.close()
+            uri = FileProvider.getUriForFile(context, "com.mydomain.fileprovider", file)
+        }catch (ex : Exception){
+            L.log("save error")
+        }
+        return uri
     }
 
     private fun bindRetention() {
@@ -185,7 +225,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         PreferencesProvider.setVersion(version)
         Analytic.setABVersion(version)
         Analytic.setVersion()
-        postGoNext(1)
+        postGoNext(1, "setABTestConfig")
     }
 
     private fun refreshNotifications() {
@@ -250,7 +290,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
 
-        postGoNext(1)
+        postGoNext(1, "sendAnal")
     }
 
     private fun getClickId(s: String): String {

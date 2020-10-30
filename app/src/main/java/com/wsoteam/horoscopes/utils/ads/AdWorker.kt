@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.R
 import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import kotlin.random.Random
 
@@ -73,7 +74,7 @@ object AdWorker {
 
     fun showInter(){
         if (isInit && mInterstitialAd?.isLoaded == true) {
-            if(needShow()) {
+            if(needShow() && PreferencesProvider.isADEnabled()) {
                 mInterstitialAd?.show()
             }else{
                 adCallbacks?.onAdClosed()

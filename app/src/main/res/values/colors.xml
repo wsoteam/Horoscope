@@ -25,4 +25,10 @@
 
     <color name="active_bnv">#f4e6d8</color>
     <color name="inactive_bnv">#807e9f</color>
+
+    <color name="com_facebook_button_background_color_focused_disabled">#807e9f</color>
+    <color name="com_facebook_button_background_color_focused">#807e9f</color>
+    <color name="com_facebook_button_border_color_focused">#807e9f</color>
+
+
 </resources>
