@@ -164,12 +164,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun getCutText(text: String): String {
-        var array = text.split(" ")
+        var array = text.split(".")
         var cutString = ""
-        for(i in 0..30){
-            cutString = "$cutString${array[i]} "
+        for(i in 0..1){
+            cutString = "$cutString${array[i]}. "
         }
-        cutString = "$cutString ..."
         return cutString
     }
 
