@@ -32,4 +32,7 @@ object Config {
     val INDEX_SIGN = "INDEX_SIGN"
     val SIGN_DATA = "SIGN_DATA"
 
+
+    const val ACTION_SHARE = "ACTION_SHARE"
+
 }

@@ -1,11 +1,14 @@
 package com.wsoteam.horoscopes
 
 import android.app.Activity
+import android.app.PendingIntent
 import android.app.PendingIntent.getActivity
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -41,6 +44,7 @@ import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
+import com.wsoteam.horoscopes.utils.interceptor.ShareBroadcast
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.activity_main.*
@@ -245,7 +249,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun share() {
-        Analytic.share()
         var intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(
@@ -253,8 +256,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     + "https://play.google.com/store/apps/details?id="
                     + packageName
         )
-        startActivity(intent)
+        //startActivity(intent)
 
+        var receiver = Intent(Config.ACTION_SHARE)
+        receiver.putExtra("test", "test")
+
+        var pendingIntent = PendingIntent
+            .getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        var chooser = Intent.createChooser(intent, "test", pendingIntent.intentSender)
+        this.registerReceiver(ShareBroadcast(), IntentFilter(Config.ACTION_SHARE))
+        startActivity(chooser)
     }
 
 

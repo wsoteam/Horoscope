@@ -58,6 +58,7 @@ object Analytic {
     val main = "main"
     private val OTHER_SIGN = "other_sign"
     private val SHARE_SOCIAL = "share_social"
+    private val id = "package"
     private val SETTINGS = "settings_page"
 
 
@@ -97,10 +98,16 @@ object Analytic {
 
     }
 
-    fun share() {
-        Amplitude.getInstance().logEvent(SHARE_SOCIAL)
-        Smartlook.trackCustomEvent(SHARE_SOCIAL)
+    fun share(pack : String) {
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(id, pack)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
 
+        Amplitude.getInstance().logEvent(SHARE_SOCIAL, eventProperties)
+        Smartlook.trackCustomEvent(SHARE_SOCIAL, eventProperties)
     }
 
     fun openSettings() {

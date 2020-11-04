@@ -109,6 +109,12 @@
 
         <receiver android:name=".notification.AlarmReceiver" />
         <receiver android:name=".notification.EveningAlarmReceiver" />
+        <receiver android:name=".utils.interceptor.ShareBroadcast" >
+            <intent-filter>
+                <action android:name="com.wsoteam.horoscopes.Config.ACTION_SHARE"/>
+            </intent-filter>
+        </receiver>
+
 
         <receiver
             android:name=".notification.BootReceiver"
