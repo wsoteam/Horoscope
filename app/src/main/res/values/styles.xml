@@ -121,5 +121,8 @@
         <item name="android:textColor">@color/inactive_bnv</item>
     </style>
 
+    <style name="TopProgressStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+    </style>
+
 
 </resources>

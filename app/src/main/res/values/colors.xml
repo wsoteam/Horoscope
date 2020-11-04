@@ -30,5 +30,8 @@
     <color name="com_facebook_button_background_color_focused">#807e9f</color>
     <color name="com_facebook_button_border_color_focused">#807e9f</color>
 
+    <color name="color_inactive_top_progress">#757493</color>
+    <color name="color_active_top_progress">#FFFFFF</color>
+
 
 </resources>

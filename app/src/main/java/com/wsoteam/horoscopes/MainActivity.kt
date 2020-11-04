@@ -30,6 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.ball.BallFragment
+import com.wsoteam.horoscopes.presentation.crystals.StoriesOnboardActivity
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
@@ -237,6 +238,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             bnvMain.menu.removeItem(R.id.bnv_prem)
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
+
+        startActivity(Intent(this, StoriesOnboardActivity::class.java))
     }
 
     override fun onResume() {
@@ -256,7 +259,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     + "https://play.google.com/store/apps/details?id="
                     + packageName
         )
-        //startActivity(intent)
 
         var receiver = Intent(Config.ACTION_SHARE)
         receiver.putExtra("test", "test")
@@ -264,7 +266,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var pendingIntent = PendingIntent
             .getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        var chooser = Intent.createChooser(intent, "test", pendingIntent.intentSender)
+        var chooser = Intent.createChooser(intent, "Share", pendingIntent.intentSender)
         this.registerReceiver(ShareBroadcast(), IntentFilter(Config.ACTION_SHARE))
         startActivity(chooser)
     }

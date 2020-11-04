@@ -93,6 +93,11 @@
             android:theme="@style/Main" />
 
         <activity
+            android:name=".presentation.crystals.StoriesOnboardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main" />
+
+        <activity
             android:name=".presentation.settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
