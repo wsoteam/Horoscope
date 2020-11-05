@@ -23,19 +23,24 @@ class TopProgressAdapter() : RecyclerView.Adapter<TopProgressVH>() {
             override fun endCount() {
                 statesArray[position] = ProgressConfig.FIN
                 if (position < COUNT) {
-                    statesArray[position + 1] = ProgressConfig.NEED_START
-                    //notifyItemChanged(position + 1)
+                    if (position < COUNT - 1) {
+                        statesArray[position + 1] = ProgressConfig.NEED_START
+                    }
                     notifyDataSetChanged()
                 }else{
-                    //FIN
+                    finishLoad()
                 }
             }
         })
     }
 
+    private fun finishLoad() {
+
+    }
+
     fun start(){
         statesArray[0] = ProgressConfig.NEED_START
-        notifyItemChanged(0)
+        notifyDataSetChanged()
 
     }
 }
