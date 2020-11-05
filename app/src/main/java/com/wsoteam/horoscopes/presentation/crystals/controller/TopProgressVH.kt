@@ -1,9 +1,12 @@
 package com.wsoteam.horoscopes.presentation.crystals.controller
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import com.wsoteam.horoscopes.R
 import kotlinx.android.synthetic.main.item_top_progress.view.*
@@ -12,7 +15,7 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     RecyclerView.ViewHolder(layoutInflater.inflate(R.layout.item_top_progress, viewGroup, false)) {
 
     var iCounter: ICounter? = null
-    var timer: CountDownTimer? = null
+    var animation: ObjectAnimator? = null
 
     fun bind(state: Int, iCounter: ICounter) {
         this.iCounter = iCounter
@@ -24,32 +27,33 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     }
 
     private fun startCountDown() {
-        var currentProgress = 0
-        timer = object : CountDownTimer(ProgressConfig.delay, ProgressConfig.interval) {
-            override fun onFinish() {
-                itemView.pbTopProgress.progress = 1000
-                iCounter!!.endCount()
-                timer!!.cancel()
+        animation = ObjectAnimator.ofInt(itemView.pbTopProgress, "progress", 0, itemView.pbTopProgress.max)
+        animation!!.duration = ProgressConfig.delay
+        animation!!.interpolator = DecelerateInterpolator()
+        animation!!.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
             }
 
-            override fun onTick(millisUntilFinished: Long) {
-                if (currentProgress < 1001) {
-                    itemView.pbTopProgress.progress = currentProgress
-                    currentProgress++
-                }else{
-                    Log.e("LOL", "fin")
-                    timer!!.onFinish()
-                }
+            override fun onAnimationEnd(animation: Animator?) {
+                iCounter!!.endCount()
             }
-        }
-        timer!!.start()
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+        })
+        animation!!.start()
     }
 
     private fun finProgressBar() {
-        itemView.pbTopProgress.progress = 1000
+        animation?.cancel()
+        itemView.pbTopProgress.progress = itemView.pbTopProgress.max
     }
 
     private fun clearProgresBar() {
+        animation?.cancel()
         itemView.pbTopProgress.progress = 0
     }
 

@@ -6,5 +6,4 @@ object ProgressConfig {
     const val FIN = 2
 
     const val delay = 15_000L
-    const val interval = 15L
 }

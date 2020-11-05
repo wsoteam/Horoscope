@@ -15,7 +15,7 @@
         android:background="@drawable/shape_back_progress"
         android:progressTint="@color/white"
         android:layout_gravity="center"
-        android:max="1000"
+        android:max="90000"
         />
 
 </FrameLayout>
