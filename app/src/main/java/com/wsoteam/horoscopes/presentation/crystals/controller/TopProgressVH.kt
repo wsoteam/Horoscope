@@ -18,6 +18,9 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
 
     fun bind(state: Int, iCounter: ICounter) {
         this.iCounter = iCounter
+        animation?.removeAllListeners()
+        animation?.end()
+        animation?.cancel()
         when (state) {
             ProgressConfig.EMPTY -> clearProgresBar()
             ProgressConfig.FIN -> finProgressBar()
@@ -26,9 +29,6 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     }
 
     private fun startCountDown() {
-        animation?.removeAllListeners()
-        animation?.end()
-        animation?.cancel()
         animation =
             ObjectAnimator.ofInt(itemView.pbTopProgress, "progress", 0, itemView.pbTopProgress.max)
         animation!!.duration = ProgressConfig.delay
@@ -51,18 +51,10 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     }
 
     private fun finProgressBar() {
-        animation?.removeAllListeners()
-        animation?.end()
-        animation?.cancel()
-
         itemView.pbTopProgress.progress = itemView.pbTopProgress.max
     }
 
     private fun clearProgresBar() {
-        animation?.removeAllListeners()
-        animation?.end()
-        animation?.cancel()
-
         itemView.pbTopProgress.progress = 0
     }
 
