@@ -2,8 +2,7 @@ package com.wsoteam.horoscopes.presentation.crystals.controller
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.os.CountDownTimer
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
@@ -27,7 +26,11 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     }
 
     private fun startCountDown() {
-        animation = ObjectAnimator.ofInt(itemView.pbTopProgress, "progress", 0, itemView.pbTopProgress.max)
+        animation?.removeAllListeners()
+        animation?.end()
+        animation?.cancel()
+        animation =
+            ObjectAnimator.ofInt(itemView.pbTopProgress, "progress", 0, itemView.pbTopProgress.max)
         animation!!.duration = ProgressConfig.delay
         animation!!.interpolator = DecelerateInterpolator()
         animation!!.addListener(object : Animator.AnimatorListener {
@@ -48,12 +51,18 @@ class TopProgressVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) :
     }
 
     private fun finProgressBar() {
+        animation?.removeAllListeners()
+        animation?.end()
         animation?.cancel()
+
         itemView.pbTopProgress.progress = itemView.pbTopProgress.max
     }
 
     private fun clearProgresBar() {
+        animation?.removeAllListeners()
+        animation?.end()
         animation?.cancel()
+
         itemView.pbTopProgress.progress = 0
     }
 

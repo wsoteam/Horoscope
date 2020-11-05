@@ -35,11 +35,35 @@ class StoriesOnboardActivity : AppCompatActivity(R.layout.stories_onboard_activi
         textsList = resources.getStringArray(R.array.stories_onboard_texts)
 
         rvTopProgress.layoutManager = GridLayoutManager(this, 5)
-        topProgressAdapter = TopProgressAdapter()
+        topProgressAdapter = TopProgressAdapter(object : IStories{
+            override fun onFinish() {
+                close()
+            }
+
+            override fun onNext() {
+                vpStories.setCurrentItem(vpStories.currentItem + 1, true)
+            }
+
+            override fun onPrevious() {
+                vpStories.setCurrentItem(vpStories.currentItem - 1, true)
+            }
+        })
+        
         rvTopProgress.adapter = topProgressAdapter
         topProgressAdapter!!.start()
 
         vpStories.adapter = StoriesPagerAdapter(getFragmentsList(), supportFragmentManager)
+        vpStories.setOnTouchListener { v, event ->
+            return@setOnTouchListener true
+        }
+
+        flNext.setOnClickListener {
+            topProgressAdapter!!.next()
+        }
+
+        flPrevious.setOnClickListener {
+            topProgressAdapter!!.previous()
+        }
     }
 
     private fun getFragmentsList(): List<Fragment> {
@@ -48,5 +72,9 @@ class StoriesOnboardActivity : AppCompatActivity(R.layout.stories_onboard_activi
             list.add(StoriesPageFragment.newInstance(textsList!![i], imgsIds[i]))
         }
         return list
+    }
+
+    private fun close(){
+
     }
 }
