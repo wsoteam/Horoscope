@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding
+package com.wsoteam.horoscopes.utils
 
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.R

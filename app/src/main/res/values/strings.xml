@@ -224,9 +224,9 @@
 
     <string-array name="prices">
         <item>no_ads_start</item>
-        <item>no_ads_start</item>
-        <item>no_ads_start</item>
-        <item>no_ads_start</item>
+        <item>premium_24.9</item>
+        <item>premium_49.9</item>
+        <item>premium_99.9</item>
     </string-array>
 
 
