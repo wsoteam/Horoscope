@@ -15,6 +15,14 @@
         <item name="android:navigationBarColor">@color/main_violet</item>
     </style>
 
+
+    <style name="EnterActivityStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#2d2c52</item>
+        <item name="colorPrimaryDark">#2d2c52</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:navigationBarColor">@color/main_violet</item>
+    </style>
+
     <style name="Form" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">#c8bdb2</item>
         <item name="colorPrimaryDark">#c8bdb2</item>
