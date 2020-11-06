@@ -39,6 +39,7 @@ object PreferencesProvider {
     const val SCREEN_URI_TAG = "SCREEN_URI_TAG"
     const val BAN_FREQUENCY_TAG = "BAN_FREQUENCY_TAG"
     const val PRICE_INDEX_TAG = "PRICE_INDEX_TAG"
+    const val SHOW_ONBOARD_TAG = "SHOW_ONBOARD_TAG"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -140,5 +141,9 @@ object PreferencesProvider {
     var priceIndex: Int
         get() = getInstance()?.getInt(PRICE_INDEX_TAG, 0)!!
         set(value) = editor { it?.putInt(PRICE_INDEX_TAG, value) }!!
+
+    var isShowOnboard: Boolean
+        get() = getInstance()?.getBoolean(SHOW_ONBOARD_TAG, false)!!
+        set(value) = editor { it?.putBoolean(SHOW_ONBOARD_TAG, value) }!!
 
 }

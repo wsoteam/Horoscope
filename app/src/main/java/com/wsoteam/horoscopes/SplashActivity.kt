@@ -22,6 +22,7 @@ import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -51,7 +52,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     lateinit var vm: MainVM
 
 
-    private fun postGoNext(i: Int, tag : String) {
+    private fun postGoNext(i: Int, tag: String) {
         counter += i
         L.log("postGoNext -- $counter -- $tag")
         if (counter >= MAX) {
@@ -69,8 +70,14 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             intent = Intent(this, MainActivity::class.java)
             L.log("main activity enter")
         } else {
-            intent = Intent(this, FormActivity::class.java)
-            L.log("formActivity enter")
+            if (!PreferencesProvider.isShowOnboard) {
+                PreferencesProvider.isShowOnboard = true
+                intent = Intent(this, EnterActivity::class.java)
+                L.log("Enter activity enter")
+            } else {
+                intent = Intent(this, FormActivity::class.java)
+                L.log("formActivity enter")
+            }
         }
         startActivity(intent)
         finish()
@@ -85,8 +92,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             .of(this)
             .get(MainVM::class.java)
         vm.preLoadData()
-        if (PreferencesProvider.getBirthday() != ""){
-            CacheData.setObserver(object : ICachedData{
+        if (PreferencesProvider.getBirthday() != "") {
+            CacheData.setObserver(object : ICachedData {
                 override fun cachedDataReady() {
                     makeCurrentScreen(CacheData.getCachedData()!!)
                     CacheData.removeObservers()
@@ -118,7 +125,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
         try {
             trackUser()
-        }catch (ex : Exception){
+        } catch (ex: Exception) {
             L.log("crash")
             Analytic.crashAttr()
         }
@@ -144,7 +151,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             resources.obtainTypedArray(R.array.imgs_signs)
                 .getResourceId(index, -1)
         )
-        tvTitleStories.text = "${getString(R.string.my_horoscope_on)} ${Calendar.getInstance().get(Calendar.DAY_OF_MONTH)} ${Calendar.getInstance().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US) }"
+        tvTitleStories.text = "${getString(R.string.my_horoscope_on)} ${Calendar.getInstance()
+            .get(Calendar.DAY_OF_MONTH)} ${Calendar.getInstance()
+            .getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US)}"
         tvTextStories.setText(getCutText(it[index].today.text))
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -168,15 +177,15 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun getCutText(text: String): String {
         var array = text.split(".")
         var cutString = ""
-        for(i in 0..1){
+        for (i in 0..1) {
             cutString = "$cutString${array[i]}. "
         }
         return cutString
     }
 
-    private fun saveImage(bitmap: Bitmap, context: Context) : Uri?{
+    private fun saveImage(bitmap: Bitmap, context: Context): Uri? {
         var imagesFolder = File(context.cacheDir, "images")
-        var uri : Uri? = null
+        var uri: Uri? = null
 
         try {
             imagesFolder.mkdirs()
@@ -187,7 +196,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             outputStream.flush()
             outputStream.close()
             uri = FileProvider.getUriForFile(context, "com.mydomain.fileprovider", file)
-        }catch (ex : Exception){
+        } catch (ex: Exception) {
             L.log("save error")
         }
         return uri
@@ -217,12 +226,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             } else {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
-            setABTestConfig(firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING), firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt())
+            setABTestConfig(
+                firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING),
+                firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt()
+            )
         }
     }
 
-    private fun setABTestConfig(version: String, priceIndex : Int) {
+    private fun setABTestConfig(version: String, priceIndex: Int) {
         L.log("set test")
+        L.log("$priceIndex")
         PreferencesProvider.setVersion(version)
         PreferencesProvider.priceIndex = priceIndex
         Analytic.setABVersion(version, priceIndex)

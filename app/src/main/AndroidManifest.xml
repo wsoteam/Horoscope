@@ -69,11 +69,11 @@
             android:name="com.wsoteam.horoscopes.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.form.FormActivity"
@@ -109,13 +109,6 @@
             android:name=".presentation.onboarding.EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" >
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
