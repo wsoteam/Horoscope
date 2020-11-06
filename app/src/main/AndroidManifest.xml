@@ -79,15 +79,37 @@
             android:name=".presentation.form.FormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Form" />
+
         <activity
             android:name=".presentation.premium.PremiumHostActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Premium" />
 
         <activity
+            android:name=".presentation.onboarding.FinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.AppsTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.SubscriptionTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.PrivacyPoliceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
             android:name=".presentation.onboarding.EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" >
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

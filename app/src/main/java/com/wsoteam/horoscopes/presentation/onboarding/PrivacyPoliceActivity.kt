@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.presentation.form.FormActivity
-import kotlinx.android.synthetic.main.finish_activity.*
+import kotlinx.android.synthetic.main.privacy_police_activity.*
 
-class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
+class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +17,6 @@ class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
     }
 
     private fun openNext(){
-        startActivity(Intent(this, FormActivity::class.java))
+        startActivity(Intent(this, FinishActivity::class.java))
     }
 }

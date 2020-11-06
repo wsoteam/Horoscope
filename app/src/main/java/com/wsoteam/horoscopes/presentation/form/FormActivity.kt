@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
@@ -23,7 +24,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PreferencesProvider.setBeforePremium(Analytic.form_premium)
+        //PreferencesProvider.setBeforePremium(Analytic.form_premium)
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         edtBirthdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -85,7 +86,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
         ivNext.setOnClickListener {
             PreferencesProvider.setName(edtName.text.toString())
             PreferencesProvider.setBirthday(edtBirthdate.text.toString())
-            startActivity(Intent(this, PremiumHostActivity::class.java).putExtra(Config.OPEN_PREM, Config.OPEN_PREM_FROM_REG))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
