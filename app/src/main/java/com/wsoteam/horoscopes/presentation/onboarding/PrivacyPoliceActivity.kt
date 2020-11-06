@@ -19,4 +19,6 @@ class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity
     private fun openNext(){
         startActivity(Intent(this, FinishActivity::class.java))
     }
+
+
 }

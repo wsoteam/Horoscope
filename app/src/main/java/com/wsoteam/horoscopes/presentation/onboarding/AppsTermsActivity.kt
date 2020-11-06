@@ -19,4 +19,6 @@ class AppsTermsActivity : AppCompatActivity(R.layout.app_terms_activity) {
     private fun openNext(){
         startActivity(Intent(this, SubscriptionTermsActivity::class.java))
     }
+
+
 }

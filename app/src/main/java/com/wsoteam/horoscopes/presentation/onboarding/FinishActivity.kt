@@ -20,4 +20,6 @@ class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
     private fun openNext(){
         startActivity(Intent(this, FormActivity::class.java))
     }
+
+
 }

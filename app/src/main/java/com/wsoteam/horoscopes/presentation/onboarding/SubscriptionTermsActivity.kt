@@ -19,4 +19,6 @@ class SubscriptionTermsActivity: AppCompatActivity(R.layout.subscription_terms_a
     private fun openNext(){
         startActivity(Intent(this, PrivacyPoliceActivity::class.java))
     }
+
+
 }

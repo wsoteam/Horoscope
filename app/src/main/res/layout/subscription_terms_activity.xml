@@ -14,8 +14,7 @@
         android:letterSpacing="0.04"
         android:lineSpacingExtra="6.3sp"
         android:text="App’s Subscription Terms"
-        android:layout_marginEnd="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="41dp"
         android:layout_marginStart="16dp"
         />
 
@@ -24,13 +23,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_close_app_terms"
         android:padding="16dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="end"
         android:id="@+id/ivClose"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp">
+        android:layout_marginTop="81dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
         android:id="@+id/btnPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="@font/open_sans_regular"
         android:letterSpacing="0.09"
         android:lineSpacingExtra="2sp"

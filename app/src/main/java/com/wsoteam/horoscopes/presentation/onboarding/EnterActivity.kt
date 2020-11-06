@@ -19,4 +19,6 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
     private fun openNext(){
         startActivity(Intent(this, AppsTermsActivity::class.java))
     }
+
+
 }
