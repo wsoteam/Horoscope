@@ -38,6 +38,7 @@ import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.interceptor.ShareBroadcast
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.show(mainFragment).commit()
         window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(true)
-        if (PreferencesProvider.isADEnabled()) {
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
             adView.visibility = View.VISIBLE
         }
     }
@@ -141,7 +142,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.show(ballFragment).commit()
         window.statusBarColor = Color.rgb(0, 0, 0)
         changeNavigationState(false)
-        if (PreferencesProvider.isADEnabled()) {
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
             adView.visibility = View.VISIBLE
         }
     }
@@ -180,7 +181,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
 
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
-        if (PreferencesProvider.isADEnabled()) {
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
             adView.visibility = View.VISIBLE
             adView.loadAd(AdRequest.Builder().build())
         }
@@ -234,7 +235,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        startActivity(Intent(this, StoriesOnboardActivity::class.java))
+        //startActivity(Intent(this, StoriesOnboardActivity::class.java))
     }
 
     override fun onResume() {

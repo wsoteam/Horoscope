@@ -27,6 +27,8 @@ object Config {
 
 
     val IS_NEED_LOGGING = true
+    val NEED_LOAD = true
+    val DEFAULT_FREQUENCY_BANNER = 0
 
     //Stories
     val INDEX_SIGN = "INDEX_SIGN"

@@ -25,6 +25,7 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
@@ -78,6 +79,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        BannerFrequency.runSetup()
 
         var vm = ViewModelProviders
             .of(this)
