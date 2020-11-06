@@ -47,7 +47,7 @@ import java.util.concurrent.TimeUnit
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     var counter = 0
-    var MAX = 5
+    var MAX = 4
     var isNextScreenLoading = false
     lateinit var vm: MainVM
 
@@ -112,7 +112,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             AdWorker.adCallbacks = object : AdCallbacks {
                 override fun onAdClosed() {
                     Log.e("LOL", "onAdClosed")
-
                     postGoNext(2, "onAdClosed")
                     AdWorker.unSubscribe()
                 }
@@ -122,6 +121,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     MAX++
                 }
             }
+        }else{
+            postGoNext(2, "firstEnter")
         }
         try {
             trackUser()
@@ -158,11 +159,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(2)
-            makeImage()
+            //makeImage()
         }
     }
 
-    private fun makeImage() {
+    /*private fun makeImage() {
         var view = findViewById<View>(R.id.llParentLayout)
         view.isDrawingCacheEnabled = true
         view.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
@@ -172,7 +173,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
         PreferencesProvider.screenURI = uri.toString()
         postGoNext(1, "screenURI")
-    }
+    }*/
 
     private fun getCutText(text: String): String {
         var array = text.split(".")

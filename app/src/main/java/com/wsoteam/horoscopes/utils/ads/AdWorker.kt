@@ -6,6 +6,7 @@ import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.loger.L
 import kotlin.random.Random
 
 object AdWorker {
@@ -44,10 +45,13 @@ object AdWorker {
                     adCallbacks?.onAdLoaded()
                     if (isNeedShowInter){
                         showInter()
+                    }else{
+                        adCallbacks?.onAdClosed()
                     }
                 }
 
                 override fun onAdFailedToLoad(p0: Int) {
+                    L.log("onAdFailedToLoad")
                     counterFailed ++
                     if (counterFailed <= MAX_QUERY){
                         reload()

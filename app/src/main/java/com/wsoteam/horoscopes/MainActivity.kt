@@ -236,7 +236,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        startActivity(Intent(this, EnterActivity::class.java))
+        //startActivity(Intent(this, EnterActivity::class.java))
     }
 
     override fun onResume() {
