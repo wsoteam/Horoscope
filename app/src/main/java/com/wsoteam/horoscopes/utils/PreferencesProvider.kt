@@ -38,6 +38,7 @@ object PreferencesProvider {
     const val FIRST_ENTER_TAG = "FIRST_ENTER_TAG"
     const val SCREEN_URI_TAG = "SCREEN_URI_TAG"
     const val BAN_FREQUENCY_TAG = "BAN_FREQUENCY_TAG"
+    const val PRICE_INDEX_TAG = "PRICE_INDEX_TAG"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -135,5 +136,9 @@ object PreferencesProvider {
     var banPercent: Int
         get() = getInstance()?.getInt(BAN_FREQUENCY_TAG, 0)!!
         set(value) = editor { it?.putInt(BAN_FREQUENCY_TAG, value) }!!
+
+    var priceIndex: Int
+        get() = getInstance()?.getInt(PRICE_INDEX_TAG, 0)!!
+        set(value) = editor { it?.putInt(PRICE_INDEX_TAG, value) }!!
 
 }

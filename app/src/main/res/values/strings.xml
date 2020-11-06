@@ -222,4 +222,12 @@
     </string-array>
 
 
+    <string-array name="prices">
+        <item>no_ads_start</item>
+        <item>no_ads_start</item>
+        <item>no_ads_start</item>
+        <item>no_ads_start</item>
+    </string-array>
+
+
 </resources>

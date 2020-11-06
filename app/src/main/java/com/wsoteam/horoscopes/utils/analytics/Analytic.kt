@@ -18,6 +18,7 @@ object Analytic {
 
     private val set_ver = "set_ver"
     private val AB = "AB"
+    private val PRICE = "PRICE"
 
     //New analytics consts
     private val BIRTHDAY = "birthday"
@@ -164,10 +165,16 @@ object Analytic {
         Amplitude.getInstance().identify(identify)
     }
 
-    fun setABVersion(version: String) {
-        var identify = Identify().set(AB, version)
+    fun setABVersion(version: String, priceIndex : Int) {
+        var identify = Identify().set(AB, version).set(PRICE, priceIndex)
         Amplitude.getInstance().identify(identify)
     }
+
+    /*3 дня:
+    - 9.99$
+    - 24.99$
+    - 49.99$
+    - 99.99$*/
 
     /////////Composite
 

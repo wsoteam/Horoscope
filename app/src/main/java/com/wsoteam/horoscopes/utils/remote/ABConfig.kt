@@ -7,4 +7,6 @@ object ABConfig {
     const val A = "slide"
     const val B = "def"
 
+    const val REQUEST_STRING_PRICE = "prices"
+
 }

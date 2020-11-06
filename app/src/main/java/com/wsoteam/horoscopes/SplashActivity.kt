@@ -217,14 +217,15 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             } else {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
-            setABTestConfig(firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING))
+            setABTestConfig(firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING), firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt())
         }
     }
 
-    private fun setABTestConfig(version: String) {
+    private fun setABTestConfig(version: String, priceIndex : Int) {
         L.log("set test")
         PreferencesProvider.setVersion(version)
-        Analytic.setABVersion(version)
+        PreferencesProvider.priceIndex = priceIndex
+        Analytic.setABVersion(version, priceIndex)
         Analytic.setVersion()
         postGoNext(1, "setABTestConfig")
     }
