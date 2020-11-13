@@ -40,6 +40,7 @@ object PreferencesProvider {
     const val BAN_FREQUENCY_TAG = "BAN_FREQUENCY_TAG"
     const val PRICE_INDEX_TAG = "PRICE_INDEX_TAG"
     const val SHOW_ONBOARD_TAG = "SHOW_ONBOARD_TAG"
+    const val IS_SETUPED_TAG = "IS_SETUPED_TAG"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -145,5 +146,9 @@ object PreferencesProvider {
     var isShowOnboard: Boolean
         get() = getInstance()?.getBoolean(SHOW_ONBOARD_TAG, false)!!
         set(value) = editor { it?.putBoolean(SHOW_ONBOARD_TAG, value) }!!
+
+    var isSetuped: Boolean
+        get() = getInstance()?.getBoolean(IS_SETUPED_TAG, false)!!
+        set(value) = editor { it?.putBoolean(IS_SETUPED_TAG, value) }!!
 
 }

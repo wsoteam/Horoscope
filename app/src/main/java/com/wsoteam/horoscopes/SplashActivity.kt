@@ -2,17 +2,23 @@ package com.wsoteam.horoscopes
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.tv.TvContract.Programs.Genres.encode
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
+import android.util.Base64.encode
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
 import com.amplitude.api.Amplitude
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
+import com.facebook.appevents.AppEventsLogger
+import com.google.android.gms.common.util.Base64Utils.encode
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wsoteam.horoscopes.models.Sign
@@ -39,7 +45,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
-import java.lang.Exception
+import java.net.URLEncoder.encode
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -83,10 +91,38 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         finish()
     }
 
+    private fun getKey(){
+        val info: PackageInfo
+        try {
+            info = packageManager.getPackageInfo("com.wsoteam.horoscopes", PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                var md: MessageDigest
+                md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val something = String(Base64.encode(md.digest(), 0))
+                //String something = new String(Base64.encodeBytes(md.digest()));
+                Log.e("LOL", something)
+            }
+        } catch (e1: PackageManager.NameNotFoundException) {
+            Log.e("name not found", e1.toString())
+        } catch (e: NoSuchAlgorithmException) {
+            Log.e("no such an algorithm", e.toString())
+        } catch (e: Exception) {
+            Log.e("exception", e.toString())
+        }
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         BannerFrequency.runSetup()
+        if (!PreferencesProvider.isSetuped) {
+            AppEventsLogger
+                .newLogger(this)
+                .logEvent("fb_mobile_first_app_launch")
+            PreferencesProvider.isSetuped = true
+        }
 
         var vm = ViewModelProviders
             .of(this)

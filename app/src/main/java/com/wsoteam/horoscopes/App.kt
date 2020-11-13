@@ -6,6 +6,8 @@ import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
 import com.bugsee.library.Bugsee
 import com.facebook.FacebookSdk
+import com.facebook.LoggingBehavior
+import com.facebook.appevents.AppEventsConstants
 import com.facebook.appevents.AppEventsLogger
 import com.qonversion.android.sdk.Qonversion
 import com.smartlook.sdk.smartlook.Smartlook
@@ -28,7 +30,7 @@ class App : MultiDexApplication() {
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
         if(BuildConfig.DEBUG) {
-            Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
+            //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
         }
         Amplitude.getInstance()
             .initialize(this, getString(R.string.amplitude_id))
@@ -43,6 +45,12 @@ class App : MultiDexApplication() {
 
         Qonversion.initialize(this, getString(R.string.qonversion_id), Creator.getId())
         Smartlook.setupAndStartRecording(getString(R.string.smartlock_id))
+        FacebookSdk.sdkInitialize(this)
+        FacebookSdk.setAutoInitEnabled(true)
+        FacebookSdk.setAutoLogAppEventsEnabled(true)
+        AppEventsLogger.activateApp(applicationContext)
+
+
     }
 
     companion object {

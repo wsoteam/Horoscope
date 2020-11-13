@@ -30,12 +30,12 @@ object FBAnalytic {
     fun logTwoDays(context: Context) {
         AppEventsLogger
             .newLogger(context)
-            .logEvent("second_day")
+            .logEvent("secondDay")
     }
 
     fun logSevenDays(context: Context) {
         AppEventsLogger
             .newLogger(context)
-            .logEvent("seventh_day")
+            .logEvent("seventhDay")
     }
 }
