@@ -54,6 +54,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     var MAX = 4
     var isNextScreenLoading = false
     lateinit var vm: MainVM
+    var isAdLoaded = false
 
 
     private fun postGoNext(i: Int, tag: String) {
@@ -152,6 +153,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 override fun onAdLoaded() {
                     Log.e("LOL", "onAdLoaded")
                     MAX++
+                    isAdLoaded = true
                 }
             }
         }else{
@@ -165,7 +167,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
-            postGoNext(1, "sleep4")
+            if (isAdLoaded){
+                postGoNext(2, "sleep4")
+            }else{
+                postGoNext(1, "sleep4")
+            }
+            Log.e("LOL", "sleep")
         }
         if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null) {
             when (intent.getStringExtra(Config.OPEN_FROM_NOTIFY)) {
