@@ -1,16 +1,14 @@
 package com.wsoteam.horoscopes.utils.analytics
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import com.facebook.appevents.AppEventsConstants
 import com.facebook.appevents.AppEventsLogger
-import okhttp3copy.internal.Internal.logger
 
 
 object FBAnalytic {
 
-     fun logTrial(context: Context) {
+    fun logTrial(context: Context) {
         val params = Bundle()
         params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, "USD")
         AppEventsLogger
@@ -37,5 +35,16 @@ object FBAnalytic {
         AppEventsLogger
             .newLogger(context)
             .logEvent("seventhDay")
+    }
+
+    fun logFirstLaunch(context: Context) {
+        val params = Bundle()
+        params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, "email")
+        AppEventsLogger
+            .newLogger(context)
+            .logEvent(
+                AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION,
+                params
+            )
     }
 }

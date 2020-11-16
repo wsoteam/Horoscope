@@ -49,8 +49,6 @@ class App : MultiDexApplication() {
         FacebookSdk.setAutoInitEnabled(true)
         FacebookSdk.setAutoLogAppEventsEnabled(true)
         AppEventsLogger.activateApp(applicationContext)
-
-
     }
 
     companion object {

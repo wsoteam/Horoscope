@@ -5,11 +5,9 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.media.tv.TvContract.Programs.Genres.encode
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
-import android.util.Base64.encode
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -18,7 +16,6 @@ import com.amplitude.api.Amplitude
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.facebook.appevents.AppEventsLogger
-import com.google.android.gms.common.util.Base64Utils.encode
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wsoteam.horoscopes.models.Sign
@@ -45,7 +42,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
-import java.net.URLEncoder.encode
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -121,6 +117,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             AppEventsLogger
                 .newLogger(this)
                 .logEvent("fb_mobile_first_app_launch")
+            FBAnalytic.logFirstLaunch(this)
             PreferencesProvider.isSetuped = true
         }
 
