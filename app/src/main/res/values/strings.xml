@@ -214,6 +214,7 @@
     <string name="tips_and_predictions_for_every_day">Tips and predictions for every day</string>
     <string name="to_stories">To stories</string>
     <string name="my_horoscope_on">My Horoscope on</string>
+    <string name="shop_title">Crystal shop</string>
 
 
     <string-array name="stories_onboard_texts">
@@ -230,6 +231,39 @@
         <item>premium_24.9</item>
         <item>premium_49.9</item>
         <item>premium_99.9</item>
+    </string-array>
+
+    <integer-array name="crystals_ids">
+        <item>@drawable/ic_cristal_0</item>
+        <item>@drawable/ic_cristal_1</item>
+        <item>@drawable/ic_cristal_2</item>
+        <item>@drawable/ic_cristal_3</item>
+        <item>@drawable/ic_cristal_4</item>
+        <item>@drawable/ic_cristal_5</item>
+        <item>@drawable/ic_cristal_6</item>
+        <item>@drawable/ic_cristal_7</item>
+    </integer-array>
+
+    <string-array name="crystals_names">
+        <item>Ametist</item>
+        <item>Garnet</item>
+        <item>Icelandic spar</item>
+        <item>Lapis lazuli</item>
+        <item>Malachite</item>
+        <item>Rose quartz</item>
+        <item>Schorl</item>
+        <item>Fluorite</item>
+    </string-array>
+
+    <string-array name="crystals_prop">
+        <item>Health</item>
+        <item>Power and strength</item>
+        <item>Intuition</item>
+        <item>Success</item>
+        <item>Charm</item>
+        <item>Love</item>
+        <item>Wealth</item>
+        <item>Calm</item>
     </string-array>
 
 
