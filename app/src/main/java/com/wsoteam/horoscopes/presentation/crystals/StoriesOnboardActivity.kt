@@ -12,7 +12,6 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.crystals.controller.TopProgressAdapter
 import com.wsoteam.horoscopes.presentation.crystals.pager.StoriesPageFragment
 import com.wsoteam.horoscopes.presentation.crystals.pager.StoriesPagerAdapter
-import com.yandex.metrica.impl.ob.pb
 import kotlinx.android.synthetic.main.stories_onboard_activity.*
 
 

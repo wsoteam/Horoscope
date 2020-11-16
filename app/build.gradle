@@ -13,8 +13,8 @@ android {
         applicationId "com.wsoteam.horoscopes"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 16
-        versionName "1.0.15"
+        versionCode 17
+        versionName "1.0.16"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,7 +68,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.android.installreferrer:installreferrer:1.0'
-    implementation 'com.yandex.android:mobmetricalib:3.6.4'
+    implementation 'com.yandex.android:mobmetricalib:3.16.1'
 
     implementation 'com.amplitude:android-sdk:2.23.2'
 
@@ -99,7 +99,9 @@ dependencies {
 
     implementation 'com.bugfender.sdk:android:3.+'
     implementation 'com.qonversion.android.sdk:sdk:1.0.6'
-    implementation 'com.smartlook.recording:app:1.6.1-native'
+    /*implementation 'com.smartlook.recording:app:1.6.1-native'*/
 
     implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
+    implementation 'com.userexperior:userexperior-android:+'
+
 }

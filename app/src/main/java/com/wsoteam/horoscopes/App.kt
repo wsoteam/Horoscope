@@ -4,13 +4,10 @@ import android.os.Handler
 import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
-import com.bugsee.library.Bugsee
 import com.facebook.FacebookSdk
-import com.facebook.LoggingBehavior
-import com.facebook.appevents.AppEventsConstants
 import com.facebook.appevents.AppEventsLogger
 import com.qonversion.android.sdk.Qonversion
-import com.smartlook.sdk.smartlook.Smartlook
+import com.userexperior.UserExperior
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.id.Creator
 import com.yandex.metrica.YandexMetrica
@@ -31,6 +28,9 @@ class App : MultiDexApplication() {
         YandexMetrica.enableActivityAutoTracking(this)
         if(BuildConfig.DEBUG) {
             //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
+            UserExperior.startRecording(getApplicationContext(), getString(R.string.debug_user_expirior_id));
+        }else{
+            UserExperior.startRecording(getApplicationContext(), getString(R.string.release_user_expirior_id));
         }
         Amplitude.getInstance()
             .initialize(this, getString(R.string.amplitude_id))
@@ -44,7 +44,7 @@ class App : MultiDexApplication() {
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
         Qonversion.initialize(this, getString(R.string.qonversion_id), Creator.getId())
-        Smartlook.setupAndStartRecording(getString(R.string.smartlock_id))
+        //Smartlook.setupAndStartRecording(getString(R.string.smartlock_id))
         FacebookSdk.sdkInitialize(this)
         FacebookSdk.setAutoInitEnabled(true)
         FacebookSdk.setAutoLogAppEventsEnabled(true)
