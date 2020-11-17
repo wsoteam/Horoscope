@@ -68,7 +68,7 @@
             android:resource="@array/preloaded_fonts" />
 
 
-        <activity
+        <!--<activity
             android:name="com.wsoteam.horoscopes.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
@@ -77,10 +77,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>-->
 
 
-        <!--<activity
+        <activity
             android:name="com.wsoteam.horoscopes.presentation.crystals.shop.ListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
@@ -89,7 +89,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
 
 
         <activity

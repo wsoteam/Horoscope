@@ -244,6 +244,17 @@
         <item>@drawable/ic_cristal_7</item>
     </integer-array>
 
+    <integer-array name="types_ids">
+        <item>@drawable/ic_type_0</item>
+        <item>@drawable/ic_type_1</item>
+        <item>@drawable/ic_type_2</item>
+        <item>@drawable/ic_type_3</item>
+        <item>@drawable/ic_type_4</item>
+        <item>@drawable/ic_type_5</item>
+        <item>@drawable/ic_type_6</item>
+        <item>@drawable/ic_type_7</item>
+    </integer-array>
+
     <string-array name="crystals_names">
         <item>Ametist</item>
         <item>Garnet</item>

@@ -72,7 +72,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvNameCrystal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
@@ -88,7 +88,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvProp"
+                android:id="@+id/tvPropCrystal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
