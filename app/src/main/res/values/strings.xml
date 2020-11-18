@@ -215,6 +215,9 @@
     <string name="to_stories">To stories</string>
     <string name="my_horoscope_on">My Horoscope on</string>
     <string name="shop_title">Crystal shop</string>
+    <string name="to_look_at_it">To look at it</string>
+    <string name="congratulations">Сongratulations!</string>
+    <string name="alert_crystal_text">You have activated the %s crystal - a stone of success for 30 days. Study the energy of the stone with pure intent. \n\n Meditate on the image of the stone to feel the energy within you</string>
 
 
     <string-array name="stories_onboard_texts">
@@ -255,8 +258,20 @@
         <item>@drawable/ic_type_7</item>
     </integer-array>
 
+
+    <integer-array name="crystal_alert_ids">
+        <item>@drawable/img_alert_0</item>
+        <item>@drawable/img_alert_1</item>
+        <item>@drawable/img_alert_2</item>
+        <item>@drawable/img_alert_3</item>
+        <item>@drawable/img_alert_4</item>
+        <item>@drawable/img_alert_5</item>
+        <item>@drawable/img_alert_6</item>
+        <item>@drawable/img_alert_7</item>
+    </integer-array>
+
     <string-array name="crystals_names">
-        <item>Ametist</item>
+        <item>Amethyst</item>
         <item>Garnet</item>
         <item>Icelandic spar</item>
         <item>Lapis lazuli</item>

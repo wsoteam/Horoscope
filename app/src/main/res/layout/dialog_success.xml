@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="95dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/main_violet">
+            
+            <ImageView
+                android:id="@+id/ivCloseCrystalAlert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close_crystal_alert"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingBottom="6dp"
+                android:layout_gravity="end"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.04"
+                android:lineSpacingExtra="4.6sp"
+                android:text="@string/congratulations"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                />
+
+            <TextView
+                android:id="@+id/tvCrystalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.06"
+                android:lineSpacingExtra="4.9sp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/alert_crystal_text"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/img_alert_0"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:id="@+id/ivAlertCrystal"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.09"
+                android:lineSpacingExtra="2sp"
+                android:gravity="center_horizontal"
+                tools:text="Смотреть"
+                android:paddingBottom="10dp"
+                android:paddingStart="23dp"
+                android:paddingEnd="23dp"
+                android:paddingTop="10dp"
+                android:id="@+id/tvShow"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/to_look_at_it"
+                />
+
+            
+            
+            
+        </LinearLayout>
+        
+        
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.crystals.shop.controller.ListShopAdapter
+import com.wsoteam.horoscopes.presentation.crystals.shop.dialogs.DialogSuccess
 import kotlinx.android.synthetic.main.crystal_details.*
 import kotlinx.android.synthetic.main.list_activity.*
 
@@ -14,6 +15,7 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
 
     var imgsIds: IntArray? = null
     var imgIdsType: IntArray? = null
+    var alertImgIds: IntArray? = null
     var names: Array<String>? = null
     var props: Array<String>? = null
     var details: Array<String>? = null
@@ -21,6 +23,9 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
     var adapter : ListShopAdapter? = null
 
     var bsCrystal : BottomSheetBehavior<LinearLayout>? = null
+
+
+    var currentId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,7 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         details = resources.getStringArray(R.array.crystals_details)
         imgsIds = getIndexes(names!!.size, R.array.crystals_ids)
         imgIdsType = getIndexes(names!!.size, R.array.types_ids)
+        alertImgIds = getIndexes(names!!.size, R.array.crystal_alert_ids)
 
         adapter = ListShopAdapter(imgsIds!!, names!!, props!!, object : IListShop{
             override fun open(position: Int) {
@@ -43,6 +49,10 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         bsCrystal = BottomSheetBehavior.from(llBSCrystal)
         ivClose.setOnClickListener {
             bsCrystal!!.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
+        btnActivate.setOnClickListener {
+            DialogSuccess.newInstance(alertImgIds!![currentId], names!![currentId]).show(supportFragmentManager, "")
         }
 
     }
@@ -66,6 +76,7 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         tvNameCrystal.text = names!![position]
         tvPropCrystal.text = props!![position]
         tvDetails.text = details!![position]
+        currentId = position
     }
 
     private fun getIndexes(size: Int, arrayId: Int): IntArray? {

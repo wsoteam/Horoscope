@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_countdown"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="21dp"/>
+                    android:layout_marginTop="18dp"/>
 
                 <ImageView
                     android:id="@+id/ivClose"
@@ -131,7 +131,7 @@
 
 
             <Button
-                android:id="@+id/btnNuyPremium"
+                android:id="@+id/btnBuyPremium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Купить премиум"
@@ -147,6 +147,7 @@
                 android:paddingStart="28dp"
                 android:paddingBottom="12dp"
                 android:paddingEnd="28dp"
+                android:visibility="gone"
                 android:paddingTop="12dp"/>
 
             <TextView
@@ -164,10 +165,31 @@
                 android:paddingEnd="28dp"
                 android:paddingBottom="12dp"
                 android:paddingStart="28dp"
+                android:visibility="gone"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center_horizontal"
                 />
+
+            <Button
+                android:id="@+id/btnActivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Купить премиум"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape_buy_crystal"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.09"
+                android:lineSpacingExtra="2sp"
+                android:paddingStart="28dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="28dp"
+                android:paddingTop="12dp"/>
 
 
 
