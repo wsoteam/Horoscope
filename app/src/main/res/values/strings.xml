@@ -220,6 +220,7 @@
     <string name="alert_crystal_text">You have activated the %s crystal - a stone of success for 30 days. Study the energy of the stone with pure intent. \n\n Meditate on the image of the stone to feel the energy within you</string>
     <string name="crystals">Crystals</string>
     <string name="my_crystals">My crystals</string>
+    <string name="the_effect_of_the_amethyst_crystal_will_expire_in">The effect of the Amethyst crystal will expire in:</string>
 
 
     <string-array name="stories_onboard_texts">
@@ -283,9 +284,9 @@
         <item>Fluorite</item>
     </string-array>
 
-    <string-array name="crystals_prop">
+        <string-array name="crystals_prop">
         <item>Health</item>
-        <item>Power and strength</item>
+        <item>Strong</item>
         <item>Intuition</item>
         <item>Success</item>
         <item>Charm</item>
