@@ -43,6 +43,7 @@ object Analytic {
     val ball_premium = "ball"
     val settings_premium = "settings"
     val crown_premium = "crown"
+    val crystals_premium = "crystals"
     val burger_premium = "burger"
     val nav_premium = "nav"
     val month_premium = "month"

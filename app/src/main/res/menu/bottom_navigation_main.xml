@@ -7,6 +7,11 @@
         android:title="@string/horoscope" />
 
     <item
+        android:id="@+id/bnv_crystals"
+        android:icon="@drawable/ic_crystals_bnv"
+        android:title="@string/crystals" />
+
+    <item
         android:id="@+id/bnv_prem"
         android:icon="@drawable/ic_prem_bnv"
         android:title="@string/premium" />

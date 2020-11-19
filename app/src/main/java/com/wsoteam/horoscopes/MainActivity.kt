@@ -26,12 +26,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.ball.BallFragment
-import com.wsoteam.horoscopes.presentation.crystals.StoriesOnboardActivity
+import com.wsoteam.horoscopes.presentation.crystals.main.CrystalsFragment
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
-import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
@@ -51,6 +50,13 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    companion object{
+        //States toolbars
+        const val SHOW_MAIN_TOOLBAR = 0
+        const val SHOW_CRYSTALS_TOOLBAR = 1
+        const val HIDE_ALL_TOOLBARS = -1
+    }
+
     lateinit var vm: MainVM
     var birthSignIndex = -1
     var lastIndex = 0
@@ -58,6 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var premFragment = PremiumFragment()
     var mainFragment = LoadFragment() as Fragment
     var ballFragment = BallFragment() as Fragment
+    var crystalsFragment = CrystalsFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -70,6 +77,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (it.itemId) {
             R.id.bnv_main -> {
                 openMainFragment()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bnv_crystals -> {
+                openCrystalsFragment()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_prem -> {
@@ -97,15 +108,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (ballFragment.isAdded) {
             transaction.hide(ballFragment)
         }
+        if (crystalsFragment.isAdded) {
+            transaction.hide(crystalsFragment)
+        }
         if (!mainFragment.isAdded) {
             transaction.add(R.id.flContainer, mainFragment)
         }
+
         transaction.show(mainFragment).commit()
         window.statusBarColor = Color.rgb(199, 189, 179)
-        changeNavigationState(true)
+        changeNavigationState(SHOW_MAIN_TOOLBAR)
         if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
             adView.visibility = View.VISIBLE
         }
+    }
+
+    fun openCrystalsFragment() {
+        L.log("openCrystalsFragment")
+        var transaction = supportFragmentManager.beginTransaction()
+        if (premFragment.isAdded) {
+            transaction.hide(premFragment)
+        }
+        if (ballFragment.isAdded) {
+            transaction.hide(ballFragment)
+        }
+        if (mainFragment.isAdded) {
+            transaction.hide(mainFragment)
+        }
+        if (!crystalsFragment.isAdded) {
+            transaction.add(R.id.flContainer, crystalsFragment)
+        }
+        transaction.show(crystalsFragment).commit()
+        window.statusBarColor = Color.rgb(45, 44, 82)
+        changeNavigationState(SHOW_CRYSTALS_TOOLBAR)
+        /*if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
+            adView.visibility = View.VISIBLE
+        }*/
+        adView.visibility = View.GONE
+
     }
 
     fun openPremiumFragment() {
@@ -117,12 +157,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (ballFragment.isAdded) {
             transaction.hide(ballFragment)
         }
+        if (crystalsFragment.isAdded) {
+            transaction.hide(crystalsFragment)
+        }
         if (!premFragment.isAdded) {
             transaction.add(R.id.flContainer, premFragment)
         }
         transaction.show(premFragment).commit()
         window.statusBarColor = Color.rgb(199, 189, 179)
-        changeNavigationState(false)
+        changeNavigationState(HIDE_ALL_TOOLBARS)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
         adView.visibility = View.GONE
     }
@@ -137,32 +180,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (premFragment.isAdded) {
             transaction.hide(premFragment)
         }
+        if (crystalsFragment.isAdded) {
+            transaction.hide(crystalsFragment)
+        }
         if (!ballFragment.isAdded) {
             transaction.add(R.id.flContainer, ballFragment)
         }
         transaction.show(ballFragment).commit()
         window.statusBarColor = Color.rgb(0, 0, 0)
-        changeNavigationState(false)
+        changeNavigationState(HIDE_ALL_TOOLBARS)
         if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
             adView.visibility = View.VISIBLE
         }
     }
 
 
-    private fun changeNavigationState(isVisible: Boolean) {
-        L.log("changeNavigationState -- $isVisible")
+    private fun changeNavigationState(state : Int) {
+        L.log("changeNavigationState -- $state")
         var container = clContainer as ConstraintLayout
         var params = container.layoutParams as CoordinatorLayout.LayoutParams
-        if (isVisible) {
-            params.behavior = AppBarLayout.ScrollingViewBehavior()
-            container.requestLayout()
-            ablMain.visibility = View.VISIBLE
-            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        } else {
-            params.behavior = null
-            container.requestLayout()
-            ablMain.visibility = View.GONE
-            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        when(state){
+            SHOW_MAIN_TOOLBAR -> {
+                params.behavior = AppBarLayout.ScrollingViewBehavior()
+                container.requestLayout()
+                toolbar.visibility = View.VISIBLE
+                tbCrystals.visibility = View.GONE
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            }
+            SHOW_CRYSTALS_TOOLBAR -> {
+                params.behavior = AppBarLayout.ScrollingViewBehavior()
+                container.requestLayout()
+                toolbar.visibility = View.GONE
+                tbCrystals.visibility = View.VISIBLE
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+            HIDE_ALL_TOOLBARS -> {
+                params.behavior = null
+                container.requestLayout()
+                toolbar.visibility = View.GONE
+                tbCrystals.visibility = View.GONE
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
         }
     }
 
@@ -177,6 +235,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         supportFragmentManager
             .beginTransaction()
+            .add(R.id.flContainer, CrystalsFragment())
             .add(R.id.flContainer, PremiumFragment())
             .add(R.id.flContainer, BallFragment())
             .commit()
@@ -189,8 +248,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
         if (PreferencesProvider.isADEnabled()) {
             ivToolPrem.visibility = View.VISIBLE
+            ivCrystalsPremium.visibility = View.VISIBLE
         } else {
             ivToolPrem.visibility = View.GONE
+            ivCrystalsPremium.visibility = View.GONE
         }
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
@@ -215,6 +276,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         ivToolPrem.setOnClickListener {
             PreferencesProvider.setBeforePremium(Analytic.crown_premium)
+            openPrem()
+            //bnvMain.selectedItemId = R.id.bnv_prem
+        }
+
+        ivCrystalsPremium.setOnClickListener {
+            PreferencesProvider.setBeforePremium(Analytic.crystals_premium)
             openPrem()
             //bnvMain.selectedItemId = R.id.bnv_prem
         }

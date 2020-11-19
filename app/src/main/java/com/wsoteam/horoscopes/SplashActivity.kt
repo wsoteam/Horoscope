@@ -168,9 +168,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
             if (isAdLoaded){
-                postGoNext(2, "sleep4")
-            }else{
                 postGoNext(1, "sleep4")
+            }else{
+                postGoNext(2, "sleep4")
             }
             Log.e("LOL", "sleep")
         }
