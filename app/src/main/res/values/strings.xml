@@ -221,6 +221,7 @@
     <string name="crystals">Crystals</string>
     <string name="my_crystals">My crystals</string>
     <string name="the_effect_of_the_amethyst_crystal_will_expire_in">The effect of the Amethyst crystal will expire in:</string>
+    <string name="charge">Зарядиться</string>
 
 
     <string-array name="stories_onboard_texts">

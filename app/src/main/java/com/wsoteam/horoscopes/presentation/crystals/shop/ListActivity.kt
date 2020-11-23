@@ -30,7 +30,6 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         names = resources.getStringArray(R.array.crystals_names)
         props = resources.getStringArray(R.array.crystals_prop)
         details = resources.getStringArray(R.array.crystals_details)

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        app:srcCompat="@drawable/shape_border_crystal_page"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <ImageView
+        android:layout_width="166dp"
+        android:layout_height="166dp"
+        android:id="@+id/ivCrystalMain"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_cristal_0"/>
+
+    <TextView
+        android:id="@+id/tvNameCrystal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:letterSpacing="0.04"
+        android:lineSpacingExtra="4.6sp"
+        android:gravity="center_horizontal"
+        tools:text="Ametist"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        />
+
+
+</FrameLayout>
