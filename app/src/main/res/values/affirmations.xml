@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="crystal_afir_0">
+        <item>Relax and feel the energy of health which flows through your entire body</item>
+        <item>Starting from the head, flowing through the whole body and ending with the tiptoes</item>
+        <item>The energy of the crystal fills your body with health and strength. You feel relieved and energized</item>
+        <item>Your immunity and spirit are getting stronger</item>
+    </string-array>
+
+    <string-array name="crystal_afir_1">
+        <item>You have a pleasant smile and a confident look on your face</item>
+        <item>You have a regal bearing. Relaxed shoulders</item>
+        <item>The energy of the crystal fills you with strength, you feel warmth in your hands. Hold this power by clenching your fist gently</item>
+        <item>Say mentally: “I influence people and events. This world is mine”</item>
+    </string-array>
+
+    <string-array name="crystal_afir_2">
+        <item>Think about the issue that concerns you. Slow down. See how the whole world stops.</item>
+        <item>Switch off logic and thoughts. Trust yourself. You have no fears</item>
+        <item>You already have a ready-made solution, just see it. The power of the crystal helps you hear your intuition.</item>
+        <item>Wait for a feeling of relief: it’ll mean that you’ve heard a decision coming from the heart</item>
+    </string-array>
+
+    <string-array name="crystal_afir_3">
+        <item>Breathe in and out calmly. Feel the balance within yourself</item>
+        <item>The crystal sends you a charge of energy, you disperse it throughout your body, it hits over the edge</item>
+        <item>Imagine doing what you love and getting great results</item>
+        <item>You control your life. You are happy with your achievements and multiply them</item>
+    </string-array>
+
+    <string-array name="crystal_afir_4">
+        <item>Feel how you want to smile, your eyes burn with joy</item>
+        <item>You’re charming and allow yourself to be loved. You like people, you have a genuine interest in them</item>
+        <item>The energy of the crystal fills you with lightness and attractiveness</item>
+        <item>Say mentally: “I radiate love. My charm conquers the world!”</item>
+    </string-array>
+
+    <string-array name="crystal_afir_5">
+        <item>Relax your shoulders and whole body. Feel the warmth and light in your heart</item>
+        <item>The light from your chest is love, every second it becomes brighter and fills all around</item>
+        <item>The love of the whole Universe is directed towards you through the crystal. You felt relieved.</item>
+        <item>Say mentally: “The world is beautiful, it loves me. Let me be happy!”</item>
+    </string-array>
+
+    <string-array name="crystal_afir_6">
+        <item>Your body is relaxed and your mind is clear. You’re here and now.</item>
+        <item>Imagine that you have an unlimited amount of money on your bank card. You can buy anything in any country in the world</item>
+        <item>Say mentally: “I trust myself, I\'m lucky”</item>
+        <item>Mentally send this image of yourself to the crystal. The world now considers you advantaged and directs flows of money to you</item>
+    </string-array>
+
+    <string-array name="crystal_afir_7">
+        <item>Breathe slowly. Inhale - exhale - pause</item>
+        <item>You have now stopped all your business. You’re surrounded by peace. Peace guards you.</item>
+        <item>The crystal fills every cell of your body with tranquility. Your body is getting heavy and your head is clear and light. </item>
+        <item>You’re power. You’re calmness. Nothing can move you</item>
+    </string-array>
+
+
+</resources>

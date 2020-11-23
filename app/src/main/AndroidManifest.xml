@@ -93,6 +93,12 @@
 
 
         <activity
+            android:name="com.wsoteam.horoscopes.presentation.crystals.charge.ChargeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash"/>
+
+
+        <activity
             android:name=".presentation.form.FormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Form" />

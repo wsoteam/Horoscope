@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_violet"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="@font/open_sans_regular"
+        android:gravity="end"
+        android:letterSpacing="0.09"
+        android:lineSpacingExtra="2sp"
+        android:padding="16dp"
+        android:text="@string/stop"
+        android:textColor="#c0ffffff"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivTypeCharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        tools:src="@drawable/ic_type_0" />
+
+    <TextView
+        android:id="@+id/tvNameTypeCharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.04"
+        android:lineSpacingExtra="3.7sp"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        tools:text="Health" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/tvCountdownCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="5.7sp"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:text="00:30" />
+
+        <ImageView
+            android:id="@+id/ivMusicState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="16dp"
+            android:src="@drawable/ic_music_off" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="138dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                android:layout_gravity="center"
+                app:lottie_fileName="charge.json"/>
+
+            <ImageView
+                android:id="@+id/ivMainCharge"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                tools:src="@drawable/ic_cristal_0"
+                android:elevation="3dp"/>
+
+
+        </FrameLayout>
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="122dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#242248">
+
+                <TextView
+                    android:id="@+id/tvAffir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:letterSpacing="0.06"
+                    android:lineSpacingExtra="4.9sp"
+                    tools:text="Starting from the head, flowing through the whole body and ending with the tiptoes"
+                    />
+
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -223,6 +223,7 @@
     <string name="the_effect_of_the_amethyst_crystal_will_expire_in">The effect of the Amethyst crystal will expire in:</string>
     <string name="charge">Charge</string>
     <string name="select_crystals">Select crystals</string>
+    <string name="stop">STOP</string>
 
 
     <string-array name="stories_onboard_texts">
