@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/main_violet">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="640dp"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/main_violet">
+    android:orientation="vertical">
     
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
@@ -101,12 +103,17 @@
         />
 
 
+
+
+</LinearLayout>
+
+
     <Button
         android:id="@+id/btnChargeCrystal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="74dp"
         android:background="@drawable/shape_charge_crystal"
         android:drawableStart="@drawable/ic_charge_crystal"
         android:drawablePadding="8dp"
@@ -121,8 +128,40 @@
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:layout_marginTop="21dp"/>
+        android:layout_marginTop="21dp" />
 
 
+    <FrameLayout
+        android:id="@+id/llShop"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_crystal_bottom_gradient">
 
-</LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#2e2c5c"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="4.6sp"
+            android:text="@string/select_crystals"
+            android:layout_gravity="center_vertical"
+            android:drawableStart="@drawable/ic_crystals_shop"
+            android:drawablePadding="16dp"
+            android:layout_marginStart="16dp"
+            />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_play_shop"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp"/>
+
+    </FrameLayout>
+
+</FrameLayout>
