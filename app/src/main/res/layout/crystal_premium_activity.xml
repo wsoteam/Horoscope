@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_violet">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivCloseCrystalPremium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="16dp"
+            android:src="@drawable/ic_close_crystal_premium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/full_access"
+            android:textColor="#ffffff"
+            android:textSize="28sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/get_unlimited_access_to_all_crystals"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="37dp"
+            android:src="@drawable/img_crystal_prem" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="38dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/in_addition"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_crystal_prem_list_0"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/no_advertising"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_crystal_prem_list_1"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/full_access_to_the_horoscope"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+
+        <TextView
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_crystal_prem_list_2"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/unlimited_quest"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+
+        <Button
+            android:id="@+id/btnPayCrystal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_crystal_prem"
+            android:fontFamily="@font/open_sans_regular"
+            android:letterSpacing="0.09"
+            android:lineSpacingExtra="2sp"
+            android:paddingStart="28dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="28dp"
+            android:paddingBottom="12dp"
+            android:text="@string/start_using_for_free"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

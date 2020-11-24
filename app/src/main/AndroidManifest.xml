@@ -97,6 +97,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Splash"/>
 
+        <activity
+            android:name=".presentation.crystals.premium.CrystalPremiumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash"/>
+
 
         <activity
             android:name=".presentation.form.FormActivity"

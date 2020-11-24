@@ -224,6 +224,13 @@
     <string name="charge">Charge</string>
     <string name="select_crystals">Select crystals</string>
     <string name="stop">STOP</string>
+    <string name="full_access">Full access</string>
+    <string name="get_unlimited_access_to_all_crystals">Get unlimited access to all crystals</string>
+    <string name="in_addition">In addition</string>
+    <string name="no_advertising">No advertising</string>
+    <string name="full_access_to_the_horoscope">Full access to the horoscope</string>
+    <string name="unlimited_quest">Unlimited questions to the Magic ball</string>
+    <string name="start_using_for_free">Start using for free</string>
 
 
     <string-array name="stories_onboard_texts">
