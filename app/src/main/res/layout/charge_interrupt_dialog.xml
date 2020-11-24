@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="280dp"
+        android:layout_height="189dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="#de000000"
+                android:letterSpacing="0.06"
+                android:lineSpacingExtra="4sp"
+                android:text="@string/would_you_like_to_complete_your_crystal_energizing_session"
+                android:layout_marginTop="38dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom|end">
+
+                <TextView
+                    android:id="@+id/tvBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#2e2c5c"
+                    android:letterSpacing="0.09"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:text="@string/back"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#2e2c5c"
+                    android:letterSpacing="0.09"
+                    android:lineSpacingExtra="2sp"
+                    android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:text="@string/yes"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp"
+                    />
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
