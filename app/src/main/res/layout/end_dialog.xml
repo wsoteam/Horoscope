@@ -20,58 +20,62 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="46dp"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/open_sans_semibold"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
                 android:letterSpacing="0.04"
                 android:lineSpacingExtra="4.6sp"
-                android:text="@string/you_are_energized"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+                android:text="@string/the_effect_of_the_amethyst_crystal_will_expire_in_30_minutes"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
                 android:letterSpacing="0.06"
                 android:lineSpacingExtra="4.9sp"
-                android:text="@string/try_to_keep_the"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:text="@string/manage_to_en"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="19dp"
+                />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="18dp"
-                android:src="@drawable/img_charge_succes" />
+                android:layout_marginTop="24dp"
+                android:src="@drawable/img_end_crystal"/>
 
             <TextView
-                android:id="@+id/tvOkChargeSuccess"
+                android:id="@+id/tvOkEndCrystal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="18dp"
                 android:fontFamily="@font/open_sans_regular"
-                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
                 android:letterSpacing="0.09"
                 android:lineSpacingExtra="2sp"
-                android:padding="18dp"
-                android:text="@string/great"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/ok"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="54dp"
+                android:paddingEnd="54dp"
+                android:layout_marginTop="21dp"
                 android:textAllCaps="true"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
+                />
 
         </LinearLayout>
-
 
     </androidx.cardview.widget.CardView>
 
