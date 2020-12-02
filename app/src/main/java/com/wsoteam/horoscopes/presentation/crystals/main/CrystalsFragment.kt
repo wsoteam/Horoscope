@@ -61,6 +61,23 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
         llShop.setOnClickListener {
             startActivity(Intent(activity, ListActivity::class.java))
         }
+
+        ivNextCrystal.setOnClickListener {
+            vpCrystals.currentItem = vpCrystals.currentItem + 1
+        }
+
+        ivPrevCrystal.setOnClickListener {
+            vpCrystals.currentItem = vpCrystals.currentItem - 1
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fillExistIds()
+        vpCrystals.adapter = CrystalsPagerAdapter(getCrystalsList(), childFragmentManager)
+        typeAdapter = TypeAdapter(getTypesImgs(), getTypesNames())
+        rvTypes.adapter = typeAdapter
+
         vpCrystals.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
             }
@@ -73,17 +90,25 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
+                if (buyedIds.size > 0) {
+                    if (position == 0) {
+                        ivPrevCrystal.setImageResource(R.drawable.ic_crystal_prev_inactive)
+                        ivPrevCrystal.isActivated = false
+                    }else{
+                        ivPrevCrystal.setImageResource(R.drawable.ic_crystal_prev_active)
+                        ivPrevCrystal.isActivated = true
+                    }
+
+                    if (position == buyedIds.size - 1){
+                        ivNextCrystal.setImageResource(R.drawable.ic_crystal_next_inactive)
+                        ivNextCrystal.isActivated = false
+                    }else{
+                        ivNextCrystal.setImageResource(R.drawable.ic_crystal_next_active)
+                        ivNextCrystal.isActivated = true
+                    }
+                }
             }
         })
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        fillExistIds()
-        vpCrystals.adapter = CrystalsPagerAdapter(getCrystalsList(), childFragmentManager)
-        typeAdapter = TypeAdapter(getTypesImgs(), getTypesNames())
-        rvTypes.adapter = typeAdapter
     }
 
     private fun getTypesNames(): ArrayList<String> {
