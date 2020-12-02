@@ -240,6 +240,7 @@
     <string name="ok">Ок</string>
     <string name="the_effect_of_the_amethyst_crystal_will_expire_in_30_minutes">The effect of the Amethyst crystal will expire in 30 minutes!</string>
     <string name="manage_to_en">Manage to energize from the crystal, the effect of its magic on your life sphere is coming to an end. You can extend the effect of the crystal by activating it again.</string>
+    <string name="_30_days">30 days</string>
 
 
     <string-array name="stories_onboard_texts">
@@ -312,6 +313,17 @@
         <item>Love</item>
         <item>Wealth</item>
         <item>Calm</item>
+    </string-array>
+
+    <string-array name="sub_ids">
+        <item>inapp_amethyst</item>
+        <item>inapp_garnet</item>
+        <item>inapp__icelandic</item>
+        <item>inapp_lapis</item>
+        <item>inapp_malachite</item>
+        <item>inapp_rose</item>
+        <item>inapp_schorl</item>
+        <item>inapp_fluorite</item>
     </string-array>
 
 

@@ -22,22 +22,22 @@ class CrystalPremiumActivity : AppCompatActivity(R.layout.crystal_premium_activi
             finish()
         }
 
-        btnPayCrystal.setOnClickListener { _ ->
+        /*btnPayCrystal.setOnClickListener { _ ->
             SubscriptionProvider.startChoiseSub(this, Config.ID_PRICE, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
                 }
             })
-        }
+        }*/
     }
 
 
-    private fun handlInApp() {
+    /*private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
         FirebaseAnalytics.getInstance(requireContext()).logEvent("trial", null)
         FBAnalytic.logTrial(activity!!)
         PreferencesProvider.setADStatus(false)
         openNextScreen()
-    }
+    }*/
 }

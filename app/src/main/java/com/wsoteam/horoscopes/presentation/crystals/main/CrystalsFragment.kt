@@ -12,6 +12,7 @@ import com.wsoteam.horoscopes.presentation.crystals.charge.ChargeActivity
 import com.wsoteam.horoscopes.presentation.crystals.main.controller.TypeAdapter
 import com.wsoteam.horoscopes.presentation.crystals.main.pager.CrystalPageFragment
 import com.wsoteam.horoscopes.presentation.crystals.main.pager.CrystalsPagerAdapter
+import com.wsoteam.horoscopes.presentation.crystals.shop.ListActivity
 import kotlinx.android.synthetic.main.crystals_fragment.*
 
 class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
@@ -54,6 +55,10 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
 
         btnChargeCrystal.setOnClickListener {
             openChargeActivity()
+        }
+
+        llShop.setOnClickListener {
+            startActivity(Intent(activity, ListActivity::class.java))
         }
 
     }

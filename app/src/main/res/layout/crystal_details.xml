@@ -39,7 +39,7 @@
                     android:letterSpacing="0.06"
                     android:lineSpacingExtra="4sp"
                     android:gravity="center_vertical"
-                    android:text="30 дней"
+                    android:text="@string/_30_days"
                     android:layout_marginStart="48dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="8dp"
@@ -171,11 +171,12 @@
                 android:layout_gravity="center_horizontal"
                 />
 
+
             <Button
                 android:id="@+id/btnActivate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Купить премиум"
+                android:text="Активировать"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center_horizontal"
@@ -189,8 +190,30 @@
                 android:paddingStart="28dp"
                 android:paddingBottom="12dp"
                 android:paddingEnd="28dp"
+                android:visibility="gone"
                 android:paddingTop="12dp"/>
 
+
+            <Button
+                android:id="@+id/btnNoEnabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Активировать"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape_non_activate_crystal"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.09"
+                android:lineSpacingExtra="2sp"
+                android:paddingStart="28dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="28dp"
+                android:visibility="gone"
+                android:paddingTop="12dp"/>
 
 
 

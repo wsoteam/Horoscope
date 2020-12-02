@@ -98,7 +98,6 @@ dependencies {
     implementation 'com.github.tizisdeepan:dots:1.0.1'
 
     implementation 'com.bugfender.sdk:android:3.+'
-    implementation 'com.qonversion.android.sdk:sdk:1.0.6'
     /*implementation 'com.smartlook.recording:app:1.6.1-native'*/
 
     implementation 'com.facebook.android:facebook-android-sdk:7.1.0'

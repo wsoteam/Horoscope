@@ -1,13 +1,21 @@
 package com.wsoteam.horoscopes.presentation.crystals.shop
 
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.crystals.shop.controller.ListShopAdapter
 import com.wsoteam.horoscopes.presentation.crystals.shop.dialogs.DialogSuccess
+import com.wsoteam.horoscopes.utils.InAppCallback
+import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.SubscriptionProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import kotlinx.android.synthetic.main.crystal_details.*
 import kotlinx.android.synthetic.main.list_activity.*
 
@@ -19,6 +27,7 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
     var names: Array<String>? = null
     var props: Array<String>? = null
     var details: Array<String>? = null
+    var inappIds: Array<String>? = null
 
     var adapter : ListShopAdapter? = null
 
@@ -27,12 +36,15 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
 
     var currentId = -1
 
+    var currentInappId = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         names = resources.getStringArray(R.array.crystals_names)
         props = resources.getStringArray(R.array.crystals_prop)
         details = resources.getStringArray(R.array.crystals_details)
+        inappIds = resources.getStringArray(R.array.sub_ids)
         imgsIds = getIndexes(names!!.size, R.array.crystals_ids)
         imgIdsType = getIndexes(names!!.size, R.array.types_ids)
         alertImgIds = getIndexes(names!!.size, R.array.crystal_alert_ids)
@@ -54,6 +66,22 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
             DialogSuccess.newInstance(alertImgIds!![currentId], names!![currentId]).show(supportFragmentManager, "")
         }
 
+        btnBuyCrystal.setOnClickListener {
+            SubscriptionProvider.payItem(this, currentInappId, object :
+                InAppCallback {
+                override fun trialSucces() {
+                    handlInApp()
+                }
+            })
+        }
+    }
+
+    private fun handlInApp() {
+        //Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
+        //FirebaseAnalytics.getInstance(requireContext()).logEvent("trial", null)
+        //FBAnalytic.logTrial(activity!!)
+        //PreferencesProvider.setADStatus(false)
+        //openNextScreen()
     }
 
     override fun onBackPressed() {
@@ -76,6 +104,9 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         tvPropCrystal.text = props!![position]
         tvDetails.text = details!![position]
         currentId = position
+        currentInappId = inappIds!![position]
+        hideAllPaymentViews()
+        showDefaultViews()
     }
 
     private fun getIndexes(size: Int, arrayId: Int): IntArray? {
@@ -85,4 +116,25 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         }
         return indexes
     }
+
+    private fun showNotEnabledViews(){
+        btnNoEnabled.visibility = View.VISIBLE
+    }
+
+    private fun showActivateViews(){
+        btnActivate.visibility = View.VISIBLE
+    }
+
+    private fun showDefaultViews(){
+        btnBuyCrystal.visibility = View.VISIBLE
+        btnBuyPremium.visibility = View.VISIBLE
+    }
+
+    private fun hideAllPaymentViews(){
+        btnNoEnabled.visibility = View.GONE
+        btnActivate.visibility = View.GONE
+        btnBuyCrystal.visibility = View.GONE
+        btnBuyPremium.visibility = View.GONE
+    }
+
 }

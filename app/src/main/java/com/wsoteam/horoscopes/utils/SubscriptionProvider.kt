@@ -4,15 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.android.billingclient.api.*
-import com.qonversion.android.sdk.Qonversion
-import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.loger.L
 import com.yandex.metrica.YandexMetrica
 
 object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListener {
 
-    private val skuDetails: MutableMap<String, SkuDetails?> =
-        HashMap()
+
 
     override fun onPurchasesUpdated(
         billingResult: BillingResult,
@@ -30,20 +27,12 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                         L.log("confirmed")
                     }
                     playStoreBillingClient.acknowledgePurchase(params, listener)
-                    trackPurchase(skuDetails[Config.ID_PRICE]!!, purchases[0])
-
                 }
             }
 
         }
     }
 
-    private fun trackPurchase(
-        details: SkuDetails,
-        purchase: Purchase
-    ) {
-        Qonversion.instance!!.purchase(details, purchase)
-    }
 
     private lateinit var playStoreBillingClient: BillingClient
     private var inAppCallback: InAppCallback? = null
@@ -77,7 +66,28 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 isADEnabled = false
             }
             PreferencesProvider.setADStatus(isADEnabled)
+
+            var itemsResult = playStoreBillingClient.queryPurchases(BillingClient.SkuType.INAPP)
+            if (itemsResult != null && itemsResult.purchasesList != null && itemsResult.purchasesList!!.size > 0) {
+                if (itemsResult.purchasesList!![0] != null){
+                    Log.e("LOL", "details ${itemsResult.purchasesList!![0].originalJson}")
+                }
+            }
+            //cancelCrystal()
         }
+    }
+
+    private fun cancelCrystal() {
+        var params = ConsumeParams
+            .newBuilder()
+            .setPurchaseToken("dkfmbkeggplpbppfepkjlabk.AO-J1Ox45rBHutr6mmar-CZr_wzje14YNSv5tzasfNN-1-lv15PrsKog1KEuDbGZKPN3WLnhoYMfEHC6zpqfaUT62jCGvShFNo2O7KiqPjmYokmMImoLvnE")
+            .build()
+
+        playStoreBillingClient.consumeAsync(params, object : ConsumeResponseListener{
+            override fun onConsumeResponse(p0: BillingResult, p1: String) {
+                Log.e("LOL", "onConsumeResponse")
+            }
+        })
     }
 
     fun startChoiseSub(activity: Activity, id: String, callback: InAppCallback) {
@@ -89,7 +99,27 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList.orEmpty().isNotEmpty()) {
                         skuDetailsList!!.forEach {
-                            skuDetails[Config.ID_PRICE] = it
+                            val perchaseParams = BillingFlowParams.newBuilder().setSkuDetails(it)
+                                .build()
+                            playStoreBillingClient.launchBillingFlow(activity, perchaseParams)
+                        }
+                    }
+                }
+                else -> {
+                }
+            }
+        }
+    }
+
+    fun payItem(activity: Activity, id: String, callback: InAppCallback) {
+        inAppCallback = callback
+        val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(id))
+            .setType(BillingClient.SkuType.INAPP).build()
+        playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
+            when (billingResult.responseCode) {
+                BillingClient.BillingResponseCode.OK -> {
+                    if (skuDetailsList.orEmpty().isNotEmpty()) {
+                        skuDetailsList!!.forEach {
                             val perchaseParams = BillingFlowParams.newBuilder().setSkuDetails(it)
                                 .build()
                             playStoreBillingClient.launchBillingFlow(activity, perchaseParams)
