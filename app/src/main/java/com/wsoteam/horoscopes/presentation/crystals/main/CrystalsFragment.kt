@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.crystals.Config
 import com.wsoteam.horoscopes.presentation.crystals.charge.ChargeActivity
@@ -54,12 +55,26 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         btnChargeCrystal.setOnClickListener {
-            openChargeActivity()
+            openChargeActivity(buyedIds[vpCrystals.currentItem])
         }
 
         llShop.setOnClickListener {
             startActivity(Intent(activity, ListActivity::class.java))
         }
+        vpCrystals.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+        })
 
     }
 
@@ -96,9 +111,8 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
         }
     }
 
-    private fun openChargeActivity() {
+    private fun openChargeActivity(crystalNumber : Int) {
         var intent = Intent(activity, ChargeActivity::class.java)
-        var crystalNumber = 2
         intent.putExtra(Config.TAG_TYPE_NAME, typeNames[crystalNumber])
         intent.putExtra(Config.TAG_CRYSTAL_IMG_ID, idsCrystalsImgs[crystalNumber])
         intent.putExtra(Config.TAG_TYPE_IMG_ID, idsTypeImgs[crystalNumber])
