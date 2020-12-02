@@ -2,7 +2,6 @@ package com.wsoteam.horoscopes.presentation.crystals.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +12,7 @@ import com.wsoteam.horoscopes.presentation.crystals.main.controller.TypeAdapter
 import com.wsoteam.horoscopes.presentation.crystals.main.pager.CrystalPageFragment
 import com.wsoteam.horoscopes.presentation.crystals.main.pager.CrystalsPagerAdapter
 import com.wsoteam.horoscopes.presentation.crystals.shop.ListActivity
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.crystals_fragment.*
 
 class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
@@ -26,11 +26,15 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
 
     lateinit var typeNames: Array<String>
     lateinit var crystalsNames: Array<String>
+    lateinit var inappids: Array<String>
+
+    var buyedIds = arrayListOf<Int>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         typeNames = resources.getStringArray(R.array.crystals_prop)
+        inappids = resources.getStringArray(R.array.sub_ids)
         crystalsNames = resources.getStringArray(R.array.crystals_names)
         idsTypeImgs = getIndexes(typeNames.size, R.array.types_ids)
         idsCrystalsImgs = getIndexes(typeNames.size, R.array.crystals_ids)
@@ -48,10 +52,6 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
 
         rvTypes.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        typeAdapter = TypeAdapter(idsTypeImgs, typeNames)
-        rvTypes.adapter = typeAdapter
-
-        vpCrystals.adapter = CrystalsPagerAdapter(getCrystalsList(), childFragmentManager)
 
         btnChargeCrystal.setOnClickListener {
             openChargeActivity()
@@ -61,6 +61,39 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
             startActivity(Intent(activity, ListActivity::class.java))
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fillExistIds()
+        vpCrystals.adapter = CrystalsPagerAdapter(getCrystalsList(), childFragmentManager)
+        typeAdapter = TypeAdapter(getTypesImgs(), getTypesNames())
+        rvTypes.adapter = typeAdapter
+    }
+
+    private fun getTypesNames(): ArrayList<String> {
+        var namesList = arrayListOf<String>()
+        for (i in buyedIds.indices){
+            namesList.add(typeNames[buyedIds[i]])
+        }
+        return namesList
+    }
+
+    private fun getTypesImgs(): ArrayList<Int> {
+        var imgsArray = arrayListOf<Int>()
+        for (i in buyedIds.indices){
+            imgsArray.add(idsTypeImgs[buyedIds[i]])
+        }
+        return imgsArray
+    }
+
+    private fun fillExistIds() {
+        buyedIds = arrayListOf()
+        for (i in inappids.indices){
+            if (PreferencesProvider.getInapp(inappids[i]) != PreferencesProvider.EMPTY_INAPP){
+                buyedIds.add(i)
+            }
+        }
     }
 
     private fun openChargeActivity() {
@@ -75,8 +108,8 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
 
     private fun getCrystalsList(): List<Fragment> {
         var fragmentList = arrayListOf<Fragment>()
-        for (i in idsCrystalsImgs.indices) {
-            fragmentList.add(CrystalPageFragment.newInstance(idsCrystalsImgs[i], crystalsNames[i]))
+        for (i in buyedIds.indices) {
+            fragmentList.add(CrystalPageFragment.newInstance(idsCrystalsImgs[buyedIds[i]], crystalsNames[buyedIds[i]]))
         }
         return fragmentList
     }

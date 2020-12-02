@@ -42,6 +42,8 @@ object PreferencesProvider {
     const val SHOW_ONBOARD_TAG = "SHOW_ONBOARD_TAG"
     const val IS_SETUPED_TAG = "IS_SETUPED_TAG"
 
+    const val EMPTY_INAPP = -1L
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -104,6 +106,9 @@ object PreferencesProvider {
         setEnterCount(pastCount + 1)
         return pastCount == 0 || pastCount == Config.PREM_SHOW_FREQUENCY
     }
+
+    fun setInapp(id: String, timestamp : Long) = editor { it?.putLong(id, timestamp) }
+    fun getInapp(id: String) = getInstance()?.getLong(id, EMPTY_INAPP)
 
     fun getVersionIndex() = intoIndex(getVersion())
 

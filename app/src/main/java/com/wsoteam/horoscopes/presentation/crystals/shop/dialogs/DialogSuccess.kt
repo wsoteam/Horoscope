@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.wsoteam.horoscopes.R
-import kotlinx.android.synthetic.main.dialog_date.*
+import kotlinx.android.synthetic.main.dialog_success.*
 import kotlinx.android.synthetic.main.dialog_success.view.*
 
 class DialogSuccess : DialogFragment() {
 
     companion object {
-        const val ID_TAG = "ID_TAG"
+        const val ID_IMG_TAG = "ID_TAG"
         const val NAME_TAG = "NAME_TAG"
 
-        fun newInstance(id : Int, name : String) : DialogSuccess {
+        fun newInstance(idImg : Int, name : String) : DialogSuccess {
             var bundle = Bundle()
-            bundle.putInt(ID_TAG, id)
+            bundle.putInt(ID_IMG_TAG, idImg)
             bundle.putString(NAME_TAG, name)
             var dialog = DialogSuccess()
             dialog.arguments = bundle
@@ -34,11 +34,17 @@ class DialogSuccess : DialogFragment() {
         var view = inflater.inflate(R.layout.dialog_success, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
         view.tvCrystalText.text = getString(R.string.alert_crystal_text, requireArguments().getString(NAME_TAG))
-        view.ivAlertCrystal.setImageResource(requireArguments().getInt(ID_TAG))
+        view.ivAlertCrystal.setImageResource(requireArguments().getInt(ID_IMG_TAG))
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        ivCloseCrystalAlert.setOnClickListener {
+            dismiss()
+        }
 
+        tvShow.setOnClickListener {
+            activity!!.finish()
+        }
     }
 }

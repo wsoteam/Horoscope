@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class TypeAdapter(val idsTypeImgs: IntArray, val typeNames: Array<String>) : RecyclerView.Adapter<TypeVH>() {
+class TypeAdapter(val idsTypeImgs: ArrayList<Int>, val typeNames: ArrayList<String>) : RecyclerView.Adapter<TypeVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TypeVH {
         val inflater = LayoutInflater.from(parent.context)

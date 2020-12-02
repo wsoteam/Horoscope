@@ -18,6 +18,7 @@ import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import kotlinx.android.synthetic.main.crystal_details.*
 import kotlinx.android.synthetic.main.list_activity.*
+import java.util.*
 
 class ListActivity : AppCompatActivity(R.layout.list_activity) {
 
@@ -33,9 +34,7 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
 
     var bsCrystal : BottomSheetBehavior<LinearLayout>? = null
 
-
     var currentId = -1
-
     var currentInappId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +81,9 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         //FBAnalytic.logTrial(activity!!)
         //PreferencesProvider.setADStatus(false)
         //openNextScreen()
+        PreferencesProvider.setInapp(currentInappId, Calendar.getInstance().timeInMillis)
+        DialogSuccess.newInstance(imgsIds!![currentId], names!![currentId]).show(supportFragmentManager, "")
+        bsCrystal!!.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     override fun onBackPressed() {
