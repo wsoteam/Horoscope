@@ -73,6 +73,8 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
 
     override fun onResume() {
         super.onResume()
+        ivPrevCrystal.setImageResource(R.drawable.ic_crystal_prev_inactive)
+        ivPrevCrystal.isActivated = false
         fillExistIds()
         vpCrystals.adapter = CrystalsPagerAdapter(getCrystalsList(), childFragmentManager)
         typeAdapter = TypeAdapter(getTypesImgs(), getTypesNames())

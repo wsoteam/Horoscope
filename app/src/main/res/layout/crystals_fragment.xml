@@ -62,6 +62,13 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
+        
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpCrystals"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"/>
+
         <ImageView
             android:id="@+id/ivPrevCrystal"
             android:layout_width="wrap_content"
@@ -69,13 +76,6 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_crystal_prev_active"
             android:padding="16dp"/>
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vpCrystals"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"/>
 
 
         <ImageView
