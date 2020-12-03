@@ -10,7 +10,6 @@ import com.yandex.metrica.YandexMetrica
 object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListener {
 
 
-
     override fun onPurchasesUpdated(
         billingResult: BillingResult,
         purchases: MutableList<Purchase>?
@@ -69,23 +68,42 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
 
             var itemsResult = playStoreBillingClient.queryPurchases(BillingClient.SkuType.INAPP)
             if (itemsResult != null && itemsResult.purchasesList != null && itemsResult.purchasesList!!.size > 0) {
-                if (itemsResult.purchasesList!![0] != null){
-                    Log.e("LOL", "details ${itemsResult.purchasesList!![0].originalJson}")
-                }
+                refreshInAppInfo(itemsResult.purchasesList)
             }
-            //cancelCrystal()
+
+
         }
     }
 
-    private fun cancelCrystal() {
+    private fun refreshInAppInfo(purchasesList: List<Purchase>) {
+        for (i in purchasesList.indices) {
+            if (purchasesList[i] != null) {
+                PreferencesProvider.setInapp(
+                    purchasesList[i].sku,
+                    purchasesList[i].purchaseTime
+                )
+                PreferencesProvider.setInAppToken(
+                    purchasesList[i].sku,
+                    purchasesList[i].purchaseToken
+                )
+            }
+        }
+        clearOldCrystals()
+    }
+
+    private fun clearOldCrystals(){
+        //TODO clear consume crystals
+    }
+
+    fun consumeCrystal(inAppId: String, token: String) {
         var params = ConsumeParams
             .newBuilder()
-            .setPurchaseToken("dkfmbkeggplpbppfepkjlabk.AO-J1Ox45rBHutr6mmar-CZr_wzje14YNSv5tzasfNN-1-lv15PrsKog1KEuDbGZKPN3WLnhoYMfEHC6zpqfaUT62jCGvShFNo2O7KiqPjmYokmMImoLvnE")
+            .setPurchaseToken(token)
             .build()
 
-        playStoreBillingClient.consumeAsync(params, object : ConsumeResponseListener{
+        playStoreBillingClient.consumeAsync(params, object : ConsumeResponseListener {
             override fun onConsumeResponse(p0: BillingResult, p1: String) {
-                Log.e("LOL", "onConsumeResponse")
+
             }
         })
     }

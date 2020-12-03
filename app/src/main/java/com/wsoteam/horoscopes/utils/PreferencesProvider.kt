@@ -43,6 +43,8 @@ object PreferencesProvider {
     const val IS_SETUPED_TAG = "IS_SETUPED_TAG"
 
     const val EMPTY_INAPP = -1L
+    const val EMPTY_TOKEN = ""
+    const val TOKEN_PREFIX = "token-"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -109,6 +111,9 @@ object PreferencesProvider {
 
     fun setInapp(id: String, timestamp : Long) = editor { it?.putLong(id, timestamp) }
     fun getInapp(id: String) = getInstance()?.getLong(id, EMPTY_INAPP)
+
+    fun setInAppToken(id: String, token : String) = editor { it?.putString("$TOKEN_PREFIX$id", token) }
+    fun getInAppToken(id: String) = getInstance()?.getString("$TOKEN_PREFIX$id", EMPTY_TOKEN)
 
     fun getVersionIndex() = intoIndex(getVersion())
 
