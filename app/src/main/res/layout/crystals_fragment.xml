@@ -38,23 +38,40 @@
         android:text="@string/the_effect_of_the_amethyst_crystal_will_expire_in"
         />
 
-    <TextView
-        android:id="@+id/tvCountdownCrystal"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textStyle="normal"
-        android:textSize="16sp"
-        android:textColor="#ffffff"
-        android:letterSpacing="0.04"
-        android:lineSpacingExtra="4.6sp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        tools:text="24 часа"
-        android:drawableStart="@drawable/ic_countdown_crystal"
-        android:drawablePadding="8dp"
-        />
+        android:layout_marginTop="5dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivCountdownCrystal"
+            android:src="@drawable/ic_countdown_crystal"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/tvCountdownCrystal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="4.6sp"
+            android:gravity="center_horizontal"
+            android:text="24 часа"
+            />
+
+
+    </LinearLayout>
+
+
     
     <FrameLayout
         android:layout_width="match_parent"

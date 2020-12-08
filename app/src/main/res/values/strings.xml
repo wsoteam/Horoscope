@@ -238,7 +238,7 @@
     <string name="congratulations_prem">Congratulations!</string>
     <string name="your_status_has_changed">Your status has changed to Premium user. \n\n Use the app without ads. All sections are available to you, an unlimited number of questions to the ball and access to all crystals is open.</string>
     <string name="ok">Ок</string>
-    <string name="the_effect_of_the_amethyst_crystal_will_expire_in_30_minutes">The effect of the Amethyst crystal will expire in 30 minutes!</string>
+    <string name="the_effect_of_the">The effect of the %s crystal will expire in %s!</string>
     <string name="manage_to_en">Manage to energize from the crystal, the effect of its magic on your life sphere is coming to an end. You can extend the effect of the crystal by activating it again.</string>
     <string name="_30_days">30 days</string>
 

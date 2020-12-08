@@ -8,12 +8,31 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import java.util.*
 
 object CrystalTimer {
+    /////////////////////////////////////////////////////////////////
 
+    /*Нет такой покупки*/
     const val NOT_EXIST = -1
+
+    /*Покупка есть*/
     const val EXIST = 1
+
+    /*Покупка была использована, но не была отмечена*/
     const val IS_CONSUMED = -2
+
+    /*Покупка закончилась сейчас*/
     const val END_TIME = -3
+
+    /*Триггер подхода времени к концу, нужно показать алерт*/
     const val ALERT_TIME = 1
+
+    /*Состояния окончания времени кристала, алерт был показан*/
+    const val ENDING_STATE = 2
+
+    /*Обычное состояние, нужно для покраса текста в белый цвет*/
+    const val NOT_ENDING_STATE = 3
+
+    /////////////////////////////////////////////////////////////////
+
 
     private var iCrystalTimer: ICrystalTimer? = null
     private var countDownTimer: CountDownTimer? = null
@@ -28,8 +47,13 @@ object CrystalTimer {
     private var alertTime = -1L
     private var endTime = -1L
 
+    private var isShowedEndAlert = false
+
+    private var alertTimeShow = ""
+
     fun init(crystalNumber: Int, iCrystalTimer: ICrystalTimer) {
         var inappId = App.getInstance().resources.getStringArray(R.array.sub_ids)[crystalNumber]
+        isShowedEndAlert = PreferencesProvider.getEndAlertState(inappId)!!
         if (PreferencesProvider.getInapp(inappId) == PreferencesProvider.EMPTY_INAPP) {
             iCrystalTimer.setState(NOT_EXIST)
         } else {
@@ -49,6 +73,19 @@ object CrystalTimer {
         endTime = MONTH + purchaseTime
         alertTime = endTime - MINUTE * 30
 
+        if (Calendar.getInstance().timeInMillis > alertTime) {
+            if (isShowedEndAlert){
+                iCrystalTimer?.setState(ENDING_STATE)
+            }else{
+                alertTimeShow = getFormatTime(endTime)
+                iCrystalTimer?.setState(ALERT_TIME)
+                isShowedEndAlert = true
+                PreferencesProvider.setEndAlertState(inappId, true)
+            }
+        } else{
+            iCrystalTimer?.setState(NOT_ENDING_STATE)
+        }
+
         countDownTimer = object : CountDownTimer(1_000_000, 500) {
             override fun onFinish() {
                 countDownTimer?.start()
@@ -64,14 +101,15 @@ object CrystalTimer {
                     clearTimer()
                 } else {
                     iCrystalTimer?.refreshTime(getFormatTime(endTime))
-                    if (Calendar.getInstance().timeInMillis > alertTime) {
-                        iCrystalTimer?.setState(ALERT_TIME)
-                    }
                 }
             }
         }
         countDownTimer!!.start()
 
+    }
+
+    fun getAlertTime() : String {
+        return alertTimeShow
     }
 
     private fun getFormatTime(endTime: Long): String {

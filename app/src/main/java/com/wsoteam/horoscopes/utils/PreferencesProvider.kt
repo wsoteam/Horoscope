@@ -45,6 +45,7 @@ object PreferencesProvider {
     const val EMPTY_INAPP = -1L
     const val EMPTY_TOKEN = ""
     const val TOKEN_PREFIX = "token-"
+    const val ALERT_PREFIX = "end_alert-"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -109,11 +110,18 @@ object PreferencesProvider {
         return pastCount == 0 || pastCount == Config.PREM_SHOW_FREQUENCY
     }
 
-    fun setInapp(id: String, timestamp : Long) = editor { it?.putLong(id, timestamp) }
+    fun setInapp(id: String, timestamp: Long) = editor { it?.putLong(id, timestamp) }
     fun getInapp(id: String) = getInstance()?.getLong(id, EMPTY_INAPP)
 
-    fun setInAppToken(id: String, token : String) = editor { it?.putString("$TOKEN_PREFIX$id", token) }
+    fun setInAppToken(id: String, token: String) =
+        editor { it?.putString("$TOKEN_PREFIX$id", token) }
+
     fun getInAppToken(id: String) = getInstance()?.getString("$TOKEN_PREFIX$id", EMPTY_TOKEN)
+
+    fun setEndAlertState(id: String, isShowedEndAlert: Boolean) =
+        editor { it?.putBoolean("$ALERT_PREFIX$id", isShowedEndAlert) }
+
+    fun getEndAlertState(id: String) = getInstance()?.getBoolean("$ALERT_PREFIX$id", false)
 
     fun getVersionIndex() = intoIndex(getVersion())
 

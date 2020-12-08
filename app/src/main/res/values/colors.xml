@@ -33,5 +33,7 @@
     <color name="color_inactive_top_progress">#757493</color>
     <color name="color_active_top_progress">#FFFFFF</color>
 
+    <color name="end_timer">#cf1182</color>
+
 
 </resources>

@@ -1,19 +1,25 @@
 package com.wsoteam.horoscopes.presentation.crystals.main
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import androidx.viewpager.widget.ViewPager
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.crystals.Config
 import com.wsoteam.horoscopes.presentation.crystals.charge.ChargeActivity
 import com.wsoteam.horoscopes.presentation.crystals.main.controller.TypeAdapter
+import com.wsoteam.horoscopes.presentation.crystals.main.dialogs.EndDialog
 import com.wsoteam.horoscopes.presentation.crystals.main.pager.CrystalPageFragment
 import com.wsoteam.horoscopes.presentation.crystals.main.pager.CrystalsPagerAdapter
 import com.wsoteam.horoscopes.presentation.crystals.shop.ListActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.crystaltimer.CrystalTimer
+import com.wsoteam.horoscopes.utils.crystaltimer.ICrystalTimer
 import kotlinx.android.synthetic.main.crystals_fragment.*
 
 class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
@@ -29,7 +35,7 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
     lateinit var crystalsNames: Array<String>
     lateinit var inappids: Array<String>
 
-    var buyedIds = arrayListOf<Int>()
+    var buyedCrystalsNumbers = arrayListOf<Int>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,7 +61,7 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         btnChargeCrystal.setOnClickListener {
-            openChargeActivity(buyedIds[vpCrystals.currentItem])
+            openChargeActivity(buyedCrystalsNumbers[vpCrystals.currentItem])
         }
 
         llShop.setOnClickListener {
@@ -75,12 +81,17 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
         super.onResume()
         ivPrevCrystal.setImageResource(R.drawable.ic_crystal_prev_inactive)
         ivPrevCrystal.isActivated = false
+
         fillExistIds()
+
         vpCrystals.adapter = CrystalsPagerAdapter(getCrystalsList(), childFragmentManager)
         typeAdapter = TypeAdapter(getTypesImgs(), getTypesNames())
+
         rvTypes.adapter = typeAdapter
 
-        vpCrystals.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        refreshCrystalState(vpCrystals.currentItem)
+
+        vpCrystals.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -92,53 +103,96 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
-                if (buyedIds.size > 0) {
+                if (buyedCrystalsNumbers.size > 0) {
                     if (position == 0) {
                         ivPrevCrystal.setImageResource(R.drawable.ic_crystal_prev_inactive)
                         ivPrevCrystal.isActivated = false
-                    }else{
+                    } else {
                         ivPrevCrystal.setImageResource(R.drawable.ic_crystal_prev_active)
                         ivPrevCrystal.isActivated = true
                     }
 
-                    if (position == buyedIds.size - 1){
+                    if (position == buyedCrystalsNumbers.size - 1) {
                         ivNextCrystal.setImageResource(R.drawable.ic_crystal_next_inactive)
                         ivNextCrystal.isActivated = false
-                    }else{
+                    } else {
                         ivNextCrystal.setImageResource(R.drawable.ic_crystal_next_active)
                         ivNextCrystal.isActivated = true
                     }
+                    refreshCrystalState(position)
                 }
+            }
+        })
+    }
+
+    private fun markTimerNotEnd() {
+        var drawable =
+            DrawableCompat.wrap(requireContext().getDrawable(R.drawable.ic_countdown_crystal)!!)
+        DrawableCompat.setTint(drawable, resources.getColor(R.color.white))
+        ivCountdownCrystal.setImageDrawable(drawable)
+        tvCountdownCrystal.setTextColor(requireContext().resources.getColor(R.color.white))
+    }
+
+    private fun markTimerEnd() {
+        var drawable =
+            DrawableCompat.wrap(requireContext().getDrawable(R.drawable.ic_countdown_crystal)!!)
+        DrawableCompat.setTint(drawable, resources.getColor(R.color.end_timer))
+        ivCountdownCrystal.setImageDrawable(drawable)
+        tvCountdownCrystal.setTextColor(requireContext().resources.getColor(R.color.end_timer))
+    }
+
+
+    private fun refreshCrystalState(position: Int) {
+        CrystalTimer.unObserve()
+        CrystalTimer.init(buyedCrystalsNumbers[position], object : ICrystalTimer {
+            override fun setState(state: Int) {
+                when (state) {
+                    CrystalTimer.ENDING_STATE -> markTimerEnd()
+                    CrystalTimer.NOT_ENDING_STATE -> markTimerNotEnd()
+                    CrystalTimer.END_TIME -> {
+                    }
+                    CrystalTimer.IS_CONSUMED -> {
+
+                    }
+                    CrystalTimer.ALERT_TIME -> {
+                        markTimerEnd()
+                        EndDialog.newInstance(CrystalTimer.getAlertTime(), )
+                    }
+                }
+            }
+
+            override fun refreshTime(time: String) {
+                tvCountdownCrystal.text = time
             }
         })
     }
 
     private fun getTypesNames(): ArrayList<String> {
         var namesList = arrayListOf<String>()
-        for (i in buyedIds.indices){
-            namesList.add(typeNames[buyedIds[i]])
+        for (i in buyedCrystalsNumbers.indices) {
+            namesList.add(typeNames[buyedCrystalsNumbers[i]])
         }
         return namesList
     }
 
     private fun getTypesImgs(): ArrayList<Int> {
         var imgsArray = arrayListOf<Int>()
-        for (i in buyedIds.indices){
-            imgsArray.add(idsTypeImgs[buyedIds[i]])
+        for (i in buyedCrystalsNumbers.indices) {
+            imgsArray.add(idsTypeImgs[buyedCrystalsNumbers[i]])
         }
         return imgsArray
     }
 
     private fun fillExistIds() {
-        buyedIds = arrayListOf()
-        for (i in inappids.indices){
-            if (PreferencesProvider.getInapp(inappids[i]) != PreferencesProvider.EMPTY_INAPP){
-                buyedIds.add(i)
+        buyedCrystalsNumbers = arrayListOf()
+        for (i in inappids.indices) {
+            if (PreferencesProvider.getInapp(inappids[i]) != PreferencesProvider.EMPTY_INAPP) {
+                buyedCrystalsNumbers.add(i)
             }
         }
     }
 
-    private fun openChargeActivity(crystalNumber : Int) {
+    private fun openChargeActivity(crystalNumber: Int) {
         var intent = Intent(activity, ChargeActivity::class.java)
         intent.putExtra(Config.TAG_TYPE_NAME, typeNames[crystalNumber])
         intent.putExtra(Config.TAG_CRYSTAL_IMG_ID, idsCrystalsImgs[crystalNumber])
@@ -149,8 +203,13 @@ class CrystalsFragment : Fragment(R.layout.crystals_fragment) {
 
     private fun getCrystalsList(): List<Fragment> {
         var fragmentList = arrayListOf<Fragment>()
-        for (i in buyedIds.indices) {
-            fragmentList.add(CrystalPageFragment.newInstance(idsCrystalsImgs[buyedIds[i]], crystalsNames[buyedIds[i]]))
+        for (i in buyedCrystalsNumbers.indices) {
+            fragmentList.add(
+                CrystalPageFragment.newInstance(
+                    idsCrystalsImgs[buyedCrystalsNumbers[i]],
+                    crystalsNames[buyedCrystalsNumbers[i]]
+                )
+            )
         }
         return fragmentList
     }

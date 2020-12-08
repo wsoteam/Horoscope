@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvEndTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
@@ -26,7 +27,7 @@
                 android:textColor="#ffffff"
                 android:letterSpacing="0.04"
                 android:lineSpacingExtra="4.6sp"
-                android:text="@string/the_effect_of_the_amethyst_crystal_will_expire_in_30_minutes"
+                android:text="@string/the_effect_of_the"
                 android:layout_marginTop="45dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
