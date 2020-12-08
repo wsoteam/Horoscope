@@ -16,6 +16,8 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.crystaltimer.CrystalTimer
+import com.wsoteam.horoscopes.utils.crystaltimer.ICrystalTimer
 import kotlinx.android.synthetic.main.crystal_details.*
 import kotlinx.android.synthetic.main.list_activity.*
 import java.util.*
@@ -30,9 +32,9 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
     var details: Array<String>? = null
     var inappIds: Array<String>? = null
 
-    var adapter : ListShopAdapter? = null
+    var adapter: ListShopAdapter? = null
 
-    var bsCrystal : BottomSheetBehavior<LinearLayout>? = null
+    var bsCrystal: BottomSheetBehavior<LinearLayout>? = null
 
     var currentId = -1
     var currentInappId = ""
@@ -48,7 +50,7 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         imgIdsType = getIndexes(names!!.size, R.array.types_ids)
         alertImgIds = getIndexes(names!!.size, R.array.crystal_alert_ids)
 
-        adapter = ListShopAdapter(imgsIds!!, names!!, props!!, object : IListShop{
+        adapter = ListShopAdapter(imgsIds!!, names!!, props!!, object : IListShop {
             override fun open(position: Int) {
                 fillAndOpenBS(position)
             }
@@ -62,7 +64,8 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         }
 
         btnActivate.setOnClickListener {
-            DialogSuccess.newInstance(alertImgIds!![currentId], names!![currentId]).show(supportFragmentManager, "")
+            DialogSuccess.newInstance(alertImgIds!![currentId], names!![currentId])
+                .show(supportFragmentManager, "")
         }
 
         btnBuyCrystal.setOnClickListener {
@@ -73,6 +76,17 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
                 }
             })
         }
+
+        bsCrystal!!.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED){
+                    CrystalTimer.unObserve()
+                }
+            }
+        })
     }
 
     private fun handlInApp() {
@@ -82,14 +96,15 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         //PreferencesProvider.setADStatus(false)
         //openNextScreen()
         PreferencesProvider.setInapp(currentInappId, Calendar.getInstance().timeInMillis)
-        DialogSuccess.newInstance(imgsIds!![currentId], names!![currentId]).show(supportFragmentManager, "")
+        DialogSuccess.newInstance(imgsIds!![currentId], names!![currentId])
+            .show(supportFragmentManager, "")
         bsCrystal!!.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     override fun onBackPressed() {
-        if (bsCrystal!!.state == BottomSheetBehavior.STATE_EXPANDED){
+        if (bsCrystal!!.state == BottomSheetBehavior.STATE_EXPANDED) {
             bsCrystal!!.state = BottomSheetBehavior.STATE_COLLAPSED
-        }else{
+        } else {
             super.onBackPressed()
         }
     }
@@ -108,31 +123,53 @@ class ListActivity : AppCompatActivity(R.layout.list_activity) {
         currentId = position
         currentInappId = inappIds!![position]
         hideAllPaymentViews()
-        showDefaultViews()
+        CrystalTimer.init(position, object : ICrystalTimer {
+            override fun setState(state: Int) {
+                when (state) {
+                    CrystalTimer.NOT_EXIST
+                            or CrystalTimer.IS_CONSUMED
+                            or CrystalTimer.END_TIME -> {
+                        tvCountdown.text = getString(R.string._30_days)
+                        if (PreferencesProvider.isADEnabled()) {
+                            showDefaultViews()
+                        } else {
+                            showActivateViews()
+                        }
+                    }
+                    CrystalTimer.EXIST -> {
+                        showNotEnabledViews()
+                    }
+                }
+            }
+
+            override fun refreshTime(time: String) {
+                tvCountdown.text = time
+            }
+        })
     }
 
     private fun getIndexes(size: Int, arrayId: Int): IntArray? {
         var indexes = intArrayOf(0, 0, 0, 0, 0, 0, 0, 0)
-        for (i in 0 until size){
+        for (i in 0 until size) {
             indexes[i] = resources.obtainTypedArray(arrayId).getResourceId(i, -1)
         }
         return indexes
     }
 
-    private fun showNotEnabledViews(){
+    private fun showNotEnabledViews() {
         btnNoEnabled.visibility = View.VISIBLE
     }
 
-    private fun showActivateViews(){
+    private fun showActivateViews() {
         btnActivate.visibility = View.VISIBLE
     }
 
-    private fun showDefaultViews(){
+    private fun showDefaultViews() {
         btnBuyCrystal.visibility = View.VISIBLE
         btnBuyPremium.visibility = View.VISIBLE
     }
 
-    private fun hideAllPaymentViews(){
+    private fun hideAllPaymentViews() {
         btnNoEnabled.visibility = View.GONE
         btnActivate.visibility = View.GONE
         btnBuyCrystal.visibility = View.GONE

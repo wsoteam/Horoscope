@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.utils.crystaltimer
 
 import android.os.CountDownTimer
+import android.util.Log
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -8,23 +9,24 @@ import java.util.*
 
 object CrystalTimer {
 
-    var iCrystalTimer: ICrystalTimer? = null
-    var countDownTimer: CountDownTimer? = null
-
     const val NOT_EXIST = -1
-    const val IS_CONSUME = -2
+    const val EXIST = 1
+    const val IS_CONSUMED = -2
     const val END_TIME = -3
     const val ALERT_TIME = 1
 
-    const val MONTH = 2592000000L
-    const val DAY = 86400000L
-    const val HOUR = 3600000L
-    const val MINUTE = 60000L
-    const val SECOND = 1000L
+    private var iCrystalTimer: ICrystalTimer? = null
+    private var countDownTimer: CountDownTimer? = null
 
-    var purchaseTime = -1L
-    var alertTime = -1L
-    var endTime = -1L
+    private const val MONTH = 2592000000L
+    private const val DAY = 86400000L
+    private const val HOUR = 3600000L
+    private const val MINUTE = 60000L
+    private const val SECOND = 1000L
+
+    private var purchaseTime = -1L
+    private var alertTime = -1L
+    private var endTime = -1L
 
     fun init(crystalNumber: Int, iCrystalTimer: ICrystalTimer) {
         var inappId = App.getInstance().resources.getStringArray(R.array.sub_ids)[crystalNumber]
@@ -32,9 +34,10 @@ object CrystalTimer {
             iCrystalTimer.setState(NOT_EXIST)
         } else {
             if (isConsume(inappId)) {
-                iCrystalTimer.setState(IS_CONSUME)
+                iCrystalTimer.setState(IS_CONSUMED)
                 consumeInApp(inappId)
             } else {
+                iCrystalTimer.setState(EXIST)
                 this.iCrystalTimer = iCrystalTimer
                 initTimer(inappId)
             }
@@ -74,30 +77,30 @@ object CrystalTimer {
     private fun getFormatTime(endTime: Long): String {
         var diff = endTime - Calendar.getInstance().timeInMillis
         return when (diff) {
-            in MONTH..DAY -> {
+            in SECOND..MINUTE -> {
                 App.getInstance().resources.getQuantityString(
-                    R.plurals.days,
-                    (diff / DAY).toInt(),
-                    (diff / DAY).toInt()
-                )
-            }
-            in DAY..HOUR -> {
-                App.getInstance().resources.getQuantityString(
-                    R.plurals.hours,
+                    R.plurals.seconds,
                     (diff / DAY).toInt(),
                     (diff / DAY).toInt())
             }
-            in HOUR..MINUTE -> {
+            in MINUTE..HOUR -> {
                 App.getInstance().resources.getQuantityString(
                     R.plurals.minutes,
                     (diff / DAY).toInt(),
                     (diff / DAY).toInt())
             }
-            in MINUTE..SECOND -> {
+            in HOUR..DAY -> {
                 App.getInstance().resources.getQuantityString(
-                    R.plurals.seconds,
+                    R.plurals.hours,
                     (diff / DAY).toInt(),
                     (diff / DAY).toInt())
+            }
+            in DAY..MONTH -> {
+                App.getInstance().resources.getQuantityString(
+                    R.plurals.days,
+                    (diff / DAY).toInt(),
+                    (diff / DAY).toInt()
+                )
             }
             else -> {
                 App.getInstance().resources.getQuantityString(
@@ -109,7 +112,7 @@ object CrystalTimer {
     }
 
     private fun clearTimer() {
-        countDownTimer!!.cancel()
+        countDownTimer?.cancel()
         countDownTimer = null
     }
 

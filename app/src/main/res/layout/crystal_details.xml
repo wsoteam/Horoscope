@@ -40,7 +40,7 @@
                     android:letterSpacing="0.06"
                     android:lineSpacingExtra="4sp"
                     android:gravity="center_vertical"
-                    android:text="@string/_30_days"
+                    tools:text="@string/_30_days"
                     android:layout_marginStart="48dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="8dp"
@@ -214,6 +214,7 @@
                 android:paddingBottom="12dp"
                 android:paddingEnd="28dp"
                 android:visibility="gone"
+                android:enabled="false"
                 android:paddingTop="12dp"/>
 
 
