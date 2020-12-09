@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="crystals_details">
-        <item>Amethyst is a crystal of health and inner harmony. He’s able to relieve his owner of bad feelings, improve sleep and memory, prevent the development of bad habits.
+        <!--<item>Amethyst is a crystal of health and inner harmony. He\’s able to relieve his owner of bad feelings, improve sleep and memory, prevent the development of bad habits.
 
 
 
 
-Use the magic of Amethyst if you feel depressed, sleep disorders, or can't get rid of bad habits. It’ll help you focus on your spiritual and physical health.
+Use the magic of Amethyst if you feel depressed, sleep disorders, or can't get rid of bad habits. It\’ll help you focus on your spiritual and physical health.
 </item>
 
         <item>Garnet is a symbol of faith, loyalty, devotion and strength.
@@ -14,10 +14,10 @@ The Garnet crystal is able to create a sense of courage, stimulate will and endu
 
 
 
-The garnet can be used in situations where you need to overcome some kind of obstacle, show endurance, break through something - it doesn’t matter whether physically or metaphorically.
+The garnet can be used in situations where you need to overcome some kind of obstacle, show endurance, break through something - it doesn\’t matter whether physically or metaphorically.
 </item>
 
-        <item>Irish Spar crystal will help you develop intuition and clear your mind of unnecessary things. The crystal promotes the expansion of consciousness and as a result your world view changes. You’ll be able to anticipate many situations and know how other people will treat you.
+        <item>Irish Spar crystal will help you develop intuition and clear your mind of unnecessary things. The crystal promotes the expansion of consciousness and as a result your world view changes. You\’ll be able to anticipate many situations and know how other people will treat you.
 
 
 
@@ -48,14 +48,14 @@ Rose quartz will help you become more balanced, feel the love of life and the de
 
 
 
-The crystal will help you attract good luck, don’t miss your chance, and mobilize internal resources, thereby helping to save and increase your capital.
+The crystal will help you attract good luck, don\’t miss your chance, and mobilize internal resources, thereby helping to save and increase your capital.
 </item>
 
         <item>Fluorite Crystal is able to help relieve depressive thoughts and tension. It balances the state of mind, gives peace.
 
 
 
-If you feel depressed, constantly stressed and can’t find peace in your soul, the Fluorite crystal will help you get under control your thoughts, relax and get rid of bad thoughts
-</item>
+If you feel depressed, constantly stressed and can\’t find peace in your soul, the Fluorite crystal will help you get under control your thoughts, relax and get rid of bad thoughts
+</item>-->
     </string-array>
 </resources>
