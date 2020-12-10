@@ -103,6 +103,16 @@
             android:theme="@style/Premium" />
 
         <activity
+            android:name=".presentation.premium.ab.DefaultPremiumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Premium" />
+
+        <activity
+            android:name=".presentation.premium.ab.CleanerPremiumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PremiumCleaner" />
+
+        <activity
             android:name=".presentation.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />

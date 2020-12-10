@@ -266,5 +266,14 @@
         <item>Calm</item>
     </string-array>
 
+    <string name="start_text_prem">7 days trial period. After</string>
+    <string name="end_text_prem">per month. You can manage your subscription in your Google Play account</string>
+    <string name="whole_text_prem">7 days trial period. After 4 USD. per month. You can manage your subscription in your Google Play account</string>
+    <string name="prem41">7 days for free.</string>
+    <string name="prem51">Further subscription for a month</string>
+    <string name="prem61">Further subscription for a month 4 USD</string>
+    <string name="ads_blocking">Ads Blocking</string>
+    <string name="no_more_annoying_ads">No more annoying ADS</string>
+
 
 </resources>

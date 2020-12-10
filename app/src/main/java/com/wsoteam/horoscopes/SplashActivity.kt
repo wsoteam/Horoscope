@@ -26,6 +26,8 @@ import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
+import com.wsoteam.horoscopes.presentation.premium.ab.CleanerPremiumActivity
+import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -76,8 +78,15 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             L.log("main activity enter")
         } else {
             if (!PreferencesProvider.isShowOnboard) {
+                L.log(PreferencesProvider.getVersion()!!)
                 PreferencesProvider.isShowOnboard = true
-                intent = Intent(this, EnterActivity::class.java)
+                intent = when (PreferencesProvider.getVersion()) {
+                    ABConfig.A -> Intent(this, DefaultPremiumActivity::class.java)
+                    ABConfig.B -> Intent(this, CleanerPremiumActivity::class.java)
+                    ABConfig.C -> Intent(this, EnterActivity::class.java)
+                    ABConfig.D -> Intent(this, FormActivity::class.java)
+                    else -> Intent(this, DefaultPremiumActivity::class.java)
+                }
                 L.log("Enter activity enter")
             } else {
                 intent = Intent(this, FormActivity::class.java)
@@ -88,10 +97,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         finish()
     }
 
-    private fun getKey(){
+    private fun getKey() {
         val info: PackageInfo
         try {
-            info = packageManager.getPackageInfo("com.wsoteam.horoscopes", PackageManager.GET_SIGNATURES)
+            info = packageManager.getPackageInfo(
+                "com.wsoteam.horoscopes",
+                PackageManager.GET_SIGNATURES
+            )
             for (signature in info.signatures) {
                 var md: MessageDigest
                 md = MessageDigest.getInstance("SHA")
@@ -108,7 +120,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             Log.e("exception", e.toString())
         }
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -156,7 +167,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     isAdLoaded = true
                 }
             }
-        }else{
+        } else {
             postGoNext(2, "firstEnter")
         }
         try {
@@ -167,9 +178,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
-            if (isAdLoaded){
+            if (isAdLoaded) {
                 postGoNext(2, "sleep4")
-            }else{
+            } else {
                 postGoNext(1, "sleep4")
             }
             Log.e("LOL", "sleep")

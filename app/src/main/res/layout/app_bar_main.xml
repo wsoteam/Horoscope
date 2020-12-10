@@ -119,6 +119,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginEnd="@dimen/cardview_default_radius"
+            android:visibility="gone"
             app:menu="@menu/bottom_navigation_main" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
