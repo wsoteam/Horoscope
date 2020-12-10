@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.utils.InAppCallback
@@ -24,7 +25,7 @@ class SubscriptionTermsActivity: AppCompatActivity(R.layout.subscription_terms_a
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, PriceManager.getSubId(), object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()

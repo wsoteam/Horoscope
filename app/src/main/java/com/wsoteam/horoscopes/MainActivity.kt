@@ -34,6 +34,7 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
+import com.wsoteam.horoscopes.presentation.premium.ab.dialogs.CatDialog
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
 import com.wsoteam.horoscopes.presentation.settings.dialogs.InfoDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -237,6 +238,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         //startActivity(Intent(this, EnterActivity::class.java))
+
+        if (!PreferencesProvider.isShowPremAlert){
+            PreferencesProvider.isShowPremAlert = true
+            CatDialog().show(supportFragmentManager, "")
+        }
     }
 
     override fun onResume() {

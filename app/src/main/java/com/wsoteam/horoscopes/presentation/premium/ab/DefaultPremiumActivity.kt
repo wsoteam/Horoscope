@@ -20,7 +20,7 @@ class DefaultPremiumActivity : AppCompatActivity(R.layout.default_premium_activi
         super.onCreate(savedInstanceState)
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ID_PRICE, object :
+            SubscriptionProvider.startChoiseSub(this, Config.DIAMOND_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()

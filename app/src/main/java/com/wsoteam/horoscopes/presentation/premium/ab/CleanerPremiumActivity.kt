@@ -20,7 +20,7 @@ class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activi
         super.onCreate(savedInstanceState)
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ID_PRICE, object :
+            SubscriptionProvider.startChoiseSub(this, Config.CLEANER_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()

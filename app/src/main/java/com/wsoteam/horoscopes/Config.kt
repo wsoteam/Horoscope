@@ -37,4 +37,9 @@ object Config {
 
     const val ACTION_SHARE = "ACTION_SHARE"
 
+    const val DIAMOND_SUB = "sub_diamond"
+    const val CLEANER_SUB = "sub_cleaner"
+    const val ONBOARD_SUB = "sub_onboard"
+    const val ALERT_SUB = "sub_alert"
+
 }

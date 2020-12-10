@@ -274,6 +274,10 @@
     <string name="prem61">Further subscription for a month 4 USD</string>
     <string name="ads_blocking">Ads Blocking</string>
     <string name="no_more_annoying_ads">No more annoying ADS</string>
+    <string name="premtest_excuse_us_please">Excuse us please!</string>
+    <string name="premtest_we_didn_t_want">We didn’t want to, but we had to add ads in order to be able to continue maintaining and developing our application, leaving it free of charge.</string>
+    <string name="premtest_skip">I understand</string>
+    <string name="premtest_buy">Disable ads</string>
 
 
 </resources>
