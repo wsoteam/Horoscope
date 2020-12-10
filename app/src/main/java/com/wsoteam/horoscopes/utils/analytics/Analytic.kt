@@ -3,9 +3,12 @@ package com.wsoteam.horoscopes.utils.analytics
 import android.util.Log
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
+import com.userexperior.UserExperior
+import com.userexperior.models.recording.enums.UeCustomType
 import com.yandex.metrica.YandexMetrica
 import org.json.JSONException
 import org.json.JSONObject
+
 
 object Analytic {
     private val make_purchase = "make_purchase"
@@ -70,33 +73,54 @@ object Analytic {
     fun crashAttr() {
         Amplitude.getInstance().logEvent(CRASH_ATTR)
         //Smartlook.trackCustomEvent(CRASH_ATTR)
-
+        try {
+            UserExperior.setCustomTag(CRASH_ATTR, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun start() {
         Amplitude.getInstance().logEvent(START)
         //Smartlook.trackCustomEvent(START)
         YandexMetrica.reportEvent(START)
+        try {
+            UserExperior.setCustomTag(START, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 
     fun touchBalls() {
         Amplitude.getInstance().logEvent(ASK_BALL)
         //Smartlook.trackCustomEvent(ASK_BALL)
-
+        try {
+            UserExperior.setCustomTag(ASK_BALL, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 
     fun showBalls() {
         Amplitude.getInstance().logEvent(BALL_PAGE)
         //Smartlook.trackCustomEvent(BALL_PAGE)
-
+        try {
+            UserExperior.setCustomTag(BALL_PAGE, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun changeSign() {
         Amplitude.getInstance().logEvent(OTHER_SIGN)
         //Smartlook.trackCustomEvent(OTHER_SIGN)
-
+        try {
+            UserExperior.setCustomTag(OTHER_SIGN, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun share(pack : String) {
@@ -109,18 +133,33 @@ object Analytic {
 
         Amplitude.getInstance().logEvent(SHARE_SOCIAL, eventProperties)
         //Smartlook.trackCustomEvent(SHARE_SOCIAL, eventProperties)
+
+        try {
+            UserExperior.setCustomTag("$SHARE_SOCIAL/$id - $pack", UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun openSettings() {
         Amplitude.getInstance().logEvent(SETTINGS)
         //Smartlook.trackCustomEvent(SETTINGS)
-
+        try {
+            UserExperior.setCustomTag(SETTINGS, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun setVersion() {
         Amplitude.getInstance().logEvent(set_ver)
         //Smartlook.trackCustomEvent(set_ver)
         YandexMetrica.reportEvent(set_ver)
+        try {
+            UserExperior.setCustomTag(set_ver, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun clickAD() {
@@ -132,25 +171,41 @@ object Analytic {
     fun openFromNotif() {
         Amplitude.getInstance().logEvent(open_from_notif)
         //Smartlook.trackCustomEvent(open_from_notif)
-
+        try {
+            UserExperior.setCustomTag(open_from_notif, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun openFromEveningNotif() {
         Amplitude.getInstance().logEvent(open_from_evening_notif)
         //Smartlook.trackCustomEvent(open_from_evening_notif)
-
+        try {
+            UserExperior.setCustomTag(open_from_evening_notif, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun showNotif() {
         Amplitude.getInstance().logEvent(show_notif)
         //Smartlook.trackCustomEvent(show_notif)
-
+        try {
+            UserExperior.setCustomTag(show_notif, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun showEveningNotif() {
         Amplitude.getInstance().logEvent(show_evening_notif)
         //Smartlook.trackCustomEvent(show_evening_notif)
-
+        try {
+            UserExperior.setCustomTag(show_evening_notif, UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     //////////Identify
@@ -197,6 +252,12 @@ object Analytic {
         Amplitude.getInstance().logEvent(HOROSCOPE, eventProperties)
         //Smartlook.trackCustomEvent(HOROSCOPE, eventProperties)
 
+        try {
+            UserExperior.setCustomTag("$HOROSCOPE/$horoscope_type - $property", UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
     fun showPrem(property: String) {
@@ -209,7 +270,11 @@ object Analytic {
         }
         Amplitude.getInstance().logEvent(PREMIUM_PAGE, eventProperties)
         //Smartlook.trackCustomEvent(PREMIUM_PAGE, eventProperties)
-
+        try {
+            UserExperior.setCustomTag("$PREMIUM_PAGE/$premium_page_from - $property", UeCustomType.EVENT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun makePurchaseFromOnboard(property: String) {
@@ -222,6 +287,16 @@ object Analytic {
         }
         Amplitude.getInstance().logEvent("ONBOARD_PURCHASE", eventProperties)
         //Smartlook.trackCustomEvent(PREMIUM_PAGE, eventProperties)
+
+        try {
+            UserExperior.setCustomTag(
+                "ONBOARD_PURCHASE/onboard_screen - $property",
+                UeCustomType.EVENT
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+        }
     }
 
     fun makePurchase(property: String, wherePurchase: String) {
@@ -236,7 +311,15 @@ object Analytic {
         YandexMetrica.reportEvent("trial")
         YandexMetrica.reportEvent("trial_make")
         //Smartlook.trackCustomEvent(PREMIUM_TRIAL, eventProperties)
+        try {
+            UserExperior.setCustomTag(
+                "$PREMIUM_TRIAL/ $trial_from - $property , $where - $wherePurchase",
+                UeCustomType.EVENT
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
 
+        }
     }
 
 
