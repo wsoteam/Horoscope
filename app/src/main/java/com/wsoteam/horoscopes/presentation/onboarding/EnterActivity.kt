@@ -38,7 +38,8 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
     }
 
     private fun handlInApp() {
-        Analytic.makePurchase("new_onboard", "new_onboard")
+        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
+        Analytic.makePurchaseFromOnboard("enter")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

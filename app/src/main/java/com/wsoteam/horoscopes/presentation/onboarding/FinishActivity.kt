@@ -39,7 +39,8 @@ class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
     }
 
     private fun handlInApp() {
-        Analytic.makePurchase("new_onboard", "new_onboard")
+        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
+        Analytic.makePurchaseFromOnboard("finish")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

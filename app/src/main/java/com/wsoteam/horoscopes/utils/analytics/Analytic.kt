@@ -212,6 +212,18 @@ object Analytic {
 
     }
 
+    fun makePurchaseFromOnboard(property: String) {
+        Log.e("LOL", "showPrem")
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put("onboard_screen", property)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent("ONBOARD_PURCHASE", eventProperties)
+        //Smartlook.trackCustomEvent(PREMIUM_PAGE, eventProperties)
+    }
+
     fun makePurchase(property: String, wherePurchase: String) {
         val eventProperties = JSONObject()
         try {

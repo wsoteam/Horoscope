@@ -38,7 +38,8 @@ class SubscriptionTermsActivity: AppCompatActivity(R.layout.subscription_terms_a
     }
 
     private fun handlInApp() {
-        Analytic.makePurchase("new_onboard", "new_onboard")
+        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
+        Analytic.makePurchaseFromOnboard("sub_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
