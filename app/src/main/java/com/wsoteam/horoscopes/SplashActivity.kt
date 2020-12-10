@@ -81,14 +81,25 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 L.log(PreferencesProvider.getVersion()!!)
                 PreferencesProvider.isShowOnboard = true
                 intent = when (PreferencesProvider.getVersion()) {
-                    ABConfig.A -> Intent(this, DefaultPremiumActivity::class.java)
-                    ABConfig.B -> Intent(this, CleanerPremiumActivity::class.java)
-                    ABConfig.C -> Intent(this, EnterActivity::class.java)
+                    ABConfig.A -> {
+                        PreferencesProvider.isShowPremAlert = true
+                        Intent(this, DefaultPremiumActivity::class.java)
+                    }
+                    ABConfig.B -> {
+                        PreferencesProvider.isShowPremAlert = true
+                        Intent(this, CleanerPremiumActivity::class.java)
+                    }
+                    ABConfig.C -> {
+                        PreferencesProvider.isShowPremAlert = true
+                        Intent(this, EnterActivity::class.java)
+                    }
                     ABConfig.D -> {
-
                         Intent(this, FormActivity::class.java)
                     }
-                    else -> Intent(this, DefaultPremiumActivity::class.java)
+                    else -> {
+                        PreferencesProvider.isShowPremAlert = true
+                        Intent(this, DefaultPremiumActivity::class.java)
+                    }
                 }
                 L.log("Enter activity enter")
             } else {
