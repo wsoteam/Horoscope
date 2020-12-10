@@ -18,7 +18,7 @@ class DefaultPremiumActivity : AppCompatActivity(R.layout.default_premium_activi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Analytic.showPrem(PreferencesProvider.getVersion()!!)
         btnPay.setOnClickListener { _ ->
             SubscriptionProvider.startChoiseSub(this, Config.DIAMOND_SUB, object :
                 InAppCallback {

@@ -19,7 +19,7 @@ class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Analytic.showPrem("privacy")
         ivClose.setOnClickListener {
             openNext()
         }

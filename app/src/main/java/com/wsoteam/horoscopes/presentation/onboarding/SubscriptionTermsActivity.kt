@@ -19,7 +19,7 @@ class SubscriptionTermsActivity: AppCompatActivity(R.layout.subscription_terms_a
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Analytic.showPrem("sub_terms")
         ivClose.setOnClickListener {
             openNext()
         }

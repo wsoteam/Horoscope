@@ -24,6 +24,7 @@ class CatDialog : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.cat_fragment_dialog, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
+        Analytic.showPrem(PreferencesProvider.getVersion()!!)
         return view
     }
 

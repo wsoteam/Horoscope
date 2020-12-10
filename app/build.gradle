@@ -99,7 +99,7 @@ dependencies {
 
     implementation 'com.bugfender.sdk:android:3.+'
     implementation 'com.qonversion.android.sdk:sdk:1.0.6'
-    /*implementation 'com.smartlook.recording:app:1.6.1-native'*/
+    /*implementation 'com.smartlook.recording:app:1.7.0-native'*/
 
     implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
     implementation 'com.userexperior:userexperior-android:+'

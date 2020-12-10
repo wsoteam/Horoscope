@@ -43,7 +43,7 @@ class App : MultiDexApplication() {
         Bugfender.enableUIEventLogging(this)
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
-        Qonversion.initialize(this, getString(R.string.qonversion_id), Creator.getId())
+        //Qonversion.initialize(this, getString(R.string.qonversion_id), Creator.getId())
         //Smartlook.setupAndStartRecording(getString(R.string.smartlock_id))
         FacebookSdk.sdkInitialize(this)
         FacebookSdk.setAutoInitEnabled(true)

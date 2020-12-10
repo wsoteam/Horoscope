@@ -19,7 +19,7 @@ class AppsTermsActivity : AppCompatActivity(R.layout.app_terms_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Analytic.showPrem("app_terms")
         ivClose.setOnClickListener {
             openNext()
         }

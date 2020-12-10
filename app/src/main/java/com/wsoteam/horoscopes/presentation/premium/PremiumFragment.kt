@@ -25,7 +25,7 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(activity!!, Config.ID_PRICE, object :
+            SubscriptionProvider.startChoiseSub(activity!!, Config.INSIDE_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()

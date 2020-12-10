@@ -18,7 +18,7 @@ class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Analytic.showPrem(PreferencesProvider.getVersion()!!)
         btnPay.setOnClickListener { _ ->
             SubscriptionProvider.startChoiseSub(this, Config.CLEANER_SUB, object :
                 InAppCallback {

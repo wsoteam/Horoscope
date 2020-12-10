@@ -19,7 +19,7 @@ class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Analytic.showPrem("finish")
         ivClose.setOnClickListener {
             openNext()
         }

@@ -41,5 +41,6 @@ object Config {
     const val CLEANER_SUB = "sub_cleaner"
     const val ONBOARD_SUB = "sub_onboard"
     const val ALERT_SUB = "sub_alert"
+    const val INSIDE_SUB = "sub_inside"
 
 }

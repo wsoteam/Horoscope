@@ -19,6 +19,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Analytic.showPrem("enter")
 
         ivClose.setOnClickListener {
             openNext()
