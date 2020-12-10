@@ -51,7 +51,7 @@ class EveningAlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (isShowTodayNotifEarly()) {
+        /*if (isShowTodayNotifEarly()) {
             Analytic.showEveningNotif()
             val notificationIntent = Intent(context, SplashActivity::class.java)
                 .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_EVENING_NOTIF)
@@ -107,7 +107,7 @@ class EveningAlarmReceiver : BroadcastReceiver() {
             }
 
             notificationManager.notify(0, notification)
-        }
+        }*/
     }
 
     private fun isShowTodayNotifEarly(): Boolean {

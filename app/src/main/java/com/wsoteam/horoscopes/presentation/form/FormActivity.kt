@@ -25,7 +25,7 @@ class FormActivity : AppCompatActivity(R.layout.form_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //PreferencesProvider.setBeforePremium(Analytic.form_premium)
-        SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
+        SubscriptionProvider.startGettingPrice(Config.INSIDE_SUB)
         edtBirthdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 DateDialog()
