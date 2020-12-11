@@ -19,7 +19,7 @@ class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("old_onboard_privacy")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
         ivClose.setOnClickListener {
             openNext()
         }
@@ -40,7 +40,7 @@ class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("old_onboard_privacy")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/privacy")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

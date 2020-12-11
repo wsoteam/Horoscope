@@ -19,7 +19,7 @@ class AppsTermsActivity : AppCompatActivity(R.layout.app_terms_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("old_onboard_app_terms")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
         ivClose.setOnClickListener {
             openNext()
         }
@@ -41,7 +41,7 @@ class AppsTermsActivity : AppCompatActivity(R.layout.app_terms_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("old_onboard_app_terms")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/app_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

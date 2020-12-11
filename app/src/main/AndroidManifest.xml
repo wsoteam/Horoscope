@@ -163,10 +163,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
-        <activity
-            android:name=".presentation.onboarding.space.GirlSubscriptionTermsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/EnterActivityStyle" />
 
         <activity
             android:name=".presentation.onboarding.space.SpacePrivacyPoliceActivity"
@@ -176,10 +172,31 @@
         <activity
             android:name=".presentation.onboarding.space.SpaceEnterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/EnterActivityStyle">
+            android:theme="@style/EnterActivityStyle"/>
 
 
-        </activity>
+
+        <activity
+            android:name=".presentation.onboarding.diamond.DiamondFinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.diamond.DiamondAppsTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+
+        <activity
+            android:name=".presentation.onboarding.diamond.DiamondPrivacyPoliceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.diamond.DiamondEnterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle"/>
+
 
 
 

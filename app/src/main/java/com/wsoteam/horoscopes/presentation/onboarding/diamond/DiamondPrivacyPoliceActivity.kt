@@ -19,13 +19,13 @@ class DiamondPrivacyPoliceActivity : AppCompatActivity(R.layout.diamond_privacy_
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("old_onboard_privacy")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_DIAMOND_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -35,12 +35,12 @@ class DiamondPrivacyPoliceActivity : AppCompatActivity(R.layout.diamond_privacy_
     }
 
     private fun openNext(){
-        startActivity(Intent(this, FinishActivity::class.java))
+        startActivity(Intent(this, DiamondFinishActivity::class.java))
     }
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("old_onboard_privacy")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/privacy")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

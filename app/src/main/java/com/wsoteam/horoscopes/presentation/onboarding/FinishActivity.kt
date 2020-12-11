@@ -19,7 +19,7 @@ class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("old_onbord_finish")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/finish")
         ivClose.setOnClickListener {
             openNext()
         }
@@ -41,7 +41,7 @@ class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("old_onboard_finish")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/finish")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

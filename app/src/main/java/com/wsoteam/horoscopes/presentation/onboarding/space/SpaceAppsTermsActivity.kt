@@ -18,7 +18,7 @@ class SpaceAppsTermsActivity : AppCompatActivity(R.layout.spaace_app_terms_activ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("space_onboard_app_terms")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
         ivClose.setOnClickListener {
             openNext()
         }
@@ -40,7 +40,7 @@ class SpaceAppsTermsActivity : AppCompatActivity(R.layout.spaace_app_terms_activ
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("space_onboard_app_terms")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/app_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

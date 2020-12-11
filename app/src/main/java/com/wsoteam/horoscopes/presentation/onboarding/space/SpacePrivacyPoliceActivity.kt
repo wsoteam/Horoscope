@@ -18,13 +18,13 @@ class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_poli
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("space_onboard_privacy")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -39,7 +39,7 @@ class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_poli
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("space_onboard_privacy")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/privacy")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

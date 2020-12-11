@@ -19,14 +19,14 @@ class DiamondEnterActivity : AppCompatActivity(R.layout.diamond_enter_activity) 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("old_onboard_enter")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/enter")
 
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_DIAMOND_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -36,12 +36,12 @@ class DiamondEnterActivity : AppCompatActivity(R.layout.diamond_enter_activity) 
     }
 
     private fun openNext(){
-        startActivity(Intent(this, AppsTermsActivity::class.java))
+        startActivity(Intent(this, DiamondAppsTermsActivity::class.java))
     }
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("old_enter")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/enter")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

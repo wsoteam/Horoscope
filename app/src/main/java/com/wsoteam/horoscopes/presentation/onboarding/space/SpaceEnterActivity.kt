@@ -18,7 +18,7 @@ class SpaceEnterActivity : AppCompatActivity(R.layout.space_enter_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("space_onboard_enter")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/enter")
 
         ivClose.setOnClickListener {
             openNext()
@@ -40,7 +40,7 @@ class SpaceEnterActivity : AppCompatActivity(R.layout.space_enter_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("space_onboard_enter")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/enter")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
