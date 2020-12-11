@@ -12,20 +12,20 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.space_enter_activity.*
+import kotlinx.android.synthetic.main.girl_enter_activity.*
 
 class GirlEnterActivity : AppCompatActivity(R.layout.girl_enter_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("space_onboard_enter")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/enter")
 
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_GIRL_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -40,7 +40,7 @@ class GirlEnterActivity : AppCompatActivity(R.layout.girl_enter_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("space_onboard_enter")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/enter")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

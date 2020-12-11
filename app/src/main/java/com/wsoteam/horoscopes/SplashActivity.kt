@@ -27,6 +27,7 @@ import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.onboarding.diamond.DiamondEnterActivity
+import com.wsoteam.horoscopes.presentation.onboarding.girl.GirlEnterActivity
 import com.wsoteam.horoscopes.presentation.onboarding.space.SpaceEnterActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CleanerPremiumActivity
@@ -104,7 +105,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         Intent(this, DiamondEnterActivity::class.java)
                     }
                     ABConfig.G -> {
-                        Intent(this, CatPremiumActivity::class.java)
+                        Intent(this, GirlEnterActivity::class.java)
                     }
                     else -> {
                         Intent(this, DefaultPremiumActivity::class.java)

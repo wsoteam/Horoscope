@@ -90,8 +90,7 @@
                     android:drawablePadding="10dp"
                     android:letterSpacing="0.06"
                     android:lineSpacingExtra="4.6sp"
-
-                    android:text="@string/unlimited_questions_to_the_magic_ball"
+                    android:text="Daily notifications of recent horoscopes"
                     android:textColor="#ffffff"
                     android:textSize="16sp" />
 

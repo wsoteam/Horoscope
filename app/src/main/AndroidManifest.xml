@@ -198,6 +198,28 @@
             android:theme="@style/EnterActivityStyle"/>
 
 
+        <activity
+            android:name=".presentation.onboarding.girl.GirlFinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.girl.GirlAppsTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle" />
+
+
+        <activity
+            android:name=".presentation.onboarding.girl.GirlPrivacyPoliceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.girl.GirlEnterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+
 
 
 

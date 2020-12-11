@@ -24,6 +24,14 @@
         <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
+    <style name="GirlEnterActivityStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">#382c2c2d</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
     <style name="Form" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">#c8bdb2</item>
         <item name="colorPrimaryDark">#c8bdb2</item>

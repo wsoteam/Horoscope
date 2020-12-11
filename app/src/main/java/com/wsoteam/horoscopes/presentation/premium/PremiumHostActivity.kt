@@ -31,10 +31,6 @@ class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
         open_from = intent.getStringExtra(Config.OPEN_PREM)
 
         var choicedFragment: Fragment = PremiumFragment()
-        if (PreferencesProvider.getVersion() == ABConfig.A) {
-            choicedFragment = PremiumFragmentSlide()
-            ivClose.visibility = View.INVISIBLE
-        }
 
         supportFragmentManager
             .beginTransaction()
