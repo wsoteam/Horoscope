@@ -166,24 +166,24 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         bindTest()
         refreshNotifications()
         AdWorker.init(this)
-        if (PreferencesProvider.getBirthday() != "") {
-            AdWorker.isNeedShowInter = true
-            AdWorker.adCallbacks = object : AdCallbacks {
-                override fun onAdClosed() {
-                    Log.e("LOL", "onAdClosed")
-                    postGoNext(2, "onAdClosed")
-                    AdWorker.unSubscribe()
-                }
-
-                override fun onAdLoaded() {
-                    Log.e("LOL", "onAdLoaded")
-                    MAX++
-                    isAdLoaded = true
-                }
+        /*if (PreferencesProvider.getBirthday() != "") {*/
+        AdWorker.isNeedShowInter = true
+        AdWorker.adCallbacks = object : AdCallbacks {
+            override fun onAdClosed() {
+                Log.e("LOL", "onAdClosed")
+                postGoNext(2, "onAdClosed")
+                AdWorker.unSubscribe()
             }
-        } else {
-            postGoNext(2, "firstEnter")
+
+            override fun onAdLoaded() {
+                Log.e("LOL", "onAdLoaded")
+                MAX++
+                isAdLoaded = true
+            }
         }
+        /*} else {
+            postGoNext(2, "firstEnter")
+        }*/
         try {
             trackUser()
         } catch (ex: Exception) {
@@ -193,9 +193,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
             if (isAdLoaded) {
-                postGoNext(2, "sleep4")
-            } else {
                 postGoNext(1, "sleep4")
+            } else {
+                postGoNext(2, "sleep4")
             }
             Log.e("LOL", "sleep")
         }
