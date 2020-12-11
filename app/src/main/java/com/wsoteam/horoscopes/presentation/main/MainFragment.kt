@@ -77,9 +77,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         tlTime.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoroscope))
         vpHoroscope.setCurrentItem(1, true)
 
-        tvGoTostories.setOnClickListener {
+        /*tvGoTostories.setOnClickListener {
             sendStory()
-        }
+        }*/
     }
 
     private fun sendStory() {
