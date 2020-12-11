@@ -12,19 +12,19 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.app_terms_activity.*
+import kotlinx.android.synthetic.main.spaace_app_terms_activity.*
 
 class SpaceAppsTermsActivity : AppCompatActivity(R.layout.spaace_app_terms_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("app_terms")
+        Analytic.showPrem("space_onboard_app_terms")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -40,7 +40,7 @@ class SpaceAppsTermsActivity : AppCompatActivity(R.layout.spaace_app_terms_activ
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("app_terms")
+        Analytic.makePurchaseFromOnboard("space_onboard_app_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

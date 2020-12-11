@@ -18,14 +18,14 @@ class SpaceEnterActivity : AppCompatActivity(R.layout.space_enter_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("enter")
+        Analytic.showPrem("space_onboard_enter")
 
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -40,7 +40,7 @@ class SpaceEnterActivity : AppCompatActivity(R.layout.space_enter_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("enter")
+        Analytic.makePurchaseFromOnboard("space_onboard_enter")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

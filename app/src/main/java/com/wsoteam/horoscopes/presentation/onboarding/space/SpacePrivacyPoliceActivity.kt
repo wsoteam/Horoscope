@@ -12,13 +12,13 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.privacy_police_activity.*
+import kotlinx.android.synthetic.main.space_privacy_police_activity.*
 
 class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_police_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("privacy")
+        Analytic.showPrem("space_onboard_privacy")
         ivClose.setOnClickListener {
             openNext()
         }
@@ -39,7 +39,7 @@ class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_poli
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("privacy")
+        Analytic.makePurchaseFromOnboard("space_onboard_privacy")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

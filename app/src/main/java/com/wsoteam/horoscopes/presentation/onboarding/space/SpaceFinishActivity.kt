@@ -12,19 +12,19 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.finish_activity.*
+import kotlinx.android.synthetic.main.space_finish_activity.*
 
 class SpaceFinishActivity : AppCompatActivity(R.layout.space_finish_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("finish")
+        Analytic.showPrem("space_onboard_finish")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -40,7 +40,7 @@ class SpaceFinishActivity : AppCompatActivity(R.layout.space_finish_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("finish")
+        Analytic.makePurchaseFromOnboard("space_onboard_finish")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

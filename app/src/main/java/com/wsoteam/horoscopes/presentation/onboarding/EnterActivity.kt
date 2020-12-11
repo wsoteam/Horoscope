@@ -19,7 +19,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("enter")
+        Analytic.showPrem("old_onboard_enter")
 
         ivClose.setOnClickListener {
             openNext()
@@ -41,7 +41,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("enter")
+        Analytic.makePurchaseFromOnboard("old_enter")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
