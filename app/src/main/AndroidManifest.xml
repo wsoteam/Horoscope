@@ -113,6 +113,11 @@
             android:theme="@style/PremiumCleaner" />
 
         <activity
+            android:name=".presentation.premium.ab.GreenPremiumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GreenPremiumCleaner" />
+
+        <activity
             android:name=".presentation.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />

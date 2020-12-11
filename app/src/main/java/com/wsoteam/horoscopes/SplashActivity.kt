@@ -28,6 +28,7 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CleanerPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
+import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -82,22 +83,18 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 PreferencesProvider.isShowOnboard = true
                 intent = when (PreferencesProvider.getVersion()) {
                     ABConfig.A -> {
-                        PreferencesProvider.isShowPremAlert = true
                         Intent(this, DefaultPremiumActivity::class.java)
                     }
                     ABConfig.B -> {
-                        PreferencesProvider.isShowPremAlert = true
-                        Intent(this, CleanerPremiumActivity::class.java)
+                        Intent(this, GreenPremiumActivity::class.java)
                     }
                     ABConfig.C -> {
-                        PreferencesProvider.isShowPremAlert = true
                         Intent(this, EnterActivity::class.java)
                     }
                     ABConfig.D -> {
                         Intent(this, FormActivity::class.java)
                     }
                     else -> {
-                        PreferencesProvider.isShowPremAlert = true
                         Intent(this, DefaultPremiumActivity::class.java)
                     }
                 }

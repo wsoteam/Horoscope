@@ -45,6 +45,13 @@
         <item name="android:navigationBarColor">#27282D</item>
     </style>
 
+    <style name="GreenPremiumCleaner" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFFFFF</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+    </style>
+
     <style name="Main" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">#f4e6d8</item>
         <item name="colorPrimaryDark">#c8bdb2</item>
