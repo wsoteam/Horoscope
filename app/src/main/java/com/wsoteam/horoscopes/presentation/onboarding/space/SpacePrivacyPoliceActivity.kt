@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.premium.ab
+package com.wsoteam.horoscopes.presentation.onboarding.space
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,39 +12,40 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.cat_premium_activity.*
+import kotlinx.android.synthetic.main.privacy_police_activity.*
 
-class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activity) {
+class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_police_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem(PreferencesProvider.getVersion()!!)
+        Analytic.showPrem("privacy")
+        ivClose.setOnClickListener {
+            openNext()
+        }
+
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ALERT_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
                 }
             })
         }
+    }
 
-        btnSkip.setOnClickListener {
-            openNextScreen()
-        }
-
+    private fun openNext(){
+        startActivity(Intent(this, SpaceFinishActivity::class.java))
     }
 
     private fun handlInApp() {
+        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
+        Analytic.makePurchaseFromOnboard("privacy")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
-        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
         PreferencesProvider.setADStatus(false)
-        openNextScreen()
-    }
-
-    private fun openNextScreen(){
         startActivity(Intent(this, FormActivity::class.java))
         finishAffinity()
     }
+
 
 }

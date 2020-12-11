@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.premium.ab
+package com.wsoteam.horoscopes.presentation.onboarding.space
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,15 +12,19 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.cat_premium_activity.*
+import kotlinx.android.synthetic.main.app_terms_activity.*
 
-class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activity) {
+class SpaceAppsTermsActivity : AppCompatActivity(R.layout.spaace_app_terms_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem(PreferencesProvider.getVersion()!!)
+        Analytic.showPrem("app_terms")
+        ivClose.setOnClickListener {
+            openNext()
+        }
+
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ALERT_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -28,23 +32,21 @@ class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activi
             })
         }
 
-        btnSkip.setOnClickListener {
-            openNextScreen()
-        }
+    }
 
+    private fun openNext(){
+        startActivity(Intent(this, SpacePrivacyPoliceActivity::class.java))
     }
 
     private fun handlInApp() {
+        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
+        Analytic.makePurchaseFromOnboard("app_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
-        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
         PreferencesProvider.setADStatus(false)
-        openNextScreen()
-    }
-
-    private fun openNextScreen(){
         startActivity(Intent(this, FormActivity::class.java))
         finishAffinity()
     }
+
 
 }

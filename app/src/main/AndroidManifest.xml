@@ -118,6 +118,11 @@
             android:theme="@style/GreenPremiumCleaner" />
 
         <activity
+            android:name=".presentation.premium.ab.CatPremiumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CatPremiumCleaner" />
+
+        <activity
             android:name=".presentation.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
@@ -142,7 +147,42 @@
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle">
 
+
         </activity>
+
+
+
+
+        <activity
+            android:name=".presentation.onboarding.space.SpaceFinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.space.SpaceAppsTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.space.GirlSubscriptionTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.space.SpacePrivacyPoliceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle" />
+
+        <activity
+            android:name=".presentation.onboarding.space.SpaceEnterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle">
+
+
+        </activity>
+
+
+
 
 
         <activity

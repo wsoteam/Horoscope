@@ -8,6 +8,9 @@ object ABConfig {
     const val B = "cleaner"
     const val C = "onboard"
     const val D = "alert"
+    const val E = "space"
+    const val F = "girl"
+    const val G = "ondoard_diamond"
 
     const val REQUEST_STRING_PRICE = "prices"
 }

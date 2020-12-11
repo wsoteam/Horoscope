@@ -26,6 +26,8 @@ import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
+import com.wsoteam.horoscopes.presentation.onboarding.space.SpaceEnterActivity
+import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CleanerPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
@@ -92,7 +94,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         Intent(this, EnterActivity::class.java)
                     }
                     ABConfig.D -> {
-                        Intent(this, FormActivity::class.java)
+                        Intent(this, CatPremiumActivity::class.java)
+                    }
+                    ABConfig.E -> {
+                        Intent(this, SpaceEnterActivity::class.java)
+                    }
+                    ABConfig.F -> {
+                        Intent(this, CatPremiumActivity::class.java)
+                    }
+                    ABConfig.G -> {
+                        Intent(this, CatPremiumActivity::class.java)
                     }
                     else -> {
                         Intent(this, DefaultPremiumActivity::class.java)

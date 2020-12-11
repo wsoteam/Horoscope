@@ -239,10 +239,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //startActivity(Intent(this, EnterActivity::class.java))
 
-        if (!PreferencesProvider.isShowPremAlert){
+        /*if (!PreferencesProvider.isShowPremAlert){
             PreferencesProvider.isShowPremAlert = true
             CatDialog().show(supportFragmentManager, "")
-        }
+        }*/
     }
 
     override fun onResume() {

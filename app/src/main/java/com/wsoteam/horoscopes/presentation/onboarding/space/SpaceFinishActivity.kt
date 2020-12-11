@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.premium.ab
+package com.wsoteam.horoscopes.presentation.onboarding.space
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,39 +12,41 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.cat_premium_activity.*
+import kotlinx.android.synthetic.main.finish_activity.*
 
-class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activity) {
+class SpaceFinishActivity : AppCompatActivity(R.layout.space_finish_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem(PreferencesProvider.getVersion()!!)
+        Analytic.showPrem("finish")
+        ivClose.setOnClickListener {
+            openNext()
+        }
+
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ALERT_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
                 }
             })
         }
-
-        btnSkip.setOnClickListener {
-            openNextScreen()
-        }
-
     }
 
-    private fun handlInApp() {
-        FirebaseAnalytics.getInstance(this).logEvent("trial", null)
-        FBAnalytic.logTrial(this)
-        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        PreferencesProvider.setADStatus(false)
-        openNextScreen()
-    }
-
-    private fun openNextScreen(){
+    private fun openNext(){
         startActivity(Intent(this, FormActivity::class.java))
         finishAffinity()
     }
+
+    private fun handlInApp() {
+        Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
+        Analytic.makePurchaseFromOnboard("finish")
+        FirebaseAnalytics.getInstance(this).logEvent("trial", null)
+        FBAnalytic.logTrial(this)
+        PreferencesProvider.setADStatus(false)
+        startActivity(Intent(this, FormActivity::class.java))
+        finishAffinity()
+    }
+
 
 }

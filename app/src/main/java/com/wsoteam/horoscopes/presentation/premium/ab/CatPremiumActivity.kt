@@ -14,7 +14,7 @@ import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import kotlinx.android.synthetic.main.cat_premium_activity.*
 
-class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activity) {
+class CatPremiumActivity : AppCompatActivity(R.layout.cat_premium_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,5 +46,4 @@ class CleanerPremiumActivity : AppCompatActivity(R.layout.cleaner_premium_activi
         startActivity(Intent(this, FormActivity::class.java))
         finishAffinity()
     }
-
 }
