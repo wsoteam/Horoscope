@@ -21,7 +21,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_close_app_terms"
+        android:src="@drawable/ic_close_diamond_onboard_terms"
         android:padding="16dp"
         android:layout_marginTop="25dp"
         android:layout_gravity="end"
