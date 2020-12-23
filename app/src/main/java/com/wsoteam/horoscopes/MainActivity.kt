@@ -175,6 +175,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         supportFragmentManager
             .beginTransaction()
@@ -290,6 +291,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setFirstUI() {
         L.log("setFirstUI")
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         if (birthSignIndex != choiceSign(PreferencesProvider.getBirthday()!!)) {
             L.log("birthSignIndex !=")
             birthSignIndex = choiceSign(PreferencesProvider.getBirthday()!!)
