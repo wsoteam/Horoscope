@@ -6,7 +6,6 @@ import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
-import com.qonversion.android.sdk.Qonversion
 import com.userexperior.UserExperior
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.id.Creator
@@ -43,8 +42,6 @@ class App : MultiDexApplication() {
         Bugfender.enableUIEventLogging(this)
         Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
-        //Qonversion.initialize(this, getString(R.string.qonversion_id), Creator.getId())
-        //Smartlook.setupAndStartRecording(getString(R.string.smartlock_id))
         FacebookSdk.sdkInitialize(this)
         FacebookSdk.setAutoInitEnabled(true)
         FacebookSdk.setAutoLogAppEventsEnabled(true)

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.android.billingclient.api.*
-import com.qonversion.android.sdk.Qonversion
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.loger.L
 import com.yandex.metrica.YandexMetrica
@@ -30,20 +29,13 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                         L.log("confirmed")
                     }
                     playStoreBillingClient.acknowledgePurchase(params, listener)
-                    trackPurchase(skuDetails[Config.ID_PRICE]!!, purchases[0])
-
                 }
             }
 
         }
     }
 
-    private fun trackPurchase(
-        details: SkuDetails,
-        purchase: Purchase
-    ) {
-        Qonversion.instance!!.purchase(details, purchase)
-    }
+
 
     private lateinit var playStoreBillingClient: BillingClient
     private var inAppCallback: InAppCallback? = null
