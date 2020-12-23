@@ -43,6 +43,8 @@ object PreferencesProvider {
     const val IS_SETUPED_TAG = "IS_SETUPED_TAG"
     const val SHOW_PREM_ALERT_TAG = "SHOW_PREM_ALERT_TAG"
 
+    const val INTER_FREQ = "INTER_FREQ"
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -99,6 +101,11 @@ object PreferencesProvider {
     fun getLastDayNotification() = getInstance()?.getInt(TODAY_NOTIF_TAG, DEF_TODAY_NOTIF)
 
     private fun setEnterCount(newCount: Int) = editor { it?.putInt(PREM_SHOW_TAG, newCount) }
+
+    fun setPercent(per: Int) = editor {
+        it?.putInt(INTER_FREQ, per)
+    }
+    fun getPercent() = getInstance()?.getInt(INTER_FREQ, 100)
 
     fun getPremShowPossibility(): Boolean {
         var pastCount = getInstance()?.getInt(PREM_SHOW_TAG, 0)!!

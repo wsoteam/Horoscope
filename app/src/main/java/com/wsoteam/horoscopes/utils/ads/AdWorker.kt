@@ -5,6 +5,7 @@ import androidx.core.R
 import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.frequency.InterFrequency
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.loger.L
 import kotlin.random.Random
@@ -21,6 +22,7 @@ object AdWorker {
 
 
     fun init(context: Context?){
+        InterFrequency.runSetup()
         if (context == null) return
         MobileAds.initialize(context) {
             isInit = true
@@ -91,7 +93,7 @@ object AdWorker {
     }
 
     private fun needShow(): Boolean {
-        return Random.nextInt(100) <= Config.ADS_FREQUENCY
+        return Random.nextInt(100) <= PreferencesProvider.getPercent()!!
 
     }
 

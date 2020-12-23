@@ -70,6 +70,9 @@ object Analytic {
     private val START = "start"
     private val CRASH_ATTR = "CRASH_ATTR"
 
+    val FREQUENCY_TAG = "FREQUENCY"
+
+
     fun crashAttr() {
         Amplitude.getInstance().logEvent(CRASH_ATTR)
         //Smartlook.trackCustomEvent(CRASH_ATTR)
@@ -320,6 +323,14 @@ object Analytic {
             e.printStackTrace()
 
         }
+    }
+
+    fun setFrequency(per: Int) {
+        var identify = Identify()
+            .set(FREQUENCY_TAG, per.toString())
+        Amplitude
+            .getInstance()
+            .identify(identify)
     }
 
 
