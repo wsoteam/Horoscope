@@ -5,6 +5,7 @@ import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
 import com.userexperior.UserExperior
 import com.userexperior.models.recording.enums.UeCustomType
+import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import com.yandex.metrica.YandexMetrica
 import org.json.JSONException
 import org.json.JSONObject
@@ -142,6 +143,7 @@ object Analytic {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        Experior.trackMainShareProp(pack)
     }
 
     fun openSettings() {

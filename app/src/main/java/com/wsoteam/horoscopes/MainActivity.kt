@@ -42,6 +42,7 @@ import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.interceptor.ShareBroadcast
 import com.wsoteam.horoscopes.utils.loger.L
@@ -55,6 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var vm: MainVM
     var birthSignIndex = -1
     var lastIndex = 0
+
+    var isFirstSetUp = true
 
     var premFragment = PremiumFragment()
     var mainFragment = LoadFragment() as Fragment
@@ -213,11 +216,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
+        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener{
+            override fun onDrawerStateChanged(newState: Int) {
+            }
+
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                Experior.trackBurgerMenu()
+            }
+        })
 
 
         ivToolPrem.setOnClickListener {
             PreferencesProvider.setBeforePremium(Analytic.crown_premium)
             openPrem()
+            Experior.trackMainPremium()
             //bnvMain.selectedItemId = R.id.bnv_prem
         }
 
@@ -228,6 +246,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         ivToolShare.setOnClickListener {
+            Experior.trackMainShare()
             share()
         }
 
@@ -332,12 +351,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
                 tvToolTitle.text =
                     resources.getStringArray(R.array.names_signs)[listIndexes.indexOf(item.itemId)]
+                if (!isFirstSetUp) {
+                    Experior.trackBurgerSignProp(tvToolTitle.text.toString())
+                }
                 bindToolbar(listIndexes.indexOf(item.itemId))
                 if (llTools.visibility != View.VISIBLE) {
                     llTools.visibility = View.VISIBLE
                 }
                 drawer_layout.closeDrawers()
                 lastIndex = index
+                isFirstSetUp = false
                 return true
             }
             item.itemId == R.id.nav_settings -> {
@@ -356,12 +379,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 L.log("nav_settings")
                 startActivity(Intent(this, SettingsActivity::class.java))
                 drawer_layout.closeDrawers()
+                Experior.trackBurgerSettings()
                 return false
             }
             else -> {
                 if (PreferencesProvider.isADEnabled()) {
                     PreferencesProvider.setBeforePremium(Analytic.burger_premium)
                     openPrem()
+                    Experior.trackBurgerPremium()
                 } else {
                     InfoDialog().show(supportFragmentManager, "")
                 }

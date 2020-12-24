@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -16,6 +17,7 @@ import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import kotlinx.android.synthetic.main.main_fragment.*
 
 
@@ -64,6 +66,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
+                Experior.trackHoroPage(position)
                 if (isFirstSet) {
                     isFirstSet = false
                 } else {
