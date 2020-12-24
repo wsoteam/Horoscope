@@ -28,6 +28,7 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.onboarding.diamond.DiamondEnterActivity
 import com.wsoteam.horoscopes.presentation.onboarding.girl.GirlEnterActivity
+import com.wsoteam.horoscopes.presentation.onboarding.single.SinglePremActivity
 import com.wsoteam.horoscopes.presentation.onboarding.space.SpaceEnterActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CleanerPremiumActivity
@@ -108,6 +109,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     }
                     ABConfig.G -> {
                         Intent(this, GirlEnterActivity::class.java)
+                    }
+                    ABConfig.H -> {
+                        Intent(this, SinglePremActivity::class.java)
                     }
                     else -> {
                         Intent(this, DefaultPremiumActivity::class.java)

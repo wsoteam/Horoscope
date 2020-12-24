@@ -44,6 +44,7 @@ object Config {
     const val INSIDE_SUB = "sub_inside"
     const val ONBOARD_SPACE_SUB = "sub_onboard_space"
     const val ONBOARD_GIRL_SUB = "sub_onboard_girl"
+    const val ONBOARD_SINGLE_GIRL_SUB = "sub_onboard_girl_single"
     const val ONBOARD_DIAMOND_SUB = "sub_onboard_diamond"
 
 }

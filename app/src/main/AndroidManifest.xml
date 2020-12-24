@@ -176,6 +176,7 @@
 
 
 
+
         <activity
             android:name=".presentation.onboarding.diamond.DiamondFinishActivity"
             android:screenOrientation="portrait"
@@ -196,6 +197,7 @@
             android:name=".presentation.onboarding.diamond.DiamondEnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle"/>
+
 
 
         <activity
@@ -219,8 +221,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle"/>
 
+        <activity
+            android:name=".presentation.onboarding.single.SinglePremActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
 
-
+        <activity
+            android:name=".presentation.onboarding.single.PoliceGirlActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle" />
 
 
 
