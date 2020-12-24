@@ -40,6 +40,7 @@ import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
@@ -62,6 +63,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     var isNextScreenLoading = false
     lateinit var vm: MainVM
     var isAdLoaded = false
+    var isFirstSplash = false
 
 
     private fun postGoNext(i: Int, tag: String) {
@@ -119,6 +121,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
         startActivity(intent)
         finish()
+        if (isFirstSplash){
+            ETimer.trackEnd(ETimer.FIRST_SPLASH)
+        }else{
+            ETimer.trackEnd(ETimer.NEXT_SPLASH)
+        }
     }
 
     private fun getKey() {
@@ -148,14 +155,18 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BannerFrequency.runSetup()
         if (!PreferencesProvider.isSetuped) {
+            ETimer.trackStart(ETimer.FIRST_SPLASH)
             AppEventsLogger
                 .newLogger(this)
                 .logEvent("fb_mobile_first_app_launch")
             FBAnalytic.logFirstLaunch(this)
             PreferencesProvider.isSetuped = true
+            isFirstSplash = true
+        }else{
+            ETimer.trackStart(ETimer.NEXT_SPLASH)
         }
+        BannerFrequency.runSetup()
 
         var vm = ViewModelProviders
             .of(this)

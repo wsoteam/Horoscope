@@ -1,12 +1,14 @@
 package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
+import android.util.Log
 import androidx.core.R
 import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.frequency.InterFrequency
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.loger.L
 import kotlin.random.Random
 
@@ -19,16 +21,21 @@ object AdWorker {
     private const val MAX_QUERY = 3
     private var counterFailed = 0
     var adCallbacks: AdCallbacks? = null
+    var isFirstLoad = false
 
 
     fun init(context: Context?){
         InterFrequency.runSetup()
+        isFirstLoad = true
         if (context == null) return
         MobileAds.initialize(context) {
             isInit = true
             mInterstitialAd = InterstitialAd(context)
             mInterstitialAd?.adUnitId = context.getString(com.wsoteam.horoscopes.R.string.interstitial_id)
             mInterstitialAd?.loadAd(AdRequest.Builder().build())
+            if (isFirstLoad){
+                ETimer.trackStart(ETimer.FIRST_LOAD_INTER)
+            }
             mInterstitialAd?.adListener = object : AdListener() {
 
                 override fun onAdClicked() {
@@ -39,11 +46,18 @@ object AdWorker {
                 override fun onAdClosed() {
                     adCallbacks?.onAdClosed()
                     isNeedShowInter = false
+                    ETimer.trackStart(ETimer.NEXT_LOAD_INTER)
                     mInterstitialAd?.loadAd(AdRequest.Builder().build())
                 }
 
                 override fun onAdLoaded() {
                     super.onAdLoaded()
+                    if (isFirstLoad){
+                        ETimer.trackEnd(ETimer.FIRST_LOAD_INTER)
+                        isFirstLoad = false
+                    }else{
+                        ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
+                    }
                     adCallbacks?.onAdLoaded()
                     if (isNeedShowInter){
                         showInter()
@@ -54,6 +68,7 @@ object AdWorker {
 
                 override fun onAdFailedToLoad(p0: Int) {
                     L.log("onAdFailedToLoad")
+                    ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
                     counterFailed ++
                     if (counterFailed <= MAX_QUERY){
                         reload()

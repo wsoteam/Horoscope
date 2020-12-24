@@ -301,7 +301,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .commit()
             vm.reloadData()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            AdWorker.init(this)
         } else {
             NetState.showNetLost(this)
         }
