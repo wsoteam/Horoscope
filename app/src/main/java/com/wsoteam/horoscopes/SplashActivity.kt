@@ -327,7 +327,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun setABTestConfig(version: String, priceIndex: Int) {
         L.log("set test")
         L.log("$priceIndex")
-        PreferencesProvider.setVersion(ABConfig.E)
+        PreferencesProvider.setVersion(version)
         PreferencesProvider.priceIndex = priceIndex
         Analytic.setABVersion(version, priceIndex)
         Analytic.setVersion()

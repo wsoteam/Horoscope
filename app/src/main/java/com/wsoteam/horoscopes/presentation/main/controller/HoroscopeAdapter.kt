@@ -62,7 +62,7 @@ class HoroscopeAdapter(
             TEXT_TYPE -> (holder as TextVH).bind(text, isLocked)
             MATCH_TYPE -> (holder as MatchVH).bind(matches[0], matches[1], matches[2])
             MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3], false)
-            AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(3)])
+            AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(nativeList.size)])
         }
     }
 
