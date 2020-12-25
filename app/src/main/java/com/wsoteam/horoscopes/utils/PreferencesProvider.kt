@@ -45,6 +45,9 @@ object PreferencesProvider {
 
     const val INTER_FREQ = "INTER_FREQ"
 
+    const val VALUE_PRICE = "VALUE_PRICE"
+    const val UNIT_PRICE = "UNIT_PRICE"
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -62,6 +65,12 @@ object PreferencesProvider {
 
     fun setPrice(price: String) = editor { it?.putString(PRICE_TAG, price) }
     fun getPrice() = getInstance()?.getString(PRICE_TAG, DEF_PRICE)
+
+    fun setPriceValue(price: Long) = editor { it?.putLong(VALUE_PRICE, price) }
+    fun getPriceValue() = getInstance()?.getLong(VALUE_PRICE, 879_000_000)
+
+    fun setPriceUnit(price: String) = editor { it?.putString(UNIT_PRICE, price) }
+    fun getPriceUnit() = getInstance()?.getString(UNIT_PRICE, "RUB")
 
     fun setName(name: String) = editor { it?.putString(NAME_TAG, name) }
     fun getName() = getInstance()?.getString(NAME_TAG, "")

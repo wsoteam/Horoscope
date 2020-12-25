@@ -84,7 +84,8 @@
             android:lineSpacingExtra="-8sp"
             android:textColor="#e84b4b"
             android:textSize="28sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:text = "879 RUB/month"/>
 
         <FrameLayout
             android:layout_width="wrap_content"

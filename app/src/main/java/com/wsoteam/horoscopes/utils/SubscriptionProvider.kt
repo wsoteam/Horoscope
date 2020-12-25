@@ -104,8 +104,9 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList!!.isNotEmpty()) {
                         try {
-                            Log.e("LOL", "get price")
                             PreferencesProvider.setPrice(skuDetailsList!![0].price)
+                            PreferencesProvider.setPriceValue(skuDetailsList!![0].priceAmountMicros)
+                            PreferencesProvider.setPriceUnit(skuDetailsList!![0].priceCurrencyCode)
                         } catch (ex: Exception) {
                             YandexMetrica.reportEvent("error price set")
                         }
