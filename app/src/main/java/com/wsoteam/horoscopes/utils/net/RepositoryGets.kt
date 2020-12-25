@@ -26,8 +26,8 @@ object RepositoryGets {
                         else HttpLoggingInterceptor.Level.NONE
                     )
             )
-            .connectTimeout(5, TimeUnit.MINUTES)
-            .readTimeout(5, TimeUnit.MINUTES)
+            .connectTimeout(60, TimeUnit.MINUTES)
+            .readTimeout(60, TimeUnit.MINUTES)
             .build()
 
         var retrofit = Retrofit.Builder()
