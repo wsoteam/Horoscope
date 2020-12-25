@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding.girl
+package com.wsoteam.horoscopes.presentation.premium.onboarding
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,19 +12,19 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.girl_privacy_police_activity.*
+import kotlinx.android.synthetic.main.finish_activity.*
 
-class GirlPrivacyPoliceActivity : AppCompatActivity(R.layout.girl_privacy_police_activity) {
+class FinishActivity : AppCompatActivity(R.layout.finish_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/finish")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_GIRL_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -34,12 +34,13 @@ class GirlPrivacyPoliceActivity : AppCompatActivity(R.layout.girl_privacy_police
     }
 
     private fun openNext(){
-        startActivity(Intent(this, GirlFinishActivity::class.java))
+        startActivity(Intent(this, FormActivity::class.java))
+        finishAffinity()
     }
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/finish")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

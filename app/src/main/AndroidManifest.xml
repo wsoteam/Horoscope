@@ -123,27 +123,27 @@
             android:theme="@style/CatPremiumCleaner" />
 
         <activity
-            android:name=".presentation.onboarding.FinishActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.AppsTermsActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.AppsTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.SubscriptionTermsActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.SubscriptionTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.PrivacyPoliceActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.PrivacyPoliceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.EnterActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle">
 
@@ -154,23 +154,23 @@
 
 
         <activity
-            android:name=".presentation.onboarding.space.SpaceFinishActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpaceFinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.space.SpaceAppsTermsActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpaceAppsTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
 
         <activity
-            android:name=".presentation.onboarding.space.SpacePrivacyPoliceActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpacePrivacyPoliceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.space.SpaceEnterActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpaceEnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle"/>
 
@@ -178,56 +178,56 @@
 
 
         <activity
-            android:name=".presentation.onboarding.diamond.DiamondFinishActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondFinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.diamond.DiamondAppsTermsActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondAppsTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
 
         <activity
-            android:name=".presentation.onboarding.diamond.DiamondPrivacyPoliceActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondPrivacyPoliceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.diamond.DiamondEnterActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondEnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle"/>
 
 
 
         <activity
-            android:name=".presentation.onboarding.girl.GirlFinishActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.girl.GirlFinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.girl.GirlAppsTermsActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.girl.GirlAppsTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle" />
 
 
         <activity
-            android:name=".presentation.onboarding.girl.GirlPrivacyPoliceActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.girl.GirlPrivacyPoliceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.girl.GirlEnterActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.girl.GirlEnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle"/>
 
         <activity
-            android:name=".presentation.onboarding.single.SinglePremActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.single.SinglePremActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle"/>
 
         <activity
-            android:name=".presentation.onboarding.single.PoliceGirlActivity"
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.single.PoliceGirlActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GirlEnterActivityStyle" />
 

@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding.diamond
+package com.wsoteam.horoscopes.presentation.premium.onboarding.diamond
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,6 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.PriceManager
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic

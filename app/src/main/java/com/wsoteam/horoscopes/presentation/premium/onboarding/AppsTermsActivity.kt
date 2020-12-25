@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding
+package com.wsoteam.horoscopes.presentation.premium.onboarding
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,17 +9,16 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.PriceManager
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.privacy_police_activity.*
+import kotlinx.android.synthetic.main.app_terms_activity.*
 
-class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity) {
+class AppsTermsActivity : AppCompatActivity(R.layout.app_terms_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
         ivClose.setOnClickListener {
             openNext()
         }
@@ -32,15 +31,16 @@ class PrivacyPoliceActivity : AppCompatActivity(R.layout.privacy_police_activity
                 }
             })
         }
+
     }
 
     private fun openNext(){
-        startActivity(Intent(this, FinishActivity::class.java))
+        startActivity(Intent(this, PrivacyPoliceActivity::class.java))
     }
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/app_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

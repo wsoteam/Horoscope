@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -29,17 +29,17 @@
             android:fontFamily="@font/comfortaa"
             android:gravity="center_horizontal"
             android:letterSpacing="0.33"
-            android:lineSpacingExtra="0.7sp"
+            android:lineSpacingExtra="0.8sp"
             android:text="horoscope"
             android:textColor="#4f4e73"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:fontFamily="@font/comfortaa"
             android:gravity="center_horizontal"
             android:letterSpacing="0.01"
@@ -49,26 +49,76 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_regular"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#2e2c5c"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="1.5sp"
+            android:gravity="center_horizontal"
+            android:text="Accurate daily horoscope forecasts"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="19dp"
             app:srcCompat="@drawable/img_onboard_girl" />
 
-        <TextView
-            android:layout_width="270dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/open_sans_regular"
-            android:gravity="center_horizontal"
-            android:letterSpacing="0.02"
-            android:lineSpacingExtra="1sp"
-            android:text="Accurate forecasts for every day"
-            android:textColor="#de000000"
-            android:textSize="20sp"
-            android:textStyle="normal" />
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="28dp"
+                android:drawableStart="@drawable/ic_point_girl_single"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:letterSpacing="0.06"
+                android:lineSpacingExtra="4sp"
+                android:text="No advertising"
+                android:textColor="#1e1e1e"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_point_girl_single"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:letterSpacing="0.06"
+                android:lineSpacingExtra="4sp"
+                android:text="Full access to horoscopes"
+                android:textColor="#1e1e1e"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
         <Button
@@ -76,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/shape_btn_buy_onboard_girl"
             android:fontFamily="@font/open_sans_regular"
             android:letterSpacing="0.09"
@@ -91,26 +141,42 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvPrice"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
             android:fontFamily="@font/open_sans_regular"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#5c5c5c"
             android:letterSpacing="0.06"
             android:lineSpacingExtra="4sp"
-            android:text="3 days trial period. Then $ 0 per month. You can cancel your subscription before the start of the paid period. "
-            android:textColor="#5c5c5c"
+            android:gravity="center_horizontal"
+            android:text="First 3 days free"
+            />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_regular"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="normal"
             android:textSize="14sp"
-            android:textStyle="normal" />
+            android:textColor="#5c5c5c"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal"
+            tools:text="$0.00/month"
+            />
 
         <TextView
             android:id="@+id/tvPrivacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="54dp"
+            android:layout_marginTop="59dp"
             android:layout_marginBottom="28dp"
             android:fontFamily="@font/open_sans_semibold"
             android:gravity="center_horizontal"

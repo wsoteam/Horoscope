@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding.girl
+package com.wsoteam.horoscopes.presentation.premium.onboarding.space
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,35 +12,35 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.girl_app_terms_activity.*
+import kotlinx.android.synthetic.main.space_finish_activity.*
 
-class GirlAppsTermsActivity : AppCompatActivity(R.layout.girl_app_terms_activity) {
+class SpaceFinishActivity : AppCompatActivity(R.layout.space_finish_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/finish")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_GIRL_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
                 }
             })
         }
-
     }
 
     private fun openNext(){
-        startActivity(Intent(this, GirlPrivacyPoliceActivity::class.java))
+        startActivity(Intent(this, FormActivity::class.java))
+        finishAffinity()
     }
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/finish")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

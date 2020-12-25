@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding
+package com.wsoteam.horoscopes.presentation.premium.onboarding.diamond
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,13 +9,12 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.PriceManager
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import kotlinx.android.synthetic.main.enter_activity.*
 
-class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
+class DiamondEnterActivity : AppCompatActivity(R.layout.diamond_enter_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_DIAMOND_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -36,7 +35,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_activity) {
     }
 
     private fun openNext(){
-        startActivity(Intent(this, AppsTermsActivity::class.java))
+        startActivity(Intent(this, DiamondAppsTermsActivity::class.java))
     }
 
     private fun handlInApp() {

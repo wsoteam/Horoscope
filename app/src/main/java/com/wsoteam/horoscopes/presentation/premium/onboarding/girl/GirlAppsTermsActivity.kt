@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding.space
+package com.wsoteam.horoscopes.presentation.premium.onboarding.girl
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,34 +12,35 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import kotlinx.android.synthetic.main.space_privacy_police_activity.*
+import kotlinx.android.synthetic.main.girl_app_terms_activity.*
 
-class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_police_activity) {
+class GirlAppsTermsActivity : AppCompatActivity(R.layout.girl_app_terms_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
         ivClose.setOnClickListener {
             openNext()
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_GIRL_SUB, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
                 }
             })
         }
+
     }
 
     private fun openNext(){
-        startActivity(Intent(this, SpaceFinishActivity::class.java))
+        startActivity(Intent(this, GirlPrivacyPoliceActivity::class.java))
     }
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getVersion()!!, "form")
-        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.makePurchaseFromOnboard("${PreferencesProvider.getVersion()}/app_terms")
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

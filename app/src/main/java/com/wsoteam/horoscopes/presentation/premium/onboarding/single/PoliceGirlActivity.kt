@@ -1,4 +1,4 @@
-package com.wsoteam.horoscopes.presentation.onboarding.single
+package com.wsoteam.horoscopes.presentation.premium.onboarding.single
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
