@@ -17,6 +17,7 @@ import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.ads.NativeSpeaker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.page_fragment.*
+import java.lang.Exception
 
 class PageFragment : Fragment(R.layout.page_fragment) {
 
@@ -76,8 +77,11 @@ class PageFragment : Fragment(R.layout.page_fragment) {
                 }
             }
         })
-        text = signData.text.substring(0, 100) + "..."
 
+        try {
+            text = signData?.text?.substring(0, 100) + "..."
+        }catch (ex : Exception){
+        }
     }
 
     private fun isLocked(): Boolean {
