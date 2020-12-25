@@ -69,6 +69,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 isADEnabled = false
             }
             PreferencesProvider.setADStatus(isADEnabled)
+            startGettingPrice(Config.DIAMOND_SUB)
         }
     }
 
@@ -98,10 +99,12 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(id))
             .setType(BillingClient.SkuType.SUBS).build()
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
+            Log.e("LOL", "response code ${billingResult.responseCode}")
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList!!.isNotEmpty()) {
                         try {
+                            Log.e("LOL", "get price")
                             PreferencesProvider.setPrice(skuDetailsList!![0].price)
                         } catch (ex: Exception) {
                             YandexMetrica.reportEvent("error price set")

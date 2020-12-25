@@ -182,7 +182,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .add(R.id.flContainer, BallFragment())
             .commit()
 
-        SubscriptionProvider.startGettingPrice(Config.DIAMOND_SUB)
         if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
             adView.visibility = View.VISIBLE
             adView.loadAd(AdRequest.Builder().build())
