@@ -42,6 +42,7 @@ import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
+import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
@@ -233,6 +234,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Config.OPEN_FROM_EVENING_NOTIF -> Analytic.openFromEveningNotif()
             }
         }
+        determineCountry()
+    }
+
+    private fun determineCountry() {
+        var country = resources.configuration.locale.country
+        TagManager.setCountry(country)
     }
 
     private fun makeCurrentScreen(it: List<Sign>) {
