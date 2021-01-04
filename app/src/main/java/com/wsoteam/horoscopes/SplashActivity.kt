@@ -18,6 +18,8 @@ import com.android.installreferrer.api.InstallReferrerStateListener
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.userexperior.UserExperior
+import com.userexperior.models.recording.enums.UeCustomType
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
@@ -223,6 +225,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             } else {
                 postGoNext(2, "sleep4")
             }
+            determineCountry()
             Log.e("LOL", "sleep")
         }
         if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null) {
@@ -234,7 +237,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Config.OPEN_FROM_EVENING_NOTIF -> Analytic.openFromEveningNotif()
             }
         }
-        determineCountry()
     }
 
     private fun determineCountry() {

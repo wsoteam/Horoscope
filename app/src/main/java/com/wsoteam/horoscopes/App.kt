@@ -25,12 +25,12 @@ class App : MultiDexApplication() {
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
-        if(BuildConfig.DEBUG) {
+        /*if(BuildConfig.DEBUG) {
             //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
             UserExperior.startRecording(getApplicationContext(), getString(R.string.debug_user_expirior_id));
-        }else{
+        }else{*/
             UserExperior.startRecording(getApplicationContext(), getString(R.string.release_user_expirior_id));
-        }
+        //}
         Amplitude.getInstance()
             .initialize(this, getString(R.string.amplitude_id))
             .enableForegroundTracking(this)
