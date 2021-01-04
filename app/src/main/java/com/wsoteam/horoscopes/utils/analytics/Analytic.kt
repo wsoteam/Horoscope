@@ -73,6 +73,15 @@ object Analytic {
 
     val FREQUENCY_TAG = "FREQUENCY"
 
+    private const val placement_error_timer = "placement"
+    private const val type_error_timer = "type"
+    private const val when_error_timer = "when"
+    private const val TIMER_ERROR = "timer_error"
+
+    private const val TIMER_END = "end_timer"
+    private const val timer_type = "type"
+    private const val timer_time = "time"
+
 
     fun crashAttr() {
         Amplitude.getInstance().logEvent(CRASH_ATTR)
@@ -335,6 +344,29 @@ object Analytic {
             .identify(identify)
     }
 
+    fun sendErrorTimer(placement: String, type : String, whenPlacement : String){
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(placement_error_timer, placement)
+            eventProperties.put(type_error_timer, type)
+            eventProperties.put(when_error_timer, whenPlacement)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(TIMER_ERROR, eventProperties)
+    }
+
+    fun trackTime(type: String, time : String){
+        Log.e("LOL", time)
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(timer_type, type)
+            eventProperties.put(timer_time, time)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(TIMER_END, eventProperties)
+    }
 
 
 

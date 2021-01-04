@@ -8,6 +8,7 @@ import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.frequency.InterFrequency
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.analytics.experior.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.loger.L
 import kotlin.random.Random
@@ -34,7 +35,11 @@ object AdWorker {
             mInterstitialAd?.adUnitId = context.getString(com.wsoteam.horoscopes.R.string.interstitial_id)
             mInterstitialAd?.loadAd(AdRequest.Builder().build())
             if (isFirstLoad){
+                CustomTimer.startFirstInterTimer()
                 ETimer.trackStart(ETimer.FIRST_LOAD_INTER)
+            }else{
+                CustomTimer.startNextInterTimer()
+                ETimer.trackStart(ETimer.NEXT_LOAD_INTER)
             }
             mInterstitialAd?.adListener = object : AdListener() {
 
@@ -47,6 +52,7 @@ object AdWorker {
                     adCallbacks?.onAdClosed()
                     isNeedShowInter = false
                     ETimer.trackStart(ETimer.NEXT_LOAD_INTER)
+                    CustomTimer.startNextInterTimer()
                     mInterstitialAd?.loadAd(AdRequest.Builder().build())
                 }
 
@@ -54,8 +60,10 @@ object AdWorker {
                     super.onAdLoaded()
                     if (isFirstLoad){
                         ETimer.trackEnd(ETimer.FIRST_LOAD_INTER)
+                        CustomTimer.stopFirstInterTimer()
                         isFirstLoad = false
                     }else{
+                        CustomTimer.stopNextInterTimer()
                         ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
                     }
                     adCallbacks?.onAdLoaded()
@@ -68,7 +76,13 @@ object AdWorker {
 
                 override fun onAdFailedToLoad(p0: Int) {
                     L.log("onAdFailedToLoad")
-                    ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
+                    if (isFirstLoad){
+                        CustomTimer.stopFirstInterTimer()
+                        ETimer.trackEnd(ETimer.FIRST_LOAD_INTER)
+                    }else{
+                        CustomTimer.stopNextInterTimer()
+                        ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
+                    }
                     counterFailed ++
                     if (counterFailed <= MAX_QUERY){
                         reload()

@@ -43,6 +43,7 @@ import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.analytics.experior.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign
@@ -129,8 +130,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         startActivity(intent)
         finish()
         if (isFirstSplash){
+            CustomTimer.stopFirstSplashTimer()
             ETimer.trackEnd(ETimer.FIRST_SPLASH)
         }else{
+            CustomTimer.stopNextInterTimer()
             ETimer.trackEnd(ETimer.NEXT_SPLASH)
         }
     }
@@ -163,6 +166,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!PreferencesProvider.isSetuped) {
+            CustomTimer.startFirstSplashTimer()
             ETimer.trackStart(ETimer.FIRST_SPLASH)
             AppEventsLogger
                 .newLogger(this)
@@ -171,6 +175,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             PreferencesProvider.isSetuped = true
             isFirstSplash = true
         }else{
+            CustomTimer.startNextSplashTimer()
             ETimer.trackStart(ETimer.NEXT_SPLASH)
         }
         BannerFrequency.runSetup()

@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.analytics.experior.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import kotlin.random.Random
 
@@ -22,6 +23,7 @@ object NativeProvider {
 
     fun loadNative(){
         ETimer.trackStart(ETimer.LOAD_NATIVE)
+        CustomTimer.startNativeTimer()
         adLoader = AdLoader
             .Builder(App.getInstance(), App.getInstance().getString(R.string.native_ad))
             .forUnifiedNativeAd { nativeAD ->
@@ -40,10 +42,11 @@ object NativeProvider {
     }
 
     private fun endLoading() {
+        CustomTimer.stopNativeTimer()
+        ETimer.trackEnd(ETimer.LOAD_NATIVE)
         if (bufferAdsList.size > 0) {
             adsList = bufferAdsList
             bufferAdsList = arrayListOf()
-            ETimer.trackEnd(ETimer.LOAD_NATIVE)
             nativeSpeaker?.loadFin(adsList)
         }
     }
