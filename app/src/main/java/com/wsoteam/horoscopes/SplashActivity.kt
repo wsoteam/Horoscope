@@ -18,8 +18,6 @@ import com.android.installreferrer.api.InstallReferrerStateListener
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.userexperior.UserExperior
-import com.userexperior.models.recording.enums.UeCustomType
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
@@ -36,14 +34,13 @@ import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import com.wsoteam.horoscopes.utils.analytics.experior.CustomTimer
+import com.wsoteam.horoscopes.utils.analytics.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign

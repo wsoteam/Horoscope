@@ -28,7 +28,7 @@ class MoodVH(
 
         if (isLocked) {
             itemView.ivBlur.visibility = View.VISIBLE
-            Glide.with(itemView.context).load(R.drawable.blur).into(itemView.ivBlur)
+            //Glide.with(itemView.context).load(R.drawable.blur).into(itemView.ivBlur)
             itemView.llLock.visibility = View.VISIBLE
             itemView.btnLockPrem.setOnClickListener { iGetPrem.getPrem() }
         }else{

@@ -1,7 +1,5 @@
-package com.wsoteam.horoscopes.utils.analytics.experior
+package com.wsoteam.horoscopes.utils.analytics
 
-import android.util.Log
-import com.wsoteam.horoscopes.utils.analytics.Analytic
 import java.util.*
 
 object CustomTimer {
@@ -40,7 +38,11 @@ object CustomTimer {
         try {
             firstInterStartTime = Calendar.getInstance().timeInMillis
         } catch (ex: Exception) {
-            sendError(FIRST_LOAD_INTER, TRY_TYPE, START_PLACEMENT)
+            sendError(
+                FIRST_LOAD_INTER,
+                TRY_TYPE,
+                START_PLACEMENT
+            )
         }
     }
 
@@ -51,12 +53,21 @@ object CustomTimer {
                     FIRST_LOAD_INTER,
                     Calendar.getInstance().timeInMillis - firstInterStartTime
                 )
-                firstInterStartTime = EMPTY
+                firstInterStartTime =
+                    EMPTY
             } else {
-                sendError(FIRST_LOAD_INTER, EMPTY_TYPE, END_PLACEMENT)
+                sendError(
+                    FIRST_LOAD_INTER,
+                    EMPTY_TYPE,
+                    END_PLACEMENT
+                )
             }
         } catch (ex: Exception) {
-            sendError(FIRST_LOAD_INTER, TRY_TYPE, END_PLACEMENT)
+            sendError(
+                FIRST_LOAD_INTER,
+                TRY_TYPE,
+                END_PLACEMENT
+            )
         }
     }
 
@@ -65,7 +76,11 @@ object CustomTimer {
         try {
             nextInterStartTime = Calendar.getInstance().timeInMillis
         } catch (ex: Exception) {
-            sendError(NEXT_LOAD_INTER, TRY_TYPE, START_PLACEMENT)
+            sendError(
+                NEXT_LOAD_INTER,
+                TRY_TYPE,
+                START_PLACEMENT
+            )
         }
     }
 
@@ -76,12 +91,21 @@ object CustomTimer {
                     NEXT_LOAD_INTER,
                     Calendar.getInstance().timeInMillis - nextInterStartTime
                 )
-                nextInterStartTime = EMPTY
+                nextInterStartTime =
+                    EMPTY
             } else {
-                sendError(NEXT_LOAD_INTER, EMPTY_TYPE, END_PLACEMENT)
+                sendError(
+                    NEXT_LOAD_INTER,
+                    EMPTY_TYPE,
+                    END_PLACEMENT
+                )
             }
         } catch (ex: Exception) {
-            sendError(NEXT_LOAD_INTER, TRY_TYPE, END_PLACEMENT)
+            sendError(
+                NEXT_LOAD_INTER,
+                TRY_TYPE,
+                END_PLACEMENT
+            )
         }
     }
 
@@ -91,7 +115,11 @@ object CustomTimer {
         try {
             firstSplashStartTime = Calendar.getInstance().timeInMillis
         } catch (ex: Exception) {
-            sendError(FIRST_SPLASH, TRY_TYPE, START_PLACEMENT)
+            sendError(
+                FIRST_SPLASH,
+                TRY_TYPE,
+                START_PLACEMENT
+            )
         }
     }
 
@@ -102,12 +130,21 @@ object CustomTimer {
                     FIRST_SPLASH,
                     Calendar.getInstance().timeInMillis - firstSplashStartTime
                 )
-                firstSplashStartTime = EMPTY
+                firstSplashStartTime =
+                    EMPTY
             } else {
-                sendError(FIRST_SPLASH, EMPTY_TYPE, END_PLACEMENT)
+                sendError(
+                    FIRST_SPLASH,
+                    EMPTY_TYPE,
+                    END_PLACEMENT
+                )
             }
         } catch (ex: Exception) {
-            sendError(FIRST_SPLASH, TRY_TYPE, END_PLACEMENT)
+            sendError(
+                FIRST_SPLASH,
+                TRY_TYPE,
+                END_PLACEMENT
+            )
         }
     }
 
@@ -116,7 +153,11 @@ object CustomTimer {
         try {
             nextSplashStartTime = Calendar.getInstance().timeInMillis
         } catch (ex: Exception) {
-            sendError(NEXT_SPLASH, TRY_TYPE, START_PLACEMENT)
+            sendError(
+                NEXT_SPLASH,
+                TRY_TYPE,
+                START_PLACEMENT
+            )
         }
     }
 
@@ -127,12 +168,21 @@ object CustomTimer {
                     NEXT_SPLASH,
                     Calendar.getInstance().timeInMillis - nextSplashStartTime
                 )
-                nextSplashStartTime = EMPTY
+                nextSplashStartTime =
+                    EMPTY
             } else {
-                sendError(NEXT_SPLASH, EMPTY_TYPE, END_PLACEMENT)
+                sendError(
+                    NEXT_SPLASH,
+                    EMPTY_TYPE,
+                    END_PLACEMENT
+                )
             }
         } catch (ex: Exception) {
-            sendError(NEXT_SPLASH, TRY_TYPE, END_PLACEMENT)
+            sendError(
+                NEXT_SPLASH,
+                TRY_TYPE,
+                END_PLACEMENT
+            )
         }
     }
 
@@ -141,20 +191,36 @@ object CustomTimer {
         try {
             nativeStartTime = Calendar.getInstance().timeInMillis
         } catch (ex: Exception) {
-            sendError(LOAD_NATIVE, TRY_TYPE, START_PLACEMENT)
+            sendError(
+                LOAD_NATIVE,
+                TRY_TYPE,
+                START_PLACEMENT
+            )
         }
     }
 
     fun stopNativeTimer() {
         try {
             if (nativeStartTime != EMPTY) {
-                sendEndDiffTime(LOAD_NATIVE, Calendar.getInstance().timeInMillis - nativeStartTime)
-                nativeStartTime = EMPTY
+                sendEndDiffTime(
+                    LOAD_NATIVE,
+                    Calendar.getInstance().timeInMillis - nativeStartTime
+                )
+                nativeStartTime =
+                    EMPTY
             } else {
-                sendError(LOAD_NATIVE, EMPTY_TYPE, END_PLACEMENT)
+                sendError(
+                    LOAD_NATIVE,
+                    EMPTY_TYPE,
+                    END_PLACEMENT
+                )
             }
         } catch (ex: Exception) {
-            sendError(LOAD_NATIVE, TRY_TYPE, END_PLACEMENT)
+            sendError(
+                LOAD_NATIVE,
+                TRY_TYPE,
+                END_PLACEMENT
+            )
         }
     }
     /////////////////
@@ -164,7 +230,11 @@ object CustomTimer {
         if (diff >= 0) {
             Analytic.trackTime(placement, "${diff / 1000}$unit")
         } else {
-            sendError(placement, MINUS_TYPE, EMPTY_PLACEMENT)
+            sendError(
+                placement,
+                MINUS_TYPE,
+                EMPTY_PLACEMENT
+            )
         }
     }
 

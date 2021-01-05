@@ -1,16 +1,14 @@
 package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
-import android.util.Log
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.utils.analytics.experior.CustomTimer
+import com.wsoteam.horoscopes.utils.analytics.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
-import kotlin.random.Random
 
 object NativeProvider {
 

@@ -1,14 +1,11 @@
 package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
-import android.util.Log
-import androidx.core.R
 import com.google.android.gms.ads.*
-import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.frequency.InterFrequency
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
-import com.wsoteam.horoscopes.utils.analytics.experior.CustomTimer
+import com.wsoteam.horoscopes.utils.analytics.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.loger.L
 import kotlin.random.Random
