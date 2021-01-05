@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.utils.net
 
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.wsoteam.horoscopes.BuildConfig
 import com.wsoteam.horoscopes.Config
@@ -18,7 +19,19 @@ object RepositoryGets {
     }
 
     init {
+        var gson = GsonBuilder()
+            .setLenient()
+            .create()
+
         var client = OkHttpClient.Builder()
+            .addNetworkInterceptor {
+                it.proceed(
+                    it.request()
+                        .newBuilder()
+                        .header("User-Agent", "LOLKEK")
+                        .build()
+                )
+            }
             .addInterceptor(
                 HttpLoggingInterceptor()
                     .setLevel(
@@ -33,7 +46,7 @@ object RepositoryGets {
         var retrofit = Retrofit.Builder()
             .baseUrl(Config.VPN_DATA_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
