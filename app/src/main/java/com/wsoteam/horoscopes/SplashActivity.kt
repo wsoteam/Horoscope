@@ -31,6 +31,7 @@ import com.wsoteam.horoscopes.presentation.premium.onboarding.girl.GirlEnterActi
 import com.wsoteam.horoscopes.presentation.premium.onboarding.single.SinglePremActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpaceEnterActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
+import com.wsoteam.horoscopes.presentation.premium.ab.DayCatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -83,7 +84,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         L.log("goNext")
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
-            intent = Intent(this, MainActivity::class.java)
+            intent = if(!PreferencesProvider.isShowCatPremium && isTimeHasPassed()){
+                Intent(this, DayCatPremiumActivity::class.java)
+            }else{
+                Intent(this, MainActivity::class.java)
+            }
             L.log("main activity enter")
         } else {
             if (!PreferencesProvider.isShowOnboard) {
@@ -129,6 +134,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     }
 
+    private fun isTimeHasPassed(): Boolean {
+        return Calendar.getInstance().timeInMillis - PreferencesProvider.firstEnterTime > PreferencesProvider.FIRST_ENTER_TIME_TRIGGER
+    }
+
     private fun getKey() {
         val info: PackageInfo
         try {
@@ -156,6 +165,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindFirstOpenTime()
         if (!PreferencesProvider.isSetuped) {
             CustomTimer.startFirstSplashTimer()
             ETimer.trackStart(ETimer.FIRST_SPLASH)
@@ -236,6 +246,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 }
                 Config.OPEN_FROM_EVENING_NOTIF -> Analytic.openFromEveningNotif()
             }
+        }
+    }
+
+    private fun bindFirstOpenTime() {
+        if (PreferencesProvider.firstEnterTime == -1L){
+            PreferencesProvider.firstEnterTime = Calendar.getInstance().timeInMillis
         }
     }
 

@@ -48,6 +48,11 @@ object PreferencesProvider {
     const val VALUE_PRICE = "VALUE_PRICE"
     const val UNIT_PRICE = "UNIT_PRICE"
 
+    const val FIRST_ENTER_TIME_TAG = "FIRST_ENTER_TIME_TAG"
+    const val FIRST_ENTER_TIME_TRIGGER = 86_400_000L
+    const val FIRST_ENTER_SHOW_TAG = "FIRST_ENTER_SHOW_TAG"
+
+
 
     private fun getInstance(): SharedPreferences? {
         val sp = App.getInstance().getSharedPreferences(
@@ -171,5 +176,13 @@ object PreferencesProvider {
     var isSetuped: Boolean
         get() = getInstance()?.getBoolean(IS_SETUPED_TAG, false)!!
         set(value) = editor { it?.putBoolean(IS_SETUPED_TAG, value) }!!
+
+    var firstEnterTime: Long
+        get() = getInstance()?.getLong(FIRST_ENTER_TIME_TAG, -1L)!!
+        set(value) = editor { it?.putLong(FIRST_ENTER_TIME_TAG, value) }!!
+
+    var isShowCatPremium: Boolean
+        get() = getInstance()?.getBoolean(FIRST_ENTER_SHOW_TAG, false)!!
+        set(value) = editor { it?.putBoolean(FIRST_ENTER_SHOW_TAG, value) }!!
 
 }

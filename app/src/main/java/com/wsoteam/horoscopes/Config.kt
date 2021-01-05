@@ -47,4 +47,6 @@ object Config {
     const val ONBOARD_SINGLE_GIRL_SUB = "sub_onboard_girl_single"
     const val ONBOARD_DIAMOND_SUB = "sub_onboard_diamond"
 
+    const val DAY_ALERT_SUB = "sub_post_alert"
+
 }

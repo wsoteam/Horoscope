@@ -124,6 +124,11 @@
             android:theme="@style/CatPremiumCleaner" />
 
         <activity
+            android:name=".presentation.premium.ab.DayCatPremiumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CatPremiumCleaner" />
+
+        <activity
             android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
