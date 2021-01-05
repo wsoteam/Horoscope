@@ -16,7 +16,6 @@ object BannerFrequency {
         if (!hasRequest && Config.NEED_LOAD) {
             hasRequest = true
             requestPercent {
-                Log.e("LOL", it.toString()  +"dfg ")
                 PreferencesProvider.banPercent = it
             }
         }

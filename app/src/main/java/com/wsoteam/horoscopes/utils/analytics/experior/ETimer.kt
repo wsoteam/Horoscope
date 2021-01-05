@@ -16,7 +16,6 @@ object ETimer {
 
 
     fun trackStart(name : String){
-        Log.e("LOL", "start $name")
         try {
             UserExperior.startTimer(name)
         } catch (e: Exception) {
@@ -25,7 +24,6 @@ object ETimer {
     }
 
     fun trackEnd(name : String){
-        Log.e("LOL", "stop $name")
         try {
             UserExperior.endTimer(name)
         } catch (e: java.lang.Exception) {

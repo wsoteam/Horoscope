@@ -357,7 +357,6 @@ object Analytic {
     }
 
     fun trackTime(type: String, time : String){
-        Log.e("LOL", time)
         val eventProperties = JSONObject()
         try {
             eventProperties.put(timer_type, type)

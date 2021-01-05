@@ -37,9 +37,6 @@ object AdWorker {
             if (isFirstLoad){
                 CustomTimer.startFirstInterTimer()
                 ETimer.trackStart(ETimer.FIRST_LOAD_INTER)
-            }else{
-                CustomTimer.startNextInterTimer()
-                ETimer.trackStart(ETimer.NEXT_LOAD_INTER)
             }
             mInterstitialAd?.adListener = object : AdListener() {
 

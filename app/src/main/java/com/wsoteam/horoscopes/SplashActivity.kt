@@ -129,13 +129,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
         startActivity(intent)
         finish()
-        if (isFirstSplash){
-            CustomTimer.stopFirstSplashTimer()
-            ETimer.trackEnd(ETimer.FIRST_SPLASH)
-        }else{
-            CustomTimer.stopNextInterTimer()
-            ETimer.trackEnd(ETimer.NEXT_SPLASH)
-        }
+
     }
 
     private fun getKey() {
@@ -174,7 +168,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             FBAnalytic.logFirstLaunch(this)
             PreferencesProvider.isSetuped = true
             isFirstSplash = true
-        }else{
+        } else {
             CustomTimer.startNextSplashTimer()
             ETimer.trackStart(ETimer.NEXT_SPLASH)
         }
@@ -203,13 +197,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         AdWorker.isNeedShowInter = true
         AdWorker.adCallbacks = object : AdCallbacks {
             override fun onAdClosed() {
-                Log.e("LOL", "onAdClosed")
                 postGoNext(2, "onAdClosed")
                 AdWorker.unSubscribe()
             }
 
             override fun onAdLoaded() {
-                Log.e("LOL", "onAdLoaded")
                 MAX++
                 isAdLoaded = true
             }
@@ -231,7 +223,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 postGoNext(2, "sleep4")
             }
             determineCountry()
-            Log.e("LOL", "sleep")
+            if (isFirstSplash) {
+                CustomTimer.stopFirstSplashTimer()
+                ETimer.trackEnd(ETimer.FIRST_SPLASH)
+            } else {
+                CustomTimer.stopNextSplashTimer()
+                ETimer.trackEnd(ETimer.NEXT_SPLASH)
+            }
         }
         if (intent.getStringExtra(Config.OPEN_FROM_NOTIFY) != null) {
             when (intent.getStringExtra(Config.OPEN_FROM_NOTIFY)) {

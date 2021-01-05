@@ -99,7 +99,6 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
         val params = SkuDetailsParams.newBuilder().setSkusList(arrayListOf(id))
             .setType(BillingClient.SkuType.SUBS).build()
         playStoreBillingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
-            Log.e("LOL", "response code ${billingResult.responseCode}")
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
                     if (skuDetailsList!!.isNotEmpty()) {

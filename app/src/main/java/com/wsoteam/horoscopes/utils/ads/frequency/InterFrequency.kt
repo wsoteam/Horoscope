@@ -27,18 +27,15 @@ object InterFrequency {
             .child(path)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
-                    Log.e("LOL", "cancelled ${p0.message}")
                     Analytic.setFrequency(100)
                     PreferencesProvider.setPercent(100)
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    Log.e("LOL", "not cancelled")
                     if (p0.getValue(Int::class.java) == null) {
                         createNewDirectory(path)
                     } else {
                         val newPercent = p0.getValue(Int::class.java) ?: 100
-                        Log.e("LOL", "$newPercent")
                         Analytic.setFrequency(newPercent)
                         PreferencesProvider.setPercent(newPercent)
                     }

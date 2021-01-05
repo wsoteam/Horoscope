@@ -169,7 +169,6 @@ object CustomTimer {
     }
 
     private fun sendError(placement: String, type: String, whenPlacement: String) {
-        Log.e("LOL", "$placement $type $whenPlacement")
         Analytic.sendErrorTimer(placement, type, whenPlacement)
     }
 
