@@ -22,6 +22,7 @@ import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
+import com.wsoteam.horoscopes.presentation.lost.NetLostActivity
 import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.ILoadState
@@ -195,6 +196,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             override fun throwError(message: String) {
                 isNetStateOk = false
                 ErrorInterceptor.throwError(message)
+                startActivity(Intent(this@SplashActivity, NetLostActivity::class.java))
+                finishAffinity()
             }
         })
 

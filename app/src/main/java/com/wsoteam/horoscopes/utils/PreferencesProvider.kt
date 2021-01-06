@@ -55,6 +55,8 @@ object PreferencesProvider {
     const val USER_META_TAG = "USER_META_TAG"
     const val USER_META_EMPTY = ""
 
+    const val NET_LOST_TAG = "NET_LOST_TAG"
+
 
 
     private fun getInstance(): SharedPreferences? {
@@ -191,5 +193,10 @@ object PreferencesProvider {
     var userMetaData: String
         get() = getInstance()?.getString(USER_META_TAG, USER_META_EMPTY)!!
         set(value) = editor { it?.putString(USER_META_TAG, value) }!!
+
+
+    var netLostAttempt: Int
+        get() = getInstance()?.getInt(NET_LOST_TAG, 0)!!
+        set(value) = editor { it?.putInt(NET_LOST_TAG, value) }!!
 
 }

@@ -93,6 +93,12 @@
         </activity>-->
 
 
+
+        <activity
+            android:name=".presentation.lost.NetLostActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash" />
+
         <activity
             android:name=".presentation.form.FormActivity"
             android:screenOrientation="portrait"

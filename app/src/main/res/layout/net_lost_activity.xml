@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2e2c5c">
+
+    <LinearLayout
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_net_lost"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="5.1sp"
+            android:gravity="center_horizontal"
+            android:text="Check your connection"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_regular"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#f8f8f8"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal"
+            android:text="Astropedia needs to be online. It&apos;s looks like you&apos;re not."
+            android:layout_marginTop="6dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnTryAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="#2e2c5c"
+        android:letterSpacing="0.06"
+        android:lineSpacingExtra="4sp"
+        android:text="Try again"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/shape_try_again"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="38dp"
+        android:paddingEnd="38dp"/>
+
+</FrameLayout>

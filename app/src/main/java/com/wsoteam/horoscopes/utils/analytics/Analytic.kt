@@ -82,6 +82,8 @@ object Analytic {
     private const val timer_type = "type"
     private const val timer_time = "time"
 
+    private const val NET_LOST_ATTEMPT = "attempt"
+
 
     fun crashAttr() {
         Amplitude.getInstance().logEvent(CRASH_ATTR)
@@ -236,6 +238,11 @@ object Analytic {
 
     fun setABVersion(version: String, priceIndex : Int) {
         var identify = Identify().set(AB, version).set(PRICE, priceIndex)
+        Amplitude.getInstance().identify(identify)
+    }
+
+    fun setNetLostAttempt(count : Int) {
+        var identify = Identify().set(NET_LOST_ATTEMPT, count.toString())
         Amplitude.getInstance().identify(identify)
     }
 
