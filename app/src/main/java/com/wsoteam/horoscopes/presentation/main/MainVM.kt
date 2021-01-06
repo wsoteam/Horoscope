@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.util.*
 
 class MainVM : ViewModel() {
@@ -23,12 +24,18 @@ class MainVM : ViewModel() {
 
     private val dataLD = MutableLiveData<List<Sign>>()
 
-    fun preLoadData() {
+    fun preLoadData(iLoadState: ILoadState) {
         L.log("preLoadData")
         if (NetState.isConnected()) {
             job = vmScope.launch {
-                CacheData.setCachedData(getData())
+                try {
+                    CacheData.setCachedData(getData())
+                }catch (ex : Exception){
+                    iLoadState.throwError()
+                }
             }
+        }else{
+            iLoadState.throwError()
         }
     }
 

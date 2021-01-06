@@ -52,6 +52,9 @@ object PreferencesProvider {
     const val FIRST_ENTER_TIME_TRIGGER = 86_400_000L
     const val FIRST_ENTER_SHOW_TAG = "FIRST_ENTER_SHOW_TAG"
 
+    const val USER_META_TAG = "USER_META_TAG"
+    const val USER_META_EMPTY = ""
+
 
 
     private fun getInstance(): SharedPreferences? {
@@ -184,5 +187,9 @@ object PreferencesProvider {
     var isShowCatPremium: Boolean
         get() = getInstance()?.getBoolean(FIRST_ENTER_SHOW_TAG, false)!!
         set(value) = editor { it?.putBoolean(FIRST_ENTER_SHOW_TAG, value) }!!
+
+    var userMetaData: String
+        get() = getInstance()?.getString(USER_META_TAG, USER_META_EMPTY)!!
+        set(value) = editor { it?.putString(USER_META_TAG, value) }!!
 
 }

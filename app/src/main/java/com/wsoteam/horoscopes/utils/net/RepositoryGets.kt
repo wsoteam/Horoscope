@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.wsoteam.horoscopes.BuildConfig
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.utils.analytics.ErrorInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,7 +29,7 @@ object RepositoryGets {
                 it.proceed(
                     it.request()
                         .newBuilder()
-                        .header("User-Agent", "LOLKEK")
+                        .header("User-Agent", ErrorInterceptor.getUserId())
                         .build()
                 )
             }

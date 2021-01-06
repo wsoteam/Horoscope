@@ -24,6 +24,7 @@ import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
+import com.wsoteam.horoscopes.presentation.main.ILoadState
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.premium.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondEnterActivity
@@ -42,6 +43,7 @@ import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.analytics.CustomTimer
+import com.wsoteam.horoscopes.utils.analytics.ErrorInterceptor
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign
@@ -84,9 +86,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         L.log("goNext")
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
-            intent = if(!PreferencesProvider.isShowCatPremium && isTimeHasPassed()){
+            intent = if (!PreferencesProvider.isShowCatPremium && isTimeHasPassed()) {
                 Intent(this, DayCatPremiumActivity::class.java)
-            }else{
+            } else {
                 Intent(this, MainActivity::class.java)
             }
             L.log("main activity enter")
@@ -166,6 +168,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindFirstOpenTime()
+
         if (!PreferencesProvider.isSetuped) {
             CustomTimer.startFirstSplashTimer()
             ETimer.trackStart(ETimer.FIRST_SPLASH)
@@ -179,12 +182,21 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             CustomTimer.startNextSplashTimer()
             ETimer.trackStart(ETimer.NEXT_SPLASH)
         }
+
+
         BannerFrequency.runSetup()
 
         var vm = ViewModelProviders
             .of(this)
             .get(MainVM::class.java)
-        vm.preLoadData()
+
+        vm.preLoadData(object : ILoadState {
+            override fun throwError(message: String) {
+                ErrorInterceptor.throwError(message)
+            }
+        })
+
+
         if (PreferencesProvider.getBirthday() != "") {
             CacheData.setObserver(object : ICachedData {
                 override fun cachedDataReady() {
@@ -193,14 +205,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 }
             })
         }
+
         bindRetention()
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
         bindTest()
         refreshNotifications()
+
+
         AdWorker.init(this)
-        /*if (PreferencesProvider.getBirthday() != "") {*/
         AdWorker.isNeedShowInter = true
         AdWorker.adCallbacks = object : AdCallbacks {
             override fun onAdClosed() {
@@ -213,15 +227,14 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 isAdLoaded = true
             }
         }
-        /*} else {
-            postGoNext(2, "firstEnter")
-        }*/
         try {
             trackUser()
         } catch (ex: Exception) {
             L.log("crash")
             Analytic.crashAttr()
         }
+
+
         CoroutineScope(Dispatchers.IO).launch {
             TimeUnit.SECONDS.sleep(4)
             if (isAdLoaded) {
@@ -250,7 +263,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun bindFirstOpenTime() {
-        if (PreferencesProvider.firstEnterTime == -1L){
+        if (PreferencesProvider.firstEnterTime == -1L) {
             PreferencesProvider.firstEnterTime = Calendar.getInstance().timeInMillis
         }
     }

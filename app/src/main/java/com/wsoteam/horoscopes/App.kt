@@ -29,13 +29,16 @@ class App : MultiDexApplication() {
             //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
             UserExperior.startRecording(getApplicationContext(), getString(R.string.debug_user_expirior_id));
         }else{*/
-            UserExperior.startRecording(getApplicationContext(), getString(R.string.release_user_expirior_id));
+        UserExperior.startRecording(
+            getApplicationContext(),
+            getString(R.string.release_user_expirior_id)
+        );
         //}
         Amplitude.getInstance()
             .initialize(this, getString(R.string.amplitude_id))
             .enableForegroundTracking(this)
 
-        applicationHandler =  Handler(applicationContext.mainLooper)
+        applicationHandler = Handler(applicationContext.mainLooper)
 
         Bugfender.init(this, getString(R.string.fender_id), BuildConfig.DEBUG)
         Bugfender.enableCrashReporting()
