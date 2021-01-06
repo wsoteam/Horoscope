@@ -31,11 +31,11 @@ class MainVM : ViewModel() {
                 try {
                     CacheData.setCachedData(getData())
                 }catch (ex : Exception){
-                    iLoadState.throwError()
+                    iLoadState.throwError(ex.message!!)
                 }
             }
         }else{
-            iLoadState.throwError()
+            iLoadState.throwError("net_lost")
         }
     }
 

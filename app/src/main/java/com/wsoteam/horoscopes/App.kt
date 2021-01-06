@@ -8,7 +8,6 @@ import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.userexperior.UserExperior
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
-import com.wsoteam.horoscopes.utils.id.Creator
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 

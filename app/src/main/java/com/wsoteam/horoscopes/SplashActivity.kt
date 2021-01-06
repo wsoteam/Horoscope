@@ -69,12 +69,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     lateinit var vm: MainVM
     var isAdLoaded = false
     var isFirstSplash = false
+    var isNetStateOk = true
 
 
     private fun postGoNext(i: Int, tag: String) {
         counter += i
         L.log("postGoNext -- $counter -- $tag")
-        if (counter >= MAX) {
+        if (counter >= MAX && isNetStateOk) {
             if (!isNextScreenLoading) {
                 isNextScreenLoading = true
                 goNext()
@@ -192,6 +193,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
         vm.preLoadData(object : ILoadState {
             override fun throwError(message: String) {
+                isNetStateOk = false
                 ErrorInterceptor.throwError(message)
             }
         })
