@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="309dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_red_ref" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="16dp"
+                android:src="@drawable/ic_close_astro" />
+
+
+            <TextView
+                android:layout_width="222dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="36dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="5sp"
+                android:text="Ask your question to a professional astrologer"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:drawableStart="@drawable/ic_red_love"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="4.6sp"
+            android:text="Love"
+            android:textColor="#1e1e1e"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="When will I meet my love?"
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="When will I get married?"
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="and many others.."
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="italic" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:drawableStart="@drawable/ic_red_brain"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="4.6sp"
+            android:text="Self-development"
+            android:textColor="#1e1e1e"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="Am I on the right way?"
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="What can I expect from life?"
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="and many others.."
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="italic" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:drawableStart="@drawable/ic_red_start"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="4.6sp"
+            android:text="Career"
+            android:textColor="#1e1e1e"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="Will I be successful in my career?"
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="Am I in my place?"
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:letterSpacing="0.04"
+            android:lineSpacingExtra="3.7sp"
+            android:text="and many others.."
+            android:textColor="#1e1e1e"
+            android:textSize="13sp"
+            android:textStyle="italic" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_btn_red_next_actro"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="29dp"
+            android:id="@+id/ivNext"/>
+
+
+    </LinearLayout>
+
+</ScrollView>

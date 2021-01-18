@@ -246,6 +246,51 @@
 
 
         <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhoneEnterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhoneAppsTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhoneFinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhonePrivacyPoliceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairEnterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairAppsTermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairFinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+
+        <activity
+            android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairPrivacyPoliceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GirlEnterActivityStyle"/>
+
+
+        <activity
             android:name=".presentation.premium.PaySuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Premium" />
