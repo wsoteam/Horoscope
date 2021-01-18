@@ -79,6 +79,6 @@
         android:drawableEnd="@drawable/ic_arrow_finish"
         android:drawablePadding="8dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:background="@drawable/shape_btn_buy_onboard_girl" />
+        android:background="@drawable/shape_btn_buy_phone" />
 
 </FrameLayout>
