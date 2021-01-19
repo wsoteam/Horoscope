@@ -57,6 +57,9 @@ object PreferencesProvider {
 
     const val NET_LOST_TAG = "NET_LOST_TAG"
 
+    const val THEME_TAG = "THEME_TAG"
+    const val EMPTY_THEME_ID = -1
+
 
 
     private fun getInstance(): SharedPreferences? {
@@ -198,5 +201,9 @@ object PreferencesProvider {
     var netLostAttempt: Int
         get() = getInstance()?.getInt(NET_LOST_TAG, 0)!!
         set(value) = editor { it?.putInt(NET_LOST_TAG, value) }!!
+
+    var themeId: Int
+        get() = getInstance()?.getInt(THEME_TAG, EMPTY_THEME_ID)!!
+        set(value) = editor { it?.putInt(THEME_TAG, value) }!!
 
 }

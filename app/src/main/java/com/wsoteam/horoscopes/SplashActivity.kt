@@ -171,6 +171,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         super.onCreate(savedInstanceState)
         bindFirstOpenTime()
 
+        setNewTheme()
+
         if (!PreferencesProvider.isSetuped) {
             CustomTimer.startFirstSplashTimer()
             ETimer.trackStart(ETimer.FIRST_SPLASH)
@@ -448,5 +450,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             id = s.split("&")[0]
         }
         return id
+    }
+
+    private fun setNewTheme(){
+        PreferencesProvider.themeId = R.style.WhiteTheme
     }
 }

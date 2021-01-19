@@ -18,12 +18,16 @@ import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.loger.L
 import kotlinx.android.synthetic.main.form_activity.*
 
-class FormActivity : AppCompatActivity(R.layout.form_activity) {
+class FormActivity : AppCompatActivity() {
 
     var isCanGoNext = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (PreferencesProvider.themeId != PreferencesProvider.EMPTY_THEME_ID){
+            setTheme(R.style.WhiteTheme)
+        }
+        setContentView(R.layout.form_activity)
         //PreferencesProvider.setBeforePremium(Analytic.form_premium)
         edtBirthdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
