@@ -202,8 +202,8 @@ object PreferencesProvider {
         get() = getInstance()?.getInt(NET_LOST_TAG, 0)!!
         set(value) = editor { it?.putInt(NET_LOST_TAG, value) }!!
 
-    var themeId: Int
-        get() = getInstance()?.getInt(THEME_TAG, EMPTY_THEME_ID)!!
-        set(value) = editor { it?.putInt(THEME_TAG, value) }!!
+    var isNeedNewTheme: Boolean
+        get() = getInstance()?.getBoolean(THEME_TAG, false)!!
+        set(value) = editor { it?.putBoolean(THEME_TAG, value) }!!
 
 }

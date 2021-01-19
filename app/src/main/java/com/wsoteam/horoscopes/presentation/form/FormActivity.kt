@@ -6,16 +6,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
-import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
-import com.wsoteam.horoscopes.utils.SubscriptionProvider
-import com.wsoteam.horoscopes.utils.analytics.Analytic
-import com.wsoteam.horoscopes.utils.choiceSign
-import com.wsoteam.horoscopes.utils.loger.L
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity() {
@@ -24,7 +18,7 @@ class FormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (PreferencesProvider.themeId != PreferencesProvider.EMPTY_THEME_ID){
+        if (PreferencesProvider.isNeedNewTheme){
             setTheme(R.style.WhiteTheme)
         }
         setContentView(R.layout.form_activity)

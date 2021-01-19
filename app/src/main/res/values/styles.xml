@@ -46,7 +46,7 @@
         <item name="colorPrimaryDark">#c8bdb2</item>
         <item name="colorAccent">#2e2c5c</item>
         <item name="android:navigationBarColor">#f4e6d8</item>
-        <item name="android:windowBackground">@color/form_back</item>
+        <item name="android:windowBackground">@color/background_color</item>
     </style>
 
 
@@ -84,6 +84,7 @@
         <item name="colorAccent">#2e2c5c</item>
         <item name="drawerArrowStyle">@style/BurgerIconStyle</item>
         <item name="android:navigationBarColor">#353366</item>
+        <item name="android:windowBackground">@color/background_color</item>
     </style>
 
     <style name="BurgerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">

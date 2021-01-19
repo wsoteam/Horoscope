@@ -453,6 +453,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setNewTheme(){
-        PreferencesProvider.themeId = R.style.WhiteTheme
+        PreferencesProvider.isNeedNewTheme = true
     }
 }
