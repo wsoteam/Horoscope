@@ -310,6 +310,11 @@
             android:theme="@style/Main" />
 
         <activity
+            android:name=".presentation.premium.WhitePaySuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme" />
+
+        <activity
             android:name=".presentation.stories.StoriesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />

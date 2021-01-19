@@ -51,7 +51,7 @@ class WhitePremiumFragment : Fragment(R.layout.white_premium_fragment) {
     }
 
     private fun openNextScreen(){
-        startActivity(Intent(activity, PaySuccessActivity::class.java))
+        startActivity(Intent(activity, WhitePremiumFragment::class.java))
         activity!!.finish()
     }
 }

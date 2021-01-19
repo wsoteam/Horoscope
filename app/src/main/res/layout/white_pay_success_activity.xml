@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="5.7sp"
+            android:text="@string/premium"
+            android:textColor="#2e2c5c"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="72dp"
+            android:src="@drawable/ic_img_brill_buy" />
+
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="32dp"
+            android:background="#2e2c5c" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="#2e2c5c"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="1sp"
+            android:layout_marginTop="37dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="You have subscribed"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_regular"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#2e2c5c"
+            android:letterSpacing="0.06"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="58dp"
+            android:layout_marginEnd="58dp"
+            android:layout_marginBottom="150dp"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal"
+            android:text="You can cancel your subscription in the Google store under “Subscriptions”."
+            />
+
+    </LinearLayout>
+</ScrollView>
