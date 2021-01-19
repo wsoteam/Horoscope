@@ -19,18 +19,27 @@ import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.premium_fragment.*
 import kotlinx.android.synthetic.main.premium_host_activity.*
 
-class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
+class PremiumHostActivity : AppCompatActivity() {
 
     var open_from = ""
     var version = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (PreferencesProvider.isNeedNewTheme){
+            setTheme(R.style.WhiteTheme)
+        }
+        setContentView(R.layout.premium_host_activity)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
         version = PreferencesProvider.getVersionIndex()
         open_from = intent.getStringExtra(Config.OPEN_PREM)
 
+
         var choicedFragment: Fragment = PremiumFragment()
+
+        if (PreferencesProvider.isNeedNewTheme){
+            choicedFragment = WhitePremiumFragment()
+        }
 
         supportFragmentManager
             .beginTransaction()
