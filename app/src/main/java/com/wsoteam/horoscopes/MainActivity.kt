@@ -173,7 +173,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (PreferencesProvider.isNeedNewTheme){
+            setTheme(R.style.WhiteTheme)
+        }
         setContentView(R.layout.activity_main)
+
+        if (PreferencesProvider.isNeedNewTheme){
+            setWhiteViews()
+        }
+
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         supportFragmentManager
@@ -258,6 +266,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             PreferencesProvider.isShowPremAlert = true
             CatDialog().show(supportFragmentManager, "")
         }*/
+    }
+
+    private fun setWhiteViews() {
+        toolbar.setBackgroundColor(resources.getColor(R.color.white))
+    }
+
+    private fun changeNavigationDrawer() {
     }
 
     override fun onResume() {
