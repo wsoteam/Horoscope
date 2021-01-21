@@ -39,6 +39,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     var timer: CountDownTimer? = null
     var listTabsTexts : List<TextView>? = null
     var oldTabId = 0
+    var isWhiteTheme = false
 
 
     companion object {
@@ -59,6 +60,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(PreferencesProvider.isNeedNewTheme){
+            isWhiteTheme = PreferencesProvider.isNeedNewTheme
             setWhiteTheme()
         }
         index = arguments!!.getInt(INDEX_KEY)
@@ -84,7 +86,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
-                if (PreferencesProvider.isNeedNewTheme) {
+                if (isWhiteTheme) {
                     listTabsTexts!![position].typeface =
                         (ResourcesCompat.getFont(activity!!, R.font.open_sans_semibold))
                     listTabsTexts!![oldTabId].typeface =
