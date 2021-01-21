@@ -3,11 +3,14 @@ package com.wsoteam.horoscopes.presentation.main
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -34,6 +37,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     lateinit var signData: Sign
     var isFirstSet = true
     var timer: CountDownTimer? = null
+    var listTabsTexts : List<TextView>? = null
+    var oldTabId = 0
 
 
     companion object {
@@ -63,6 +68,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 .getResourceId(index, -1)
         )
 
+        listTabsTexts = listOf(tvYesterday, tvToday, tvTomorrow, tvWeek, tvMonth, tvYear)
+
         vpHoroscope.adapter = TabsAdapter(childFragmentManager, getFragmentsList())
         vpHoroscope.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -77,6 +84,13 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
+                if (PreferencesProvider.isNeedNewTheme) {
+                    listTabsTexts!![position].typeface =
+                        (ResourcesCompat.getFont(activity!!, R.font.open_sans_semibold))
+                    listTabsTexts!![oldTabId].typeface =
+                        (ResourcesCompat.getFont(activity!!, R.font.open_sans_regular))
+                    oldTabId = position
+                }
                 Experior.trackHoroPage(position)
                 if (isFirstSet) {
                     isFirstSet = false
@@ -117,7 +131,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         tlTime.setSelectedTabIndicatorColor(resources.getColor(R.color.white_selector_tab_layout))
         dvdTab.visibility = View.VISIBLE
-        //TODO change font when selected
     }
 
     private fun sendStory() {
