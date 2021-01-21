@@ -19,6 +19,13 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.settings_fragment.*
+import kotlinx.android.synthetic.main.tab_lat.*
+import kotlinx.android.synthetic.main.tab_lat_month.*
+import kotlinx.android.synthetic.main.tab_lat_today.*
+import kotlinx.android.synthetic.main.tab_lat_tomorrow.*
+import kotlinx.android.synthetic.main.tab_lat_week.*
+import kotlinx.android.synthetic.main.tab_lat_year.*
 
 
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -27,6 +34,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     lateinit var signData: Sign
     var isFirstSet = true
     var timer: CountDownTimer? = null
+
 
     companion object {
 
@@ -45,6 +53,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(PreferencesProvider.isNeedNewTheme){
+            setWhiteTheme()
+        }
         index = arguments!!.getInt(INDEX_KEY)
         signData = arguments!!.getSerializable(DATA_KEY) as Sign
         ivMain.setImageResource(
@@ -83,6 +94,29 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         /*tvGoTostories.setOnClickListener {
             sendStory()
         }*/
+    }
+
+    private fun setWhiteTheme() {
+        tvYesterday.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvYesterday.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvToday.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvToday.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvTomorrow.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvTomorrow.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvWeek.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvWeek.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvMonth.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvMonth.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvYear.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvYear.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tlTime.setSelectedTabIndicatorColor(resources.getColor(R.color.white_selector_tab_layout))
+        dvdTab.visibility = View.VISIBLE
     }
 
     private fun sendStory() {
