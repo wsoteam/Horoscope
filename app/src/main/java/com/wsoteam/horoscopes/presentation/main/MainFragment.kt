@@ -117,6 +117,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         tlTime.setSelectedTabIndicatorColor(resources.getColor(R.color.white_selector_tab_layout))
         dvdTab.visibility = View.VISIBLE
+        //TODO change font when selected
     }
 
     private fun sendStory() {

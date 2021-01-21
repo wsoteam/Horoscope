@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="RatingView">
         <attr name="rating" format="integer"/>
+        <attr name="isWhiteTheme" format="boolean"/>
     </declare-styleable>
 </resources>

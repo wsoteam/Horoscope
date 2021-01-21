@@ -33,6 +33,13 @@
     <color name="color_inactive_top_progress">#757493</color>
     <color name="color_active_top_progress">#FFFFFF</color>
     <color name="white_selector_tab_layout">#2e2c5c</color>
+    <color name="white_theme_text_color">#1e1e1e</color>
+    <color name="white_divider_text_vh">#1e1e1e</color>
+
+    <color name="white_divider">#f2f2f5</color>
+
+    <color name="transparent">#00FFFFFF</color>
+
 
 
 </resources>

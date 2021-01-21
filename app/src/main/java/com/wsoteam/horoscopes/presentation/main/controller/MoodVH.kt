@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.mood_vh.view.*
 
 class MoodVH(
@@ -21,11 +22,6 @@ class MoodVH(
         success: Int,
         isLocked: Boolean
     ) {
-        itemView.rvSex.setRating(sex)
-        itemView.rvHustle.setRating(hustle)
-        itemView.rvVibe.setRating(vibe)
-        itemView.rvSuccess.setRating(success)
-
         if (isLocked) {
             itemView.ivBlur.visibility = View.VISIBLE
             //Glide.with(itemView.context).load(R.drawable.blur).into(itemView.ivBlur)
@@ -36,5 +32,28 @@ class MoodVH(
             itemView.llLock.visibility = View.GONE
 
         }
+        
+        if (PreferencesProvider.isNeedNewTheme){
+            itemView.tvLabelSex.setTextColor(itemView.resources.getColor(R.color.white_theme_text_color))
+            itemView.tvLabelSuccess.setTextColor(itemView.resources.getColor(R.color.white_theme_text_color))
+            itemView.tvLabelVibe.setTextColor(itemView.resources.getColor(R.color.white_theme_text_color))
+            itemView.tvLabelHustle.setTextColor(itemView.resources.getColor(R.color.white_theme_text_color))
+
+
+            itemView.tvLabelSex.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_sex_white, 0, 0, 0)
+            itemView.tvLabelSuccess.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_success_white, 0, 0, 0)
+            itemView.tvLabelVibe.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_vibe_white, 0, 0, 0)
+            itemView.tvLabelHustle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_hustle_white, 0, 0, 0)
+
+            itemView.rvSex.setWhiteTheme()
+            itemView.rvHustle.setWhiteTheme()
+            itemView.rvVibe.setWhiteTheme()
+            itemView.rvSuccess.setWhiteTheme()
+        }
+
+        itemView.rvSex.setRating(sex)
+        itemView.rvHustle.setRating(hustle)
+        itemView.rvVibe.setRating(vibe)
+        itemView.rvSuccess.setRating(success)
     }
 }

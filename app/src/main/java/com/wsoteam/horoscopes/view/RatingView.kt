@@ -24,6 +24,7 @@ class RatingView
 
     //attr
     private val attrRating: Int
+    private var isWhiteTheme: Boolean
 
     init {
         inflate(context, layout, this)
@@ -40,6 +41,7 @@ class RatingView
             .apply {
                 try {
                     attrRating = getResourceId(R.styleable.RatingView_rating, 0)
+                    isWhiteTheme = getBoolean(R.styleable.RatingView_isWhiteTheme, false)
                 } finally {
                     recycle()
                 }
@@ -47,9 +49,25 @@ class RatingView
 
     }
 
+    fun setWhiteTheme(){
+        isWhiteTheme = true
+    }
+
     fun setRating(rating : Int){
-        for (i in 0 until rating){
-            listStars[i].setImageResource(R.drawable.ic_star_full)
+        if (isWhiteTheme){
+            firstStar.setImageResource(R.drawable.ic_star_empty_white)
+            secondStar.setImageResource(R.drawable.ic_star_empty_white)
+            thirdStar.setImageResource(R.drawable.ic_star_empty_white)
+            firthStar.setImageResource(R.drawable.ic_star_empty_white)
+            fifthStar.setImageResource(R.drawable.ic_star_empty_white)
+
+            for (i in 0 until rating){
+                listStars[i].setImageResource(R.drawable.ic_star_full_white)
+            }
+        }else{
+            for (i in 0 until rating){
+                listStars[i].setImageResource(R.drawable.ic_star_full)
+            }
         }
     }
 

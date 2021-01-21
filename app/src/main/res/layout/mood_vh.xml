@@ -9,14 +9,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:background="@color/main_violet">
+        android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:letterSpacing="0.06"
             android:lineSpacingExtra="4sp"
             android:text="@string/general_mood"
@@ -29,6 +30,9 @@
             android:layout_marginTop="4dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabelSex"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -56,6 +60,9 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabelHustle"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -83,6 +90,9 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabelVibe"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -111,6 +121,9 @@
             android:layout_marginBottom="37dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabelSuccess"
+                android:fontFamily="@font/open_sans_regular"
+                android:textStyle="normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

@@ -26,10 +26,10 @@
             android:textStyle="normal"/>
 
         <View
-            android:id="@+id/divider5"
+            android:id="@+id/dvdText"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="19dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="15dp"
             android:background="#14ffffff" />
 
     </LinearLayout>

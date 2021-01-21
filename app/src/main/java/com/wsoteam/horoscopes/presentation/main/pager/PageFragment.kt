@@ -45,7 +45,6 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         super.onViewCreated(view, savedInstanceState)
         var signData = arguments!!.getSerializable(DATA_KEY) as TimeInterval
         index = arguments!!.getInt(INDEX_KEY)
-        rvMain.layoutManager = LinearLayoutManager(this.context)
         adapter = HoroscopeAdapter(
             signData.text,
             signData.matches,
@@ -69,7 +68,16 @@ class PageFragment : Fragment(R.layout.page_fragment) {
                     (activity as MainActivity).openPremSection()
                 }
             })
-        rvMain.adapter = adapter
+        if(PreferencesProvider.isNeedNewTheme){
+            cvBack.visibility = View.GONE
+            rvMainWhite.visibility = View.VISIBLE
+            rvMainWhite.layoutManager = LinearLayoutManager(this.context)
+            rvMainWhite.adapter = adapter
+        }else{
+            rvMain.layoutManager = LinearLayoutManager(this.context)
+            rvMain.adapter = adapter
+        }
+
         NativeProvider.observeOnNativeList(object : NativeSpeaker {
             override fun loadFin(nativeAd: ArrayList<UnifiedNativeAd>) {
                 if (PreferencesProvider.isADEnabled()) {

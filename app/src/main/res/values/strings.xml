@@ -84,6 +84,21 @@
         <item>@drawable/ic_pisces_matches</item>
     </integer-array>
 
+    <integer-array name="imgs_signs_matches_white">
+        <item>@drawable/ic_aries_matches_white</item>
+        <item>@drawable/ic_taurus_matches_white</item>
+        <item>@drawable/ic_gemini_matches_white</item>
+        <item>@drawable/ic_cancer_matches_white</item>
+        <item>@drawable/ic_leo_matches_white</item>
+        <item>@drawable/ic_virgo_matches_white</item>
+        <item>@drawable/ic_libra_matches_white</item>
+        <item>@drawable/ic_scorpio_matches_white</item>
+        <item>@drawable/ic_sagittarius_matches_white</item>
+        <item>@drawable/ic_capricorn_matches_white</item>
+        <item>@drawable/ic_aquarius_matches_white</item>
+        <item>@drawable/ic_pisces_matches_white</item>
+    </integer-array>
+
     <!--Splash-->
     <string name="splash_title">Astropedia</string>
 

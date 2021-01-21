@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.text_vh.view.*
 
 class TextVH(
@@ -33,6 +34,11 @@ class TextVH(
         }else{
             itemView.llLock.visibility = View.GONE
             itemView.tvText.text = text
+        }
+
+        if (PreferencesProvider.isNeedNewTheme){
+            itemView.tvText.setTextColor(itemView.resources.getColor(R.color.white_theme_text_color))
+            itemView.dvdText.setBackgroundColor(itemView.resources.getColor(R.color.white_divider))
         }
     }
 

@@ -453,6 +453,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun setNewTheme(){
-        PreferencesProvider.isNeedNewTheme = true
+        PreferencesProvider.isNeedNewTheme = false
     }
 }
