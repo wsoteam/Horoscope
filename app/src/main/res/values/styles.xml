@@ -145,7 +145,16 @@
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">0.04</item>
         <item name="android:lineSpacingExtra">4.6sp</item>
-        <item name="itemBackground">@drawable/selector_drawer_back</item>
+        <!--<item name="itemBackground">@drawable/selector_drawer_back</item>-->
+    </style>
+
+    <style name="DrawerItemTextWhite">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineSpacingExtra">4.6sp</item>
+        <!--<item name="itemBackground">@drawable/selector_drawer_back</item>-->
     </style>
 
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">

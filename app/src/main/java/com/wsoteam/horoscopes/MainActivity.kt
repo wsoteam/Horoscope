@@ -270,6 +270,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setWhiteViews() {
         toolbar.setBackgroundColor(resources.getColor(R.color.white))
+        nav_view.itemBackground = resources.getDrawable(R.drawable.selector_drawer_back_white)
+        nav_view.itemTextColor = resources.getColorStateList(R.color.selector_drawer_text_white)
+        nav_view.itemIconTintList = resources.getColorStateList(R.color.selector_drawer_text_white)
+        nav_view.background = resources.getDrawable(R.color.white)
+        nav_view.setItemTextAppearance(R.style.DrawerItemTextWhite)
     }
 
     private fun changeNavigationDrawer() {
