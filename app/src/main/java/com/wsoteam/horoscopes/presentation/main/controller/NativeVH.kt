@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.native_vh.view.*
 
 class NativeVH (layoutInflater: LayoutInflater, viewGroup: ViewGroup)
@@ -24,6 +25,14 @@ class NativeVH (layoutInflater: LayoutInflater, viewGroup: ViewGroup)
 
     fun bind(unifiedNativeAd: UnifiedNativeAd) {
         bindAdView(unifiedNativeAd)
+
+        if(PreferencesProvider.isNeedNewTheme){
+            itemView.ad_headline.setTextColor(itemView.resources.getColor(R.color.white_divider_text_vh))
+            itemView.ad_body.setTextColor(itemView.resources.getColor(R.color.white_divider_text_vh))
+            itemView.divider5.setBackgroundColor(itemView.resources.getColor(R.color.white_divider))
+            itemView.ad_call_to_action.setTextColor(itemView.resources.getColor(R.color.white))
+            itemView.ad_call_to_action.background = itemView.resources.getDrawable(R.drawable.shape_ad_types_white)
+        }
     }
 
     private fun bindAdView(nativeAd: UnifiedNativeAd){
