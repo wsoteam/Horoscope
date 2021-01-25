@@ -158,8 +158,30 @@
             android:name="com.wsoteam.horoscopes.presentation.premium.onboarding.EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle">
+        </activity>
 
+        <activity
+            android:name=".presentation.astrologer.WomanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle">
+        </activity>
 
+        <activity
+            android:name=".presentation.astrologer.WomanListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme">
+        </activity>
+
+        <activity
+            android:name=".presentation.astrologer.hands.HandsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EnterActivityStyle">
+        </activity>
+
+        <activity
+            android:name=".presentation.astrologer.hands.HandsListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme">
         </activity>
 
 

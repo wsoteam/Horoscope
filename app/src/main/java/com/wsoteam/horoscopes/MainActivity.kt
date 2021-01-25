@@ -25,6 +25,8 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
+import com.wsoteam.horoscopes.presentation.astrologer.WomanActivity
+import com.wsoteam.horoscopes.presentation.astrologer.hands.HandsActivity
 import com.wsoteam.horoscopes.presentation.ball.BallFragment
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
@@ -43,6 +45,7 @@ import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.interceptor.ShareBroadcast
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -173,15 +176,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (PreferencesProvider.isNeedNewTheme){
+        if (PreferencesProvider.isNeedNewTheme) {
             setTheme(R.style.WhiteTheme)
         }
         setContentView(R.layout.activity_main)
 
-        if (PreferencesProvider.isNeedNewTheme){
+        if (PreferencesProvider.isNeedNewTheme) {
             setWhiteViews()
         }
 
+        Log.e("LOL", "Main create")
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         supportFragmentManager
@@ -199,6 +203,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ivToolPrem.visibility = View.VISIBLE
         } else {
             ivToolPrem.visibility = View.GONE
+        }
+
+        if (PreferencesProvider.getVersion() != ABConfig.A && PreferencesProvider.getVersion() != ABConfig.G) {
+            ivToolAstro.visibility = View.VISIBLE
+            var intent = when (PreferencesProvider.getVersion()) {
+                ABConfig.B, ABConfig.C -> Intent(this@MainActivity, WomanActivity::class.java)
+                ABConfig.E, ABConfig.D, ABConfig.F -> Intent(this@MainActivity, HandsActivity::class.java)
+                else -> Intent(this@MainActivity, WomanActivity::class.java)
+            }
+            ivToolAstro.setOnClickListener {
+                startActivity(intent)
+            }
         }
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
@@ -219,7 +235,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
-        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener{
+        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerStateChanged(newState: Int) {
             }
 
