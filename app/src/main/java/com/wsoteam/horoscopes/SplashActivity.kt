@@ -36,6 +36,8 @@ import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DayCatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
+import com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairEnterActivity
+import com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhoneEnterActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -100,31 +102,28 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 PreferencesProvider.isShowOnboard = true
                 intent = when (PreferencesProvider.getVersion()) {
                     ABConfig.A -> {
-                        Intent(this, DefaultPremiumActivity::class.java)
-                    }
-                    ABConfig.B -> {
-                        Intent(this, GreenPremiumActivity::class.java)
-                    }
-                    ABConfig.C -> {
-                        Intent(this, EnterActivity::class.java)
-                    }
-                    ABConfig.D -> {
-                        Intent(this, CatPremiumActivity::class.java)
-                    }
-                    ABConfig.E -> {
-                        Intent(this, SpaceEnterActivity::class.java)
-                    }
-                    ABConfig.F -> {
                         Intent(this, DiamondEnterActivity::class.java)
                     }
-                    ABConfig.G -> {
+                    ABConfig.B -> {
+                        Intent(this, EnterActivity::class.java)
+                    }
+                    ABConfig.C -> {
+                        Intent(this, SpaceEnterActivity::class.java)
+                    }
+                    ABConfig.D -> {
                         Intent(this, GirlEnterActivity::class.java)
                     }
-                    ABConfig.H -> {
-                        Intent(this, SinglePremActivity::class.java)
+                    ABConfig.E -> {
+                        Intent(this, HairEnterActivity::class.java)
+                    }
+                    ABConfig.F -> {
+                        Intent(this, PhoneEnterActivity::class.java)
+                    }
+                    ABConfig.G -> {
+                        Intent(this, DiamondEnterActivity::class.java)
                     }
                     else -> {
-                        Intent(this, DefaultPremiumActivity::class.java)
+                        Intent(this, EnterActivity::class.java)
                     }
                 }
                 L.log("Enter activity enter")

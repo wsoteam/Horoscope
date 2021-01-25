@@ -7,6 +7,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
+import com.wsoteam.horoscopes.presentation.premium.SubsIds
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
@@ -24,7 +25,7 @@ class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_poli
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_SPACE_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, SubsIds.SPACE, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()

@@ -7,11 +7,14 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
+import com.wsoteam.horoscopes.presentation.premium.SubsIds
+import com.wsoteam.horoscopes.presentation.premium.SubsIds.getId
 import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.enter_activity.*
 
 class DiamondEnterActivity : AppCompatActivity(R.layout.diamond_enter_activity) {
@@ -25,7 +28,7 @@ class DiamondEnterActivity : AppCompatActivity(R.layout.diamond_enter_activity) 
         }
 
         btnPay.setOnClickListener { _ ->
-            SubscriptionProvider.startChoiseSub(this, Config.ONBOARD_DIAMOND_SUB, object :
+            SubscriptionProvider.startChoiseSub(this, getId(), object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -33,6 +36,8 @@ class DiamondEnterActivity : AppCompatActivity(R.layout.diamond_enter_activity) 
             })
         }
     }
+
+
 
     private fun openNext(){
         startActivity(Intent(this, DiamondAppsTermsActivity::class.java))
