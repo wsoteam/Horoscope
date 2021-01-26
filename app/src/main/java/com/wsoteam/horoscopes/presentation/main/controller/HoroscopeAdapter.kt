@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
-import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlin.random.Random
 
 class HoroscopeAdapter(
@@ -13,13 +12,16 @@ class HoroscopeAdapter(
     val ratings: List<Int>,
     var nativeList: ArrayList<UnifiedNativeAd>,
     var isLocked: Boolean,
-    var iGetPrem: IGetPrem
+    var iGetPrem: IGetPrem,
+    val index: Int
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val TEXT_TYPE = 0
     val AD_TYPE = 1
     val MATCH_TYPE = 2
     val MOOD_TYPE = 3
+
+    val PROPERTY_TYPE = 4
 
     var nativeDiff = 0
     var counter = 0
@@ -36,23 +38,28 @@ class HoroscopeAdapter(
             MATCH_TYPE -> MatchVH(LayoutInflater.from(parent.context), parent)
             MOOD_TYPE -> MoodVH(LayoutInflater.from(parent.context), parent, iGetPrem)
             AD_TYPE -> NativeVH(LayoutInflater.from(parent.context), parent)
+            PROPERTY_TYPE -> PropertyVH(LayoutInflater.from(parent.context), parent)
             else -> TextVH(LayoutInflater.from(parent.context), parent, iGetPrem)
         }
     }
 
     override fun getItemCount(): Int {
-        return when {
-            isLocked -> {
-                1
-            }
-            ratings.isNotEmpty() -> {
-                4 + nativeDiff
-            }
-            matches.isNotEmpty() -> {
-                2 + nativeDiff
-            }
-            else -> {
-                1 + nativeDiff
+        if (index > 5) {
+            return 1
+        } else {
+            return when {
+                isLocked -> {
+                    1
+                }
+                ratings.isNotEmpty() -> {
+                    4 + nativeDiff
+                }
+                matches.isNotEmpty() -> {
+                    2 + nativeDiff
+                }
+                else -> {
+                    1 + nativeDiff
+                }
             }
         }
     }
@@ -61,14 +68,31 @@ class HoroscopeAdapter(
         when (getItemViewType(position)) {
             TEXT_TYPE -> (holder as TextVH).bind(text, isLocked)
             MATCH_TYPE -> (holder as MatchVH).bind(matches[0], matches[1], matches[2])
-            MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3], false)
+            MOOD_TYPE -> (holder as MoodVH).bind(
+                ratings[0],
+                ratings[1],
+                ratings[2],
+                ratings[3],
+                false
+            )
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(nativeList.size)])
+            PROPERTY_TYPE -> (holder as PropertyVH).bind("ddddddd", getImgId(index), getTitle(index))
         }
+    }
+
+    private fun getTitle(index: Int): String {
+
+    }
+
+    private fun getImgId(index: Int): Int {
+        
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (isLocked) {
+        return if(index > 5){
+            PROPERTY_TYPE
+        } else if (isLocked) {
             TEXT_TYPE
         } else if (nativeList.isNotEmpty() || position == 0) {
             position

@@ -1,11 +1,9 @@
 package com.wsoteam.horoscopes.presentation.main.pager
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
@@ -67,7 +65,7 @@ class PageFragment : Fragment(R.layout.page_fragment) {
                     PreferencesProvider.setBeforePremium(before)
                     (activity as MainActivity).openPremSection()
                 }
-            })
+            }, index)
         if(PreferencesProvider.isNeedNewTheme){
             cvBack.visibility = View.GONE
             rvMainWhite.visibility = View.VISIBLE

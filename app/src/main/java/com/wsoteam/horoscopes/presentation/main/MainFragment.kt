@@ -171,7 +171,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             PageFragment.newInstance(signData.tomorrow, 2),
             PageFragment.newInstance(signData.week, 3),
             PageFragment.newInstance(signData.month, 4),
-            PageFragment.newInstance(signData.year, 5)
+            PageFragment.newInstance(signData.year, 5),
+
+            PageFragment.newInstance(signData.year, 6),
+            PageFragment.newInstance(signData.year, 7),
+            PageFragment.newInstance(signData.year, 8),
+            PageFragment.newInstance(signData.year, 9)
         )
         return list
     }
