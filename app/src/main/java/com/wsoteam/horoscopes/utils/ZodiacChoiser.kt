@@ -1,10 +1,20 @@
 package com.wsoteam.horoscopes.utils
 
+import java.lang.Exception
 import java.lang.IllegalArgumentException
 
 
 fun choiceSign(date: String): Int {
-    val (day, month) = date.split(".").map { it.toInt() }
+
+    val day = 1
+    val month = 1
+    try {
+        val (day, month) = date.split(".").map { it.toInt() }
+    } catch (ex: Exception) {
+        val (day, month) = "30.1".split(".").map { it.toInt() }
+    }
+
+
 
     return when (month) {
         1 -> if (day > 20) 10 else 9
