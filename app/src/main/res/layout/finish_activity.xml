@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:src="@drawable/img_therd_prem"
         android:scaleType="centerCrop"/>
 
     <androidx.appcompat.widget.AppCompatImageView
