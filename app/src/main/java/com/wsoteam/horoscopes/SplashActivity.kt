@@ -105,24 +105,30 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         Intent(this, DiamondEnterActivity::class.java)
                     }
                     ABConfig.B -> {
+                        setNewTheme()
                         Intent(this, EnterActivity::class.java)
                     }
                     ABConfig.C -> {
+                        setNewTheme()
                         Intent(this, SpaceEnterActivity::class.java)
                     }
                     ABConfig.D -> {
+                        setNewTheme()
                         Intent(this, GirlEnterActivity::class.java)
                     }
                     ABConfig.E -> {
+                        setNewTheme()
                         Intent(this, HairEnterActivity::class.java)
                     }
                     ABConfig.F -> {
+                        setNewTheme()
                         Intent(this, PhoneEnterActivity::class.java)
                     }
                     ABConfig.G -> {
                         Intent(this, DiamondEnterActivity::class.java)
                     }
                     else -> {
+                        setNewTheme()
                         Intent(this, EnterActivity::class.java)
                     }
                 }
@@ -169,9 +175,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindFirstOpenTime()
-
-        setNewTheme()
-
         if (!PreferencesProvider.isSetuped) {
             CustomTimer.startFirstSplashTimer()
             ETimer.trackStart(ETimer.FIRST_SPLASH)

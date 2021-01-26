@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.astrologer
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.wsoteam.horoscopes.MainActivity
@@ -20,6 +21,11 @@ class WomanListActivity : AppCompatActivity(R.layout.woman_list_activity) {
             var intent = Intent(this@WomanListActivity, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+        btnTryNow.setOnClickListener {
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.oranum.com/chat/random-expert?s=1&p=7&w=105823&t=216&c=26199411"))
             startActivity(intent)
         }
 
