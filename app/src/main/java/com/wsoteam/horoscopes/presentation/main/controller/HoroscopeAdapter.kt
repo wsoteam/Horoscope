@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.formats.UnifiedNativeAd
+import com.wsoteam.horoscopes.App
+import com.wsoteam.horoscopes.R
+import kotlinx.android.synthetic.main.match_vh.view.*
 import kotlin.random.Random
 
 class HoroscopeAdapter(
@@ -76,21 +79,26 @@ class HoroscopeAdapter(
                 false
             )
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(nativeList.size)])
-            PROPERTY_TYPE -> (holder as PropertyVH).bind("ddddddd", getImgId(index), getTitle(index))
+            PROPERTY_TYPE -> (holder as PropertyVH).bind(
+                "ddddddd",
+                getImgId(index - 5),
+                getTitle(index - 5)
+            )
         }
     }
 
     private fun getTitle(index: Int): String {
-
+        return App.getInstance().resources.getStringArray(R.array.titles_property)[index]
     }
 
     private fun getImgId(index: Int): Int {
-        
+        return App.getInstance().resources.obtainTypedArray(R.array.imgs_property)
+            .getResourceId(index, -1)
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return if(index > 5){
+        return if (index > 5) {
             PROPERTY_TYPE
         } else if (isLocked) {
             TEXT_TYPE

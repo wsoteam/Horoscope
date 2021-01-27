@@ -69,7 +69,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.android.installreferrer:installreferrer:2.1'
-    implementation 'com.yandex.android:mobmetricalib:3.16.1'
 
     implementation 'com.amplitude:android-sdk:2.23.2'
 

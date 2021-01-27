@@ -8,8 +8,7 @@ import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.userexperior.UserExperior
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
-import com.yandex.metrica.YandexMetrica
-import com.yandex.metrica.YandexMetricaConfig
+
 
 class App : MultiDexApplication() {
 
@@ -20,14 +19,6 @@ class App : MultiDexApplication() {
         super.onCreate()
         sInstance = this
         SubscriptionProvider.init(this)
-        val config =
-            YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
-        YandexMetrica.activate(applicationContext, config)
-        YandexMetrica.enableActivityAutoTracking(this)
-        /*if(BuildConfig.DEBUG) {
-            //Bugsee.launch(this, "1187e351-e756-4bad-80af-5efa69a3ff56") //wadimkazak@mail.ru
-            UserExperior.startRecording(getApplicationContext(), getString(R.string.debug_user_expirior_id));
-        }else{*/
         UserExperior.startRecording(
             getApplicationContext(),
             getString(R.string.release_user_expirior_id)
@@ -38,11 +29,6 @@ class App : MultiDexApplication() {
             .enableForegroundTracking(this)
 
         applicationHandler = Handler(applicationContext.mainLooper)
-
-        Bugfender.init(this, getString(R.string.fender_id), BuildConfig.DEBUG)
-        Bugfender.enableCrashReporting()
-        Bugfender.enableUIEventLogging(this)
-        Bugfender.enableLogcatLogging() // optional, if you want logs automatically collected from logcat
 
         FacebookSdk.sdkInitialize(this)
         FacebookSdk.setAutoInitEnabled(true)

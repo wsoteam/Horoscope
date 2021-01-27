@@ -24,7 +24,12 @@ import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.tab_lat.*
+import kotlinx.android.synthetic.main.tab_lat_career.*
+import kotlinx.android.synthetic.main.tab_lat_health.*
+import kotlinx.android.synthetic.main.tab_lat_love.*
+import kotlinx.android.synthetic.main.tab_lat_money.*
 import kotlinx.android.synthetic.main.tab_lat_month.*
+import kotlinx.android.synthetic.main.tab_lat_planet.*
 import kotlinx.android.synthetic.main.tab_lat_today.*
 import kotlinx.android.synthetic.main.tab_lat_tomorrow.*
 import kotlinx.android.synthetic.main.tab_lat_week.*
@@ -130,6 +135,21 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         tvYear.setBackgroundColor(resources.getColor(android.R.color.transparent))
         tvYear.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvLove.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvLove.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvPlanet.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvPlanet.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvHealth.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvHealth.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvMoney.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvMoney.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
+
+        tvCareer.setBackgroundColor(resources.getColor(android.R.color.transparent))
+        tvCareer.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
 
         tlTime.setSelectedTabIndicatorColor(resources.getColor(R.color.white_selector_tab_layout))
         dvdTab.visibility = View.VISIBLE

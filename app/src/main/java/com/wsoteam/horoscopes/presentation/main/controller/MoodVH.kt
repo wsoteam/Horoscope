@@ -30,7 +30,6 @@ class MoodVH(
         }else{
             itemView.ivBlur.visibility = View.GONE
             itemView.llLock.visibility = View.GONE
-
         }
         
         if (PreferencesProvider.isNeedNewTheme){
