@@ -79,20 +79,26 @@ class HoroscopeAdapter(
                 false
             )
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(nativeList.size)])
-            PROPERTY_TYPE -> (holder as PropertyVH).bind(
+            /*PROPERTY_TYPE -> (holder as PropertyVH).bind(
                 "ddddddd",
                 getImgId(index - 5),
                 getTitle(index - 5)
-            )
+            )*/
         }
     }
 
     private fun getTitle(index: Int): String {
-        return App.getInstance().resources.getStringArray(R.array.titles_property)[index]
+        return App
+            .getInstance()
+            .resources
+            .getStringArray(R.array.titles_property)[index]
     }
 
     private fun getImgId(index: Int): Int {
-        return App.getInstance().resources.obtainTypedArray(R.array.imgs_property)
+        return App
+            .getInstance()
+            .resources
+            .obtainTypedArray(R.array.imgs_property)
             .getResourceId(index, -1)
     }
 

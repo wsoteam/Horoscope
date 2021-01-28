@@ -6,6 +6,7 @@ import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
+import com.revenuecat.purchases.Purchases
 import com.userexperior.UserExperior
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 
@@ -34,6 +35,9 @@ class App : MultiDexApplication() {
         FacebookSdk.setAutoInitEnabled(true)
         FacebookSdk.setAutoLogAppEventsEnabled(true)
         AppEventsLogger.activateApp(applicationContext)
+
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(this, "qoEoXUqEEkmhYuONwXDeGutbzHkRSQXt")
     }
 
     companion object {

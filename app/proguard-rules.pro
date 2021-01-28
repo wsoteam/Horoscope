@@ -22,5 +22,8 @@
 
 -keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
+-keep class com.revenuecat.purchases.* { *; }
 
 -dontwarn com.google.android.gms.**
+
+
