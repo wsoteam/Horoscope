@@ -102,6 +102,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 PreferencesProvider.isShowOnboard = true
                 intent = when (PreferencesProvider.getVersion()) {
                     ABConfig.A -> {
+                        dropNewTheme()
                         Intent(this, DiamondEnterActivity::class.java)
                     }
                     ABConfig.B -> {
@@ -125,6 +126,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         Intent(this, PhoneEnterActivity::class.java)
                     }
                     ABConfig.G -> {
+                        dropNewTheme()
                         Intent(this, DiamondEnterActivity::class.java)
                     }
                     else -> {
@@ -456,5 +458,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun setNewTheme(){
         PreferencesProvider.isNeedNewTheme = true
+    }
+
+    private fun dropNewTheme(){
+        PreferencesProvider.isNeedNewTheme = false
     }
 }

@@ -40,6 +40,9 @@
 
     <color name="transparent">#00FFFFFF</color>
 
+    <color name="active_text_color">#ffffff</color>
+    <color name="inactive_text_color">#2e2c5c</color>
+
 
 
 </resources>

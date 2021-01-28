@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
@@ -24,16 +25,12 @@ import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.tab_lat.*
-import kotlinx.android.synthetic.main.tab_lat_career.*
-import kotlinx.android.synthetic.main.tab_lat_health.*
-import kotlinx.android.synthetic.main.tab_lat_love.*
-import kotlinx.android.synthetic.main.tab_lat_money.*
 import kotlinx.android.synthetic.main.tab_lat_month.*
-import kotlinx.android.synthetic.main.tab_lat_planet.*
 import kotlinx.android.synthetic.main.tab_lat_today.*
 import kotlinx.android.synthetic.main.tab_lat_tomorrow.*
 import kotlinx.android.synthetic.main.tab_lat_week.*
 import kotlinx.android.synthetic.main.tab_lat_year.*
+import org.w3c.dom.Text
 
 
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -42,9 +39,18 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     lateinit var signData: Sign
     var isFirstSet = true
     var timer: CountDownTimer? = null
-    var listTabsTexts : List<TextView>? = null
     var oldTabId = 0
     var isWhiteTheme = false
+
+    lateinit var listTabs : List<TextView>
+
+    var lastTabNumber = 1
+
+    var activeTabTextColor = R.color.active_text_color
+    var inactiveTabTextColor = R.color.inactive_text_color
+
+    var activeTabBackground = R.drawable.shape_back_tab_activated
+    var inactiveTabBackground = R.drawable.shape_back_tab
 
 
     companion object {
@@ -64,9 +70,10 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(PreferencesProvider.isNeedNewTheme){
+        listTabs = listOf(tvYesterday, tvToday, tvTomorrow, tvWeek, tvMonth, tvYear, tvLove, tvCareer, tvMoney, tvHealth)
+        if (PreferencesProvider.isNeedNewTheme) {
             isWhiteTheme = PreferencesProvider.isNeedNewTheme
-            setWhiteTheme()
+            //setWhiteTheme()
         }
         index = arguments!!.getInt(INDEX_KEY)
         signData = arguments!!.getSerializable(DATA_KEY) as Sign
@@ -75,7 +82,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 .getResourceId(index, -1)
         )
 
-        listTabsTexts = listOf(tvYesterday, tvToday, tvTomorrow, tvWeek, tvMonth, tvYear)
 
         vpHoroscope.adapter = TabsAdapter(childFragmentManager, getFragmentsList())
         vpHoroscope.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -91,7 +97,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
 
             override fun onPageSelected(position: Int) {
-                if (isWhiteTheme) {
+                /*if (isWhiteTheme) {
                     listTabsTexts!![position].typeface =
                         (ResourcesCompat.getFont(activity!!, R.font.open_sans_semibold))
                     listTabsTexts!![oldTabId].typeface =
@@ -105,52 +111,40 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     if (PreferencesProvider.isADEnabled()) {
                         showInterAwait()
                     }
-                }
-                tlTime.getTabAt(position)!!.select()
+                }*/
+                //tlTime.getTabAt(position)!!.select()
             }
         })
-        tlTime.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoroscope))
         vpHoroscope.setCurrentItem(1, true)
 
+        listTabs!![1].setTextColor(resources.getColor(R.color.active_text_color))
+        listTabs!![1].background = resources.getDrawable(R.drawable.shape_back_tab_activated)
+        bindTabLayout()
         /*tvGoTostories.setOnClickListener {
             sendStory()
         }*/
+
+    }
+
+    private fun bindTabLayout() {
+        for (i in listTabs!!.indices){
+            listTabs!![i].setOnClickListener {
+                selectTab(i)
+            }
+        }
+    }
+
+    private fun selectTab(number : Int) {
+        listTabs!![number].setTextColor(resources.getColor(activeTabTextColor))
+        listTabs!![number].background = resources.getDrawable(activeTabBackground)
+
+        listTabs!![lastTabNumber].setTextColor(resources.getColor(inactiveTabTextColor))
+        listTabs!![lastTabNumber].background = resources.getDrawable(inactiveTabBackground)
+
+        lastTabNumber = number
     }
 
     private fun setWhiteTheme() {
-        tvYesterday.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvYesterday.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvToday.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvToday.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvTomorrow.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvTomorrow.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvWeek.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvWeek.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvMonth.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvMonth.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvYear.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvYear.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvLove.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvLove.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvPlanet.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvPlanet.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvHealth.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvHealth.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvMoney.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvMoney.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
-        tvCareer.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        tvCareer.setTextColor(resources.getColorStateList(R.color.selector_white_text_tab_color))
-
         tlTime.setSelectedTabIndicatorColor(resources.getColor(R.color.white_selector_tab_layout))
         dvdTab.visibility = View.VISIBLE
     }
@@ -159,8 +153,14 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val uri = Uri.parse(PreferencesProvider.screenURI)
 
         var intent = Intent("com.instagram.share.ADD_TO_STORY")
-        intent.putExtra("com.facebook.platform.extra.APPLICATION_ID", getString(R.string.facebook_app_id))
-        intent.putExtra("content_url", Uri.parse("https://play.google.com/store/apps/details?id=com.wsoteam.horoscopes"))
+        intent.putExtra(
+            "com.facebook.platform.extra.APPLICATION_ID",
+            getString(R.string.facebook_app_id)
+        )
+        intent.putExtra(
+            "content_url",
+            Uri.parse("https://play.google.com/store/apps/details?id=com.wsoteam.horoscopes")
+        )
         intent.setDataAndType(uri, "image/png")
         intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
 

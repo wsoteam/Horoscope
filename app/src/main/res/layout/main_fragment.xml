@@ -39,9 +39,9 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tlTime"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="75dp"
         android:layout_marginTop="32dp"
-        app:tabIndicatorColor="#f4e6d8"
+        app:tabIndicatorColor="@android:color/transparent"
         app:tabMode="scrollable"
         android:elevation="3dp"
         app:tabRippleColor="@android:color/transparent">
@@ -81,36 +81,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout="@layout/tab_lat_year" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tiLove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout="@layout/tab_lat_love" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tiCareer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout="@layout/tab_lat_career" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tiMoney"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout="@layout/tab_lat_money" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tiHealth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout="@layout/tab_lat_health" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tiPlanet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout="@layout/tab_lat_planet" />
 
     </com.google.android.material.tabs.TabLayout>
 

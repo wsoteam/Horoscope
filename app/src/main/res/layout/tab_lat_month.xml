@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="75dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/selector_tab"
+        android:layout_width="84dp"
+        android:layout_height="30dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:textColor="#2e2c5c"
         android:letterSpacing="0.06"
         android:lineSpacingExtra="4sp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:background="@drawable/selector_tab"
+        android:background="@drawable/shape_back_tab"
         android:text="@string/month"
         />
 
