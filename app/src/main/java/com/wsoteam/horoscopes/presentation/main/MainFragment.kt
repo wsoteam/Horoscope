@@ -37,9 +37,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     var index = -1
     lateinit var signData: Sign
-    var isFirstSet = true
     var timer: CountDownTimer? = null
-    var oldTabId = 0
     var isWhiteTheme = false
 
     lateinit var listTabs : List<TextView>
