@@ -43,6 +43,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     var isWhiteTheme = false
 
     lateinit var listTabs : List<TextView>
+    lateinit var fragmentList : List<Fragment>
 
     var lastTabNumber = 1
 
@@ -81,49 +82,19 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             resources.obtainTypedArray(R.array.imgs_signs)
                 .getResourceId(index, -1)
         )
-
-
-        vpHoroscope.adapter = TabsAdapter(childFragmentManager, getFragmentsList())
-        vpHoroscope.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-
-            }
-
-            override fun onPageSelected(position: Int) {
-                /*if (isWhiteTheme) {
-                    listTabsTexts!![position].typeface =
-                        (ResourcesCompat.getFont(activity!!, R.font.open_sans_semibold))
-                    listTabsTexts!![oldTabId].typeface =
-                        (ResourcesCompat.getFont(activity!!, R.font.open_sans_regular))
-                    oldTabId = position
-                }
-                Experior.trackHoroPage(position)
-                if (isFirstSet) {
-                    isFirstSet = false
-                } else {
-                    if (PreferencesProvider.isADEnabled()) {
-                        showInterAwait()
-                    }
-                }*/
-                //tlTime.getTabAt(position)!!.select()
-            }
-        })
-        vpHoroscope.setCurrentItem(1, true)
+        fragmentList = getAllFragments()
+        bindFragmentList(fragmentList)
 
         listTabs!![1].setTextColor(resources.getColor(R.color.active_text_color))
         listTabs!![1].background = resources.getDrawable(R.drawable.shape_back_tab_activated)
+        childFragmentManager.beginTransaction().show(fragmentList[1]).commit()
         bindTabLayout()
-        /*tvGoTostories.setOnClickListener {
-            sendStory()
-        }*/
+    }
 
+    private fun bindFragmentList(fragmentList: List<Fragment>) {
+        for (i in fragmentList.indices) {
+            childFragmentManager.beginTransaction().add(R.id.flContainer, fragmentList[i]).show(fragmentList[i]).hide(fragmentList[i]).commit()
+        }
     }
 
     private fun bindTabLayout() {
@@ -141,12 +112,17 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         listTabs!![lastTabNumber].setTextColor(resources.getColor(inactiveTabTextColor))
         listTabs!![lastTabNumber].background = resources.getDrawable(inactiveTabBackground)
 
+        childFragmentManager.beginTransaction().show(fragmentList[number]).commit()
+        childFragmentManager.beginTransaction().hide(fragmentList[lastTabNumber]).commit()
+
         lastTabNumber = number
+
+        if (PreferencesProvider.isADEnabled()) {
+            showInterAwait()
+        }
     }
 
     private fun setWhiteTheme() {
-        tlTime.setSelectedTabIndicatorColor(resources.getColor(R.color.white_selector_tab_layout))
-        dvdTab.visibility = View.VISIBLE
     }
 
     private fun sendStory() {
@@ -184,7 +160,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
 
-    private fun getFragmentsList(): List<Fragment> {
+    private fun getAllFragments(): List<Fragment> {
         var list = listOf<Fragment>(
             PageFragment.newInstance(signData.yesterday, 0),
             PageFragment.newInstance(signData.today, 1),

@@ -85,19 +85,10 @@
     </com.google.android.material.tabs.TabLayout>
 
 
-    <View
-        android:id="@+id/dvdTab"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="-1dp"
-        android:layout_height="1dp"
-        android:visibility="gone"
-        android:background="#e8e8ed" />
-
-
-    <com.wsoteam.horoscopes.view.WrapVP
-        android:id="@+id/vpHoroscope"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/flContainer"/>
 
 
 </LinearLayout>
