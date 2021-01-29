@@ -13,6 +13,7 @@ class HoroscopeAdapter(
     val text: String,
     val matches: List<Int>,
     val ratings: List<Int>,
+    val emotionText : String,
     var nativeList: ArrayList<UnifiedNativeAd>,
     var isLocked: Boolean,
     var iGetPrem: IGetPrem,
@@ -79,11 +80,11 @@ class HoroscopeAdapter(
                 false
             )
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(nativeList.size)])
-            /*PROPERTY_TYPE -> (holder as PropertyVH).bind(
-                "ddddddd",
-                getImgId(index - 5),
-                getTitle(index - 5)
-            )*/
+            PROPERTY_TYPE -> (holder as PropertyVH).bind(
+                emotionText,
+                getImgId(index - 6),
+                getTitle(index - 6)
+            )
         }
     }
 

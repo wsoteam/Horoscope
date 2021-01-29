@@ -9,6 +9,14 @@ data class Week(
     @SerializedName("matches")
     override var matches: List<Int>,
     @SerializedName("ratings")
-    override var ratings: List<Int>
+    override var ratings: List<Int>,
+    @SerializedName("love")
+    var love: String,
+    @SerializedName("career")
+    var career: String,
+    @SerializedName("money")
+    var money: String,
+    @SerializedName("wellness")
+    var wellness: String
 ) : Serializable, TimeInterval() {
 }
