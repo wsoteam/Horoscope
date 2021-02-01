@@ -17,7 +17,7 @@ class HoroscopeAdapter(
     var nativeList: ArrayList<UnifiedNativeAd>,
     var isLocked: Boolean,
     var iGetPrem: IGetPrem,
-    val index: Int
+    val numberPage: Int
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val TEXT_TYPE = 0
@@ -48,7 +48,7 @@ class HoroscopeAdapter(
     }
 
     override fun getItemCount(): Int {
-        if (index > 5) {
+        if (numberPage > 5) {
             return 1
         } else {
             return when {
@@ -82,8 +82,8 @@ class HoroscopeAdapter(
             AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(nativeList.size)])
             PROPERTY_TYPE -> (holder as PropertyVH).bind(
                 emotionText,
-                getImgId(index - 6),
-                getTitle(index - 6)
+                getImgId(numberPage - 6),
+                getTitle(numberPage - 6)
             )
         }
     }
@@ -95,17 +95,17 @@ class HoroscopeAdapter(
             .getStringArray(R.array.titles_property)[index]
     }
 
-    private fun getImgId(index: Int): Int {
+    private fun getImgId(number: Int): Int {
         return App
             .getInstance()
             .resources
             .obtainTypedArray(R.array.imgs_property)
-            .getResourceId(index, -1)
+            .getResourceId(number, -1)
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (index > 5) {
+        return if (numberPage > 5) {
             PROPERTY_TYPE
         } else if (isLocked) {
             TEXT_TYPE

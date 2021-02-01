@@ -21,6 +21,7 @@ import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
 import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.*
@@ -40,8 +41,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     var timer: CountDownTimer? = null
     var isWhiteTheme = false
 
-    lateinit var listTabs : List<TextView>
-    lateinit var fragmentList : List<Fragment>
+    lateinit var listTabs: List<TextView>
+    lateinit var fragmentList: List<Fragment>
 
     var lastTabNumber = 1
 
@@ -69,10 +70,21 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listTabs = listOf(tvYesterday, tvToday, tvTomorrow, tvWeek, tvMonth, tvYear, tvLove, tvCareer, tvMoney, tvHealth)
+        listTabs = listOf(
+            tvYesterday,
+            tvToday,
+            tvTomorrow,
+            tvWeek,
+            tvMonth,
+            tvYear,
+            tvLove,
+            tvCareer,
+            tvMoney,
+            tvHealth
+        )
         if (PreferencesProvider.isNeedNewTheme) {
             isWhiteTheme = PreferencesProvider.isNeedNewTheme
-            //setWhiteTheme()
+            setWhiteTheme()
         }
         index = arguments!!.getInt(INDEX_KEY)
         signData = arguments!!.getSerializable(DATA_KEY) as Sign
@@ -83,44 +95,71 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         fragmentList = getAllFragments()
         bindFragmentList(fragmentList)
 
-        listTabs!![1].setTextColor(resources.getColor(R.color.active_text_color))
-        listTabs!![1].background = resources.getDrawable(R.drawable.shape_back_tab_activated)
+        listTabs!![1].background = resources.getDrawable(activeTabBackground)
+        listTabs!![1].setTextColor(resources.getColor(activeTabTextColor))
+        Analytic.showHoro(1)
+
         childFragmentManager.beginTransaction().show(fragmentList[1]).commit()
         bindTabLayout()
     }
 
     private fun bindFragmentList(fragmentList: List<Fragment>) {
         for (i in fragmentList.indices) {
-            childFragmentManager.beginTransaction().add(R.id.flContainer, fragmentList[i]).show(fragmentList[i]).hide(fragmentList[i]).commit()
+            childFragmentManager.beginTransaction().add(R.id.flContainer, fragmentList[i])
+                .show(fragmentList[i]).hide(fragmentList[i]).commit()
         }
     }
 
     private fun bindTabLayout() {
-        for (i in listTabs!!.indices){
+        for (i in listTabs!!.indices) {
             listTabs!![i].setOnClickListener {
                 selectTab(i)
             }
         }
     }
 
-    private fun selectTab(number : Int) {
-        listTabs!![number].setTextColor(resources.getColor(activeTabTextColor))
-        listTabs!![number].background = resources.getDrawable(activeTabBackground)
+    private fun selectTab(number: Int) {
+        if (number != lastTabNumber) {
+            Analytic.showHoro(number)
+            listTabs!![number].setTextColor(resources.getColor(activeTabTextColor))
+            listTabs!![number].background = resources.getDrawable(activeTabBackground)
 
-        listTabs!![lastTabNumber].setTextColor(resources.getColor(inactiveTabTextColor))
-        listTabs!![lastTabNumber].background = resources.getDrawable(inactiveTabBackground)
+            listTabs!![lastTabNumber].setTextColor(resources.getColor(inactiveTabTextColor))
+            listTabs!![lastTabNumber].background = resources.getDrawable(inactiveTabBackground)
 
-        childFragmentManager.beginTransaction().show(fragmentList[number]).commit()
-        childFragmentManager.beginTransaction().hide(fragmentList[lastTabNumber]).commit()
+            childFragmentManager.beginTransaction().show(fragmentList[number]).commit()
+            childFragmentManager.beginTransaction().hide(fragmentList[lastTabNumber]).commit()
 
-        lastTabNumber = number
+            var selectedTab = when (number) {
+                0, 6 -> 0
+                1, 7 -> 1
+                2, 8 -> 2
+                3, 9 -> 3
+                4 -> 4
+                5 -> 5
+                else -> 0
+            }
 
-        if (PreferencesProvider.isADEnabled()) {
-            showInterAwait()
+            tlTime.getTabAt(selectedTab)!!.select()
+
+            lastTabNumber = number
+
+            if (PreferencesProvider.isADEnabled()) {
+                showInterAwait()
+            }
         }
     }
 
     private fun setWhiteTheme() {
+        inactiveTabBackground = R.drawable.shape_back_tab_white
+        activeTabBackground = R.drawable.shape_back_tab_activated_white
+        activeTabTextColor = R.color.active_text_color_white
+        inactiveTabTextColor = R.color.inactive_text_color_white
+
+        for (i in listTabs.indices) {
+            listTabs[i].setTextColor(resources.getColor(R.color.inactive_text_color_white))
+            listTabs[i].background = resources.getDrawable(R.drawable.shape_back_tab_white)
+        }
     }
 
     private fun sendStory() {

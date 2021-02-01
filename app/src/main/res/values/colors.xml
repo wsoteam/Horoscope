@@ -43,6 +43,10 @@
     <color name="active_text_color">#ffffff</color>
     <color name="inactive_text_color">#2e2c5c</color>
 
+    <color name="active_text_color_white">#2e2c5c</color>
+    <color name="inactive_text_color_white">#2e2c5c</color>
+
+
 
 
 </resources>

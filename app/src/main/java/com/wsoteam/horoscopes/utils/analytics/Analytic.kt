@@ -38,6 +38,11 @@ object Analytic {
     private val month = "month"
     private val year = "year"
 
+    private val love = "love"
+    private val career = "career"
+    private val money = "money"
+    private val health = "health"
+
 
     private val PREMIUM_PAGE = "premium_page"
     private val premium_page_from = "from"
@@ -82,6 +87,42 @@ object Analytic {
     private const val timer_time = "time"
 
     private const val NET_LOST_ATTEMPT = "attempt"
+
+    private const val OPEN_ASTRO = "open_astro"
+    private const val OPEN_ASTRO_FROM = "from"
+
+    private const val OPEN_ASTRO_SECOND = "open_astro_second"
+    private const val OPEN_ASTRO_URL = "open_astro_url"
+
+    fun openAstro(from : String) {
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(OPEN_ASTRO_FROM, from)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(OPEN_ASTRO, eventProperties)
+    }
+
+    fun openSecondAstro(from : String) {
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(OPEN_ASTRO_FROM, from)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(OPEN_ASTRO_SECOND, eventProperties)
+    }
+
+    fun openAstroUrl(from : String) {
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put(OPEN_ASTRO_FROM, from)
+        } catch (exception: JSONException) {
+            exception.printStackTrace()
+        }
+        Amplitude.getInstance().logEvent(OPEN_ASTRO_URL, eventProperties)
+    }
 
 
     fun crashAttr() {
@@ -259,8 +300,13 @@ object Analytic {
             3 -> week
             4 -> month
             5 -> year
+            6 -> love
+            7 -> career
+            8 -> health
+            9 -> money
             else -> "error"
         }
+        Log.e("LOL", "horo -- $property")
         val eventProperties = JSONObject()
         try {
             eventProperties.put(horoscope_type, property)

@@ -102,17 +102,15 @@
     <integer-array name="imgs_property">
         <item>@drawable/ic_vh_love</item>
         <item>@drawable/ic_vh_career</item>
-        <item>@drawable/ic_vh_money</item>
         <item>@drawable/ic_vh_health</item>
-        <item>@drawable/ic_vh_planet</item>
+        <item>@drawable/ic_vh_money</item>
     </integer-array>
 
     <string-array name="titles_property">
         <item>Love</item>
         <item>Career</item>
-        <item>Money</item>
         <item>Health</item>
-        <item>Planets</item>
+        <item>Money</item>
     </string-array>
 
 

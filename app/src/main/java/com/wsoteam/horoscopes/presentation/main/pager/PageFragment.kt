@@ -114,8 +114,8 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         return when(index){
             6 -> signData.love
             7 -> signData.career
-            7 -> signData.money
             8 -> signData.wellness
+            9 -> signData.money
             else -> signData.love
         }
     }
@@ -135,7 +135,6 @@ class PageFragment : Fragment(R.layout.page_fragment) {
         super.onResume()
         if (userVisibleHint) {
             PreferencesProvider.setLastText(text)
-            Analytic.showHoro(index)
         }
     }
 }
