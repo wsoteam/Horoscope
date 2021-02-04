@@ -45,8 +45,8 @@
 
     <color name="active_text_color_white">#2e2c5c</color>
     <color name="inactive_text_color_white">#2e2c5c</color>
-
-
+    <color name="prop_text">#1e1e1e</color>
+    <color name="prop_title">#1e1e1e</color>
 
 
 </resources>

@@ -19,7 +19,16 @@ class TextVH(
 ) : RecyclerView.ViewHolder(layoutInflater.inflate(
     R.layout.text_vh, viewGroup, false)) {
 
-    fun bind(text: String, isLocked: Boolean) {
+
+    fun bind(type : String, date : String, text: String, isLocked: Boolean) {
+        itemView.tvType.text = type
+        itemView.tvDate.text = date
+        defaultBind(text, isLocked)
+    }
+
+
+
+    private fun defaultBind(text: String, isLocked: Boolean) {
         if (isLocked) {
             var openText = createOpenText(text)
             var wholeText = openText + "\n\n" + text.substring(200)

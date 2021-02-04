@@ -33,6 +33,7 @@
                     android:src="@drawable/ic_close_astro_woman"
                     android:layout_gravity="end"
                     android:id="@+id/ivClose"
+                    android:visibility="gone"
                     android:padding="16dp"/>
 
             </FrameLayout>

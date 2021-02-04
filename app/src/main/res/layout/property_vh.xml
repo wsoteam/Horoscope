@@ -5,49 +5,45 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:orientation="horizontal">
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.02"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#2e2c5c"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        tools:text="Love" />
 
-        <ImageView
-            android:id="@+id/ivTitle"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="12dp"
-            tools:src="@drawable/ic_vh_love" />
+    <ImageView
+        android:id="@+id/ivTitle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        tools:src="@drawable/ic_vh_love" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="6dp"
-            android:fontFamily="@font/open_sans_semibold"
-            android:letterSpacing="0.06"
-            android:lineSpacingExtra="4sp"
-            android:textColor="#1e1e1e"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            tools:text="Love" />
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/tvText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="19dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:textColor="#1e1e1e"
         android:letterSpacing="0.06"
         android:lineSpacingExtra="4.9sp"
-        android:textColor="#1e1e1e"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        tools:text="Right now, you&apos;re likely to be the glue in your own life. Maybe you&apos;re the hub of your social or working group, but you&apos;re the one everyone&apos;s looking to now to find new ideas and activities that can help everyone out financially. If you&apos;re feeling overwhelmed, don&apos;t. You&apos;re more than up to the task of creating new wealth for yourself, and others, if you choose. You&apos;re not responsible for them, but can make some valuable contacts." />
-</LinearLayout>
+        />
+
+
+    </LinearLayout>

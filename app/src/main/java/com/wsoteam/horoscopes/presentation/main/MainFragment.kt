@@ -1,37 +1,25 @@
 package com.wsoteam.horoscopes.presentation.main
 
 import android.app.Activity
-import android.content.ComponentName
 import android.content.Intent
-import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabItem
-import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.main.pager.PageFragment
-import com.wsoteam.horoscopes.presentation.main.pager.TabsAdapter
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
-import com.wsoteam.horoscopes.utils.analytics.experior.Experior
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.android.synthetic.main.settings_fragment.*
 import kotlinx.android.synthetic.main.tab_lat.*
 import kotlinx.android.synthetic.main.tab_lat_month.*
 import kotlinx.android.synthetic.main.tab_lat_today.*
 import kotlinx.android.synthetic.main.tab_lat_tomorrow.*
 import kotlinx.android.synthetic.main.tab_lat_week.*
-import kotlinx.android.synthetic.main.tab_lat_year.*
-import org.w3c.dom.Text
 
 
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -41,7 +29,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     var timer: CountDownTimer? = null
     var isWhiteTheme = false
 
-    lateinit var listTabs: List<TextView>
+    lateinit var listTabTvs: List<TextView>
     lateinit var fragmentList: List<Fragment>
 
     var lastTabNumber = 1
@@ -70,7 +58,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listTabs = listOf(
+        listTabTvs = listOf(
             tvYesterday,
             tvToday,
             tvTomorrow,
@@ -95,8 +83,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         fragmentList = getAllFragments()
         bindFragmentList(fragmentList)
 
-        listTabs!![1].background = resources.getDrawable(activeTabBackground)
-        listTabs!![1].setTextColor(resources.getColor(activeTabTextColor))
+        listTabTvs!![1].background = resources.getDrawable(activeTabBackground)
+        listTabTvs!![1].setTextColor(resources.getColor(activeTabTextColor))
         Analytic.showHoro(1)
 
         childFragmentManager.beginTransaction().show(fragmentList[1]).commit()
@@ -111,8 +99,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun bindTabLayout() {
-        for (i in listTabs!!.indices) {
-            listTabs!![i].setOnClickListener {
+        for (i in listTabTvs!!.indices) {
+            listTabTvs!![i].setOnClickListener {
                 selectTab(i)
             }
         }
@@ -121,11 +109,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private fun selectTab(number: Int) {
         if (number != lastTabNumber) {
             Analytic.showHoro(number)
-            listTabs!![number].setTextColor(resources.getColor(activeTabTextColor))
-            listTabs!![number].background = resources.getDrawable(activeTabBackground)
+            listTabTvs!![number].setTextColor(resources.getColor(activeTabTextColor))
+            listTabTvs!![number].background = resources.getDrawable(activeTabBackground)
 
-            listTabs!![lastTabNumber].setTextColor(resources.getColor(inactiveTabTextColor))
-            listTabs!![lastTabNumber].background = resources.getDrawable(inactiveTabBackground)
+            listTabTvs!![lastTabNumber].setTextColor(resources.getColor(inactiveTabTextColor))
+            listTabTvs!![lastTabNumber].background = resources.getDrawable(inactiveTabBackground)
 
             childFragmentManager.beginTransaction().show(fragmentList[number]).commit()
             childFragmentManager.beginTransaction().hide(fragmentList[lastTabNumber]).commit()
@@ -135,8 +123,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 1, 7 -> 1
                 2, 8 -> 2
                 3, 9 -> 3
-                4 -> 4
-                5 -> 5
+                4, 5 -> 4
                 else -> 0
             }
 
@@ -156,9 +143,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         activeTabTextColor = R.color.active_text_color_white
         inactiveTabTextColor = R.color.inactive_text_color_white
 
-        for (i in listTabs.indices) {
-            listTabs[i].setTextColor(resources.getColor(R.color.inactive_text_color_white))
-            listTabs[i].background = resources.getDrawable(R.drawable.shape_back_tab_white)
+        for (i in listTabTvs.indices) {
+            listTabTvs[i].setTextColor(resources.getColor(R.color.inactive_text_color_white))
+            listTabTvs[i].background = resources.getDrawable(R.drawable.shape_back_tab_white)
         }
     }
 

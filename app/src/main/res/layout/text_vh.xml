@@ -2,7 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flContainer"
+    tools:background="@color/black"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,14 +13,49 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="1sp"
+            android:gravity="center_horizontal"
+            tools:text="Today "
+            />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="0.06"
+            android:lineSpacingExtra="5.1sp"
+            android:gravity="center_horizontal"
+            tools:text="Jul 12, 2021 "
+            android:layout_gravity="center_horizontal"
+            />
+
         <TextView
             android:id="@+id/tvText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif"
             android:letterSpacing="0.03"
             android:lineSpacingExtra="4.9sp"
             android:textColor="#FFFFFF"

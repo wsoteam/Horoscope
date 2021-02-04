@@ -18,4 +18,18 @@
         android:text="@string/month"
         />
 
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="84dp"
+        android:layout_height="30dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:textColor="#2e2c5c"
+        android:letterSpacing="0.06"
+        android:lineSpacingExtra="4sp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_back_tab"
+        android:text="@string/year"
+        />
+
 </LinearLayout>

@@ -31,7 +31,7 @@ class HandsListActivity : AppCompatActivity(R.layout.hands_list_activity) {
 
         btnTryNow.setOnClickListener {
             Analytic.openAstroUrl(PreferencesProvider.getVersion()!!)
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.oranum.com/chat/random-expert?s=1&p=7&w=105823&t=216&c=26199411"))
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://m.oranum.com/en/free-reading?s=1&p=7&w=105823&t=573&c=26199411"))
             startActivity(intent)
         }
     }
