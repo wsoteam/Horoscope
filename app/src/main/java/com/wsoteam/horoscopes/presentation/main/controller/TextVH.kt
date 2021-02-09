@@ -47,6 +47,8 @@ class TextVH(
 
         if (PreferencesProvider.isNeedNewTheme){
             itemView.tvText.setTextColor(itemView.resources.getColor(R.color.white_theme_text_color))
+            itemView.tvType.setTextColor(itemView.resources.getColor(R.color.white_theme_date))
+            itemView.tvDate.setTextColor(itemView.resources.getColor(R.color.white_theme_date))
             itemView.dvdText.setBackgroundColor(itemView.resources.getColor(R.color.white_divider))
         }
     }

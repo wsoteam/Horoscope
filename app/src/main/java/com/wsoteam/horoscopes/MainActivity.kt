@@ -185,6 +185,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setWhiteViews()
         }
 
+        if (Config.FOR_TEST){
+            ivToolShare.visibility = View.GONE
+        }
+
         Log.e("LOL", "Main create")
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
@@ -194,10 +198,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .add(R.id.flContainer, BallFragment())
             .commit()
 
-        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST) {
             adView.visibility = View.VISIBLE
             adView.loadAd(AdRequest.Builder().build())
         }
+
+
         supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
         if (PreferencesProvider.isADEnabled()) {
             ivToolPrem.visibility = View.VISIBLE

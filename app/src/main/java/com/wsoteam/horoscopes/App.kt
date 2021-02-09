@@ -28,7 +28,6 @@ class App : MultiDexApplication() {
         Amplitude.getInstance()
             .initialize(this, getString(R.string.amplitude_id))
             .enableForegroundTracking(this)
-        Amplitude.getInstance().userId = "LOLKEK"
 
         applicationHandler = Handler(applicationContext.mainLooper)
 

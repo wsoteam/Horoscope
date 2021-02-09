@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
@@ -52,6 +53,7 @@ import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
+import kotlinx.android.synthetic.main.form_activity.*
 import kotlinx.android.synthetic.main.stories_activity.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

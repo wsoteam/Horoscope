@@ -49,4 +49,7 @@ object Config {
 
     const val DAY_ALERT_SUB = "sub_post_alert"
 
+
+    const val FOR_TEST = false
+
 }

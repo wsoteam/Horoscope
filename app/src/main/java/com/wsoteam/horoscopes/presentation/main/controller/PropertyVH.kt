@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.main.controller
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,6 +20,7 @@ class PropertyVH(layoutInflater: LayoutInflater, viewGroup: ViewGroup) : Recycle
         if (PreferencesProvider.isNeedNewTheme){
             itemView.tvTitle.setTextColor(itemView.resources.getColor(R.color.prop_text))
             itemView.tvText.setTextColor(itemView.resources.getColor(R.color.prop_title))
+            itemView.ivTitle.visibility = View.VISIBLE
         }
     }
 }
