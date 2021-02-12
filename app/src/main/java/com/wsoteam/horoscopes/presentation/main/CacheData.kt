@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.presentation.main
 
+import android.util.Log
 import com.wsoteam.horoscopes.models.Sign
 
 object CacheData {

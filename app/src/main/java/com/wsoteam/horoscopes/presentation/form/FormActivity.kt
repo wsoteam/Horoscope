@@ -10,6 +10,7 @@ import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class FormActivity : AppCompatActivity() {
             DateDialog()
                 .show(supportFragmentManager, "")
         }
+        AdWorker.showInter()
     }
 
     private fun setGoNextListener() {

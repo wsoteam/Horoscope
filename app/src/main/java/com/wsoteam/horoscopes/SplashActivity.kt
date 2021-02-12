@@ -228,7 +228,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
 
         AdWorker.init(this)
-        AdWorker.isNeedShowInter = true
+        AdWorker.isNeedShowInter = PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != ""
         AdWorker.adCallbacks = object : AdCallbacks {
             override fun onAdClosed() {
                 postGoNext(2, "onAdClosed")
