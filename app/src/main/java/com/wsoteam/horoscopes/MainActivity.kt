@@ -176,6 +176,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (PreferencesProvider.isNeedNewTheme) {
             setTheme(R.style.WhiteTheme)
         }

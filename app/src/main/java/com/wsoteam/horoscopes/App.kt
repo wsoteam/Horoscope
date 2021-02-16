@@ -9,6 +9,8 @@ import com.facebook.appevents.AppEventsLogger
 import com.revenuecat.purchases.Purchases
 import com.userexperior.UserExperior
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.YandexMetricaConfig
 
 
 class App : MultiDexApplication() {
@@ -38,6 +40,17 @@ class App : MultiDexApplication() {
 
         Purchases.debugLogsEnabled = true
         Purchases.configure(this, "qoEoXUqEEkmhYuONwXDeGutbzHkRSQXt")
+
+        /*// Branch logging for debugging
+        Branch.enableLogging()
+
+        // Branch object initialization
+        Branch.getAutoInstance(this)*/
+
+        val config =
+            YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
+        YandexMetrica.activate(applicationContext, config)
+        YandexMetrica.enableActivityAutoTracking(this)
     }
 
     companion object {

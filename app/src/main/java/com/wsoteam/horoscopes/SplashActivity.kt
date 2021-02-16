@@ -39,6 +39,7 @@ import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairEnterActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhoneEnterActivity
+import com.wsoteam.horoscopes.utils.BranchTestEvents
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -58,6 +59,7 @@ import kotlinx.android.synthetic.main.stories_activity.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 import java.security.MessageDigest
@@ -76,11 +78,25 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     var isFirstSplash = false
     var isNetStateOk = true
 
+    /*object branchListener : Branch.BranchReferralInitListener {
+        override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
+
+            if (error == null) {
+
+                Log.i("BRANCH SDK", referringParams.toString())
+                // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
+                // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
+            } else {
+                Log.e("BRANCH SDK", error.message)
+            }
+        }
+    }*/
+
 
     private fun postGoNext(i: Int, tag: String) {
         counter += i
         L.log("postGoNext -- $counter -- $tag")
-        if (counter >= MAX && isNetStateOk) {
+        if (counter >= MAX) {
             if (!isNextScreenLoading) {
                 isNextScreenLoading = true
                 goNext()
@@ -92,7 +108,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         L.log("goNext")
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
-            intent = if (!PreferencesProvider.isShowCatPremium && isTimeHasPassed()) {
+            intent = if (!PreferencesProvider.isShowCatPremium && isTimeHasPassed() && false) {
                 Intent(this, DayCatPremiumActivity::class.java)
             } else {
                 Intent(this, MainActivity::class.java)
@@ -179,6 +195,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindFirstOpenTime()
+        for (i in 0..10) {
+            BranchTestEvents.log()
+        }
         if (!PreferencesProvider.isSetuped) {
             CustomTimer.startFirstSplashTimer()
             ETimer.trackStart(ETimer.FIRST_SPLASH)
@@ -228,7 +247,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
 
         AdWorker.init(this)
-        AdWorker.isNeedShowInter = PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != ""
+        AdWorker.isNeedShowInter =
+            PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != ""
         AdWorker.adCallbacks = object : AdCallbacks {
             override fun onAdClosed() {
                 postGoNext(2, "onAdClosed")
@@ -274,6 +294,20 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             }
         }
     }
+
+    /*override fun onStart() {
+        super.onStart()
+        // Branch init
+        Branch.sessionBuilder(this).withCallback(branchListener).withData(this.intent?.data).init()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        this.intent = intent
+        // Branch reinit (in case Activity is already in foreground when Branch link is clicked)
+        Branch.sessionBuilder(this).withCallback(branchListener).reInit()
+    }*/
+
 
     private fun bindFirstOpenTime() {
         if (PreferencesProvider.firstEnterTime == -1L) {
@@ -458,11 +492,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         return id
     }
 
-    private fun setNewTheme(){
+    private fun setNewTheme() {
         PreferencesProvider.isNeedNewTheme = true
     }
 
-    private fun dropNewTheme(){
+    private fun dropNewTheme() {
         PreferencesProvider.isNeedNewTheme = false
     }
 }

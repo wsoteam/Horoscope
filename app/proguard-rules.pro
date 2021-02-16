@@ -23,6 +23,14 @@
 -keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
 -keep class com.revenuecat.purchases.* { *; }
+-keep class com.google.android.gms.* { *; }
+
+-keep class com.facebook.applinks.* { *; }
+-keepclassmembers class com.facebook.applinks.* { *; }
+-keep class com.facebook.FacebookSdk { *; }
+
+-keep class com.huawei.hms.ads.* { *; }
+-keep interface com.huawei.hms.ads.* { *; }
 
 -dontwarn com.google.android.gms.**
 

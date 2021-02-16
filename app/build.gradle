@@ -13,8 +13,8 @@ android {
         applicationId "com.wsoteam.horoscopes"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 23
-        versionName "1.0.21"
+        versionCode 24
+        versionName "1.0.22"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,7 +68,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     implementation 'com.google.firebase:firebase-core:17.2.0'
-    implementation 'com.android.installreferrer:installreferrer:2.1'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
 
     implementation 'com.amplitude:android-sdk:2.23.2'
 
@@ -104,4 +104,10 @@ dependencies {
     implementation 'com.userexperior:userexperior-android:+'
     implementation 'com.revenuecat.purchases:purchases:4.0.1'
 
+    /*implementation 'io.branch.sdk.android:library:5.+'
+    implementation 'androidx.browser:browser:1.0.0'
+    implementation 'com.google.firebase:firebase-appindexing:19.0.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:16+'*/
+
+    implementation 'com.yandex.android:mobmetricalib:3.16.1'
 }

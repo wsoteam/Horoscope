@@ -6,6 +6,7 @@ import com.amplitude.api.Identify
 import com.userexperior.UserExperior
 import com.userexperior.models.recording.enums.UeCustomType
 import com.wsoteam.horoscopes.utils.analytics.experior.Experior
+import com.yandex.metrica.YandexMetrica
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -137,6 +138,7 @@ object Analytic {
 
     fun start() {
         Amplitude.getInstance().logEvent(START)
+        YandexMetrica.reportEvent(START)
         //Smartlook.trackCustomEvent(START)
         try {
             UserExperior.setCustomTag(START, UeCustomType.EVENT)
@@ -208,6 +210,7 @@ object Analytic {
 
     fun setVersion() {
         Amplitude.getInstance().logEvent(set_ver)
+        YandexMetrica.reportEvent(set_ver)
         //Smartlook.trackCustomEvent(set_ver)
         try {
             UserExperior.setCustomTag(set_ver, UeCustomType.EVENT)
@@ -244,12 +247,6 @@ object Analytic {
 
     fun showNotif() {
         Amplitude.getInstance().logEvent(show_notif)
-        //Smartlook.trackCustomEvent(show_notif)
-        try {
-            UserExperior.setCustomTag(show_notif, UeCustomType.EVENT)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
     fun showEveningNotif() {
@@ -372,6 +369,8 @@ object Analytic {
             exception.printStackTrace()
         }
         Amplitude.getInstance().logEvent(PREMIUM_TRIAL, eventProperties)
+        YandexMetrica.reportEvent("trial")
+        YandexMetrica.reportEvent("trial_make")
         //Smartlook.trackCustomEvent(PREMIUM_TRIAL, eventProperties)
         try {
             UserExperior.setCustomTag(
