@@ -11,6 +11,7 @@ object ABConfig {
     const val E = "ondoard_hair"
     const val F = "ondoard_phone"
     const val G = "ondoard_diamond_big_price"
+    const val H = "ondoard_diamond_big_white"
 
 
     //const val H = "onboard_girl_single"

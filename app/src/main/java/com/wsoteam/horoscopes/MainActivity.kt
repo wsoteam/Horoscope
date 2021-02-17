@@ -177,6 +177,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Analytic.openMain()
+
         if (PreferencesProvider.isNeedNewTheme) {
             setTheme(R.style.WhiteTheme)
         }
@@ -215,7 +217,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (PreferencesProvider.getVersion() != ABConfig.A && PreferencesProvider.getVersion() != ABConfig.G) {
             ivToolAstro.visibility = View.VISIBLE
             var intent = when (PreferencesProvider.getVersion()) {
-                ABConfig.B, ABConfig.C -> Intent(this@MainActivity, WomanActivity::class.java)
+                ABConfig.B, ABConfig.C, ABConfig.H -> Intent(this@MainActivity, WomanActivity::class.java)
                 ABConfig.E, ABConfig.D, ABConfig.F -> Intent(this@MainActivity, HandsActivity::class.java)
                 else -> Intent(this@MainActivity, WomanActivity::class.java)
             }

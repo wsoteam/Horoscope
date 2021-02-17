@@ -147,6 +147,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         dropNewTheme()
                         Intent(this, DiamondEnterActivity::class.java)
                     }
+                    ABConfig.H -> {
+                        setNewTheme()
+                        Intent(this, DiamondEnterActivity::class.java)
+                    }
                     else -> {
                         setNewTheme()
                         Intent(this, EnterActivity::class.java)

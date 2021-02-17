@@ -19,6 +19,10 @@ object Analytic {
     private val show_notif = "show_notif"
     private val show_evening_notif = "show_evening_notif"
 
+    private val open_form = "open_form"
+    private val open_main = "open_main"
+    private val ad_show = "ad_show"
+
     private val set_ver = "set_ver"
     private val AB = "AB"
     private val PRICE = "PRICE"
@@ -247,6 +251,18 @@ object Analytic {
 
     fun showNotif() {
         Amplitude.getInstance().logEvent(show_notif)
+    }
+
+    fun openForm() {
+        Amplitude.getInstance().logEvent(open_form)
+    }
+
+    fun openMain() {
+        Amplitude.getInstance().logEvent(open_main)
+    }
+
+    fun showAd() {
+        Amplitude.getInstance().logEvent(ad_show)
     }
 
     fun showEveningNotif() {

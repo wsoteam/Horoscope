@@ -11,6 +11,7 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.dialogs.DateDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.Analytic
 import kotlinx.android.synthetic.main.form_activity.*
 
 class FormActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class FormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Analytic.openForm()
         if (PreferencesProvider.isNeedNewTheme){
             setTheme(R.style.WhiteTheme)
         }
