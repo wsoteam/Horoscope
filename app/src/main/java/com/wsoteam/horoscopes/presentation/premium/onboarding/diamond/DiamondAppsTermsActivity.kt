@@ -20,6 +20,7 @@ class DiamondAppsTermsActivity : AppCompatActivity(R.layout.diamond_app_terms_ac
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.terms()
         ivClose.setOnClickListener {
             openNext()
         }

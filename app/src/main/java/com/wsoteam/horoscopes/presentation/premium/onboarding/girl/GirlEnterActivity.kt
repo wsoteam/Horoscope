@@ -20,7 +20,7 @@ class GirlEnterActivity : AppCompatActivity(R.layout.girl_enter_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/enter")
-
+        Analytic.enter()
         ivClose.setOnClickListener {
             openNext()
         }

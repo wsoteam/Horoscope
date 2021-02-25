@@ -20,6 +20,7 @@ class HairFinishActivity : AppCompatActivity(R.layout.hair_finish_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/finish")
+        Analytic.fin()
         ivClose.setOnClickListener {
             openNext()
         }

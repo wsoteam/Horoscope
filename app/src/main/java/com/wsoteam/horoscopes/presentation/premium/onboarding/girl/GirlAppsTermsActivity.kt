@@ -20,6 +20,7 @@ class GirlAppsTermsActivity : AppCompatActivity(R.layout.girl_app_terms_activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.terms()
         ivClose.setOnClickListener {
             openNext()
         }

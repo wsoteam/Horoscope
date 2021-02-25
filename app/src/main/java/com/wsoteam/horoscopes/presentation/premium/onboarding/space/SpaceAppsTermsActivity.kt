@@ -20,6 +20,7 @@ class SpaceAppsTermsActivity : AppCompatActivity(R.layout.spaace_app_terms_activ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.terms()
         ivClose.setOnClickListener {
             openNext()
         }

@@ -20,6 +20,7 @@ class GirlPrivacyPoliceActivity : AppCompatActivity(R.layout.girl_privacy_police
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.privacy()
         ivClose.setOnClickListener {
             openNext()
         }

@@ -20,6 +20,7 @@ class PhoneAppsTermsActivity : AppCompatActivity(R.layout.phone_apps_terms_activ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.terms()
         ivClose.setOnClickListener {
             openNext()
         }

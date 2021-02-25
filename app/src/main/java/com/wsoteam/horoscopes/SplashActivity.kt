@@ -28,38 +28,31 @@ import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.ILoadState
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.premium.ab.DayCatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondEnterActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.girl.GirlEnterActivity
-import com.wsoteam.horoscopes.presentation.premium.onboarding.single.SinglePremActivity
-import com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpaceEnterActivity
-import com.wsoteam.horoscopes.presentation.premium.ab.CatPremiumActivity
-import com.wsoteam.horoscopes.presentation.premium.ab.DayCatPremiumActivity
-import com.wsoteam.horoscopes.presentation.premium.ab.DefaultPremiumActivity
-import com.wsoteam.horoscopes.presentation.premium.ab.GreenPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.hair.HairEnterActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.smartphone.PhoneEnterActivity
-import com.wsoteam.horoscopes.utils.BranchTestEvents
+import com.wsoteam.horoscopes.presentation.premium.onboarding.space.SpaceEnterActivity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.ads.NativeProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
-import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.analytics.CustomTimer
 import com.wsoteam.horoscopes.utils.analytics.ErrorInterceptor
+import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
-import kotlinx.android.synthetic.main.form_activity.*
 import kotlinx.android.synthetic.main.stories_activity.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 import java.security.MessageDigest
@@ -103,6 +96,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             }
         }
     }
+
 
     private fun goNext() {
         L.log("goNext")
@@ -196,11 +190,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindFirstOpenTime()
-        for (i in 0..10) {
-            BranchTestEvents.log()
+        if (!PreferencesProvider.isShowOnboard){
+            Analytic.firstStart()
         }
         if (!PreferencesProvider.isSetuped) {
             CustomTimer.startFirstSplashTimer()
@@ -420,6 +415,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         PreferencesProvider.priceIndex = priceIndex
         Analytic.setABVersion(version, priceIndex)
         Analytic.setVersion()
+        if (!PreferencesProvider.isShowOnboard) {
+            Analytic.firstSetVer()
+        }
         postGoNext(1, "setABTestConfig")
     }
 

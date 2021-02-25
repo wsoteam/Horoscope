@@ -20,6 +20,7 @@ class DiamondPrivacyPoliceActivity : AppCompatActivity(R.layout.diamond_privacy_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.privacy()
         ivClose.setOnClickListener {
             openNext()
         }

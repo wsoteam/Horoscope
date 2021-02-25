@@ -21,6 +21,7 @@ class HairAppsTermsActivity : AppCompatActivity(R.layout.hair_apps_terms_activit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/app_terms")
+        Analytic.terms()
         ivClose.setOnClickListener {
             openNext()
         }

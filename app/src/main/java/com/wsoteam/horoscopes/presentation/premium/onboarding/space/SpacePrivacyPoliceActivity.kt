@@ -20,6 +20,7 @@ class SpacePrivacyPoliceActivity : AppCompatActivity(R.layout.space_privacy_poli
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/privacy")
+        Analytic.privacy()
         ivClose.setOnClickListener {
             openNext()
         }

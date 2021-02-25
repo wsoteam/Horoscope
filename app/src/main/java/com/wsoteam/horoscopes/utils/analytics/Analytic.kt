@@ -99,6 +99,14 @@ object Analytic {
     private const val OPEN_ASTRO_SECOND = "open_astro_second"
     private const val OPEN_ASTRO_URL = "open_astro_url"
 
+    private const val FIRST_START = "first_start"
+    private const val FIRST_SET_VER = "first_set_ver"
+
+    private const val ONBOARD_ENTER = "premium_onboard_enter"
+    private const val ONBOARD_TERMS = "onboard_terms"
+    private const val ONBOARD_PRIVACY = "onboard_privacy"
+    private const val ONBOARD_FIN = "onboard_finish"
+
     fun openAstro(from : String) {
         val eventProperties = JSONObject()
         try {
@@ -160,6 +168,42 @@ object Analytic {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun firstStart() {
+        Amplitude.getInstance().logEvent(FIRST_START)
+        Log.e("LOL", "firstStart")
+    }
+
+    fun firstSetVer() {
+        Amplitude.getInstance().logEvent(FIRST_SET_VER)
+        Log.e("LOL", "firstSetVer")
+
+    }
+
+
+    fun enter() {
+        Amplitude.getInstance().logEvent(ONBOARD_ENTER)
+        Log.e("LOL", "enter")
+
+    }
+
+    fun terms() {
+        Amplitude.getInstance().logEvent(ONBOARD_TERMS)
+        Log.e("LOL", "terms")
+
+    }
+
+    fun privacy() {
+        Amplitude.getInstance().logEvent(ONBOARD_PRIVACY)
+        Log.e("LOL", "privacy")
+
+    }
+
+    fun fin() {
+        Amplitude.getInstance().logEvent(ONBOARD_FIN)
+        Log.e("LOL", "fin")
+
     }
 
 

@@ -20,6 +20,7 @@ class DiamondFinishActivity : AppCompatActivity(R.layout.diamond_finish_activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.showPrem("${PreferencesProvider.getVersion()}/finish")
+        Analytic.fin()
         ivClose.setOnClickListener {
             openNext()
         }
