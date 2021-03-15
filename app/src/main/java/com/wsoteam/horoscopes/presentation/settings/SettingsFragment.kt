@@ -83,7 +83,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     fun setTime(time : String){
         tvTime.text = time
         val (hours, minutes) = time.split(":").map { it.toInt() }
-        AlarmReceiver.startNotification(context, hours, minutes)
+        //AlarmReceiver.startNotification(context, hours, minutes)
     }
 
     fun setDate(birthday: String) {

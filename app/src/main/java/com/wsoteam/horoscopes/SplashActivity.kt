@@ -47,6 +47,7 @@ import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
 import com.wsoteam.horoscopes.utils.choiceSign
+import com.wsoteam.horoscopes.utils.fcm.FCMWork
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.stories_activity.*
@@ -193,6 +194,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FCMWork.getFCMToken()
         bindFirstOpenTime()
         if (!PreferencesProvider.isShowOnboard){
             Analytic.firstStart()
@@ -242,7 +244,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
         bindTest()
-        refreshNotifications()
+        //refreshNotifications()
 
 
         AdWorker.init(this)
