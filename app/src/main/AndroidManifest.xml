@@ -375,6 +375,14 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name=".utils.fcm.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
 
         <receiver
             android:name=".notification.BootReceiver"

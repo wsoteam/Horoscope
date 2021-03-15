@@ -1,5 +1,12 @@
 package com.wsoteam.horoscopes
 
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.Color
+import android.media.AudioAttributes
+import android.os.Build
 import android.os.Handler
 import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
@@ -51,6 +58,24 @@ class App : MultiDexApplication() {
             YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
+    }
+
+    @SuppressLint("NewApi")
+    fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val att = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                .build()
+            val channelId = "com.wsoteam.horoscopes"
+            val channelName = "com.wsoteam.horoscopes"
+            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+            channel.lightColor = Color.parseColor("#4B8A08")
+            channel.vibrationPattern = longArrayOf(0, 500)
+            channel.enableVibration(true)
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     companion object {
