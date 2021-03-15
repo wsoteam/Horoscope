@@ -392,11 +392,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        firebaseRemoteConfig.setDefaults(R.xml.default_config)
+        firebaseRemoteConfig.setDefaultsAsync(R.xml.default_config)
 
         firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                firebaseRemoteConfig.activateFetched()
+                firebaseRemoteConfig.activate()
                 Amplitude.getInstance().logEvent("norm_ab")
             } else {
                 Amplitude.getInstance().logEvent("crash_ab")
