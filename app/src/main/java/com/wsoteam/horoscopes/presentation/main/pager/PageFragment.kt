@@ -107,7 +107,6 @@ class PageFragment : Fragment(R.layout.page_fragment) {
     private fun fillAsEmotion() {
         var signData = arguments!!.getSerializable(DATA_KEY) as Week
         temporaryObject = TemporaryObject(signData.text, signData.matches, signData.ratings, getChoicedText(signData))
-        Log.e("LOL", temporaryObject.toString())
     }
 
     private fun getChoicedText(signData: Week): String {

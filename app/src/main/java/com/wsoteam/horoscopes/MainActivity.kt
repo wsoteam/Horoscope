@@ -1,10 +1,15 @@
 package com.wsoteam.horoscopes
 
-import android.app.PendingIntent
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.media.AudioAttributes
+import android.media.RingtoneManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -13,6 +18,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -25,6 +31,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.wsoteam.horoscopes.models.Sign
+import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.presentation.astrologer.WomanActivity
 import com.wsoteam.horoscopes.presentation.astrologer.hands.HandsActivity
 import com.wsoteam.horoscopes.presentation.ball.BallFragment
@@ -312,6 +319,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.e("LOL", "observe")
                 setFirstUI()
             })
+        //kek()
+        //lol()
     }
 
     private fun share() {
@@ -461,6 +470,96 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             drawer_layout.closeDrawers()
         }
+    }
+
+    fun kek(){
+        var intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        var pendingIntent = PendingIntent
+            .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+
+        var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_horos_bnv)
+        var notificationBuilder = NotificationCompat.Builder(this, "com.wsoteam.horoscopesfff")
+            .setContentTitle("Daily Horoscope")
+            .setContentText("sdfsdf")
+            .setSmallIcon(R.drawable.ic_horos_bnv)
+            .setLargeIcon(largeIcon)
+            .setAutoCancel(true)
+            .setVibrate(longArrayOf(0, 500))
+            .setLights(Color.MAGENTA, 500, 1000)
+            .setContentIntent(pendingIntent)
+        var notification = notificationBuilder.build()
+
+
+        var notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
+        notificationManager.notify(0, notification)
+    }
+
+
+    fun lol(){
+        Analytic.showNotif()
+        val notificationIntent = Intent(this, SplashActivity::class.java)
+            .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY)
+
+        val VIBRATE_PATTERN = longArrayOf(0, 500)
+        val NOTIFICATION_COLOR = Color.RED
+        val NOTIFICATION_SOUND_URI =
+            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+        val stackBuilder = TaskStackBuilder.create(this)
+        stackBuilder.addNextIntent(notificationIntent)
+
+        val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder = Notification.Builder(this)
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+        val notification = builder.setContentTitle("Daily Horoscope")
+            .setContentText(AlarmReceiver.getNotificationText())
+            .setAutoCancel(true)
+            .setVibrate(VIBRATE_PATTERN)
+            //.setSmallIcon(R.drawable.ic_notifications)
+            .setSmallIcon(R.drawable.ic_horos_bnv)
+            .setDefaults(Notification.DEFAULT_SOUND)
+            .setSound(NOTIFICATION_SOUND_URI)
+            .setContentIntent(pendingIntent).build()
+
+        notification.number = 1
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId(".channelId")
+        }
+
+        val notificationManager =
+            this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                ".channelId",
+                this.resources.getString(R.string.app_name),
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            val audioAttributes = AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .build()
+            channel.enableLights(true)
+            channel.setSound(alarmSound, audioAttributes)
+            channel.lightColor = NOTIFICATION_COLOR
+            channel.vibrationPattern = VIBRATE_PATTERN
+            channel.enableVibration(true)
+            channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
+            channel.setShowBadge(true)
+            notificationManager.createNotificationChannel(channel)
+
+        }
+
+        notificationManager.notify(0, notification)
     }
 
 }
