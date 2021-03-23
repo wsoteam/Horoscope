@@ -18,6 +18,7 @@ import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
@@ -191,12 +192,16 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseMessaging
+            .getInstance()
+            .subscribeToTopic("news")
+            .addOnSuccessListener {
+            }
         FCMWork.getFCMToken()
         bindFirstOpenTime()
-        if (!PreferencesProvider.isShowOnboard){
+        if (!PreferencesProvider.isShowOnboard) {
             Analytic.firstStart()
         }
         if (!PreferencesProvider.isSetuped) {

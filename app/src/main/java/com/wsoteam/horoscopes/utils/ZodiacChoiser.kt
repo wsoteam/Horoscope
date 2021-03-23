@@ -6,13 +6,13 @@ import java.lang.IllegalArgumentException
 
 fun choiceSign(date: String): Int {
 
-    val day = 1
-    val month = 1
-    try {
-        val (day, month) = date.split(".").map { it.toInt() }
-    } catch (ex: Exception) {
-        val (day, month) = "30.1".split(".").map { it.toInt() }
-    }
+   /* var day = 1
+    var month = 1*/
+    /*try {*/
+        var (day, month) = date.split(".").map { it.toInt() }
+    /*} catch (ex: Exception) {
+        var (day, month) = "30.1".split(".").map { it.toInt() }
+    }*/
 
 
 
@@ -29,6 +29,6 @@ fun choiceSign(date: String): Int {
         10 -> if (day > 22) 7 else 6
         11 -> if (day > 22) 8 else 7
         12 -> if (day > 21) 9 else 8
-        else -> throw IllegalArgumentException("ZodiacChoiser error (day = $day, month = $month)")
+        else -> throw IllegalArgumentException("ZodiacChoicer error (day = $day, month = $month)")
     }
 }
