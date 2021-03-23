@@ -5,5 +5,7 @@
         <value>onboard_diamond</value>
         <key>prices</key>
         <value>0</value>
+        <key>is_need_fcm</key>
+        <value>need</value>
     </entry>
 </defaultsMap>

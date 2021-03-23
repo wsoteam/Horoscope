@@ -26,6 +26,7 @@ object Analytic {
     private val set_ver = "set_ver"
     private val AB = "AB"
     private val PRICE = "PRICE"
+    private val FCM_STATUS = "FCM_STATUS"
 
     //New analytics consts
     private val BIRTHDAY = "birthday"
@@ -309,6 +310,14 @@ object Analytic {
         Amplitude.getInstance().logEvent(ad_show)
     }
 
+    fun showFCMNotif() {
+        Amplitude.getInstance().logEvent("show_fcm_notif")
+    }
+
+    fun openFCMNotif() {
+        Amplitude.getInstance().logEvent("open_fcm_notif")
+    }
+
     fun showEveningNotif() {
         Amplitude.getInstance().logEvent(show_evening_notif)
         //Smartlook.trackCustomEvent(show_evening_notif)
@@ -331,8 +340,11 @@ object Analytic {
         Amplitude.getInstance().identify(identify)
     }
 
-    fun setABVersion(version: String, priceIndex : Int) {
-        var identify = Identify().set(AB, version).set(PRICE, priceIndex)
+    fun setABVersion(version: String, priceIndex: Int, needFCM: String) {
+        var identify = Identify()
+            .set(AB, version)
+            .set(PRICE, priceIndex)
+            .set(FCM_STATUS, needFCM)
         Amplitude.getInstance().identify(identify)
     }
 

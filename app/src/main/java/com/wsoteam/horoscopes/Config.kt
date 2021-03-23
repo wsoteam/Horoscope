@@ -49,7 +49,9 @@ object Config {
 
     const val DAY_ALERT_SUB = "sub_post_alert"
 
-
     const val FOR_TEST = false
+
+    const val FCM_INTENT_TAG = "FCM_INTENT_TAG"
+    const val FCM_INTENT_DATA = "FCM_INTENT_DATA"
 
 }

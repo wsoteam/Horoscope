@@ -19,5 +19,8 @@ object ABConfig {
 
     const val REQUEST_STRING_PRICE = "prices"
 
+    const val REQUEST_NEED_FCM = "is_need_fcm"
+    const val NEED_FCM = "need"
+
 
 }

@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
@@ -200,6 +199,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             .addOnSuccessListener {
             }
         FCMWork.getFCMToken()
+        trackFCMOpen()
         bindFirstOpenTime()
         if (!PreferencesProvider.isShowOnboard) {
             Analytic.firstStart()
@@ -298,6 +298,12 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 }
                 Config.OPEN_FROM_EVENING_NOTIF -> Analytic.openFromEveningNotif()
             }
+        }
+    }
+
+    private fun trackFCMOpen() {
+        if(intent?.getStringExtra(Config.FCM_INTENT_TAG) != null && intent?.getStringExtra(Config.FCM_INTENT_TAG) == Config.FCM_INTENT_DATA){
+            Analytic.openFCMNotif()
         }
     }
 
@@ -410,17 +416,23 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             }
             setABTestConfig(
                 firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING),
-                firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt()
+                firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt(),
+                firebaseRemoteConfig.getString(ABConfig.REQUEST_NEED_FCM)
             )
         }
     }
 
-    private fun setABTestConfig(version: String, priceIndex: Int) {
+    private fun setABTestConfig(
+        version: String,
+        priceIndex: Int,
+        isNeedFCM: String
+    ) {
         L.log("set test")
         L.log("$priceIndex")
         PreferencesProvider.setVersion(version)
         PreferencesProvider.priceIndex = priceIndex
-        Analytic.setABVersion(version, priceIndex)
+        PreferencesProvider.isNeedShowFCM = isNeedFCM
+        Analytic.setABVersion(version, priceIndex, isNeedFCM)
         Analytic.setVersion()
         if (!PreferencesProvider.isShowOnboard) {
             Analytic.firstSetVer()

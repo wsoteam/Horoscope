@@ -60,6 +60,8 @@ object PreferencesProvider {
     const val THEME_TAG = "THEME_TAG"
     const val EMPTY_THEME_ID = -1
 
+    const val LAST_FCM_TIME_TAG = "LAST_FCM_TIME_TAG"
+    const val AB_FCM_TAG = "AB_FCM_TAG"
 
 
     private fun getInstance(): SharedPreferences? {
@@ -205,5 +207,13 @@ object PreferencesProvider {
     var isNeedNewTheme: Boolean
         get() = getInstance()?.getBoolean(THEME_TAG, false)!!
         set(value) = editor { it?.putBoolean(THEME_TAG, value) }!!
+
+    var lastFCMTime: Int
+        get() = getInstance()?.getInt(LAST_FCM_TIME_TAG, -1)!!
+        set(value) = editor { it?.putInt(LAST_FCM_TIME_TAG, value) }!!
+
+    var isNeedShowFCM: String
+        get() = getInstance()?.getString(AB_FCM_TAG, ABConfig.NEED_FCM)!!
+        set(value) = editor { it?.putString(AB_FCM_TAG, value) }!!
 
 }

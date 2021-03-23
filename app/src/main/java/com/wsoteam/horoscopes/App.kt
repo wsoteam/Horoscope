@@ -11,6 +11,7 @@ import android.os.Handler
 import androidx.multidex.MultiDexApplication
 import com.amplitude.api.Amplitude
 import com.bugfender.sdk.Bugfender
+import com.bugsee.library.serverapi.AmazonService
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.revenuecat.purchases.Purchases
@@ -37,6 +38,7 @@ class App : MultiDexApplication() {
         Amplitude.getInstance()
             .initialize(this, getString(R.string.amplitude_id))
             .enableForegroundTracking(this)
+        Amplitude.getInstance().userId = "LOL"
 
         applicationHandler = Handler(applicationContext.mainLooper)
 

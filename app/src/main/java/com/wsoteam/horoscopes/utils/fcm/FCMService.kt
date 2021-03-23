@@ -10,25 +10,52 @@ import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.wsoteam.horoscopes.App
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.SplashActivity
+import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import java.util.*
 
 class FCMService : FirebaseMessagingService() {
 
+    val START_HOUR_KEY = "start_hour"
+    val END_HOUR_KEY = "end_hour"
+
     override fun onMessageReceived(p0: RemoteMessage) {
-        showNotification(p0)
+        if (isNeedShow(p0)) {
+            showNotification(p0)
+        }
+    }
+
+    private fun isNeedShow(p0: RemoteMessage): Boolean {
+        var startHour = p0.data[START_HOUR_KEY]!!.toInt()
+        var endHour = p0.data[END_HOUR_KEY]!!.toInt()
+        var currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        var currentDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR) + 10
+        Log.e("LOL", "is need -- ${PreferencesProvider.isNeedShowFCM}")
+        return if (currentHour in startHour..endHour && currentDay != PreferencesProvider.lastFCMTime && PreferencesProvider.isNeedShowFCM == ABConfig.NEED_FCM){
+            PreferencesProvider.lastFCMTime = currentDay
+            true
+        }else{
+            false
+        }
     }
 
     private fun showNotification(p0: RemoteMessage) {
+        Analytic.showFCMNotif()
         var intent = Intent(this, SplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.putExtra(Config.FCM_INTENT_TAG, Config.FCM_INTENT_DATA)
+
         var pendingIntent = PendingIntent
             .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
