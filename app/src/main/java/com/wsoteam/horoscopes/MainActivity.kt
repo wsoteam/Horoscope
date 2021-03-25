@@ -39,6 +39,7 @@ import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.ml.HandCameraActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
@@ -292,12 +293,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        //startActivity(Intent(this, EnterActivity::class.java))
-
-        /*if (!PreferencesProvider.isShowPremAlert){
-            PreferencesProvider.isShowPremAlert = true
-            CatDialog().show(supportFragmentManager, "")
-        }*/
+        startActivity(Intent(this, HandCameraActivity::class.java))
     }
 
     private fun setWhiteViews() {
@@ -472,95 +468,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun kek(){
-        var intent = Intent(this, SplashActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        var pendingIntent = PendingIntent
-            .getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
-
-        var largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_horos_bnv)
-        var notificationBuilder = NotificationCompat.Builder(this, "com.wsoteam.horoscopesfff")
-            .setContentTitle("Daily Horoscope")
-            .setContentText("sdfsdf")
-            .setSmallIcon(R.drawable.ic_horos_bnv)
-            .setLargeIcon(largeIcon)
-            .setAutoCancel(true)
-            .setVibrate(longArrayOf(0, 500))
-            .setLights(Color.MAGENTA, 500, 1000)
-            .setContentIntent(pendingIntent)
-        var notification = notificationBuilder.build()
 
 
-        var notificationManager: NotificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 
-        notificationManager.notify(0, notification)
-    }
-
-
-    fun lol(){
-        Analytic.showNotif()
-        val notificationIntent = Intent(this, SplashActivity::class.java)
-            .putExtra(Config.OPEN_FROM_NOTIFY, Config.OPEN_FROM_NOTIFY)
-
-        val VIBRATE_PATTERN = longArrayOf(0, 500)
-        val NOTIFICATION_COLOR = Color.RED
-        val NOTIFICATION_SOUND_URI =
-            RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-        val stackBuilder = TaskStackBuilder.create(this)
-        stackBuilder.addNextIntent(notificationIntent)
-
-        val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        val builder = Notification.Builder(this)
-        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-        val notification = builder.setContentTitle("Daily Horoscope")
-            .setContentText(AlarmReceiver.getNotificationText())
-            .setAutoCancel(true)
-            .setVibrate(VIBRATE_PATTERN)
-            //.setSmallIcon(R.drawable.ic_notifications)
-            .setSmallIcon(R.drawable.ic_horos_bnv)
-            .setDefaults(Notification.DEFAULT_SOUND)
-            .setSound(NOTIFICATION_SOUND_URI)
-            .setContentIntent(pendingIntent).build()
-
-        notification.number = 1
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder.setChannelId(".channelId")
-        }
-
-        val notificationManager =
-            this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                ".channelId",
-                this.resources.getString(R.string.app_name),
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            val audioAttributes = AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                .build()
-            channel.enableLights(true)
-            channel.setSound(alarmSound, audioAttributes)
-            channel.lightColor = NOTIFICATION_COLOR
-            channel.vibrationPattern = VIBRATE_PATTERN
-            channel.enableVibration(true)
-            channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
-            channel.setShowBadge(true)
-            notificationManager.createNotificationChannel(channel)
-
-        }
-
-        notificationManager.notify(0, notification)
-    }
 
 }
 

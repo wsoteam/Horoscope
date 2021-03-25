@@ -14,7 +14,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 29
-        versionName "1.0.27"
+        versionName "1.0.27dev"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.mlkit:object-detection:16.2.3'
     
 
     implementation 'com.amplitude:android-sdk:2.23.2'
@@ -115,4 +116,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads-identifier:16+'*/
 
     implementation 'com.yandex.android:mobmetricalib:3.18.0'
+
+    def camerax_version = "1.0.0-beta07"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:1.0.0-alpha14"
+
 }
