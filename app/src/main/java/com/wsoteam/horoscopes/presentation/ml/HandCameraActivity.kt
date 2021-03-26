@@ -12,9 +12,11 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
+import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions
 import com.google.mlkit.vision.objects.defaults.PredefinedCategory
 import com.wsoteam.horoscopes.R
@@ -36,10 +38,13 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val localModel = LocalModel.Builder().setAssetFilePath("lite.tflite").build()
 
-        val options = ObjectDetectorOptions.Builder()
-            .setDetectorMode(ObjectDetectorOptions.STREAM_MODE)
+        val options = CustomObjectDetectorOptions.Builder(localModel)
+            .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
             .enableClassification()
+            .setClassificationConfidenceThreshold(0.1f)
+            .setMaxPerObjectLabelCount(1)
             .build()
 
         objectDetector = ObjectDetection.getClient(options)
@@ -152,14 +157,10 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             for (detectedObject in it){
                 for (label in detectedObject.labels){
                     Log.e("LOL", "do -- ${label.text}")
-                    if (label.text == PredefinedCategory.FASHION_GOOD){
-                        if (tvIndicator.visibility == View.INVISIBLE) {
-                            tvIndicator.visibility = View.VISIBLE
-                        }
+                    if(label.text == "Band Aid"){
+                        tvIndicator.visibility = View.VISIBLE
                     }else{
-                        if (tvIndicator.visibility == View.VISIBLE){
-                            tvIndicator.visibility = View.INVISIBLE
-                        }
+                        tvIndicator.visibility = View.INVISIBLE
                     }
                 }
             }
