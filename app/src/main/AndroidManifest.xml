@@ -348,7 +348,7 @@
         <activity
             android:name=".presentation.ml.HandCameraActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Main" />
+            android:theme="@style/CameraActivity" />
 
         <activity
             android:name=".presentation.crystals.StoriesOnboardActivity"

@@ -125,7 +125,7 @@
                     android:id="@+id/ivHand"
                     android:layout_gravity="center"/>
 
-                
+
             </FrameLayout>
 
 

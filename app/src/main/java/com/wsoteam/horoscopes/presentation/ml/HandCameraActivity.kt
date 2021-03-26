@@ -35,9 +35,26 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var objectDetector: ObjectDetector
 
+    private val DETECTOR_HAND_LABEL = "Band Aid"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initObjectDetector()
+        if (allPermissionsGranted()) {
+            startCamera()
+        } else {
+            ActivityCompat.requestPermissions(
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
+        }
 
+        outputDirectory = getOutputDirectory()
+        cameraExecutor = Executors.newSingleThreadExecutor()
+
+        disableHandDetected()
+    }
+
+    private fun initObjectDetector() {
         val localModel = LocalModel.Builder().setAssetFilePath("lite.tflite").build()
 
         val options = CustomObjectDetectorOptions.Builder(localModel)
@@ -48,21 +65,6 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             .build()
 
         objectDetector = ObjectDetection.getClient(options)
-
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            ActivityCompat.requestPermissions(
-                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-            )
-        }
-
-
-        outputDirectory = getOutputDirectory()
-        cameraExecutor = Executors.newSingleThreadExecutor()
-
-        ivTakePhoto.isEnabled = false
-        tvIdicator.isEnabled = false
     }
 
     private fun takePhoto() {
@@ -153,21 +155,33 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         imageProxy: ImageProxy
     ) {
         objectDetector.process(image).addOnSuccessListener {
-
-            for (detectedObject in it){
-                for (label in detectedObject.labels){
-                    Log.e("LOL", "do -- ${label.text}")
-                    if(label.text == "Band Aid"){
-                    }else{
+            for (detectedObject in it) {
+                for (label in detectedObject.labels) {
+                    if (label.text == DETECTOR_HAND_LABEL) {
+                        enableHandDetected()
+                    } else {
+                        disableHandDetected()
                     }
                 }
             }
             imageProxy.close()
         }
             .addOnFailureListener {
-                Log.e("LOL", it.toString())
+                disableHandDetected()
                 imageProxy.close()
             }
+    }
+
+    private fun disableHandDetected() {
+        tvIdicator.isEnabled = false
+        tvIdicator.text = getString(R.string.searching_palm)
+        ivTakePhoto.isEnabled = false
+    }
+
+    private fun enableHandDetected() {
+        tvIdicator.isEnabled = true
+        tvIdicator.text = getString(R.string.searching_palm_enabled)
+        ivTakePhoto.isEnabled = true
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
