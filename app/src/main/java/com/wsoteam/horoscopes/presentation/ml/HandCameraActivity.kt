@@ -57,12 +57,12 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             )
         }
 
-        btnShot.setOnClickListener {
-            takePhoto()
-        }
 
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        ivTakePhoto.isEnabled = false
+        tvIdicator.isEnabled = false
     }
 
     private fun takePhoto() {
@@ -158,9 +158,7 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
                 for (label in detectedObject.labels){
                     Log.e("LOL", "do -- ${label.text}")
                     if(label.text == "Band Aid"){
-                        tvIndicator.visibility = View.VISIBLE
                     }else{
-                        tvIndicator.visibility = View.INVISIBLE
                     }
                 }
             }
