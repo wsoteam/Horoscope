@@ -4,7 +4,7 @@ object ABConfig {
 
     const val REQUEST_STRING = "prem_2501"
 
-    const val A = "ondoard_diamond"
+    const val A = "onboard_diamond"
     const val B = "ondoard_girl"
     const val C = "ondoard_space"
     const val D = "onboard_mermaid"

@@ -213,7 +213,7 @@ object PreferencesProvider {
         set(value) = editor { it?.putInt(LAST_FCM_TIME_TAG, value) }!!
 
     var isNeedShowFCM: String
-        get() = getInstance()?.getString(AB_FCM_TAG, ABConfig.NEED_FCM)!!
+        get() = getInstance()?.getString(AB_FCM_TAG, "")!!
         set(value) = editor { it?.putString(AB_FCM_TAG, value) }!!
 
 }

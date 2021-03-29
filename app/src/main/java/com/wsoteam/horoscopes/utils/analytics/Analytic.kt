@@ -340,10 +340,9 @@ object Analytic {
         Amplitude.getInstance().identify(identify)
     }
 
-    fun setABVersion(version: String, priceIndex: Int, needFCM: String) {
+    fun setABVersion(version: String,  needFCM: String) {
         var identify = Identify()
             .set(AB, version)
-            .set(PRICE, priceIndex)
             .set(FCM_STATUS, needFCM)
         Amplitude.getInstance().identify(identify)
     }

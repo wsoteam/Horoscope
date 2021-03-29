@@ -118,25 +118,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         dropNewTheme()
                         Intent(this, DiamondEnterActivity::class.java)
                     }
-                    ABConfig.B -> {
-                        setNewTheme()
-                        Intent(this, EnterActivity::class.java)
-                    }
-                    ABConfig.C -> {
-                        setNewTheme()
-                        Intent(this, SpaceEnterActivity::class.java)
-                    }
                     ABConfig.D -> {
                         setNewTheme()
                         Intent(this, GirlEnterActivity::class.java)
-                    }
-                    ABConfig.E -> {
-                        setNewTheme()
-                        Intent(this, HairEnterActivity::class.java)
-                    }
-                    ABConfig.F -> {
-                        setNewTheme()
-                        Intent(this, PhoneEnterActivity::class.java)
                     }
                     ABConfig.G -> {
                         dropNewTheme()
@@ -248,8 +232,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
-        bindTest()
-        //refreshNotifications()
+        if (PreferencesProvider.getVersion() == "" || PreferencesProvider.isNeedShowFCM == "") {
+            bindTest()
+            Log.e("LOL", "request")
+        } else {
+            postGoNext(1, "setABTestConfig")
+            Log.e("LOL", "not_request")
+        }
 
 
         AdWorker.init(this)
@@ -302,7 +291,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun trackFCMOpen() {
-        if(intent?.getStringExtra(Config.FCM_INTENT_TAG) != null && intent?.getStringExtra(Config.FCM_INTENT_TAG) == Config.FCM_INTENT_DATA){
+        if (intent?.getStringExtra(Config.FCM_INTENT_TAG) != null && intent?.getStringExtra(Config.FCM_INTENT_TAG) == Config.FCM_INTENT_DATA) {
             Analytic.openFCMNotif()
         }
     }
@@ -413,26 +402,25 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 Amplitude.getInstance().logEvent("norm_ab")
             } else {
                 Amplitude.getInstance().logEvent("crash_ab")
+                Log.e("LOL", "notSuccessful")
             }
             setABTestConfig(
                 firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING),
-                firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt(),
                 firebaseRemoteConfig.getString(ABConfig.REQUEST_NEED_FCM)
             )
+        }.addOnFailureListener {
+            Log.e("LOL", "failure -- ${it.toString()}")
         }
     }
 
     private fun setABTestConfig(
         version: String,
-        priceIndex: Int,
         isNeedFCM: String
     ) {
         L.log("set test")
-        L.log("$priceIndex")
         PreferencesProvider.setVersion(version)
-        PreferencesProvider.priceIndex = priceIndex
         PreferencesProvider.isNeedShowFCM = isNeedFCM
-        Analytic.setABVersion(version, priceIndex, isNeedFCM)
+        Analytic.setABVersion(version, isNeedFCM)
         Analytic.setVersion()
         if (!PreferencesProvider.isShowOnboard) {
             Analytic.firstSetVer()

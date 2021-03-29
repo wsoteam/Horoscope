@@ -3,8 +3,8 @@
     <entry>
         <key>prem_2501</key>
         <value>onboard_diamond</value>
-        <key>prices</key>
-        <value>0</value>
+    </entry>
+    <entry>
         <key>is_need_fcm</key>
         <value>need</value>
     </entry>
