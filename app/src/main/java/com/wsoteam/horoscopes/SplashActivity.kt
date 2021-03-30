@@ -232,12 +232,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
         NativeProvider.loadNative()
+
         if (PreferencesProvider.getVersion() == "" || PreferencesProvider.isNeedShowFCM == "") {
             bindTest()
-            Log.e("LOL", "request")
         } else {
             postGoNext(1, "setABTestConfig")
-            Log.e("LOL", "not_request")
         }
 
 
@@ -396,14 +395,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
         firebaseRemoteConfig.setDefaultsAsync(R.xml.default_config)
 
-        firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                firebaseRemoteConfig.activate()
-                Amplitude.getInstance().logEvent("norm_ab")
-            } else {
-                Amplitude.getInstance().logEvent("crash_ab")
-                Log.e("LOL", "notSuccessful")
-            }
+        firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener { _ ->
             setABTestConfig(
                 firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING),
                 firebaseRemoteConfig.getString(ABConfig.REQUEST_NEED_FCM)
@@ -418,6 +410,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         isNeedFCM: String
     ) {
         L.log("set test")
+        Log.e("LOL", "ver -- $version")
         PreferencesProvider.setVersion(version)
         PreferencesProvider.isNeedShowFCM = isNeedFCM
         Analytic.setABVersion(version, isNeedFCM)
