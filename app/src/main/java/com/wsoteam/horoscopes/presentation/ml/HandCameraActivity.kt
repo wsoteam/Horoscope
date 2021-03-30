@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -31,11 +32,13 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
 
     private var imageCapture: ImageCapture? = null
 
-    private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var objectDetector: ObjectDetector
+    private lateinit var timer: CountDownTimer
+    private var lastDetect = -1L
 
     private val DETECTOR_HAND_LABEL = "Band Aid"
+    private val LOST_DETECT_INTERVAL = 500L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +51,25 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             )
         }
 
-        outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
-
         disableHandDetected()
+
+        startPreviewUpdater()
+    }
+
+    private fun startPreviewUpdater() {
+        timer = object : CountDownTimer(10_000, 150){
+            override fun onFinish() {
+                timer.start()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                if (tvIdicator.isEnabled && Calendar.getInstance().timeInMillis - lastDetect >= LOST_DETECT_INTERVAL){
+                    disableHandDetected()
+                }
+            }
+        }
+        timer.start()
     }
 
     private fun initObjectDetector() {
@@ -67,48 +85,13 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         objectDetector = ObjectDetection.getClient(options)
     }
 
-    private fun takePhoto() {
-// Get a stable reference of the modifiable image capture use case
-        val imageCapture = imageCapture ?: return
-
-        // Create time-stamped output file to hold the image
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(
-                FILENAME_FORMAT, Locale.US
-            ).format(System.currentTimeMillis()) + ".jpg"
-        )
-
-        // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-        // Set up image capture listener, which is triggered after photo has
-        // been taken
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
-
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-                    val msg = "Photo capture succeeded: $savedUri"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
-                }
-            })
-    }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener(Runnable {
-            // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            // Preview
             val preview = Preview.Builder()
                 .build()
                 .also {
@@ -129,25 +112,17 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
                 }))
             }
 
-            // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
             try {
-                // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
-
-                // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
                     this, cameraSelector, preview, imageCapture, imageAnalyzer
                 )
-
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
 
         }, ContextCompat.getMainExecutor(this))
-
-
     }
 
     private fun processImage(
@@ -159,8 +134,6 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
                 for (label in detectedObject.labels) {
                     if (label.text == DETECTOR_HAND_LABEL) {
                         enableHandDetected()
-                    } else {
-                        disableHandDetected()
                     }
                 }
             }
@@ -182,20 +155,13 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         tvIdicator.isEnabled = true
         tvIdicator.text = getString(R.string.searching_palm_enabled)
         ivTakePhoto.isEnabled = true
+        lastDetect = Calendar.getInstance().timeInMillis
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             baseContext, it
         ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun getOutputDirectory(): File {
-        val mediaDir = externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
-        }
-        return if (mediaDir != null && mediaDir.exists())
-            mediaDir else filesDir
     }
 
     override fun onRequestPermissionsResult(

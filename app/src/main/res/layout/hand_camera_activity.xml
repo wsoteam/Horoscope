@@ -39,6 +39,12 @@
                 android:layout_height="match_parent" />
 
             <ImageView
+                android:id="@+id/ivPreview"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="76dp"
                 android:src="#99000000"/>
