@@ -131,6 +131,15 @@
                     android:id="@+id/ivHand"
                     android:layout_gravity="center"/>
 
+                <ImageView
+                    android:id="@+id/ivScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:visibility="visible"
+                    android:translationY="-30dp"
+                    android:src="@drawable/img_scan_line"/>
+
 
             </FrameLayout>
 

@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.ml
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,7 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
@@ -55,6 +57,23 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         disableHandDetected()
 
         startPreviewUpdater()
+
+        ivTakePhoto.setOnClickListener {
+            Glide.with(this).load(viewFinder.bitmap).into(ivPreview)
+            ivPreview.visibility = View.VISIBLE
+            timer.cancel()
+            startScanning()
+        }
+    }
+
+    private fun startScanning() {
+        ivScan.visibility = View.VISIBLE
+        var objectAnimator = ObjectAnimator.ofFloat(ivScan.translationY, 900f)
+        objectAnimator.duration = 5_000L
+        objectAnimator.addUpdateListener {
+            ivScan.translationY = it.animatedValue.toString().toFloat()
+        }
+        objectAnimator.start()
     }
 
     private fun startPreviewUpdater() {
@@ -149,6 +168,7 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         tvIdicator.isEnabled = false
         tvIdicator.text = getString(R.string.searching_palm)
         ivTakePhoto.isEnabled = false
+        ivHand.visibility = View.VISIBLE
     }
 
     private fun enableHandDetected() {
@@ -156,6 +176,7 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         tvIdicator.text = getString(R.string.searching_palm_enabled)
         ivTakePhoto.isEnabled = true
         lastDetect = Calendar.getInstance().timeInMillis
+        ivHand.visibility = View.INVISIBLE
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
