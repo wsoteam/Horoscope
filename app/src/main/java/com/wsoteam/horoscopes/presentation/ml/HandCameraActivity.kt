@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.presentation.ml
 import android.Manifest
 import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
+import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -38,6 +39,7 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
     private lateinit var objectDetector: ObjectDetector
     private lateinit var timer: CountDownTimer
     private var lastDetect = -1L
+    private lateinit var bitmap: Bitmap
 
     private val DETECTOR_HAND_LABEL = "Band Aid"
     private val LOST_DETECT_INTERVAL = 500L
@@ -59,7 +61,8 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         startPreviewUpdater()
 
         ivTakePhoto.setOnClickListener {
-            Glide.with(this).load(viewFinder.bitmap).into(ivPreview)
+            bitmap = viewFinder.bitmap!!
+            Glide.with(this).load(bitmap).into(ivPreview)
             ivPreview.visibility = View.VISIBLE
             timer.cancel()
             startScanning()
@@ -74,16 +77,34 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             ivScan.translationY = it.animatedValue.toString().toFloat()
         }
         objectAnimator.start()
+
+
+        /*val paint = Paint()
+
+        val matrix = ColorMatrix(
+            floatArrayOf(
+                0.9f, 0f, 0f, 0f, 150f,
+                0f, 0.9f, 0f, 0f, 150f,
+                0f, 0f, 0.9f, 0f, 150f,
+                0f, 0f, 0f, 1f, 0f
+            )
+        )
+
+        val filter = ColorMatrixColorFilter(matrix)
+        paint.colorFilter = filter
+
+        ivPreview.colorFilter = filter*/
+        //Canvas(bitmap).drawBitmap(this, 0f, 0f, paint)
     }
 
     private fun startPreviewUpdater() {
-        timer = object : CountDownTimer(10_000, 150){
+        timer = object : CountDownTimer(10_000, 150) {
             override fun onFinish() {
                 timer.start()
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                if (tvIdicator.isEnabled && Calendar.getInstance().timeInMillis - lastDetect >= LOST_DETECT_INTERVAL){
+                if (tvIdicator.isEnabled && Calendar.getInstance().timeInMillis - lastDetect >= LOST_DETECT_INTERVAL) {
                     disableHandDetected()
                 }
             }

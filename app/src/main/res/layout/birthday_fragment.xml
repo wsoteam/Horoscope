@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:text="@string/your_birthday"
+            android:layout_marginTop="102dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal">
+
+
+            <EditText
+                android:id="@+id/edtDay"
+                android:layout_width="47dp"
+                android:layout_height="35dp"
+                android:background="@drawable/back_edt_onboard"
+                android:fontFamily="@font/muller_medium"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:maxLength="2"
+                android:inputType="number"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                tools:text="25"/>
+
+            <EditText
+                android:id="@+id/edtMonth"
+                android:layout_width="47dp"
+                android:layout_height="35dp"
+                android:background="@drawable/back_edt_onboard"
+                android:fontFamily="@font/muller_medium"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:maxLength="2"
+                android:textColor="#ffffff"
+                android:inputType="number"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                tools:text="25"/>
+
+
+            <EditText
+                android:id="@+id/edtYear"
+                android:layout_width="59dp"
+                android:layout_height="35dp"
+                android:background="@drawable/back_edt_onboard"
+                android:fontFamily="@font/muller_medium"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:maxLength="4"
+                android:textColor="#ffffff"
+                android:inputType="number"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="1990"/>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -315,6 +315,11 @@
     <string name="continue_without_ads">Continue without ads</string>
     <string name="searching_palm">Searching palm</string>
     <string name="searching_palm_enabled">Palm detected</string>
+    <string name="privacy_onboard">I’ve read and accepted the Privacy Policy</string>
+    <string name="start_onboard">Start</string>
+    <string name="welcome_to_astropedia">Welcome to Astropedia</string>
+    <string name="your_birthday">Your birthday</string>
+    <string name="your_name_on">Your name</string>
 
 
 </resources>

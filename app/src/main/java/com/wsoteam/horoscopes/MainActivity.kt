@@ -40,6 +40,7 @@ import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.ml.HandCameraActivity
+import com.wsoteam.horoscopes.presentation.onboard.HostActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
@@ -293,7 +294,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        startActivity(Intent(this, HandCameraActivity::class.java))
+        startActivity(Intent(this, HostActivity::class.java))
     }
 
     private fun setWhiteViews() {

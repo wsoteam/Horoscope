@@ -49,5 +49,7 @@
     <color name="prop_text">#1e1e1e</color>
     <color name="prop_title">#1e1e1e</color>
 
+    <color name="span_onboard">#bd84fd</color>
+
 
 </resources>

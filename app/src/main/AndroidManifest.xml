@@ -346,7 +346,7 @@
             android:theme="@style/Main" />
 
         <activity
-            android:name=".presentation.ml.HandCameraActivity"
+            android:name=".presentation.onboard.HostActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraActivity" />
 

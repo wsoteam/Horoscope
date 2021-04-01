@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/back_stars"
+        android:scaleType="fitXY"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vpOnboard"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <com.make.dots.dotsindicator.DotsIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/diOnboard"
+            android:layout_gravity="center_horizontal"
+            app:dot_drawable="@drawable/img_dot_enabled"
+            app:dot_drawable_unselected="@drawable/img_dot_disabled"
+            app:dot_height="5dp"
+            app:dot_width="5dp"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textColor="#1a072f"
+            android:text="@string/start_onboard"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/shape_button_start"
+            android:paddingStart="66dp"
+            android:paddingEnd="66dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPrivacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="10sp"
+            android:fontFamily="@font/muller"
+            android:textColor="#ababab"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:layout_marginBottom="28dp"
+            tools:text="@string/privacy_onboard"
+            />
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

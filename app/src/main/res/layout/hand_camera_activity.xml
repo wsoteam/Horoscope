@@ -137,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:visibility="visible"
-                    android:translationY="-30dp"
+                    android:translationY="-60dp"
                     android:src="@drawable/img_scan_line"/>
 
 
