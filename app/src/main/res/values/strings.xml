@@ -320,6 +320,9 @@
     <string name="welcome_to_astropedia">Welcome to Astropedia</string>
     <string name="your_birthday">Your birthday</string>
     <string name="your_name_on">Your name</string>
+    <string name="female_gen">Female</string>
+    <string name="male_gender">Male</string>
+    <string name="your_gender">Your gender</string>
 
 
 </resources>
