@@ -9,11 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.BirthdayFragment
-import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.NameFragment
 import com.wsoteam.horoscopes.presentation.onboard.pager.OnboardAdapter
-import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.GenderFragment
-import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.WelcomeFragment
+import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.*
 import kotlinx.android.synthetic.main.host_activity.*
 import kotlinx.android.synthetic.main.host_activity.diOnboard
 
@@ -34,6 +31,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
         fragmentsList.add(BirthdayFragment())
         fragmentsList.add(NameFragment())
         fragmentsList.add(GenderFragment())
+        fragmentsList.add(SignInfoFragment())
     }
 
     private fun updateUI() {

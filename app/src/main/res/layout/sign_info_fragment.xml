@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/black">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/muller"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="You are Pisces" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_fish"
+        android:layout_marginTop="21dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muller"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="22dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/gain_a_deeper_understanding_of_your_sign"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muller"
+        android:textStyle="normal"
+        android:textSize="10sp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="5sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Sensitive, sensual, emotional and richly imaginative and creative, Pisceans are the other-worldly dreamers and poets of the zodiac. Deeply affected by the dual nature of the sign — symbolized by the two fishes swimming in opposite directions. Pisceans are often torn between wanting to do something real and valuable in the world (they are often drawn to humanitarian causes and artistic careers) and retreating from the world altogether to the safer harbours of their private worlds of imagination and dreams. This is an enormous pull for Pusceans, and because of its power, they are often prone to extreme nervous tension and even escapism (sometimes into alcohol and drugs). A lack of self-confidence is almost always at the root of a Piscean’s inability to get on with the real world, but when this weakness can be overcome, they are found among the finest humanitarians and artists in the world."
+        />
+
+</LinearLayout>

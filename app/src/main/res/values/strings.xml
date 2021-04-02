@@ -323,6 +323,16 @@
     <string name="female_gen">Female</string>
     <string name="male_gender">Male</string>
     <string name="your_gender">Your gender</string>
+    <string name="gain_a_deeper_understanding_of_your_sign">Gain a deeper understanding of your Sign:</string>
+    <string name="scan_your_palm_to_know_your_fate">Scan your palm to know your fate!</string>
+    <string name="head">Head</string>
+    <string name="life">Life</string>
+    <string name="heart">Heart</string>
+    <string name="take_a_photo_of_your_left_hand">Take a photo of your left hand.</string>
+    <string name="your_hand_must_be_placed_in_the_frame">Your hand must be placed in the frame</string>
+    <string name="skip">Skip</string>
+    <string name="scan">Scan</string>
+    <string name="time_of_birth">Time of Birth</string>
 
 
 </resources>
