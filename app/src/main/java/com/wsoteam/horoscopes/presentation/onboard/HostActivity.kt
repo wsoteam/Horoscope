@@ -31,6 +31,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
         fragmentsList.add(BirthdayFragment())
         fragmentsList.add(NameFragment())
         fragmentsList.add(GenderFragment())
+        fragmentsList.add(BirthTimeFragment())
         fragmentsList.add(SignInfoFragment())
     }
 
