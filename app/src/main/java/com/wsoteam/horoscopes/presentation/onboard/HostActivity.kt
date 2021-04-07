@@ -1,16 +1,19 @@
 package com.wsoteam.horoscopes.presentation.onboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.onboard.pager.OnboardAdapter
 import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.*
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.host_activity.*
 import kotlinx.android.synthetic.main.host_activity.diOnboard
 
@@ -59,7 +62,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
         diOnboard.setViewPager(vpOnboard)
         vpOnboard.adapter!!.registerDataSetObserver(diOnboard.dataSetObserver)
         vpOnboard.setPagingEnabled(false)
-        vpOnboard.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        vpOnboard.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -71,7 +74,75 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
             }
 
             override fun onPageSelected(position: Int) {
+                if (position == 0) {
+                    btnStart.text = getString(R.string.start_onboard)
+                } else {
+                    btnStart.text = getString(R.string.next_on)
+                }
             }
         })
+
+        btnStart.setOnClickListener {
+            openNextPage(vpOnboard.currentItem)
+        }
+    }
+
+    private fun openNextPage(currentItem: Int) {
+        when (currentItem) {
+            0 -> vpOnboard.currentItem = currentItem + 1
+            1 -> {
+                if (checkBirthday()){
+                    (fragmentsList[1] as BirthdayFragment).saveData()
+                    vpOnboard.currentItem = currentItem + 1
+                }
+            }
+            2 -> {
+                if (checkName()) {
+                    (fragmentsList[2] as NameFragment).saveData()
+                    vpOnboard.currentItem = currentItem + 1
+                }
+            }
+            3 -> {
+                (fragmentsList[3] as GenderFragment).saveData()
+                vpOnboard.currentItem = currentItem + 1
+            }
+            4 -> {
+                (fragmentsList[4] as BirthTimeFragment).saveData()
+                vpOnboard.currentItem = currentItem + 1
+            }
+            5 -> {
+                bindFinish()
+            }
+        }
+    }
+
+    private fun bindFinish() {
+        saveOnboardData()
+        //startActivity(Intent(this, ScanIntroActivtity::class.java))
+        //finishAffinity()
+    }
+
+    private fun saveOnboardData() {
+        //var (day, month, year) = (fragmentsList[1] as BirthdayFragment).getData()
+        Log.e(
+            "LOL",
+            " name -- ${PreferencesProvider.getName()}, gender -- ${PreferencesProvider.userGender}, time -- ${PreferencesProvider.birthTime}, birth -- ${PreferencesProvider.getBirthday()}"
+        )
+    }
+
+    private fun checkName(): Boolean {
+        return (fragmentsList[2] as NameFragment).checkFields()
+    }
+
+    private fun checkBirthday(): Boolean {
+        return (fragmentsList[1] as BirthdayFragment).checkFields()
+    }
+
+    override fun onBackPressed() {
+        if (vpOnboard.currentItem > 0) {
+            vpOnboard.currentItem = vpOnboard.currentItem - 1
+        } else {
+            super.onBackPressed()
+        }
     }
 }

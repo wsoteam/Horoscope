@@ -129,6 +129,7 @@ object PreferencesProvider {
     fun setPercent(per: Int) = editor {
         it?.putInt(INTER_FREQ, per)
     }
+
     fun getPercent() = getInstance()?.getInt(INTER_FREQ, 100)
 
     fun getPremShowPossibility(): Boolean {
@@ -215,5 +216,23 @@ object PreferencesProvider {
     var isNeedShowFCM: String
         get() = getInstance()?.getString(AB_FCM_TAG, ABConfig.NEED_FCM)!!
         set(value) = editor { it?.putString(AB_FCM_TAG, value) }!!
+
+    ////New onboard
+
+    private const val GENDER_TAG = "GENDER_TAG"
+    const val FEMALE = 0
+    const val MALE = 1
+
+    var userGender: Int
+        get() = getInstance()?.getInt(GENDER_TAG, MALE)!!
+        set(value) = editor { it?.putInt(GENDER_TAG, value) }!!
+
+
+    private const val BIRTHTIME_TAG = "BIRTHTIME_TAG"
+
+    var birthTime: String
+        get() = getInstance()?.getString(BIRTHTIME_TAG, "17:33")!!
+        set(value) = editor { it?.putString(BIRTHTIME_TAG, value) }!!
+
 
 }

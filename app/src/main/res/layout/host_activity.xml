@@ -42,6 +42,7 @@
             android:textSize="10sp"
             android:textColor="#1a072f"
             android:text="@string/start_onboard"
+            android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_button_start"

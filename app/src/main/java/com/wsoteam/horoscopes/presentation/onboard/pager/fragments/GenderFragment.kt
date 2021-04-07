@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.gender_fragment.*
 
 class GenderFragment : Fragment(R.layout.gender_fragment) {
@@ -49,5 +50,13 @@ class GenderFragment : Fragment(R.layout.gender_fragment) {
     private fun disableFemaleView() {
         ivFemale.isEnabled = false
         tvFemale.isEnabled = false
+    }
+
+    fun saveData() {
+        var genderId = PreferencesProvider.FEMALE
+        if (ivMale.isEnabled) {
+            genderId = PreferencesProvider.MALE
+        }
+        PreferencesProvider.userGender = genderId
     }
 }
