@@ -22,7 +22,6 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
         super.onCreate(savedInstanceState)
         fillFragmentsList()
         updateUI()
-
     }
 
     private fun fillFragmentsList() {
@@ -59,6 +58,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
         vpOnboard.adapter = OnboardAdapter(supportFragmentManager, fragmentsList)
         diOnboard.setViewPager(vpOnboard)
         vpOnboard.adapter!!.registerDataSetObserver(diOnboard.dataSetObserver)
+        vpOnboard.setPagingEnabled(false)
         vpOnboard.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
             }
