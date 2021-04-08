@@ -15,10 +15,40 @@ class BirthdayFragment : Fragment(R.layout.birthday_fragment) {
         edtDay.setText("25")
         edtMonth.setText("2")
         edtYear.setText("1993")
+
+        edtDay.isActivated = false
+        edtMonth.isActivated = false
+        edtYear.isActivated = false
     }
 
     fun checkFields(): Boolean {
-        return edtDay.text.toString() != "" && edtMonth.text.toString() != "" && edtYear.text.toString() != ""
+        var isCorrectDate = true
+        if(edtDay.text.toString() == "" || edtDay.text.toString() == "" || edtDay.text.toString().toInt() < 1 || edtDay.text.toString().toInt() > 31){
+            isCorrectDate = false
+            edtDay.isActivated = true
+            tvWarning.visibility = View.VISIBLE
+        }
+
+        if(edtMonth.text.toString() == "" || edtMonth.text.toString() == "" || edtMonth.text.toString().toInt() < 1 || edtMonth.text.toString().toInt() > 12){
+            isCorrectDate = false
+            edtMonth.isActivated = true
+            tvWarning.visibility = View.VISIBLE
+        }
+
+        if(edtYear.text.toString() == "" || edtYear.text.toString() == "" || edtYear.text.toString().toInt() < 1910 || edtYear.text.toString().toInt() > 2021){
+            isCorrectDate = false
+            edtYear.isActivated = true
+            tvWarning.visibility = View.VISIBLE
+        }
+
+        if (isCorrectDate){
+            edtDay.isActivated = false
+            edtMonth.isActivated = false
+            edtYear.isActivated = false
+            tvWarning.visibility = View.INVISIBLE
+        }
+
+        return isCorrectDate
     }
 
     fun saveData(){

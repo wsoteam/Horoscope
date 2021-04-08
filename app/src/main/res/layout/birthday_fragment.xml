@@ -34,7 +34,7 @@
                 android:id="@+id/edtDay"
                 android:layout_width="47dp"
                 android:layout_height="35dp"
-                android:background="@drawable/back_edt_onboard"
+                android:background="@drawable/selector_back_edt_onboard"
                 android:fontFamily="@font/muller_medium"
                 android:textStyle="normal"
                 android:textSize="10sp"
@@ -48,7 +48,7 @@
                 android:id="@+id/edtMonth"
                 android:layout_width="47dp"
                 android:layout_height="35dp"
-                android:background="@drawable/back_edt_onboard"
+                android:background="@drawable/selector_back_edt_onboard"
                 android:fontFamily="@font/muller_medium"
                 android:textStyle="normal"
                 android:textSize="10sp"
@@ -64,7 +64,7 @@
                 android:id="@+id/edtYear"
                 android:layout_width="59dp"
                 android:layout_height="35dp"
-                android:background="@drawable/back_edt_onboard"
+                android:background="@drawable/selector_back_edt_onboard"
                 android:fontFamily="@font/muller_medium"
                 android:textStyle="normal"
                 android:textSize="10sp"
@@ -79,6 +79,21 @@
 
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/tvWarning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#e2384c"
+            android:text="@string/incorrect_date"
+            android:drawableEnd="@drawable/ic_date_warning"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible"
+            />
 
 
     </LinearLayout>
