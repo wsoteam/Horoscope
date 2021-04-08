@@ -45,7 +45,7 @@
             android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
-            android:background="@drawable/shape_button_start"
+            android:background="@drawable/selector_button_start_onboard"
             android:paddingStart="66dp"
             android:paddingEnd="66dp"
             android:paddingTop="8dp"
