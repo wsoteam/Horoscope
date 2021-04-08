@@ -117,18 +117,13 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
     }
 
     private fun bindFinish() {
-        saveOnboardData()
-        //startActivity(Intent(this, ScanIntroActivtity::class.java))
-        //finishAffinity()
-    }
-
-    private fun saveOnboardData() {
-        //var (day, month, year) = (fragmentsList[1] as BirthdayFragment).getData()
         Log.e(
             "LOL",
             " name -- ${PreferencesProvider.getName()}, gender -- ${PreferencesProvider.userGender}, time -- ${PreferencesProvider.birthTime}, birth -- ${PreferencesProvider.getBirthday()}"
         )
+        startActivity(Intent(this, ScanIntroActivtity::class.java))
     }
+
 
     private fun checkName(): Boolean {
         return (fragmentsList[2] as NameFragment).checkFields()
