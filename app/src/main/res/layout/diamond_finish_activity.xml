@@ -181,7 +181,7 @@
 
             <Button
                 android:id="@+id/btnPay"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
@@ -190,7 +190,7 @@
                 android:fontFamily="@font/open_sans_regular"
                 android:letterSpacing="0.09"
                 android:lineSpacingExtra="2sp"
-                android:text="Try for free"
+                android:text="try this"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
                 android:textStyle="bold"
