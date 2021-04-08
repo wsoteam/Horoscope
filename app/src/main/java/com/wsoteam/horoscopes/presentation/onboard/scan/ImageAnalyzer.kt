@@ -1,10 +1,10 @@
-package com.wsoteam.horoscopes.presentation.ml
+package com.wsoteam.horoscopes.presentation.onboard.scan
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
+import com.wsoteam.horoscopes.presentation.onboard.scan.IImageAnalyzer
 
 class ImageAnalyzer(val iImageAnalyzer: IImageAnalyzer) : ImageAnalysis.Analyzer {
 

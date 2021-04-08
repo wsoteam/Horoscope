@@ -79,6 +79,10 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
                 } else {
                     btnStart.text = getString(R.string.next_on)
                 }
+
+                if (position == 1){
+                    btnStart.isEnabled = true
+                }
             }
         })
 

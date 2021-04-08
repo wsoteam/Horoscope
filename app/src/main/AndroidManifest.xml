@@ -356,6 +356,11 @@
             android:theme="@style/CameraActivity" />
 
         <activity
+            android:name=".presentation.onboard.scan.HandCameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraActivity" />
+
+        <activity
             android:name=".presentation.crystals.StoriesOnboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />

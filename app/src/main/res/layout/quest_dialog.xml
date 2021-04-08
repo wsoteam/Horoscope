@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="#3a3f42"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dialog_quest"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muller_medium"
+        android:textStyle="normal"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="6.3sp"
+        android:gravity="center_horizontal"
+        android:text="@string/you_can_enjoy_all_premium_features_during_the_free_trial_period_do_you_really_want_to_give_up_the_free_trial"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#5f5f5f" />
+
+    <FrameLayout
+        android:id="@+id/flYes"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#ac78e5"
+            android:lineSpacingExtra="5.3sp"
+            android:gravity="center_horizontal"
+            android:text="@string/yes"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#5f5f5f" />
+
+
+    <FrameLayout
+        android:id="@+id/flNo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#ac78e5"
+            android:lineSpacingExtra="5.3sp"
+            android:gravity="center_horizontal"
+            android:text="@string/no"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+
+</LinearLayout>

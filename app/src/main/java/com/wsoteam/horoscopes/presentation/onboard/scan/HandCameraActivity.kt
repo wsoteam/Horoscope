@@ -1,10 +1,10 @@
-package com.wsoteam.horoscopes.presentation.ml
+package com.wsoteam.horoscopes.presentation.onboard.scan
 
 import android.Manifest
+import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
 import android.graphics.*
-import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -21,12 +21,8 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
-import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions
-import com.google.mlkit.vision.objects.defaults.PredefinedCategory
 import com.wsoteam.horoscopes.R
 import kotlinx.android.synthetic.main.hand_camera_activity.*
-import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -51,7 +47,9 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             startCamera()
         } else {
             ActivityCompat.requestPermissions(
-                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+                this,
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
             )
         }
 
@@ -76,25 +74,23 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
         objectAnimator.addUpdateListener {
             ivScan.translationY = it.animatedValue.toString().toFloat()
         }
+
+        objectAnimator.addListener(object : Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+        })
         objectAnimator.start()
 
-
-        /*val paint = Paint()
-
-        val matrix = ColorMatrix(
-            floatArrayOf(
-                0.9f, 0f, 0f, 0f, 150f,
-                0f, 0.9f, 0f, 0f, 150f,
-                0f, 0f, 0.9f, 0f, 150f,
-                0f, 0f, 0f, 1f, 0f
-            )
-        )
-
-        val filter = ColorMatrixColorFilter(matrix)
-        paint.colorFilter = filter
-
-        ivPreview.colorFilter = filter*/
-        //Canvas(bitmap).drawBitmap(this, 0f, 0f, paint)
     }
 
     private fun startPreviewUpdater() {
@@ -142,14 +138,18 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
                 .build()
 
             val imageAnalyzer = ImageAnalysis.Builder().build().also {
-                it.setAnalyzer(cameraExecutor, ImageAnalyzer(object : IImageAnalyzer {
-                    override fun updateImage(
-                        image: InputImage,
-                        imageProxy: ImageProxy
-                    ) {
-                        processImage(image, imageProxy)
-                    }
-                }))
+                it.setAnalyzer(cameraExecutor,
+                    ImageAnalyzer(
+                        object :
+                            IImageAnalyzer {
+                            override fun updateImage(
+                                image: InputImage,
+                                imageProxy: ImageProxy
+                            ) {
+                                processImage(image, imageProxy)
+                            }
+                        })
+                )
             }
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
