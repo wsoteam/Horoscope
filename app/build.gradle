@@ -128,5 +128,4 @@ dependencies {
 
     implementation 'com.google.mlkit:object-detection-custom:16.3.1'
 
-
 }

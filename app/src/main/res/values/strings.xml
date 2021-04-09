@@ -344,6 +344,8 @@
     <string name="you_can_enjoy_all_premium_features_during_the_free_trial_period_do_you_really_want_to_give_up_the_free_trial">You can enjoy all Premium features during the free trial period. Do you really want to GIVE UP THE FREE TRIAL?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="welcome_offer">welcome offer</string>
+    <string name="offer_expires_in">OFFER EXPIRES IN</string>
 
 
 </resources>

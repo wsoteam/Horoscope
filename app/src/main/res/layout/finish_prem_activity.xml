@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:countdownClock="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_stars" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:src="@drawable/img_head_fin_prem"/>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="66dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_left_frame_fin"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/img_right_frame_fin"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/muller_medium"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textAllCaps="true"
+                    android:textColor="#ba9159"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/welcome_offer"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/muller_medium"
+                    android:textStyle="normal"
+                    android:textSize="32sp"
+                    android:textColor="#ba9159"
+                    android:lineSpacingExtra="9.6sp"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:textAllCaps="true"
+                    android:text="95% off  \n full access"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muller"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="#dedede"
+                        android:lineSpacingExtra="4.2sp"
+                        android:gravity="center_horizontal"
+                        android:text="$39.99"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muller"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="#dedede"
+                        android:lineSpacingExtra="4.2sp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginStart="5dp"
+                        android:text="$14.99 / year"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#ba9159"
+            android:text="@string/offer_expires_in"
+            android:layout_marginTop="55dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -361,6 +361,11 @@
             android:theme="@style/CameraActivity" />
 
         <activity
+            android:name=".presentation.onboard.prem.FinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraActivity" />
+
+        <activity
             android:name=".presentation.crystals.StoriesOnboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
