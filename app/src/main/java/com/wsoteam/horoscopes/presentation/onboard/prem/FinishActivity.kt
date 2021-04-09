@@ -7,28 +7,31 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.view.countdown.CountDownClock
 import kotlinx.android.synthetic.main.finish_prem_activity.*
 
 class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
 
-    var counter = 0
+    var time = 900_000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
-        var timer = object : CountDownTimer(10000, 1000){
-            override fun onFinish() {
-            }
-
-            override fun onTick(millisUntilFinished: Long) {
-                counter++
-            }
-        }
-
-        timer.start()
     }
 
+    override fun onResume() {
+        super.onResume()
+        countdownClockFirst.setCountdownListener(object: CountDownClock.CountdownCallBack {
+            override fun countdownAboutToFinish() {
+                Log.d("here","Countdown first is about to finish")
+            }
 
+            override fun countdownFinished() {
+                Log.d("here", "Countdown first finished")
+                countdownClockFirst.startCountDown(time)
+            }
+        })
+
+        countdownClockFirst.startCountDown(time)
+    }
 }

@@ -133,12 +133,67 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
+            <com.wsoteam.horoscopes.view.countdown.CountDownClock
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:id="@+id/countdownClockFirst"
+                android:layout_gravity="center"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:digitTopDrawable="@drawable/img_countdown_top"
+                app:digitBottomDrawable="@drawable/img_countdown_bottom"
+                app:digitTextColor="#ba9159"
+                app:digitPadding="6dp"
+                app:splitterPadding="10dp"
+                app:animationDuration="600"
+                app:almostFinishedCallbackTimeInSeconds="5"
+                app:countdownTickInterval="250"
+                app:halfDigitHeight="20dp"
+                app:digitWidth="26dp"
+                app:digitTextSize="18sp"
+                app:digitSplitterColor="#ba9159"
+                />
 
 
 
         </LinearLayout>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tvSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:text="Skip this offer"
+            android:padding="9dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:text="@string/get_95_off_now"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/shape_new_onboard_prem"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:paddingStart="52dp"
+            android:paddingEnd="52dp"/>
 
 
     </LinearLayout>
