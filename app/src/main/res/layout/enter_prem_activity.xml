@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
 
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -117,7 +117,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
                 android:fontFamily="@font/muller"
-                android:text="After trial ends 449,00 ₽/week"
+                android:text="@string/after_trial_ends_449_00_week"
                 android:textColor="#f4ebfe"
                 android:textSize="9sp"
                 android:textStyle="normal" />

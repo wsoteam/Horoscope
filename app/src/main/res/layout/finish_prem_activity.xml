@@ -86,6 +86,7 @@
                     android:layout_gravity="center_horizontal">
 
                     <TextView
+                        android:id="@+id/tvOldPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/muller"
@@ -98,6 +99,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tvNewPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/muller"
@@ -107,7 +109,7 @@
                         android:lineSpacingExtra="4.2sp"
                         android:gravity="center_horizontal"
                         android:layout_marginStart="5dp"
-                        android:text="$14.99 / year"
+                        android:text="@string/s_month"
                         />
 
                 </LinearLayout>

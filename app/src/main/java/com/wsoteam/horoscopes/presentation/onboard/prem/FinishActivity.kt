@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.PersistableBundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +19,10 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.view.countdown.CountDownClock
+import kotlinx.android.synthetic.main.enter_prem_activity.*
 import kotlinx.android.synthetic.main.finish_prem_activity.*
+import java.lang.Exception
+import java.text.DecimalFormat
 
 class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
 
@@ -24,14 +30,14 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setPrice()
         tvSkip.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
         }
 
         btnBuy.setOnClickListener {
-            SubscriptionProvider.startChoiseSub(this, SubsIds.MERMAID, object :
+            SubscriptionProvider.startChoiseSub(this, SubsIds.HAND_SCAN, object :
                 InAppCallback {
                 override fun trialSucces() {
                     handlInApp()
@@ -39,6 +45,26 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
             })
         }
 
+    }
+
+    private fun setPrice() {
+        try {
+            var unit = PreferencesProvider.getPriceUnit()!!
+            var price = PreferencesProvider.getPriceValue()!!.toDouble() / 1_000_000
+            var diff = price * 0.95
+
+            var oldPrice = diff + price
+
+            var formatter = DecimalFormat("#0.00")
+
+            var span = SpannableString("${formatter.format(oldPrice)} $unit")
+            span.setSpan(StrikethroughSpan(), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            tvNewPrice.text = getString(R.string.s_month, "${formatter.format(price)} $unit")
+            tvOldPrice.text = span
+        } catch (ex: Exception) {
+            Log.e("LOL", ex.message)
+        }
     }
 
     private fun handlInApp() {
@@ -51,9 +77,9 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
 
     override fun onResume() {
         super.onResume()
-        countdownClockFirst.setCountdownListener(object: CountDownClock.CountdownCallBack {
+        countdownClockFirst.setCountdownListener(object : CountDownClock.CountdownCallBack {
             override fun countdownAboutToFinish() {
-                Log.d("here","Countdown first is about to finish")
+                Log.d("here", "Countdown first is about to finish")
             }
 
             override fun countdownFinished() {

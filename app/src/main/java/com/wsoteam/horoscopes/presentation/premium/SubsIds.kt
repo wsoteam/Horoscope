@@ -13,6 +13,9 @@ object SubsIds {
     const val HAIR = "sub_n_hair"
     const val PHONE = "sub_n_phone"
 
+
+    const val HAND_SCAN = "handscanner_sub"
+
     fun getId(): String {
         return if (PreferencesProvider.getVersion() == ABConfig.A) {
             SMALL_DIAMOND

@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import com.android.billingclient.api.*
 import com.wsoteam.horoscopes.Config
+import com.wsoteam.horoscopes.presentation.premium.SubsIds
 import com.wsoteam.horoscopes.utils.loger.L
 
 object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListener {
@@ -68,7 +69,7 @@ object SubscriptionProvider : PurchasesUpdatedListener, BillingClientStateListen
                 isADEnabled = false
             }
             PreferencesProvider.setADStatus(isADEnabled)
-            startGettingPrice(Config.DIAMOND_SUB)
+            startGettingPrice(SubsIds.HAND_SCAN)
         }
     }
 
