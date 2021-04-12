@@ -286,8 +286,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        //startActivity(Intent(this, HostActivity::class.java))
-        startActivity(Intent(this, FinishActivity::class.java))
+        startActivity(Intent(this, HostActivity::class.java))
+        //startActivity(Intent(this, FinishActivity::class.java))
     }
 
     private fun setWhiteViews() {

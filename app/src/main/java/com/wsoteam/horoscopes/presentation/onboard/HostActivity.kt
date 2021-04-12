@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.onboard.pager.OnboardAdapter
 import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.*
+import com.wsoteam.horoscopes.presentation.onboard.scan.ScanIntroActivtity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.host_activity.*
 import kotlinx.android.synthetic.main.host_activity.diOnboard

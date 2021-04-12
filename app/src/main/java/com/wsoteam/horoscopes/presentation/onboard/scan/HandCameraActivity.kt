@@ -3,6 +3,7 @@ package com.wsoteam.horoscopes.presentation.onboard.scan
 import android.Manifest
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
 import kotlinx.android.synthetic.main.hand_camera_activity.*
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -80,7 +82,8 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_activity) {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-
+                startActivity(Intent(this@HandCameraActivity, EnterActivity::class.java))
+                finishAffinity()
             }
 
             override fun onAnimationCancel(animation: Animator?) {

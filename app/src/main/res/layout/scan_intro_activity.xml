@@ -159,7 +159,8 @@
             android:textSize="10sp"
             android:textColor="#bd84fd"
             android:letterSpacing="0.04"
-            android:layout_marginTop="27dp"
+            android:padding="8dp"
+            android:layout_marginTop="19dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/skip"
             />
@@ -176,7 +177,7 @@
             android:text="@string/scan"
             android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="21dp"
             android:paddingEnd="65dp"
             android:paddingStart="65dp"

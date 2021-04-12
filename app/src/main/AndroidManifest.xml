@@ -351,7 +351,7 @@
             android:theme="@style/CameraActivity" />
 
         <activity
-            android:name=".presentation.onboard.ScanIntroActivtity"
+            android:name=".presentation.onboard.scan.ScanIntroActivtity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraActivity" />
 
@@ -362,6 +362,11 @@
 
         <activity
             android:name=".presentation.onboard.prem.FinishActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraActivity" />
+
+        <activity
+            android:name=".presentation.onboard.prem.EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CameraActivity" />
 
