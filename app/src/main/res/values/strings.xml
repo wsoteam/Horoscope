@@ -349,6 +349,9 @@
     <string name="get_95_off_now">Get 95% OFF now</string>
     <string name="after_trial_ends_449_00_week">After trial ends %s/month</string>
     <string name="s_month">%s / month</string>
+    <string name="select_sign">Select sign</string>
+    <string name="signs">Signs</string>
+    <string name="date">Date</string>
 
 
 </resources>
