@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ablMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/ablMain">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -25,15 +25,15 @@
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.06"
                 android:lineSpacingExtra="5.7sp"
-                tools:text="Gemini"
                 android:textColor="#2e2c5c"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:text="Gemini" />
 
             <LinearLayout
+                android:id="@+id/llTools"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:id="@+id/llTools"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -49,10 +49,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:visibility="gone"
                     android:padding="10dp"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/ic_eye" />
-
 
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -117,22 +116,18 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnvMain"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="#353366"
+            android:layout_height="38dp"
+            android:background="#000000"
             android:theme="@style/Widget.BottomNavigationView"
             app:itemHorizontalTranslationEnabled="true"
+            app:itemIconSize="16dp"
             app:itemIconTint="@drawable/bnv_selector"
-            app:itemTextAppearanceActive="@style/BnvTextActive"
-            app:itemTextAppearanceInactive="@style/BnvTextInActive"
-            app:labelVisibilityMode="auto"
+            app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_goneMarginEnd="@dimen/cardview_default_radius"
-            android:visibility="gone"
             app:menu="@menu/bottom_navigation_main" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

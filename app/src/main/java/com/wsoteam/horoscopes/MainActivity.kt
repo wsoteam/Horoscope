@@ -32,6 +32,7 @@ import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.onboard.HostActivity
 import com.wsoteam.horoscopes.presentation.onboard.prem.FinishActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var premFragment = PremiumFragment()
     var mainFragment = LoadFragment() as Fragment
     var ballFragment = BallFragment() as Fragment
+    var matchFagment = MatchFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -76,13 +78,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 openMainFragment()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.bnv_prem -> {
-                PreferencesProvider.setBeforePremium(Analytic.nav_premium)
-                openPremiumFragment()
+            R.id.bnv_info -> {
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.bnv_balls -> {
-                openBallFragment()
+            R.id.bnv_match -> {
+                window.statusBarColor = Color.rgb(0, 0, 0)
+                supportFragmentManager.beginTransaction().hide(mainFragment).show(matchFagment).commit()
+                changeNavigationState(false)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bnv_hand -> {
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.bnv_settings -> {
                 return@OnNavigationItemSelectedListener true
             }
             else -> {
@@ -170,9 +178,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun openPremSection() {
-        bnvMain.selectedItemId = R.id.bnv_prem
-    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -282,11 +288,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         bnvMain.setOnNavigationItemSelectedListener(bnvListener)
         if (!PreferencesProvider.isADEnabled()) {
-            bnvMain.menu.removeItem(R.id.bnv_prem)
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        startActivity(Intent(this, HostActivity::class.java))
+        //startActivity(Intent(this, HostActivity::class.java))
         //startActivity(Intent(this, FinishActivity::class.java))
     }
 

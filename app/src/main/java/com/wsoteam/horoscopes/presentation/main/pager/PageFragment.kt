@@ -69,7 +69,6 @@ class PageFragment : Fragment(R.layout.page_fragment) {
                         }
                     }
                     PreferencesProvider.setBeforePremium(before)
-                    (activity as MainActivity).openPremSection()
                 }
             }, index
         )
