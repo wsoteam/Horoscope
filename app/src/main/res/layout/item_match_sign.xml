@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/black">
+
 
     <TextView
+        android:id="@+id/tvSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/muller_medium"
         android:textStyle="normal"
         android:textSize="10sp"
         android:textColor="#ffffff"
-        android:layout_marginTop="5dp"
-        android:text="@string/signs"
+        android:background="@drawable/selector_match_sign"
+        android:drawableStart="@drawable/selector_s_aries"
+        tools:text="Libra"
         />
+
+
 
 </FrameLayout>

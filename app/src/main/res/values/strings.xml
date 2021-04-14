@@ -354,4 +354,35 @@
     <string name="date">Date</string>
 
 
+    <integer-array name="match_signs_imgs">
+        <item>@drawable/selector_s_aries</item>
+        <item>@drawable/selector_s_libra</item>
+        <item>@drawable/selector_s_taurus</item>
+        <item>@drawable/selector_s_scorpio</item>
+        <item>@drawable/selector_s_gemini</item>
+        <item>@drawable/selector_s_sagittarius</item>
+        <item>@drawable/selector_s_cancer</item>
+        <item>@drawable/selector_s_capricorn</item>
+        <item>@drawable/selector_s_leo</item>
+        <item>@drawable/selector_s_aquarius</item>
+        <item>@drawable/selector_s_virgo</item>
+        <item>@drawable/selector_s_pisces</item>
+    </integer-array>
+
+    <string-array name="match_signs_names">
+        <item>Aries</item>
+        <item>Libra</item>
+        <item>Taurus</item>
+        <item>Scorpio</item>
+        <item>Gemini</item>
+        <item>Sagittarius</item>
+        <item>Cancer</item>
+        <item>Capricorn</item>
+        <item>Leo</item>
+        <item>Aquarius</item>
+        <item>Virgo</item>
+        <item>Pisces</item>
+    </string-array>
+
+
 </resources>

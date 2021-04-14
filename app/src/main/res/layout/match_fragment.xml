@@ -102,12 +102,13 @@
             android:id="@+id/tlType"
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginTop="20dp"
-            app:tabPaddingStart="18dp"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="1dp"
+            app:tabMaxWidth="50dp"
             app:tabIndicatorColor="#bd84fd"
             app:tabMode="auto"
-            android:elevation="3dp"
             app:tabRippleColor="@color/transparent">
 
         <com.google.android.material.tabs.TabItem
@@ -123,6 +124,19 @@
             android:layout="@layout/tab_date" />
 
         </com.google.android.material.tabs.TabLayout>
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="-1dp"
+        android:background="#33FFFFFF" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvSigns"/>
+
 
 
 
