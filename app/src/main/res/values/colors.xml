@@ -50,6 +50,7 @@
     <color name="prop_title">#1e1e1e</color>
 
     <color name="span_onboard">#bd84fd</color>
+    <color name="disabled_match_sign">#99FFFFFF</color>
 
 
 </resources>

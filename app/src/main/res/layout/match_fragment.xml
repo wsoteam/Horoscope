@@ -96,7 +96,7 @@
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/muller_medium"
                     android:text="@string/select_sign"
-                    android:textColor="#99FFFFFF"
+                    android:textColor="@color/disabled_match_sign"
                     android:textSize="12sp"
                     android:textStyle="normal" />
 
@@ -139,10 +139,12 @@
             android:layout_marginTop="-1dp"
             android:background="#33FFFFFF" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSigns"
+        <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/vpMatch"/>
+
+
     </LinearLayout>
 
     <Button

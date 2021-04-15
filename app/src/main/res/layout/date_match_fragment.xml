@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <EditText
+            android:id="@+id/edtDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:hint="DD"
+            android:maxLength="2"
+            android:inputType="number"
+            android:textColorHint="#ffffff"
+            android:background="@drawable/selector_date_match"
+            android:gravity="center"/>
+
+
+        <EditText
+            android:id="@+id/edtMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:maxLength="2"
+            android:inputType="number"
+            android:layout_marginStart="8dp"
+            android:hint="MM"
+            android:textColorHint="#ffffff"
+            android:background="@drawable/selector_date_match"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

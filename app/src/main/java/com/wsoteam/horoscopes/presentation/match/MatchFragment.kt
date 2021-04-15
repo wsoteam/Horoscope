@@ -5,18 +5,23 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.match.controller.IClick
 import com.wsoteam.horoscopes.presentation.match.controller.MatchSignsAdapter
+import com.wsoteam.horoscopes.presentation.match.pager.MatchPagerAdapter
+import com.wsoteam.horoscopes.presentation.match.pager.fragments.DateMatchFragment
+import com.wsoteam.horoscopes.presentation.match.pager.fragments.SignsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import kotlinx.android.synthetic.main.match_fragment.*
 
 class MatchFragment : Fragment(R.layout.match_fragment) {
 
-    lateinit var imgsArray: TypedArray
-    lateinit var signsNames: Array<String>
-    lateinit var rvAdapter: MatchSignsAdapter
+    private lateinit var imgsArray: TypedArray
+    private lateinit var signsNames: Array<String>
+    private lateinit var fragmentList: ArrayList<Fragment>
+    private lateinit var pagerAdapter: MatchPagerAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,32 +29,52 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
         imgsArray = resources.obtainTypedArray(R.array.match_signs_imgs)
         signsNames = resources.getStringArray(R.array.match_signs_names)
 
+        fragmentList = arrayListOf()
+        fragmentList.add(SignsFragment())
+        fragmentList.add(DateMatchFragment())
+
         btnShow.isEnabled = false
         setOwnSign()
+        pagerAdapter = MatchPagerAdapter(childFragmentManager, fragmentList)
+        vpMatch.adapter = pagerAdapter
+        tlType.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
 
-        rvAdapter = MatchSignsAdapter(imgsArray, signsNames, object : IClick {
-            override fun onClick(position: Int) {
-                setMatchSign(position)
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
 
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab!!.position){
+                    0 -> vpMatch.currentItem = 0
+                    1 -> vpMatch.currentItem = 1
+                }
             }
         })
-
-        rvSigns.layoutManager = GridLayoutManager(activity, 2)
-        rvSigns.adapter = rvAdapter
-
     }
 
-    private fun setMatchSign(position: Int) {
-        tvMatchSign.text = signsNames[position]
-        tvMatchSign.setTextColor(resources.getColor(R.color.white))
-        ivMatchSign.setImageResource(imgsArray.getResourceId(position, -1))
-        btnShow.isEnabled = true
+    fun setMatchSign(position: Int) {
+        if (position == EMPTY_SIGN_INDEX){
+            tvMatchSign.text = getString(R.string.select_sign)
+            tvMatchSign.setTextColor(resources.getColor(R.color.disabled_match_sign))
+            ivMatchSign.setImageDrawable(resources.getDrawable(R.drawable.img_heart_match))
+            btnShow.isEnabled = false
+        }else{
+            tvMatchSign.text = signsNames[position]
+            tvMatchSign.setTextColor(resources.getColor(R.color.white))
+            ivMatchSign.setImageResource(imgsArray.getResourceId(position, -1))
+            btnShow.isEnabled = true
+        }
     }
 
-    private fun setOwnSign() {
+    fun setOwnSign() {
         ivOwnSign.isEnabled = false
         var index = getSignIndexShuffleArray(PreferencesProvider.getBirthday()!!)
         ivOwnSign.setImageResource(imgsArray.getResourceId(index, -1))
         tvOwnSign.text = signsNames[index]
+    }
+
+    companion object{
+        const val EMPTY_SIGN_INDEX = -1
     }
 }
