@@ -5,16 +5,7 @@ import java.lang.IllegalArgumentException
 
 
 fun choiceSign(date: String): Int {
-
-   /* var day = 1
-    var month = 1*/
-    /*try {*/
-        var (day, month) = date.split(".").map { it.toInt() }
-    /*} catch (ex: Exception) {
-        var (day, month) = "30.1".split(".").map { it.toInt() }
-    }*/
-
-
+    var (day, month) = date.split(".").map { it.toInt() }
 
     return when (month) {
         1 -> if (day > 20) 10 else 9
@@ -30,5 +21,25 @@ fun choiceSign(date: String): Int {
         11 -> if (day > 22) 8 else 7
         12 -> if (day > 21) 9 else 8
         else -> throw IllegalArgumentException("ZodiacChoicer error (day = $day, month = $month)")
+    }
+}
+
+fun getSignIndexShuffleArray(date: String) : Int{
+    var oldIndex = choiceSign(date)
+
+    return when(oldIndex){
+        0 -> 0
+        1 -> 2
+        2 -> 4
+        3 -> 6
+        4 -> 8
+        5 -> 10
+        6 -> 1
+        7 -> 3
+        8 -> 5
+        9 -> 7
+        10 -> 9
+        11 -> 11
+        else -> throw IllegalArgumentException("ZodiacChoicer error, new array")
     }
 }

@@ -319,7 +319,7 @@
     <string name="start_onboard">Start</string>
     <string name="welcome_to_astropedia">Welcome to Astropedia</string>
     <string name="your_birthday">Your birthday</string>
-    <string name="your_name_on">Your name</string>
+    <string name="your_name_on">Your name</string>2
     <string name="female_gen">Female</string>
     <string name="male_gender">Male</string>
     <string name="your_gender">Your gender</string>
@@ -352,6 +352,7 @@
     <string name="select_sign">Select sign</string>
     <string name="signs">Signs</string>
     <string name="date">Date</string>
+    <string name="show_compatibility">Show compatibility</string>
 
 
     <integer-array name="match_signs_imgs">

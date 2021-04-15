@@ -83,7 +83,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.bnv_match -> {
                 window.statusBarColor = Color.rgb(0, 0, 0)
-                supportFragmentManager.beginTransaction().hide(mainFragment).add(R.id.flContainer, matchFagment).show(matchFagment).commit()
+                nestedScrollView.visibility = View.GONE
+                flContainerMatch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction().hide(mainFragment).add(R.id.flContainerMatch, matchFagment).show(matchFagment).commit()
                 changeNavigationState(false)
                 return@OnNavigationItemSelectedListener true
             }

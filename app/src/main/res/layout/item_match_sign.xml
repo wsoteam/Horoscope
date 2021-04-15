@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/tvSign"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/muller_medium"
@@ -16,7 +17,14 @@
         android:textColor="#ffffff"
         android:background="@drawable/selector_match_sign"
         android:drawableStart="@drawable/selector_s_aries"
+        android:drawablePadding="8dp"
+        android:paddingStart="17dp"
+        android:paddingEnd="17dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         tools:text="Libra"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
         />
 
 
