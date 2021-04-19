@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.match.controller.IClick
 import com.wsoteam.horoscopes.presentation.match.controller.MatchSignsAdapter
+import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
 import com.wsoteam.horoscopes.presentation.match.pager.MatchPagerAdapter
 import com.wsoteam.horoscopes.presentation.match.pager.fragments.DateMatchFragment
 import com.wsoteam.horoscopes.presentation.match.pager.fragments.SignsFragment
@@ -22,6 +23,9 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
     private lateinit var signsNames: Array<String>
     private lateinit var fragmentList: ArrayList<Fragment>
     private lateinit var pagerAdapter: MatchPagerAdapter
+
+    private var matchIndex = -1
+    private var ownIndex = -1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +41,7 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
         setOwnSign()
         pagerAdapter = MatchPagerAdapter(childFragmentManager, fragmentList)
         vpMatch.adapter = pagerAdapter
-        tlType.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        tlType.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
 
@@ -45,25 +49,36 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab!!.position){
+                when (tab!!.position) {
                     0 -> vpMatch.currentItem = 0
                     1 -> vpMatch.currentItem = 1
                 }
             }
         })
+
+        btnShow.setOnClickListener {
+            UnlockDialog.newInstance(
+                imgsArray.getResourceId(ownIndex, -1),
+                signsNames[ownIndex],
+                imgsArray.getResourceId(matchIndex, -1),
+                signsNames[matchIndex]
+            ).show(activity!!.supportFragmentManager, "")
+        }
     }
 
     fun setMatchSign(position: Int) {
-        if (position == EMPTY_SIGN_INDEX){
+        if (position == EMPTY_SIGN_INDEX) {
             tvMatchSign.text = getString(R.string.select_sign)
             tvMatchSign.setTextColor(resources.getColor(R.color.disabled_match_sign))
             ivMatchSign.setImageDrawable(resources.getDrawable(R.drawable.img_heart_match))
             btnShow.isEnabled = false
-        }else{
+            matchIndex = -1
+        } else {
             tvMatchSign.text = signsNames[position]
             tvMatchSign.setTextColor(resources.getColor(R.color.white))
             ivMatchSign.setImageResource(imgsArray.getResourceId(position, -1))
             btnShow.isEnabled = true
+            matchIndex = position
         }
     }
 
@@ -72,9 +87,10 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
         var index = getSignIndexShuffleArray(PreferencesProvider.getBirthday()!!)
         ivOwnSign.setImageResource(imgsArray.getResourceId(index, -1))
         tvOwnSign.text = signsNames[index]
+        ownIndex = index
     }
 
-    companion object{
+    companion object {
         const val EMPTY_SIGN_INDEX = -1
     }
 }

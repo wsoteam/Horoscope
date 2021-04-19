@@ -353,6 +353,8 @@
     <string name="signs">Signs</string>
     <string name="date">Date</string>
     <string name="show_compatibility">Show compatibility</string>
+    <string name="read_once">Read once</string>
+    <string name="unlock_forever">Unlock forever</string>
 
 
     <integer-array name="match_signs_imgs">
