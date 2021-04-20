@@ -52,5 +52,7 @@
     <color name="span_onboard">#bd84fd</color>
     <color name="disabled_match_sign">#99FFFFFF</color>
 
+    <color name="match_result_signs">#bd84fd</color>
+
 
 </resources>

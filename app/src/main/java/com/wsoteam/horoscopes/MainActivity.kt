@@ -24,6 +24,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.astrologer.WomanActivity
 import com.wsoteam.horoscopes.presentation.astrologer.hands.HandsActivity
@@ -295,7 +296,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        //startActivity(Intent(this, HostActivity::class.java))
+        startActivity(Intent(this, HostActivity::class.java))
         //startActivity(Intent(this, FinishActivity::class.java))
     }
 
@@ -311,11 +312,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun changeNavigationDrawer() {
     }
     
-    override fun openMatchResultFragment(ownImgId : Int, matchImgId : Int){
-        matchResultFragment = MatchResultFragment.newInstance(ownImgId, matchImgId)
+    override fun openMatchResultFragment(matchPair: MatchPair){
+        matchResultFragment = MatchResultFragment.newInstance(matchPair)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainer, matchResultFragment)
+            .add(R.id.flContainerMatch, matchResultFragment)
             .hide(matchFagment)
             .show(matchResultFragment)
             .commit()

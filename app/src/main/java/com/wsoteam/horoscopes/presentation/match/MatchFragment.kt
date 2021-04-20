@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.presentation.match.controller.IClick
 import com.wsoteam.horoscopes.presentation.match.controller.MatchSignsAdapter
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
@@ -20,8 +21,8 @@ import kotlinx.android.synthetic.main.match_fragment.*
 
 class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks {
 
-    interface Callbacks{
-        fun openMatchResultFragment(ownImgId: Int, matchImgId: Int)
+    interface Callbacks {
+        fun openMatchResultFragment(matchPair: MatchPair)
     }
 
     private lateinit var imgsArray: TypedArray
@@ -31,6 +32,8 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
 
     private var matchIndex = -1
     private var ownIndex = -1
+
+    private var matchPair = MatchPair()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,15 +65,12 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
         })
 
         btnShow.setOnClickListener {
-            UnlockDialog.newInstance(
-                imgsArray.getResourceId(ownIndex, -1),
-                signsNames[ownIndex],
-                imgsArray.getResourceId(matchIndex, -1),
-                signsNames[matchIndex]
-            ).apply {
-                setTargetFragment(this@MatchFragment, -1)
-                show(this@MatchFragment.requireFragmentManager(), "")
-            }
+            UnlockDialog
+                .newInstance(matchPair)
+                .apply {
+                    setTargetFragment(this@MatchFragment, -1)
+                    show(this@MatchFragment.requireFragmentManager(), "")
+                }
         }
     }
 
@@ -88,6 +88,10 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
             btnShow.isEnabled = true
             matchIndex = position
         }
+
+
+        matchPair.matchImgId = imgsArray.getResourceId(matchIndex, -1)
+        matchPair.matchSignName = signsNames[matchIndex]
     }
 
     fun setOwnSign() {
@@ -96,17 +100,16 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
         ivOwnSign.setImageResource(imgsArray.getResourceId(index, -1))
         tvOwnSign.text = signsNames[index]
         ownIndex = index
+
+        matchPair.ownImgId = imgsArray.getResourceId(ownIndex, -1)
+        matchPair.ownSignName = signsNames[ownIndex]
     }
 
     override fun showAd() {
-        openMatchResultFragment(imgsArray.getResourceId(ownIndex, -1), imgsArray.getResourceId(matchIndex, -1))
+        (requireActivity() as Callbacks).openMatchResultFragment(matchPair)
     }
 
     override fun unlockPrem() {
-    }
-
-    private fun openMatchResultFragment(ownImgId: Int, matchImgId: Int) {
-        (requireActivity() as Callbacks).openMatchResultFragment(ownImgId, matchImgId)
     }
 
     companion object {
