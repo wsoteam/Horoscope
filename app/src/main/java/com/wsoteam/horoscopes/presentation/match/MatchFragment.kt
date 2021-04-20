@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes.presentation.match
 
 import android.content.res.TypedArray
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,7 +18,11 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import kotlinx.android.synthetic.main.match_fragment.*
 
-class MatchFragment : Fragment(R.layout.match_fragment) {
+class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks {
+
+    interface Callbacks{
+        fun openMatchResultFragment(ownImgId: Int, matchImgId: Int)
+    }
 
     private lateinit var imgsArray: TypedArray
     private lateinit var signsNames: Array<String>
@@ -62,7 +67,10 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
                 signsNames[ownIndex],
                 imgsArray.getResourceId(matchIndex, -1),
                 signsNames[matchIndex]
-            ).show(activity!!.supportFragmentManager, "")
+            ).apply {
+                setTargetFragment(this@MatchFragment, -1)
+                show(this@MatchFragment.requireFragmentManager(), "")
+            }
         }
     }
 
@@ -88,6 +96,17 @@ class MatchFragment : Fragment(R.layout.match_fragment) {
         ivOwnSign.setImageResource(imgsArray.getResourceId(index, -1))
         tvOwnSign.text = signsNames[index]
         ownIndex = index
+    }
+
+    override fun showAd() {
+        openMatchResultFragment(imgsArray.getResourceId(ownIndex, -1), imgsArray.getResourceId(matchIndex, -1))
+    }
+
+    override fun unlockPrem() {
+    }
+
+    private fun openMatchResultFragment(ownImgId: Int, matchImgId: Int) {
+        (requireActivity() as Callbacks).openMatchResultFragment(ownImgId, matchImgId)
     }
 
     companion object {

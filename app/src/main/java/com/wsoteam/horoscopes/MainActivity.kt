@@ -33,6 +33,7 @@ import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
+import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.HostActivity
 import com.wsoteam.horoscopes.presentation.onboard.prem.FinishActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
@@ -52,7 +53,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MatchFragment.Callbacks {
 
     lateinit var vm: MainVM
     var birthSignIndex = -1
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var mainFragment = LoadFragment() as Fragment
     var ballFragment = BallFragment() as Fragment
     var matchFagment = MatchFragment() as Fragment
+    var matchResultFragment = MatchResultFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -308,6 +310,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun changeNavigationDrawer() {
     }
+    
+    override fun openMatchResultFragment(ownImgId : Int, matchImgId : Int){
+        matchResultFragment = MatchResultFragment.newInstance(ownImgId, matchImgId)
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainer, matchResultFragment)
+            .hide(matchFagment)
+            .show(matchResultFragment)
+            .commit()
+    }
+
+
 
     override fun onResume() {
         super.onResume()
@@ -316,8 +330,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.e("LOL", "observe")
                 setFirstUI()
             })
-        //kek()
-        //lol()
     }
 
     private fun share() {
