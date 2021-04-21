@@ -92,108 +92,274 @@
         <item>Leo is a strong and assertive Sign, being free to do what they want and taking command of their surroundings. Pisces is quieter and more reserved and introspective. In many ways the two are polar opposites, yet both are dreamers at heart. When they care for one another, they each fill the other’s voids and have a caring, mutually beneficial relationship.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+    <string-array name="virgo_pairs">
+        <item>The spontaneous Aries can learn patience from Virgo. They must focus on one another’s strength instead of weaknesses to avoid conflicts. Aries can teach their Virgo lover to take things less seriously. Virgo can teach Aries to be polite and value hard work. The initial stage of relationship may not be very pleasant and chances of a successful marriage are fifty/ fifty</item>
+        <item>Aesthetics are important to both partners, and they share a love of the finer things in life. Their similar tastes and loves make theirs a relationship of great balance. In this relationship, Libra will steer their direction. Virgo is complacent and easy-going, and Libra can be a gentle, guiding force without crossing the line into domination.</item>
+        <item>Taurus is stubborn and has fixed ideas, while Virgo tend to be more flexible. They both desire for a luxurious lifestyle. Virgo has a quick mind and Taurus appreciates it. Virgo gets attracted towards the dedicated and strong Taurus. Both are devoted to one another and equally sincere. They are highly compatible to each other, if they handle their partnership with care and patience.</item>
+        <item>The Virgo-Scorpio couple is loyal and deep, with very strong ties. Usually, this couple will stay away from crowds; they aren’t too inclined to go to parties or dances, but alone they can form a very fulfilling union. When Scorpio realizes that Virgo is an asset and a leveling force in their life, this relationship will grow. Mutual determination and organization makes theirs a harmonious relationship.</item>
+        <item>Gemini and Virgo relationship is usually short term. Virgo has a practical and direct approach. Virgo must try to understand Gemini’s flirtatious nature and not take it too seriously. Gemini must commit willingly to the relationship, and must show their love to their partner through words and deeds. They can give security to each other as long as they communicate well.</item>
+        <item>They make a wonderful couple once they can teach one another to look at the world through new eyes. As long as they communicate and appreciate what they can learn, theirs will be a stable and happy relationship.</item>
+        <item>Both partners in this love match enjoy a stable home life and nice things, and Virgo truly enjoys helping Cancer along the way to achieving their goals. Their shared goals and desires make theirs a highly compatible love match. This is a relationship with great potential to get better and better over the passing years. Both Cancer and Virgo are goal-oriented and disciplined. They are sincere and devoted to one another and share a strong sense of purpose</item>
+        <item>Virgo is easily adaptable to any situation. Capricorn likes the fact that Virgo is entirely dedicated to the relationship. Capricorn can offer viewpoints to the relationship that Virgo never would have considered on their own. Both partners enjoy security and material objects, and work very well together to achieve their goals. Their mutual interests make theirs a highly pleasant relationship.</item>
+        <item>This is a relationship that evolves over time, each partner gradually understanding and appreciating the other. Leo is extroverted, dominant, and charismatic, and often has a short fuse. Virgo is studious and withdrawn, possessed of more versatility than Leo. Although there are differences, they make a wonderful love match when each partner warms up to the other’s unfamiliar style.</item>
+        <item>Virgo has a more rigid, theory-oriented approach to life. The poetic Aquarian approach, on the other hand, knows nothing of the scientific world. But these two lovers may actually thrive on their differences; they grow together as they learn about one another.</item>
+        <item>Two Virgos are likely to structure their lives in beautiful conjunction. They’re incredibly compatible, and this obvious to them and to their friends. Together, they make a wonderful pair for pleasing one another and working on the perfect relationship. Though their shared perfectionism and skepticism could lead to conflict, the level-headed Virgo duo will quickly resolve any disputes and move onto more pleasant times.</item>
+        <item>The overall empathy and commitment these two Signs value in a relationship is what will keep the ties strong and long lasting. Everyone will be envious of their devotion to one another, as well as to their friends and the community.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+    <string-array name="libra_pairs">
+        <item>The relationship starts with a strong sense of physical attraction. Initially the chemistry between them is extremely powerful, which tend to fade away with the time. It gets difficult for the Libra to cope up with the high expectations of Aries. Possibility of marriage is rare.</item>
+        <item>Two Libras form the most romantic relationship. Their relationship is well balanced and beautiful. Both will have love for art and aesthetics. They will together make a beautiful house. Both will spend quality time with each other. Libra likes to be in love and they will try to maintain harmony in relationship.</item>
+        <item>Both Taurus and Libra love art and music. This is a common interest which can bring them together. Taurus is stubborn while Libra is indecisive this may lead to some differences between them. Their relationship can be long lasting if they understand and accept views of each other. Libra must learn to be more patient and Taurus must be a bit more flexible if they want things to work out well between them.</item>
+        <item>Their relationship is based on very deep emotional connection. They are very compatible as they have similar needs. Libra wants balance in relationship while Scorpio desires for emotional and sexual intimacy. Both are very loyal and they together they make a perfect match.</item>
+        <item>Libra brings a sense of stability and balance in Gemini’s life. They both have lot of mental energy. Together they can come up with brilliant ideas. Their partnership is a combination of love and communication, they make an intellectual team. Both understand each other’s need for intellectual freedom.</item>
+        <item>Their partnership is exciting and they share a special connection. They make great friends as well as lovers. They both are optimistic, enthusiastic and adventurous. The relationship always feels new. Together they can reach new horizons in love and life</item>
+        <item>They give to one another important things that each lacks. Both Signs seek a secure, assured relationship and will enjoy their shared appreciation for beauty and luxury — especially when it comes to their domestic environment. These two can blend their energies harmoniously if they choose to work toward a common goal. Though this pairing may progress more slowly than some others, and at first they may fear that they have little else in common than their mutual needs for companionship and love of beauty. However, the more they get to know one another, the better each individual in this Cancer-Libra love match will recognize and respect positive qualities in the other.</item>
+        <item>Libra and Capricorn each bring their own qualities to the relationship. They must allow one another to be themselves in order to sustain the relationship.They can learn a lot from each other. All they have to do is learn to compromise a bit.</item>
+        <item>Leo and Libra experience a deep understanding of the inner-workings of the other. When the Lion’s unbounded energy mixes with Libra’s natural sense of harmony, this is a romance of great balance. Leo and Libra are both outlandish versus reserved, direct versus peace loving. They can enjoy a very smooth relationship because each can appreciate and benefit from the positive attributes of the other.</item>
+        <item>They both understand each other well as they have similar needs. Both signs are full of energy and enthusiasm. They are never bored together. They both connect on a mental level, they share love for art, people and culture. They both have the ability to see the big picture. Both are concerned with betterment of the world.</item>
+        <item>Aesthetics are important to both partners, and they share a love of the finer things in life. Their similar tastes and loves make theirs a relationship of great balance. In this relationship, Libra will steer their direction. Virgo is complacent and easy-going, and Libra can be a gentle, guiding force without crossing the line into domination</item>
+        <item>They both have lot of energy and enthusiasm. They desire for a sincere relationship. Libra brings balance to the relationship. Pisces can help Libra see the beauty in love and empathy. They make great friends as well as lovers. Problems are rare between them. Though Libra sometimes manipulates the emotional Pisces.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+    <string-array name="scorpio_pairs">
+        <item>Both Aries and Scorpio are inclined to act. They both are independent and don't like being controlled. Their partnership is usually unstable as they have trouble in understanding each other. None of them is ready to compromise or give up, this is the main reason why conflicts in their relationship are difficult to resolve.</item>
+        <item>Their relationship is based on very deep emotional connection. They are very compatible as they have similar needs. Libra wants balance in relationship while Scorpio desires for emotional and sexual intimacy. Both are very loyal and they together they make a perfect match.</item>
+        <item>Both Taurus and Scorpio have deep desires. Taurus desires for possessions and Scorpio for power. Taurus is more open and straightforward, and Scorpio is secretive and unfathomable. They both have strong personalities, thus they often tend to swing between passionate love and passionate disagreement. Though both need security in a relationship but their focus is on different things. while Taurus appreciates devotion and honesty, Scorpio loves mystery. This may give rise to conflict and trust issues between them.</item>
+        <item>They both are goal oriented and determined. Both are obsessed with one another, and they move forward in love. Personal relations are positively steamy but, to the equal and opposite extreme, disputes will also be frenetically powerful. This relationship could go either way: It will either be the most wonderful thing in the world or a destruction of both involved.</item>
+        <item>Gemini is open and Scorpio is secretive. Gemini is adaptable and Scorpio is focused. Gemini tends to take things lightly while Scorpio has deep need for emotional bonding. Both must learn to accept one another’s differences to have a steady relationship. Their partnership is usually intense and passionate; Scorpio tends to get jealous, due to Gemini’s outgoing nature. Both the signs love to spice things up and thus the relationship is never dull or boring</item>
+        <item>Their relationship is based on mutual respect, deep connections and passion. They both give sense of security to one another. Once they open up to one another and to appreciate their different philosophies in love and in life. Both Scorpio and Sagittarius see each day as an endless opportunity to explore. While Sagittarius may get fed up with Scorpio’s stubbornness and inflexibility, Scorpio could be thinking their Sagittarius mate is just a little too hotheaded. They’ll enjoy learning together, and travel could be very beneficial for this pair. Their relationship is always on the go!</item>
+        <item>These Signs feel a strong sexual attraction, and when they are together the temperature in the room tends to rise! Cancer and Scorpio have a great deal in common, and much potential to keep their relationship passionate and going strong. Cancer and Scorpio enjoy buying things together and creating a comfortable living space: Cancer craves security and Scorpio strives for power. Since they are both concerned with the home and have fierce loyalties to the family group, Cancer and Scorpio complement each other well. They both see life as a passionate and deeply emotionally exercise of human connection.</item>
+        <item>Capricorn provides stability to the relationship, they can teach the Scorpio to bring their emotions to control.  Capricorn must be careful, not to seem too emotionally shallow. Detached comments can backfire with Scorpios: They desire depth, intense feeling and the utmost in sincerity in all situations — most especially in love! They can open doors to one another’s souls and show one another new ways of perceiving and feeling.</item>
+        <item>Both Signs have very powerful, yet strategically different, personalities. Both can be rigid, opinionated and resistant to change. They both tend to be persistent when working toward their goals. If they have a plan, they’ll stick to it until they get what they want. They are seen as a strong pair by others, and their dedication to fulfilling their desires makes theirs a strong love match.</item>
+        <item>Both are very different from one another. Scorpio can provide great support to aquarius , if aquarius slows down and pay attention. Scorpio is more keen on deep emotional bonding. Both Signs have very powerful personalities, so neither will openly dominate the other. Once they can appreciate their differences, come together and agree on their individual roles within the relationship, the results can be intensely gratifying.</item>
+        <item>The Virgo-Scorpio couple is loyal and deep, with very strong ties. Usually, this couple will stay away from crowds; they aren’t too inclined to go to parties or dances, but alone they can form a very fulfilling union. When Scorpio realizes that Virgo is an asset and a leveling force in their life, this relationship will grow. Mutual determination and organization makes theirs a harmonious relationship.</item>
+        <item>When Scorpio and Pisces make a love match, theirs is a splendid union of much respect and understanding. These mates share the same Element — Water — and thus have keen insight into one another’s minds and hearts. Scorpio is very profound and covert, often caught up in their own secret plans, while Pisces is idealistic and looks for the nuances of a situation. However, Pisces also has a tendency to withdraw into their own mind, and can forgive Scorpio for being mysterious or withdrawn at times. Both Signs are intuitive and in touch with the subtleties of human interaction. Scorpio can help Pisces fulfill dreams and ambitions — to turn ideas into reality.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+    <string-array name="sagittarius_pairs">
+        <item>Aries and Sagittarius make great friends as well as lovers. Both the sings believe in forgiving and forgetting fast. They don't tend to hold grudges. Aries comes up with new ideas to make their relationship exciting, and Sagittarius is always ready to implement those ideas. They both have endless resources of energy; it’s rare for one partner to fizzle out on the other.</item>
+        <item>Their partnership is exciting and they share a special connection. They make great friends as well as lovers. They both are optimistic, enthusiastic and adventurous. The relationship always feels new. Together they can reach new horizons in love and life</item>
+        <item>In a Taurus and Sagittarius partnership, Taurus provides stability to the relation and Sagittarius keeps the excitement alive. Though they are very different personalities. If they learn to understand and accept these differences, they will have a stable and happy relationship. They both can gain a lot from this union.</item>
+        <item>Their relationship is based on mutual respect, deep connections and passion. They both give sense of security to one another. Once they open up to one another and to appreciate their different philosophies in love and in life. Both Scorpio and Sagittarius see each day as an endless opportunity to explore. While Sagittarius may get fed up with Scorpio’s stubbornness and inflexibility, Scorpio could be thinking their Sagittarius mate is just a little too hotheaded. They’ll enjoy learning together, and travel could be very beneficial for this pair. Their relationship is always on the go!</item>
+        <item>Common interests and similar personalities make them a highly compatible couple. They can be best of friends and well matched lovers. They both love adventure, sensation and mental freedom. They understand each other’s need for independence. They don’t like to hold grudges, and believe in forgiving and forgetting quickly. They share very similar life view. Both are equally optimistic and enthusiastic.</item>
+        <item>When two Sagittarians join together in a love match, the truth-loving natures makes theirs a near perfect relationship. This couple views the world around them with an educated eye and both share an intense hunger for more knowledge. They will engage one another in pleasant conversation and banter that challenges and tickles the mind. An occasional hot headed dispute can erupt in the Sagittarius-Sagittarius relationship, when one fact-fanatic Sag partner carries things a little too far.</item>
+        <item>They make a compatible couple once they open themselves up to one another and accept as valid each other’s differing life philosophies. Sagittarius teaches Cancer the virtues of an open mind over constant and inflexible determination. If the lines of communication remain open and clear, and as long as these two take time to appreciate and celebrate their differences, theirs will be a stable and happy relationship.</item>
+        <item>When Sagittarius and Capricorn join together in a love match, things may start slow and they may feel that they don’t have much to gain from the other. In some ways, Sagittarius and Capricorn are opposites: Sagittarius is easy going, whimsical, seeks knowledge for its own sake, always jumps headfirst into new things, and is typically impatient. Capricorn is detail-oriented and passive, even shy, and is always looking toward the next project. Their differences can actually forge a stronger relationship in the long run, there being vast amounts each partner can learn from the other.</item>
+        <item>Both Signs are extremely dynamic and enjoy life to the fullest. This couple is full of life and fun to be around, with each person encouraging the other to aim high! Sagittarius’s philosophical tendency warrants a distraction to Leo’s obsession with the larger-than-life. The two will have genuine admiration and respect for one another. Both are warm, charismatic and charming; people enjoy being in the energy this couple radiates.</item>
+        <item>When Sagittarius and Aquarius join together in a love match, Aquarian ideals and Sagittarian knowledge combine to make them a creative and unique couple. This partnership is uninhibited, and while it can get competitive with these two, there’s never a dull moment! Underneath any romantic overtone, there exists a great friendship; their Signs are two apart and this tends to give them an ability to communicate well as well as an excellent rapport. Both are idealistic and excited about life, and together they enjoy great times. Together, the two can fly without fear of falling.</item>
+        <item>They make a wonderful couple once they can teach one another to look at the world through new eyes. As long as they communicate and appreciate what they can learn, theirs will be a stable and happy relationship.</item>
+        <item>Sagittarius is more of a thinker and philosophizer, easily drifting around from one pursuit to the next. Pisces is more inward, involved in the shifting of their own mindscape. They are opposites in some respects, and to outsiders may seem an unlikely pair. But as their love for one another grows, they are more likely to be able to satisfy the philosophical cravings of the other and maintain a healthy relationship.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+    <string-array name="capricorn_pairs">
+        <item>They both are initiators. Aries is dynamic while Capricorn is more practical. Aries is spontaneous and Capricorn takes time to plan, they have a detail oriented approach. Capricorn brings stability to the relationship and Aries keeps the relationship exciting. Capricorn must try not to dampen Aries’s fiery spirit. Both must be ready to compromise on certain aspects in order to make the relationship work.</item>
+        <item>Libra and Capricorn each bring their own qualities to the relationship. They must allow one another to be themselves in order to sustain the relationship.They can learn a lot from each other. All they have to do is learn to compromise a bit</item>
+        <item>Taurus and Capricorn partnership is sensible and practical one. They both are down to earth and detail oriented. They admire each other's dedication and strength. Capricorn is consistent and they have very high expectations from themselves. They are more career oriented. Taurus has high standards regarding love and possessions and believes in enjoying the fruits of their labour. Taurus will show Capricorn how to enjoy a well-deserved break every so often and how to appreciate beauty and comfort. Capricorn can teach Taurus to be more disciplined and to keep reaching out for what one wants.</item>
+        <item>Capricorn provides stability to the relationship, they can teach the Scorpio to bring their emotions to control.  Capricorn must be careful, not to seem too emotionally shallow. Detached comments can backfire with Scorpios: They desire depth, intense feeling and the utmost in sincerity in all situations — most especially in love! They can open doors to one another’s souls and show one another new ways of perceiving and feeling.</item>
+        <item>Their approach is totally opposite from one another. Their challenge is to maintain a similar pace, so they can arrive at the same place at the same time. Gemini is blessed with quick wit and humor, they are excellent communicators. While Capricorn is not good at expressing. Capricorn is practical, steady and stubborn . Gemini is flexible , they tend to change their mind a lot. They both must allow each other to be themselves and respect their individuality if they want the relationship to last.</item>
+        <item>When Sagittarius and Capricorn join together in a love match, things may start slow and they may feel that they don’t have much to gain from the other. In some ways, Sagittarius and Capricorn are opposites: Sagittarius is easy going, whimsical, seeks knowledge for its own sake, always jumps headfirst into new things, and is typically impatient. Capricorn is detail-oriented and passive, even shy, and is always looking toward the next project. Their differences can actually forge a stronger relationship in the long run, there being vast amounts each partner can learn from the other.</item>
+        <item>Their utter dedication to one another and their mutual commitments toward shared goals. Both are lovers of quality and of beautiful, luxurious things, and neither shirks at the idea of a little hard work if that’s what it takes. Their shared passions, sense of responsibility and morality make theirs a highly compatible relationship.</item>
+        <item>When two Capricorns come together they create a healthy, mutually beneficial relationship. Capricorn is ruled by the Planet Saturn. Saturn’s main focus is on achieving goals through hard work. This couple is very career-minded. They are highly focused in life. They are inflexible and thus if there is a conflict between them it’s difficult to resolve. They are good in taking care of each other’s needs.  When it comes to running a household or maintaining a healthy relationship, this couple can really take care of business.</item>
+        <item>Capricorn is more conservative, hard working and traditional in outlook. Leo is a firm believer in hard work, but tends to get things done through their charm and social skills. However, both are extremely devoted, especially to teach other. Although they may seem to be an unlikely couple on the surface, their love will grow as they discover similarities.</item>
+        <item>Aquarius is insatiable, fostering an idealistic approach to nearly everything. Capricorn is a more cautious, rational outlook on life. This relationship will be enlightening and a delight to both partners. Both partners need to learn that they have a unique way of navigating life’s paths, and so have many things to share with and learn from one another. Their love will be a valid asset, not only to themselves, but to those around them.</item>
+        <item>Virgo is easily adaptable to any situation. Capricorn likes the fact that Virgo is entirely dedicated to the relationship. Capricorn can offer viewpoints to the relationship that Virgo never would have considered on their own. Both partners enjoy security and material objects, and work very well together to achieve their goals. Their mutual interests make theirs a highly pleasant relationship.</item>
+        <item>Capricorn brings stability in the relationship, while Pisces provides strong emotional support and dedication. Both like to help the other achieve their goals. Capricorn will stick with Pisces’s pursuits even after they’ve moved on to something else. In return, Pisces can sometimes show Capricorn that flexibility is better than a strong determination to do things a specific way. Their difference in temperaments makes theirs a highly compatible relationship.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+    <string-array name="pisces_pairs">
+        <item>Aries is spontaneous and loves to act, they can teach Pisces how to bring their dreams to reality.  They both can easily resolve the conflicts by discussions and negotiation. Pisces can teach Aries to calm down and to be considerate towards feelings of others. While Aries helps Pisces to get out in the world and work upon his plans. They both can make a great team.</item>
+        <item>They both have lot of energy and enthusiasm. They desire for a sincere relationship. Libra brings balance to the relationship. Pisces can help Libra see the beauty in love and empathy. They make great friends as well as lovers. Problems are rare between them. Though Libra sometimes manipulates the emotional Pisces.</item>
+        <item>They both are nurturers. Taurus is practical while Pisces is dreamy and emotional. They both tend to have deep empathy for one another. They crave for stability and security in a relationship. This mutual desire keeps them together. They can establish a spiritual connection with one another. Their union may seem like heaven on earth to both. Taurus can help Pisces stabilize their sensitivity, and Pisces can bring a touch of magic to Taurus’s practical approach.</item>
+        <item>When Scorpio and Pisces make a love match, theirs is a splendid union of much respect and understanding. These mates share the same Element — Water — and thus have keen insight into one another’s minds and hearts. Scorpio is very profound and covert, often caught up in their own secret plans, while Pisces is idealistic and looks for the nuances of a situation. However, Pisces also has a tendency to withdraw into their own mind, and can forgive Scorpio for being mysterious or withdrawn at times. Both Signs are intuitive and in touch with the subtleties of human interaction. Scorpio can help Pisces fulfill dreams and ambitions — to turn ideas into reality.</item>
+        <item>Both Gemini and Pisces are equally opened minded and flexible. Pisces connect with people on emotional level, they have gift of intuitive empathy. Gemini is quick witted and silver tongued. Gemini and Pisces together can make a mutually satisfying couple. Their connection is strong. The combination of an intellectual focus with an emotional, intuitive grasp of the world makes decisions much more solid; if these two can work together, they can achieve much.</item>
+        <item>Sagittarius is more of a thinker and philosophizer, easily drifting around from one pursuit to the next. Pisces is more inward, involved in the shifting of their own mindscape. They are opposites in some respects, and to outsiders may seem an unlikely pair. But as their love for one another grows, they are more likely to be able to satisfy the philosophical cravings of the other and maintain a healthy relationship</item>
+        <item>Both have a great capacity for emotion and compassion. They complement and harmonize with one another very well. The overall empathy and commitment that these two Signs value in a relationship is what will keep the ties strong and long lasting between the Crab and the Fish. Both signs are basically tolerant and sympathetic, and Pisces is easily energized by Cancer’s ideas. A Pisces mate can open a Cancer’s eyes to the world of creativity and spirituality. In turn, Cancer’s practicality can be a guide, leading Pisces to the fruition of their dreamy, utopian ideas.</item>
+        <item>Capricorn brings stability in the relationship, while Pisces provides strong emotional support and dedication. Both like to help the other achieve their goals. Capricorn will stick with Pisces’s pursuits even after they’ve moved on to something else. In return, Pisces can sometimes show Capricorn that flexibility is better than a strong determination to do things a specific way. Their difference in temperaments makes theirs a highly compatible relationship.</item>
+        <item>Leo is a strong and assertive Sign, being free to do what they want and taking command of their surroundings. Pisces is quieter and more reserved and introspective. In many ways the two are polar opposites, yet both are dreamers at heart. When they care for one another, they each fill the other’s voids and have a caring, mutually beneficial relationship.</item>
+        <item>The Pisces partner can help to put Aquarius more in touch with their intuition, while the Aquarius partner can provide airy wings to lift Pisces out of the whirlpool of feelings which so often threatens to engulf him or her. They share a karmic link and a sense of purpose in caring for others – the good news for Aquarius and Pisces compatibility being that they’re rather good at caring for each other, too.</item>
+        <item>The overall empathy and commitment these two Signs value in a relationship is what will keep the ties strong and long lasting. Everyone will be envious of their devotion to one another, as well as to their friends and the community.</item>
+        <item>When two Pisceans join together in a love match, there is a union of two sensitive and emotional people. They share honest, efficient communication, a rich emotional bond and a deep spiritual connection. They both feel that their precious relationship is the most wonderful thing in the world, and it couldn’t get any better. They share a love of beauty and peace unparalleled in the Zodiac, and both are equally committed to maintaining this ideal relationship.</item>
     </string-array>
 
-    <string-array name="aqua_pairs">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-    </string-array>
+
+    <integer-array name="aqua_match_values">
+        <item>80</item>
+        <item>90</item>
+        <item>65</item>
+        <item>65</item>
+        <item>90</item>
+        <item>80</item>
+        <item>60</item>
+        <item>70</item>
+        <item>85</item>
+        <item>75</item>
+        <item>60</item>
+        <item>70</item>
+    </integer-array>
+
+    <integer-array name="aries_match_values">
+        <item>75</item>
+        <item>85</item>
+        <item>70</item>
+        <item>60</item>
+        <item>80</item>
+        <item>90</item>
+        <item>65</item>
+        <item>65</item>
+        <item>90</item>
+        <item>80</item>
+        <item>60</item>
+        <item>70</item>
+    </integer-array>
+
+    <integer-array name="taurus_match_values">
+        <item>70</item>
+        <item>60</item>
+        <item>75</item>
+        <item>85</item>
+        <item>70</item>
+        <item>60</item>
+        <item>80</item>
+        <item>90</item>
+        <item>65</item>
+        <item>65</item>
+        <item>90</item>
+        <item>80</item>
+    </integer-array>
+
+    <integer-array name="gemini_match_values">
+        <item>80</item>
+        <item>90</item>
+        <item>70</item>
+        <item>60</item>
+        <item>75</item>
+        <item>85</item>
+        <item>70</item>
+        <item>60</item>
+        <item>80</item>
+        <item>90</item>
+        <item>65</item>
+        <item>65</item>
+    </integer-array>
+
+    <integer-array name="cancer_match_values">
+        <item>65</item>
+        <item>65</item>
+        <item>80</item>
+        <item>90</item>
+        <item>70</item>
+        <item>60</item>
+        <item>75</item>
+        <item>85</item>
+        <item>70</item>
+        <item>60</item>
+        <item>80</item>
+        <item>80</item>
+    </integer-array>
+
+    <integer-array name="leo_match_values">
+        <item>90</item>
+        <item>80</item>
+        <item>65</item>
+        <item>65</item>
+        <item>80</item>
+        <item>90</item>
+        <item>70</item>
+        <item>70</item>
+        <item>75</item>
+        <item>70</item>
+        <item>70</item>
+        <item>60</item>
+    </integer-array>
+
+    <integer-array name="virgo_match_values">
+        <item>60</item>
+        <item>70</item>
+        <item>90</item>
+        <item>80</item>
+        <item>65</item>
+        <item>65</item>
+        <item>80</item>
+        <item>90</item>
+        <item>70</item>
+        <item>60</item>
+        <item>75</item>
+        <item>85</item>
+    </integer-array>
+
+    <integer-array name="libra_match_values">
+        <item>85</item>
+        <item>75</item>
+        <item>60</item>
+        <item>70</item>
+        <item>90</item>
+        <item>90</item>
+        <item>65</item>
+        <item>65</item>
+        <item>80</item>
+        <item>90</item>
+        <item>70</item>
+        <item>60</item>
+    </integer-array>
+
+    <integer-array name="scorpio_match_values">
+        <item>60</item>
+        <item>70</item>
+        <item>85</item>
+        <item>75</item>
+        <item>60</item>
+        <item>70</item>
+        <item>90</item>
+        <item>80</item>
+        <item>65</item>
+        <item>65</item>
+        <item>80</item>
+        <item>90</item>
+    </integer-array>
+
+    <integer-array name="sagittarius_match_values">
+        <item>90</item>
+        <item>90</item>
+        <item>60</item>
+        <item>70</item>
+        <item>85</item>
+        <item>75</item>
+        <item>60</item>
+        <item>70</item>
+        <item>90</item>
+        <item>80</item>
+        <item>65</item>
+        <item>65</item>
+    </integer-array>
+
+    <integer-array name="capricorn_match_values">
+        <item>65</item>
+        <item>65</item>
+        <item>90</item>
+        <item>80</item>
+        <item>60</item>
+        <item>70</item>
+        <item>85</item>
+        <item>75</item>
+        <item>70</item>
+        <item>70</item>
+        <item>90</item>
+        <item>90</item>
+    </integer-array>
+
+    <integer-array name="pisces_match_values">
+        <item>70</item>
+        <item>60</item>
+        <item>80</item>
+        <item>90</item>
+        <item>65</item>
+        <item>65</item>
+        <item>80</item>
+        <item>90</item>
+        <item>60</item>
+        <item>70</item>
+        <item>85</item>
+        <item>75</item>
+    </integer-array>
 </resources>
