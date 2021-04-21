@@ -29,17 +29,17 @@
             android:layout_gravity="center_horizontal"
             app:dot_drawable="@drawable/img_dot_enabled"
             app:dot_drawable_unselected="@drawable/img_dot_disabled"
-            app:dot_height="5dp"
-            app:dot_width="5dp"
-            android:layout_marginBottom="10dp"/>
+            app:dot_height="7dp"
+            app:dot_width="7dp"
+            android:layout_marginBottom="22dp"/>
 
         <Button
             android:id="@+id/btnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
+            android:layout_width="201dp"
+            android:layout_height="36dp"
             android:fontFamily="@font/roboto_bold"
             android:textStyle="bold"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:textColor="#1a072f"
             android:text="@string/start_onboard"
             android:textAllCaps="false"
@@ -47,6 +47,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/selector_button_start_onboard"
             android:paddingStart="66dp"
+            android:layout_marginBottom="81dp"
             android:paddingEnd="66dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"/>
@@ -61,7 +62,7 @@
             android:textColor="#ababab"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_marginBottom="28dp"
             tools:text="@string/privacy_onboard"
             />
