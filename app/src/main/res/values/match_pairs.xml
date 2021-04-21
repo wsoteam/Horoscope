@@ -362,4 +362,34 @@
         <item>85</item>
         <item>75</item>
     </integer-array>
+
+    <integer-array name="info_arrays">
+        <item>@array/aries_pairs</item>
+        <item>@array/libra_pairs</item>
+        <item>@array/taurus_pairs</item>
+        <item>@array/scorpio_pairs</item>
+        <item>@array/gemini_pairs</item>
+        <item>@array/sagittarius_pairs</item>
+        <item>@array/cancer_pairs</item>
+        <item>@array/capricorn_pairs</item>
+        <item>@array/leo_pairs</item>
+        <item>@array/aqua_pairs</item>
+        <item>@array/virgo_pairs</item>
+        <item>@array/pisces_pairs</item>
+    </integer-array>
+
+    <integer-array name="percent_arrays">
+        <item>@array/aries_match_values</item>
+        <item>@array/libra_match_values</item>
+        <item>@array/taurus_match_values</item>
+        <item>@array/scorpio_match_values</item>
+        <item>@array/gemini_match_values</item>
+        <item>@array/sagittarius_match_values</item>
+        <item>@array/cancer_match_values</item>
+        <item>@array/capricorn_match_values</item>
+        <item>@array/leo_match_values</item>
+        <item>@array/aqua_match_values</item>
+        <item>@array/virgo_match_values</item>
+        <item>@array/pisces_match_values</item>
+    </integer-array>
 </resources>
