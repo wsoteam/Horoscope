@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.match_fragment.*
 class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks {
 
     interface Callbacks {
-        fun openMatchResultFragment(matchPair: MatchPair)
+        fun openMatchResultFragment(matchPair: MatchPair, ownIndex : Int, matchIndex : Int)
     }
 
     private lateinit var imgsArray: TypedArray
@@ -106,7 +106,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
     }
 
     override fun showAd() {
-        (requireActivity() as Callbacks).openMatchResultFragment(matchPair)
+        (requireActivity() as Callbacks).openMatchResultFragment(matchPair, ownIndex, matchIndex)
     }
 
     override fun unlockPrem() {

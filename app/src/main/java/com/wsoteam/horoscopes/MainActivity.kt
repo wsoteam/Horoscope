@@ -312,8 +312,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun changeNavigationDrawer() {
     }
     
-    override fun openMatchResultFragment(matchPair: MatchPair){
-        matchResultFragment = MatchResultFragment.newInstance(matchPair)
+    override fun openMatchResultFragment(matchPair: MatchPair, ownnIndex : Int, matchIndex : Int){
+        matchResultFragment = MatchResultFragment.newInstance(matchPair, ownnIndex, matchIndex)
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flContainerMatch, matchResultFragment)
