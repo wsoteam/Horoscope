@@ -192,5 +192,9 @@
     <style name="TopProgressStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
     </style>
 
+    <style name="NumberPickerOnboard">
+        <item name="android:textSize">22sp</item>
+    </style>
+
 
 </resources>

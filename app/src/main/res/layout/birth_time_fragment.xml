@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:background="@color/black">
 
 
@@ -15,7 +16,7 @@
             android:textSize="22sp"
             android:textColor="#ffffff"
             android:text="@string/time_of_birth"
-            android:layout_marginTop="102dp"
+            android:layout_marginTop="106dp"
             android:layout_gravity="center_horizontal"
             />
 
@@ -28,24 +29,28 @@
 
         <NumberPicker
             android:id="@+id/npHours"
-            android:layout_width="wrap_content"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:layout_width="90dp"
             android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=":"
-            android:layout_marginStart="7dp"
+            android:layout_marginStart="18dp"
             android:fontFamily="@font/muller_medium"
             android:textStyle="normal"
-            android:textSize="12sp"
+            android:textSize="22sp"
             android:layout_gravity="center_vertical"
             android:textColor="#ffffff"/>
 
         <NumberPicker
             android:id="@+id/npMinutes"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="7dp"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:layout_width="90dp"
+            android:layout_marginStart="18dp"
             android:layout_height="wrap_content" />
 
 

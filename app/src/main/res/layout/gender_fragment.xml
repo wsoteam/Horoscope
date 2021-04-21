@@ -15,10 +15,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/muller_medium"
             android:textStyle="normal"
-            android:textSize="22sp"
+            android:textSize="28sp"
             android:textColor="#ffffff"
             android:text="@string/your_gender"
-            android:layout_marginTop="102dp"
+            android:layout_marginTop="106dp"
             android:layout_gravity="center_horizontal"
             />
 
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal">
 
 
@@ -44,7 +44,7 @@
                     android:background="@drawable/selector_gender"
                     android:src="@drawable/selector_gender_male"
                     android:enabled="true"
-                    android:padding="18dp"/>
+                    android:padding="25dp"/>
 
 
                 <TextView
@@ -53,9 +53,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muller_medium"
                     android:textStyle="normal"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textColor="@color/selector_gender"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/male_gender"
                     tools:textColor="@color/white"
@@ -69,7 +69,7 @@
                 android:id="@+id/llFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
+                android:layout_marginStart="84dp"
                 android:orientation="vertical">
 
 
@@ -80,7 +80,7 @@
                     android:background="@drawable/selector_gender"
                     android:src="@drawable/selector_gender_female"
                     android:enabled="false"
-                    android:padding="18dp"/>
+                    android:padding="25dp"/>
 
 
                 <TextView
@@ -89,9 +89,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muller_medium"
                     android:textStyle="normal"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textColor="@color/selector_gender"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/female_gen"
                     android:enabled="false"
