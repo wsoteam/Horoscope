@@ -10,10 +10,10 @@
                 android:left="2dp"
                 android:right="2dp"/>
             <corners
-                android:bottomLeftRadius="13dp"
-                android:bottomRightRadius="13dp"
-                android:topLeftRadius="13dp"
-                android:topRightRadius="13dp" />
+                android:bottomLeftRadius="18dp"
+                android:bottomRightRadius="18dp"
+                android:topLeftRadius="18dp"
+                android:topRightRadius="18dp" />
         </shape>
     </item>
 
@@ -23,10 +23,10 @@
             <solid android:color="#2c2839"/>
 
             <corners
-                android:bottomLeftRadius="13dp"
-                android:bottomRightRadius="13dp"
-                android:topLeftRadius="13dp"
-                android:topRightRadius="13dp" />
+                android:bottomLeftRadius="18dp"
+                android:bottomRightRadius="18dp"
+                android:topLeftRadius="18dp"
+                android:topRightRadius="18dp" />
         </shape>
     </item>
 </layer-list>
