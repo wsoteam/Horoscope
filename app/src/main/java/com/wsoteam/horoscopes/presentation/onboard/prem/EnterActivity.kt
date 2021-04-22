@@ -13,6 +13,7 @@ import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.choiceSign
 import kotlinx.android.synthetic.main.enter_prem_activity.*
 import kotlinx.android.synthetic.main.green_prem_activity.*
 import java.lang.Exception
@@ -23,6 +24,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setPrice()
+        setUserData()
 
         ivClose.setOnClickListener {
             QuestDialog().show(supportFragmentManager, "")
@@ -37,6 +39,11 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
                 }
             })
         }
+    }
+
+    private fun setUserData() {
+        var signName = resources.getStringArray(R.array.names_signs)[choiceSign(PreferencesProvider.getBirthday()!!)]
+        tvTitle.text = getString(R.string.prem_onboard_info, PreferencesProvider.getName(), signName)
     }
 
     private fun setPrice(){
