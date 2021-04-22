@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.presentation.match
 
+import android.animation.ValueAnimator
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -12,16 +13,47 @@ import kotlinx.android.synthetic.main.match_result_fragment.*
 
 class MatchResultFragment : Fragment(R.layout.match_result_fragment) {
 
-    lateinit var matchPair: MatchPair
-    var ownIndex = -1
-    var matchIndex = -1
+    private lateinit var matchPair: MatchPair
+    private var ownIndex = -1
+    private var matchIndex = -1
+
+    private lateinit var animPercent: ValueAnimator
+    private lateinit var animProgressBar: ValueAnimator
+    private lateinit var animXTranslationLeft: ValueAnimator
+    private lateinit var animXTranslationRight: ValueAnimator
+
+    private var leftEndTrans = 5.0f
+    private var rightEndTrans = -5.0f
+
+    private var animDuration = 1_500L
+
+    private var percent = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         matchPair = arguments!!.getSerializable(TAG_MATCH_PAIR) as MatchPair
         ownIndex = arguments!!.getInt(TAG_OWN_INDEX)
         matchIndex = arguments!!.getInt(TAG_MATCH_INDEX)
+        setSignsImages()
+        setTexts()
+        setupAnimations()
+        playAnimations()
+    }
 
+    private fun setTexts() {
+        var infoArrayId =
+            resources.obtainTypedArray(R.array.info_arrays).getResourceId(ownIndex, -1)
+        var percentArrayId =
+            resources.obtainTypedArray(R.array.percent_arrays).getResourceId(ownIndex, -1)
+
+        percent = resources.getIntArray(percentArrayId)[matchIndex]
+        var info = resources.getStringArray(infoArrayId)[matchIndex]
+
+        tvInfo.text = info
+        tvMatchPair.text = "${matchPair.ownSignName} + ${matchPair.matchSignName}"
+    }
+
+    private fun setSignsImages() {
         var ownSignDraw =
             VectorDrawableCompat.create(resources, matchPair.ownImgId, null) as Drawable
         ownSignDraw = DrawableCompat.wrap(ownSignDraw)
@@ -34,17 +66,39 @@ class MatchResultFragment : Fragment(R.layout.match_result_fragment) {
 
         ivMatchSign.setImageDrawable(matchSignDraw)
         ivOwnSign.setImageDrawable(ownSignDraw)
+    }
 
-        var infoArrayId =
-            resources.obtainTypedArray(R.array.info_arrays).getResourceId(ownIndex, -1)
-        var percentArrayId =
-            resources.obtainTypedArray(R.array.percent_arrays).getResourceId(ownIndex, -1)
+    private fun playAnimations() {
+        animPercent.start()
+        animProgressBar.start()
+        animXTranslationLeft.start()
+        animXTranslationRight.start()
+    }
 
-        var percent = "${resources.getStringArray(percentArrayId)[matchIndex]}%"
-        var info = "${resources.getStringArray(infoArrayId)[matchIndex]}%"
+    private fun setupAnimations() {
+        animPercent = ValueAnimator.ofInt(0, percent)
+        animPercent.duration = animDuration
+        animPercent.addUpdateListener {
+            tvProgress.text = "${it.animatedValue}%"
+        }
 
-        tvInfo.text = info
+        animProgressBar = ValueAnimator.ofInt(0, percent)
+        animProgressBar.duration = animDuration
+        animProgressBar.addUpdateListener {
+            pbMatch.progress = it.animatedValue.toString().toInt()
+        }
 
+        animXTranslationLeft = ValueAnimator.ofFloat(ivOwnSign.translationX, leftEndTrans)
+        animXTranslationLeft.duration = animDuration
+        animXTranslationLeft.addUpdateListener {
+            ivOwnSign.translationX = it.animatedValue.toString().toFloat()
+        }
+
+        animXTranslationRight = ValueAnimator.ofFloat(ivMatchSign.translationX, rightEndTrans)
+        animXTranslationRight.duration = animDuration
+        animXTranslationRight.addUpdateListener {
+            ivMatchSign.translationX = it.animatedValue.toString().toFloat()
+        }
     }
 
     companion object {
