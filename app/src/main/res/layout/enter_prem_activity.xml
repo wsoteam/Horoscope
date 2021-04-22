@@ -18,7 +18,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="275dp"
+                android:layout_height="300dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/camera_onboard_head" />
 
@@ -27,18 +27,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="46dp"
+                android:layout_marginTop="44dp"
                 android:fontFamily="@font/muller_medium"
-                android:text="Hi Sergey! You’re a true Pisces "
+                android:text="@string/prem_onboard_info"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="22sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:textStyle="normal" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="42dp"
                 android:orientation="vertical">
 
 
@@ -46,49 +48,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="55dp"
+                    android:layout_marginTop="43dp"
                     android:drawableStart="@drawable/ic_star_prem_camera"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/muller"
                     android:text="@string/accurate_daily_monthly_and_yearly_horoscopes"
                     android:textColor="#ffffff"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="42dp"
+                    android:layout_marginTop="22dp"
                     android:drawableStart="@drawable/ic_star_prem_camera"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/muller"
                     android:text="@string/lucky_numbers_zodiac_compatibility"
                     android:textColor="#ffffff"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="42dp"
+                    android:layout_marginTop="22dp"
                     android:drawableStart="@drawable/ic_star_prem_camera"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/muller"
                     android:text="@string/palm_reader"
                     android:textColor="#ffffff"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="42dp"
+                    android:layout_marginTop="22dp"
                     android:drawableStart="@drawable/ic_star_prem_camera"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/muller"
                     android:text="@string/daily_notifications"
                     android:textColor="#ffffff"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
             </LinearLayout>
@@ -99,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="41dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/shape_free_trial"
                 android:fontFamily="@font/muller_medium"
                 android:paddingStart="65dp"

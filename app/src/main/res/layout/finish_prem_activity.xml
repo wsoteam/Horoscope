@@ -121,23 +121,23 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/muller_medium"
             android:textStyle="normal"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="#ba9159"
             android:text="@string/offer_expires_in"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"
             />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="44dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <com.wsoteam.horoscopes.view.countdown.CountDownClock
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
                 android:id="@+id/countdownClockFirst"
                 android:layout_gravity="center"
                 android:clipChildren="false"
@@ -145,14 +145,14 @@
                 app:digitTopDrawable="@drawable/img_countdown_top"
                 app:digitBottomDrawable="@drawable/img_countdown_bottom"
                 app:digitTextColor="#ba9159"
-                app:digitPadding="6dp"
-                app:splitterPadding="10dp"
+                app:digitPadding="10dp"
+                app:splitterPadding="11dp"
                 app:animationDuration="600"
                 app:almostFinishedCallbackTimeInSeconds="5"
                 app:countdownTickInterval="250"
-                app:halfDigitHeight="20dp"
-                app:digitWidth="26dp"
-                app:digitTextSize="18sp"
+                app:halfDigitHeight="29dp"
+                app:digitWidth="36dp"
+                app:digitTextSize="36dp"
                 app:digitSplitterColor="#ba9159"
                 />
 
@@ -189,6 +189,7 @@
             android:textStyle="normal"
             android:textSize="14sp"
             android:textColor="#ffffff"
+            android:textAllCaps="false"
             android:text="@string/get_95_off_now"
             android:layout_marginBottom="34dp"
             android:background="@drawable/shape_new_onboard_prem"
