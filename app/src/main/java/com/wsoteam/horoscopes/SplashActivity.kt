@@ -193,6 +193,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PreferencesProvider.isShowRewarded = false
         FirebaseMessaging
             .getInstance()
             .subscribeToTopic("news")

@@ -235,4 +235,10 @@ object PreferencesProvider {
         set(value) = editor { it?.putString(BIRTHTIME_TAG, value) }!!
 
 
+    private const val IS_SHOW_REWARD_TAG = "IS_SHOW_REWARD_TAG"
+    var isShowRewarded: Boolean
+        get() = getInstance()?.getBoolean(IS_SHOW_REWARD_TAG, false)!!
+        set(value) = editor { it?.putBoolean(IS_SHOW_REWARD_TAG, value) }!!
+
+
 }

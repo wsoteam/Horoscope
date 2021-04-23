@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.OnUserEarnedRewardListener
+import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
@@ -16,13 +18,14 @@ import com.wsoteam.horoscopes.presentation.match.pager.MatchPagerAdapter
 import com.wsoteam.horoscopes.presentation.match.pager.fragments.DateMatchFragment
 import com.wsoteam.horoscopes.presentation.match.pager.fragments.SignsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import kotlinx.android.synthetic.main.match_fragment.*
 
 class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks {
 
     interface Callbacks {
-        fun openMatchResultFragment(matchPair: MatchPair, ownIndex : Int, matchIndex : Int)
+        fun openMatchResultFragment(matchPair: MatchPair, ownIndex: Int, matchIndex: Int)
     }
 
     private lateinit var imgsArray: TypedArray
@@ -106,7 +109,20 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
     }
 
     override fun showAd() {
-        (requireActivity() as Callbacks).openMatchResultFragment(matchPair, ownIndex, matchIndex)
+        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+            AdWorker.rewardedAd!!.show(
+                requireActivity()
+            ) {
+                Log.e("LOL", "SHOW")
+                PreferencesProvider.isShowRewarded = true
+            }
+        } else {
+            (requireActivity() as Callbacks).openMatchResultFragment(
+                matchPair,
+                ownIndex,
+                matchIndex
+            )
+        }
     }
 
     override fun unlockPrem() {

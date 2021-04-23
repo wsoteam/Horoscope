@@ -1,8 +1,9 @@
 package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
-import android.util.Log
 import com.google.android.gms.ads.*
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.frequency.InterFrequency
@@ -16,28 +17,34 @@ import kotlin.random.Random
 object AdWorker {
 
     private var mInterstitialAd: InterstitialAd? = null
+    var rewardedAd: RewardedAd? = null
     private var isInit = false
     var isNeedShowInter = false
     var isFailedLoad = false
     private const val MAX_QUERY = 3
+    private const val MAX_QUERY_REWARD_VIDEO = 3
     private var counterFailed = 0
+    private var counterRewardFailed = 0
     var adCallbacks: AdCallbacks? = null
     var isFirstLoad = false
 
 
-    fun init(context: Context?){
+    fun init(context: Context?) {
         InterFrequency.runSetup()
         isFirstLoad = true
         if (context == null) return
         MobileAds.initialize(context) {
             isInit = true
             mInterstitialAd = InterstitialAd(context)
-            mInterstitialAd?.adUnitId = context.getString(com.wsoteam.horoscopes.R.string.interstitial_id)
+            mInterstitialAd?.adUnitId =
+                context.getString(com.wsoteam.horoscopes.R.string.interstitial_id)
             mInterstitialAd?.loadAd(AdRequest.Builder().build())
-            if (isFirstLoad){
+            if (isFirstLoad) {
                 CustomTimer.startFirstInterTimer()
                 ETimer.trackStart(ETimer.FIRST_LOAD_INTER)
             }
+
+            initReward(context)
             mInterstitialAd?.adListener = object : AdListener() {
 
                 override fun onAdClicked() {
@@ -55,35 +62,35 @@ object AdWorker {
 
                 override fun onAdLoaded() {
                     super.onAdLoaded()
-                    if (isFirstLoad){
+                    if (isFirstLoad) {
                         ETimer.trackEnd(ETimer.FIRST_LOAD_INTER)
                         CustomTimer.stopFirstInterTimer()
                         isFirstLoad = false
-                    }else{
+                    } else {
                         CustomTimer.stopNextInterTimer()
                         ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
                     }
                     adCallbacks?.onAdLoaded()
-                    if (isNeedShowInter){
+                    if (isNeedShowInter) {
                         showInter()
-                    }else{
+                    } else {
                         adCallbacks?.onAdClosed()
                     }
                 }
 
                 override fun onAdFailedToLoad(p0: Int) {
                     L.log("onAdFailedToLoad")
-                    if (isFirstLoad){
+                    if (isFirstLoad) {
                         CustomTimer.stopFirstInterTimer()
                         ETimer.trackEnd(ETimer.FIRST_LOAD_INTER)
-                    }else{
+                    } else {
                         CustomTimer.stopNextInterTimer()
                         ETimer.trackEnd(ETimer.NEXT_LOAD_INTER)
                     }
-                    counterFailed ++
-                    if (counterFailed <= MAX_QUERY){
+                    counterFailed++
+                    if (counterFailed <= MAX_QUERY) {
                         reload()
-                    }else{
+                    } else {
                         adCallbacks?.onAdClosed()
                         isFailedLoad = true
                     }
@@ -97,11 +104,34 @@ object AdWorker {
         }
     }
 
-    private fun reload(){
+    private fun initReward(context: Context) {
+        RewardedAd.load(
+            context,
+            context.resources.getString(com.wsoteam.horoscopes.R.string.reward_video),
+            AdRequest.Builder().build(),
+            object :
+                RewardedAdLoadCallback() {
+
+                override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
+                    counterRewardFailed++
+                    if (counterRewardFailed <= MAX_QUERY_REWARD_VIDEO) {
+                        initReward(context)
+                    }
+                    rewardedAd = null
+                }
+
+                override fun onAdLoaded(p0: RewardedAd) {
+                    counterRewardFailed = 0
+                    rewardedAd = p0
+                }
+            })
+    }
+
+    private fun reload() {
         mInterstitialAd?.loadAd(AdRequest.Builder().build())
     }
 
-    fun checkLoad(){
+    fun checkLoad() {
         if (isFailedLoad) {
             counterFailed = 0
             isFailedLoad = false
@@ -109,14 +139,14 @@ object AdWorker {
         }
     }
 
-    fun showInter(){
+    fun showInter() {
         if (isInit && mInterstitialAd?.isLoaded == true) {
-            if(needShow() && PreferencesProvider.isADEnabled() && !Config.FOR_TEST) {
+            if (needShow() && PreferencesProvider.isADEnabled() && !Config.FOR_TEST) {
                 mInterstitialAd?.show()
-            }else{
+            } else {
                 adCallbacks?.onAdClosed()
             }
-        } else if(isFailedLoad){
+        } else if (isFailedLoad) {
             counterFailed = 0
             isFailedLoad = false
             reload()
@@ -128,22 +158,22 @@ object AdWorker {
 
     }
 
-    fun showInterWithCallbacks(adCallbacks: AdCallbacks){
+    fun showInterWithCallbacks(adCallbacks: AdCallbacks) {
         this.adCallbacks = adCallbacks
         if (isInit && mInterstitialAd?.isLoaded == true) {
             mInterstitialAd?.show()
-        } else if(isFailedLoad){
+        } else if (isFailedLoad) {
             counterFailed = 0
             isFailedLoad = false
             reload()
         }
     }
 
-    fun unSubscribe(){
+    fun unSubscribe() {
         this.adCallbacks = null
     }
 
-    fun showInterIsNeed(){
-        if(isNeedShowInter) showInter()
+    fun showInterIsNeed() {
+        if (isNeedShowInter) showInter()
     }
 }
