@@ -213,7 +213,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .add(R.id.flContainer, BallFragment())
             .commit()
 
-        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST) {
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST && false) {
             adView.visibility = View.VISIBLE
             adView.loadAd(AdRequest.Builder().build())
         }
@@ -389,6 +389,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Intent(this, PremiumHostActivity::class.java).putExtra(
                 Config.OPEN_PREM,
                 Config.OPEN_PREM_FROM_MAIN
+            )
+        )
+    }
+
+    override fun openPremiumScreen() {
+        PreferencesProvider.roadAfterBuy = PreferencesProvider.MATCH_RESULT_ROAD
+        startActivity(
+            Intent(this, PremiumHostActivity::class.java).putExtra(
+                Config.OPEN_PREM,
+                Config.OPEN_PREM_FROM_MATCH
             )
         )
     }

@@ -241,4 +241,13 @@ object PreferencesProvider {
         set(value) = editor { it?.putBoolean(IS_SHOW_REWARD_TAG, value) }!!
 
 
+    private const val ROAD_AFTER_BUY = "ROAD_AFTER_BUY"
+    const val DEF_ROAD = 0
+    const val MATCH_RESULT_ROAD = 1
+
+    var roadAfterBuy: Int
+        get() = getInstance()?.getInt(ROAD_AFTER_BUY, DEF_ROAD)!!
+        set(value) = editor { it?.putInt(ROAD_AFTER_BUY, value) }!!
+
+
 }

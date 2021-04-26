@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
+import android.util.Log
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
@@ -113,6 +114,7 @@ object AdWorker {
                 RewardedAdLoadCallback() {
 
                 override fun onRewardedAdFailedToLoad(p0: LoadAdError?) {
+                    Log.e("LOL", "fail")
                     counterRewardFailed++
                     if (counterRewardFailed <= MAX_QUERY_REWARD_VIDEO) {
                         initReward(context)
@@ -121,9 +123,12 @@ object AdWorker {
                 }
 
                 override fun onAdLoaded(p0: RewardedAd) {
+                    Log.e("LOL", "loaded")
                     counterRewardFailed = 0
                     rewardedAd = p0
                 }
+
+
             })
     }
 

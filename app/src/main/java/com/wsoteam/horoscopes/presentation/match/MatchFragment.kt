@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.OnUserEarnedRewardListener
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.material.tabs.TabLayout
@@ -26,6 +28,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
 
     interface Callbacks {
         fun openMatchResultFragment(matchPair: MatchPair, ownIndex: Int, matchIndex: Int)
+        fun openPremiumScreen()
     }
 
     private lateinit var imgsArray: TypedArray
@@ -110,22 +113,34 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
 
     override fun showAd() {
         if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+            AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent()
+                    if (PreferencesProvider.isShowRewarded) {
+                        openMatchResult()
+                    }
+                }
+            }
             AdWorker.rewardedAd!!.show(
                 requireActivity()
             ) {
-                Log.e("LOL", "SHOW")
                 PreferencesProvider.isShowRewarded = true
             }
         } else {
-            (requireActivity() as Callbacks).openMatchResultFragment(
-                matchPair,
-                ownIndex,
-                matchIndex
-            )
+            openMatchResult()
         }
     }
 
+    private fun openMatchResult() {
+        (requireActivity() as Callbacks).openMatchResultFragment(
+            matchPair,
+            ownIndex,
+            matchIndex
+        )
+    }
+
     override fun unlockPrem() {
+        (activity as Callbacks).openPremiumScreen()
     }
 
     companion object {
