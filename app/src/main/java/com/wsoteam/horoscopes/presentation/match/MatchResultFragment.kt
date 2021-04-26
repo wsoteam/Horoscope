@@ -38,6 +38,10 @@ class MatchResultFragment : Fragment(R.layout.match_result_fragment) {
         setTexts()
         setupAnimations()
         playAnimations()
+
+        ivClose.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun setTexts() {
