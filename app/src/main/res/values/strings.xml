@@ -391,7 +391,12 @@
     </string-array>
 
     <string name="prem_onboard_info">Hi %s! You’re a true %s</string>
-
+    <string name="ruler">Ruler:</string>
+    <string name="lucky_days">Lucky days:</string>
+    <string name="favorite_color">Favorite color:</string>
+    <string name="quality">Quality:</string>
+    <string name="favorite_element">Favorite element:</string>
+    <string name="lucky_dates">Lucky dates:</string>
 
 
 </resources>

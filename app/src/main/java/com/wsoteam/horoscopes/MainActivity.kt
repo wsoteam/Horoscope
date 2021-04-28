@@ -1,6 +1,6 @@
 package com.wsoteam.horoscopes
 
-import android.app.*
+import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
@@ -30,13 +30,13 @@ import com.wsoteam.horoscopes.presentation.astrologer.WomanActivity
 import com.wsoteam.horoscopes.presentation.astrologer.hands.HandsActivity
 import com.wsoteam.horoscopes.presentation.ball.BallFragment
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
+import com.wsoteam.horoscopes.presentation.info.DescriptionFragment
+import com.wsoteam.horoscopes.presentation.info.InfoFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
-import com.wsoteam.horoscopes.presentation.onboard.HostActivity
-import com.wsoteam.horoscopes.presentation.onboard.prem.FinishActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
@@ -54,7 +54,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MatchFragment.Callbacks {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks {
 
     lateinit var vm: MainVM
     var birthSignIndex = -1
@@ -67,6 +67,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var ballFragment = BallFragment() as Fragment
     var matchFagment = MatchFragment() as Fragment
     var matchResultFragment = MatchResultFragment() as Fragment
+    var infoFragment = InfoFragment() as Fragment
+    var descriptionFragment = DescriptionFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -82,6 +84,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_info -> {
+                window.statusBarColor = Color.rgb(0, 0, 0)
+                nestedScrollView.visibility = View.GONE
+                flContainerMatch.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction().hide(mainFragment).add(R.id.flContainerMatch, infoFragment).show(infoFragment).commit()
+                changeNavigationState(false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_match -> {
@@ -322,7 +329,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
-
+    override fun openDescriptionFragment(index: Int) {
+        descriptionFragment = DescriptionFragment.newInstance(index)
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainerMatch, descriptionFragment)
+            .hide(infoFragment)
+            .show(descriptionFragment)
+            .commit()
+    }
 
     override fun onResume() {
         super.onResume()

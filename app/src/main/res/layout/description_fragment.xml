@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/back_stars">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_info"
+            android:id="@+id/ivBack"
+            android:padding="12dp"
+            android:layout_marginStart="4dp"/>
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            tools:text="Pisces + Capricorn"
+            android:layout_gravity="center_vertical"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvInterval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muller"
+        android:textStyle="normal"
+        android:textSize="17sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:textColor="#ffffff"
+        tools:text="oct 23 — nov 21"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="17dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:text="@string/ruler"
+            />
+
+        <TextView
+            android:id="@+id/tvRuler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#ffffff"
+            tools:text="Pluto, Mars"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="25dp"
+            android:textColor="#ffffff"
+            android:text="@string/favorite_color"
+            />
+
+        <TextView
+            android:id="@+id/tvColors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#ffffff"
+            tools:text="Red, Rust"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="25dp"
+            android:textColor="#ffffff"
+            android:text="@string/favorite_element"
+            />
+
+        <TextView
+            android:id="@+id/tvElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#ffffff"
+            tools:text="Water"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="end"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:text="@string/lucky_days"
+            />
+
+        <TextView
+            android:id="@+id/tvLuckyDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#ffffff"
+            tools:text="Tuesday"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="25dp"
+            android:textColor="#ffffff"
+            android:text="@string/quality"
+            />
+
+        <TextView
+            android:id="@+id/tvQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#ffffff"
+            tools:text="Fixed"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="25dp"
+            android:textColor="#ffffff"
+            android:text="@string/lucky_dates"
+            />
+
+        <TextView
+            android:id="@+id/tvLuckyDates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muller"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#ffffff"
+            tools:text="8, 11, 18, 22"
+            />
+
+    </LinearLayout>
+
+
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muller"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="6sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        tools:text="Mysterious Scorpios are deep-thinking, private, intense, very sexual, and always a step removed from the world. Because of their intensity and an obsessive need for privacy, there is often an aura of «danger» around Scorpios a trait they share, of course, with the deadly Scorpion that symbolizes their sign. But this is only one facet of the rather complex Scorpio personality. They can be driven workers and archievers with the ability to overcome enormously challenging obstacles. They also value their intimate relationship and their friendship quite highly and work hard to encourage the best in those they love. "
+        />
+
+
+
+
+
+</LinearLayout>
