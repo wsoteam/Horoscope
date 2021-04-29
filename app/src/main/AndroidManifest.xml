@@ -345,6 +345,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
 
+
+        <activity
+            android:name=".BlackMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BlackMain" />
+
         <activity
             android:name=".presentation.onboard.HostActivity"
             android:screenOrientation="portrait"

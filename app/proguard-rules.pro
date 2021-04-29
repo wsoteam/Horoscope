@@ -34,4 +34,7 @@
 
 -dontwarn com.google.android.gms.**
 
+ -dontwarn com.userexperior.**
+ -keep class com.userexperior.* { *; }
+
 

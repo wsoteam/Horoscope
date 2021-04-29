@@ -106,7 +106,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             intent = if (!PreferencesProvider.isShowCatPremium && isTimeHasPassed() && false) {
                 Intent(this, DayCatPremiumActivity::class.java)
             } else {
-                Intent(this, MainActivity::class.java)
+                Intent(this, BlackMainActivity::class.java)
             }
             L.log("main activity enter")
         } else {

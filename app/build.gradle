@@ -111,7 +111,7 @@ dependencies {
     /*implementation 'com.smartlook.recording:app:1.7.0-native'*/
 
     implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
-    implementation 'com.userexperior:userexperior-android:+'
+    implementation 'com.userexperior:userexperior-android:5.0.0'
     implementation 'com.revenuecat.purchases:purchases:4.0.1'
 
     /*implementation 'io.branch.sdk.android:library:5.+'
