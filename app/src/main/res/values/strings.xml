@@ -397,6 +397,12 @@
     <string name="quality">Quality:</string>
     <string name="favorite_element">Favorite element:</string>
     <string name="lucky_dates">Lucky dates:</string>
+    <string name="my_horoscope">My horoscope</string>
+    <string name="about">About</string>
+    <string name="match">Match</string>
+    <string name="today_my_horo">Today</string>
+    <string name="monthly">Monthly</string>
+    <string name="yearly">Yearly</string>
 
 
 </resources>

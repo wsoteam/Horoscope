@@ -20,7 +20,7 @@ class InfoFragment : Fragment(R.layout.info_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        signImgs = resources.obtainTypedArray(R.array.info_signs_imgs)
+        signImgs = resources.obtainTypedArray(R.array.sign_draws)
         signNames = resources.getStringArray(R.array.names_signs)
 
         adapter = InfoSignAdapter(signImgs, signNames, object : Callbacks {
