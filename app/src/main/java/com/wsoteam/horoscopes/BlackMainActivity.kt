@@ -115,12 +115,28 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
 
     override fun openMatchResultFragment(matchPair: MatchPair, ownIndex: Int, matchIndex: Int) {
+        matchResultFragment = MatchResultFragment.newInstance(matchPair, ownIndex, matchIndex)
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainerMain, matchResultFragment)
+            .hide(matchFagment)
+            .show(matchResultFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun openPremiumScreen() {
     }
 
     override fun openDescriptionFragment(index: Int) {
+        descriptionFragment = DescriptionFragment.newInstance(index)
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainerMain, descriptionFragment)
+            .hide(infoFragment)
+            .show(descriptionFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun openNextScreen() {

@@ -90,7 +90,7 @@
 
     <style name="BlackMain" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">#f4e6d8</item>
-        <item name="colorPrimaryDark">#0e1112</item>
+        <item name="colorPrimaryDark">#07080a</item>
         <item name="colorAccent">#0e1112</item>
         <item name="android:navigationBarColor">#000000</item>
         <item name="android:windowBackground">@color/background_color</item>
