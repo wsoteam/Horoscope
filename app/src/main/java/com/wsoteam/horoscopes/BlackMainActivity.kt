@@ -16,10 +16,15 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.choiceSign
+import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.app_bar_main.bnvMain
+import kotlinx.android.synthetic.main.black_main_activity.*
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
@@ -54,7 +59,14 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         }
 
         bnvMain.setOnNavigationItemSelectedListener(bnvListener)
+        setBNVOwnSignIcon()
 
+    }
+
+    private fun setBNVOwnSignIcon() {
+        var index = getSignIndexShuffleArray(PreferencesProvider.getBirthday()!!)
+        var iconId = resources.obtainTypedArray(R.array.match_signs_imgs).getResourceId(index, -1)
+        bnvMain.menu.getItem(0).setIcon(iconId)
     }
 
     override fun onResume() {
