@@ -19,20 +19,17 @@ import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
-import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.app_bar_main.bnvMain
-import kotlinx.android.synthetic.main.black_main_activity.*
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
 
     lateinit var vm: MainVM
     var mainFragment = MyHoroscopeFragment() as Fragment
-    var matchFagment = MatchFragment() as Fragment
+    var matchFragment = MatchFragment() as Fragment
     var matchResultFragment = MatchResultFragment() as Fragment
     var infoFragment = InfoFragment() as Fragment
     var descriptionFragment = DescriptionFragment() as Fragment
@@ -45,8 +42,11 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flContainerMain, mainFragment)
-            .add(R.id.flContainerMain, matchFagment)
+            .add(R.id.flContainerMain, matchFragment)
             .add(R.id.flContainerMain, infoFragment)
+            .hide(matchFragment)
+            .hide(infoFragment)
+            .show(mainFragment)
             .commit()
 
         //supportFragmentManager.beginTransaction().replace(R.id.flContainerMain, LoadFragment()).commit()
@@ -75,6 +75,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         super.onResume()
         vm.getLD().observe(this,
             Observer<List<Sign>> {
+
             })
     }
 
@@ -91,6 +92,11 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when (it.itemId) {
             R.id.bnv_main -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .hide(supportFragmentManager.findFragmentById(R.id.flContainerMain)!!)
+                    .show(mainFragment)
+                    .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_info -> {
@@ -105,7 +111,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 supportFragmentManager
                     .beginTransaction()
                     .hide(supportFragmentManager.findFragmentById(R.id.flContainerMain)!!)
-                    .show(matchFagment)
+                    .show(matchFragment)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -133,7 +139,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flContainerMain, matchResultFragment)
-            .hide(matchFagment)
+            .hide(matchFragment)
             .show(matchResultFragment)
             .addToBackStack(null)
             .commit()

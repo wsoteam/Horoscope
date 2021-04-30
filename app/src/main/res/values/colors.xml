@@ -53,6 +53,7 @@
     <color name="disabled_match_sign">#99FFFFFF</color>
 
     <color name="match_result_signs">#bd84fd</color>
+    <color name="img_sign_color">#000000</color>
 
 
 </resources>

@@ -150,7 +150,6 @@
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="today_apos_s_matches">Today\'s matches</string>
-    <string name="love">Love</string>
     <string name="friendship">Friendship</string>
     <string name="career">Career</string>
     <string name="general_mood">General Mood</string>
@@ -405,7 +404,6 @@
     <string name="yearly">Yearly</string>
     <string name="general">General</string>
     <string name="love">Love</string>
-    <string name="career">Career</string>
     <string name="health">Health</string>
     <string name="money">Money</string>
 
