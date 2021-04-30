@@ -403,6 +403,11 @@
     <string name="today_my_horo">Today</string>
     <string name="monthly">Monthly</string>
     <string name="yearly">Yearly</string>
+    <string name="general">General</string>
+    <string name="love">Love</string>
+    <string name="career">Career</string>
+    <string name="health">Health</string>
+    <string name="money">Money</string>
 
 
 </resources>

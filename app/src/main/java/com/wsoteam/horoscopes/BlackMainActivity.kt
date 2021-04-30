@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
+import com.wsoteam.horoscopes.presentation.horoscope.MyHoroscopeFragment
 import com.wsoteam.horoscopes.presentation.info.DescriptionFragment
 import com.wsoteam.horoscopes.presentation.info.InfoFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
@@ -30,7 +31,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
 
     lateinit var vm: MainVM
-    var mainFragment = LoadFragment() as Fragment
+    var mainFragment = MyHoroscopeFragment() as Fragment
     var matchFagment = MatchFragment() as Fragment
     var matchResultFragment = MatchResultFragment() as Fragment
     var infoFragment = InfoFragment() as Fragment
@@ -43,6 +44,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
         supportFragmentManager
             .beginTransaction()
+            .add(R.id.flContainerMain, mainFragment)
             .add(R.id.flContainerMain, matchFagment)
             .add(R.id.flContainerMain, infoFragment)
             .commit()
