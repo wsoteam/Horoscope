@@ -115,7 +115,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_info -> {
-                openPage(MATCH)
+                openPage(INFO)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_match -> {
