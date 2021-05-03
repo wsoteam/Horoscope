@@ -63,6 +63,14 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
         bnvBlackMain.setOnNavigationItemSelectedListener(bnvListener)
         setBNVOwnSignIcon()
+
+        vm.getLD().observe(this,
+            Observer<List<Sign>> {
+                pbMain.visibility = View.GONE
+                fillFragmentList(it)
+                bindFragmentManager()
+                openPage(MAIN)
+            })
     }
 
     private fun bindFragmentManager() {
@@ -84,17 +92,6 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         var index = getSignIndexShuffleArray(PreferencesProvider.getBirthday()!!)
         var iconId = resources.obtainTypedArray(R.array.match_signs_imgs).getResourceId(index, -1)
         bnvBlackMain.menu.getItem(0).setIcon(iconId)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        vm.getLD().observe(this,
-            Observer<List<Sign>> {
-                pbMain.visibility = View.GONE
-                fillFragmentList(it)
-                bindFragmentManager()
-                openPage(MAIN)
-            })
     }
 
     fun reloadNetState() {

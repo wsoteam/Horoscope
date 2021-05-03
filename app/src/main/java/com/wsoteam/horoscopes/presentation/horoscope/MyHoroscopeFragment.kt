@@ -7,6 +7,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import androidx.viewpager.widget.ViewPager
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
@@ -14,6 +15,8 @@ import com.wsoteam.horoscopes.presentation.horoscope.pager.HoroscopePagerAdapter
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.MonthlyFragment
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.TodayFragment
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.YearlyFragment
+import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.my_horoscope_fragment.*
 
 class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
@@ -32,7 +35,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
         pagerAdapter = HoroscopePagerAdapter(childFragmentManager, fragmentList)
         vpHoro.adapter = pagerAdapter
-        vpHoro.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        vpHoro.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -59,6 +62,41 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
             (requireActivity() as MainPageCallbacks).openMatch()
         }
 
+        llLock.setOnClickListener {
+
+        }
+
+        btnShowAd.setOnClickListener {
+            showAd()
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!PreferencesProvider.isShowRewarded && PreferencesProvider.isADEnabled()) {
+            llLock.visibility = View.VISIBLE
+        } else {
+            llLock.visibility = View.GONE
+        }
+    }
+
+    private fun showAd() {
+        if (AdWorker.rewardedAd != null) {
+            AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent()
+
+                }
+            }
+            AdWorker.rewardedAd!!.show(
+                requireActivity()
+            ) {
+                PreferencesProvider.isShowRewarded = true
+            }
+        } else {
+            llLock.visibility = View.GONE
+        }
     }
 
     private fun updateUI() {
@@ -74,7 +112,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
         )
         tvSign.text = resources.getStringArray(R.array.names_signs)[index]
         tvInterval.text = resources.getStringArray(R.array.info_signs_intervals)[index]
-        btnAbout.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null,null)
+        btnAbout.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
     }
 
     private fun fillFragmentList() {
@@ -100,7 +138,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
         }
     }
 
-    interface MainPageCallbacks{
+    interface MainPageCallbacks {
         fun openMatch()
         fun openAbout()
     }

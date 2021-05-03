@@ -14,7 +14,7 @@
         android:textColor="#ffffff"
         android:text="@string/horoscope"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView

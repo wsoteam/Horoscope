@@ -2,17 +2,17 @@
     <string name="app_name">Astropedia</string>
 
     <!--Test-->
-    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
-    <string name="reward_video" translatable="false">ca-app-pub-3940256099942544/5224354917</string>-->
+    <string name="reward_video" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
-    <string name="admob_key" translatable="false">ca-app-pub-3050564412171997~8214816263</string>
+    <!--<string name="admob_key" translatable="false">ca-app-pub-3050564412171997~8214816263</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3050564412171997/6733271683</string>
     <string name="banner_id" translatable="false">ca-app-pub-3050564412171997/9336326247</string>
     <string name="native_ad" translatable="false">ca-app-pub-3050564412171997/4688649542</string>
-    <string name="reward_video" translatable="false">ca-app-pub-9335069695317044/1211431088</string>
+    <string name="reward_video" translatable="false">ca-app-pub-9335069695317044/1211431088</string>-->
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
     <string name="amplitude_id">3031a61ead2f7482d87c899794cec751</string>
@@ -356,8 +356,6 @@
     <string name="date">Date</string>
     <string name="show_compatibility">Show compatibility</string>
     <string name="read_once">Read once</string>
-    <string name="unlock_forever">Unlock forever</string>
-
 
     <integer-array name="match_signs_imgs">
         <item>@drawable/selector_s_aries</item>
@@ -406,6 +404,8 @@
     <string name="love">Love</string>
     <string name="health">Health</string>
     <string name="money">Money</string>
+    <string name="unlock_forever">Unlock forever</string>
+    <string name="get_your_comprehensive_personal_horoscope_by_subscribing_or_watching_ad">Get your comprehensive personal horoscope by subscribing or watching ad</string>
 
 
 </resources>

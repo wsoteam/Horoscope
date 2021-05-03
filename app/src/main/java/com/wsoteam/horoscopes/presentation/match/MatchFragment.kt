@@ -71,12 +71,16 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
         })
 
         btnShow.setOnClickListener {
-            UnlockDialog
-                .newInstance(matchPair)
-                .apply {
-                    setTargetFragment(this@MatchFragment, -1)
-                    show(this@MatchFragment.requireFragmentManager(), "")
-                }
+            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+                UnlockDialog
+                    .newInstance(matchPair)
+                    .apply {
+                        setTargetFragment(this@MatchFragment, -1)
+                        show(this@MatchFragment.requireFragmentManager(), "")
+                    }
+            }else{
+                openMatchResult()
+            }
         }
     }
 
