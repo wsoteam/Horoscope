@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.today_fragment.*
 class YearlyFragment : Fragment(R.layout.yearly_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        /*tvGeneral.text = arguments!!.getString(TodayFragment.TAG_GENERAL)!!*/
+        tvGeneral.text = arguments!!.getString(TodayFragment.TAG_GENERAL)!!
     }
 
 

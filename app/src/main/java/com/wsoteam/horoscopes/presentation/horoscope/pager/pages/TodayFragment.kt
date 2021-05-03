@@ -4,40 +4,38 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.models.Week
 import kotlinx.android.synthetic.main.today_fragment.*
 
 class TodayFragment : Fragment(R.layout.today_fragment) {
 
+    lateinit var general : String
+    lateinit var week: Week
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        /*tvGeneral.text = arguments!!.getString(TAG_GENERAL)!!
-        tvLove.text = arguments!!.getString(TAG_LOVE)!!
-        tvCareer.text = arguments!!.getString(TAG_CAREER)!!
-        tvHealth.text = arguments!!.getString(TAG_HEALTH)!!
-        tvMoney.text = arguments!!.getString(TAG_MONEY)!!*/
+        general = arguments!!.getString(TAG_GENERAL)!!
+        week = arguments!!.getSerializable(TAG_WEEK) as Week
+
+        tvGeneral.text = general
+        tvLove.text = week.love
+        tvCareer.text = week.career
+        tvHealth.text = week.wellness
+        tvMoney.text = week.money
     }
 
     companion object {
 
         const val TAG_GENERAL = "TAG_GENERAL"
-        const val TAG_LOVE = "TAG_LOVE"
-        const val TAG_CAREER = "TAG_CAREER"
-        const val TAG_HEALTH = "TAG_HEALTH"
-        const val TAG_MONEY = "TAG_MONEY"
+        const val TAG_WEEK = "TAG_WEEK"
 
         fun newInstance(
             general: String,
-            love: String,
-            career: String,
-            health: String,
-            money: String
+            week: Week
         ): TodayFragment {
             var args = Bundle().apply {
                 putString(TAG_GENERAL, general)
-                putString(TAG_LOVE, love)
-                putString(TAG_CAREER, career)
-                putString(TAG_HEALTH, health)
-                putString(TAG_MONEY, money)
+                putSerializable(TAG_WEEK, week)
             }
             return TodayFragment().apply {
                 arguments = args

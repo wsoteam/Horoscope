@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,12 +14,14 @@ import com.wsoteam.horoscopes.presentation.horoscope.MyHoroscopeFragment
 import com.wsoteam.horoscopes.presentation.info.DescriptionFragment
 import com.wsoteam.horoscopes.presentation.info.InfoFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
+import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
@@ -28,25 +31,25 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
 
     lateinit var vm: MainVM
-    var mainFragment = MyHoroscopeFragment() as Fragment
+    var mainFragment = LoadFragment() as Fragment
     var matchFragment = MatchFragment() as Fragment
     var matchResultFragment = MatchResultFragment() as Fragment
     var infoFragment = InfoFragment() as Fragment
     var descriptionFragment = DescriptionFragment() as Fragment
     var scanFragment = HandCameraFragment() as Fragment
 
+    var signIndex = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.openMain()
+        signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
 
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flContainerMain, mainFragment)
             .add(R.id.flContainerMain, matchFragment)
             .add(R.id.flContainerMain, infoFragment)
-            .hide(matchFragment)
-            .hide(infoFragment)
-            .show(mainFragment)
             .commit()
 
         //supportFragmentManager.beginTransaction().replace(R.id.flContainerMain, LoadFragment()).commit()
@@ -75,7 +78,9 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         super.onResume()
         vm.getLD().observe(this,
             Observer<List<Sign>> {
-
+                Log.e("LOL", "replace")
+                mainFragment = MyHoroscopeFragment.newInstance(it[signIndex], signIndex)
+                supportFragmentManager.beginTransaction().replace(R.id.flContainerMain, mainFragment).commit()
             })
     }
 

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
@@ -13,7 +14,6 @@ import com.wsoteam.horoscopes.presentation.horoscope.pager.HoroscopePagerAdapter
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.MonthlyFragment
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.TodayFragment
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.YearlyFragment
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.my_horoscope_fragment.*
 
 class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
@@ -32,17 +32,25 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
         pagerAdapter = HoroscopePagerAdapter(childFragmentManager, fragmentList)
         vpHoro.adapter = pagerAdapter
-        tlType.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
+        vpHoro.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
             }
 
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                vpHoro.currentItem = tab!!.position
+            override fun onPageSelected(position: Int) {
+                tlType.getTabAt(position)!!.select()
             }
         })
+
+
+        tlType.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoro))
+
     }
 
     private fun updateUI() {
@@ -58,13 +66,13 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
         )
         tvSign.text = resources.getStringArray(R.array.names_signs)[index]
         tvInterval.text = resources.getStringArray(R.array.info_signs_intervals)[index]
-        btnAbout.setCompoundDrawables(drawable, null, null,null)
+        btnAbout.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null,null)
     }
 
     private fun fillFragmentList() {
-        fragmentList.add(TodayFragment.newInstance(sign.today.text, sign.))
-        fragmentList.add(MonthlyFragment())
-        fragmentList.add(YearlyFragment())
+        fragmentList.add(TodayFragment.newInstance(sign.today.text, sign.week))
+        fragmentList.add(MonthlyFragment.newInstance(sign.month.text))
+        fragmentList.add(YearlyFragment.newInstance(sign.year.text))
     }
 
 
