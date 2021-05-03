@@ -26,10 +26,9 @@ import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.black_main_activity.*
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
-    MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
+    MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks, MyHoroscopeFragment.MainPageCallbacks {
 
     lateinit var vm: MainVM
-    lateinit var mainFragment: MyHoroscopeFragment
     var matchFragment = MatchFragment()
     var matchResultFragment = MatchResultFragment()
     var infoFragment = InfoFragment()
@@ -168,5 +167,19 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     override fun openNextScreen() {
+    }
+
+    override fun openMatch() {
+        bnvBlackMain.selectedItemId = R.id.bnv_match
+    }
+
+    override fun openAbout() {
+        descriptionFragment = DescriptionFragment.newInstance(signIndex)
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainerMain, descriptionFragment)
+            .show(descriptionFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

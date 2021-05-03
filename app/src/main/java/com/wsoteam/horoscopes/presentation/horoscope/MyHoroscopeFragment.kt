@@ -51,6 +51,14 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
         tlType.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(vpHoro))
 
+        btnAbout.setOnClickListener {
+            (requireActivity() as MainPageCallbacks).openAbout()
+        }
+
+        btnMatch.setOnClickListener {
+            (requireActivity() as MainPageCallbacks).openMatch()
+        }
+
     }
 
     private fun updateUI() {
@@ -90,6 +98,11 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
                 arguments = args
             }
         }
+    }
+
+    interface MainPageCallbacks{
+        fun openMatch()
+        fun openAbout()
     }
 
 

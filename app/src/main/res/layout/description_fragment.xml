@@ -8,7 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
 
 
         <ImageView
@@ -16,8 +17,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back_info"
             android:id="@+id/ivBack"
-            android:padding="12dp"
-            android:layout_marginStart="4dp"/>
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"/>
 
 
         <TextView
@@ -29,7 +30,6 @@
             android:textSize="18sp"
             android:textColor="#ffffff"
             tools:text="Pisces + Capricorn"
-            android:layout_gravity="center_vertical"
             />
 
 
