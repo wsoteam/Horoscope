@@ -9,12 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/flContainerMain"
-        android:layout_marginBottom="38dp"/>
+        android:layout_marginBottom="38dp">
+
+
+        <ProgressBar
+            android:id="@+id/pbMain"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+
+    </FrameLayout>
 
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnvMain"
+        android:id="@+id/bnvBlackMain"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:background="#000000"

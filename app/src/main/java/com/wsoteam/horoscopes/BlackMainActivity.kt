@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -9,12 +10,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
-import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
 import com.wsoteam.horoscopes.presentation.horoscope.MyHoroscopeFragment
 import com.wsoteam.horoscopes.presentation.info.DescriptionFragment
 import com.wsoteam.horoscopes.presentation.info.InfoFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
-import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
@@ -23,64 +22,79 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
-import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.black_main_activity.*
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
 
     lateinit var vm: MainVM
-    var mainFragment = LoadFragment() as Fragment
-    var matchFragment = MatchFragment() as Fragment
-    var matchResultFragment = MatchResultFragment() as Fragment
-    var infoFragment = InfoFragment() as Fragment
-    var descriptionFragment = DescriptionFragment() as Fragment
-    var scanFragment = HandCameraFragment() as Fragment
+    lateinit var mainFragment: MyHoroscopeFragment
+    var matchFragment = MatchFragment()
+    var matchResultFragment = MatchResultFragment()
+    var infoFragment = InfoFragment()
+    var descriptionFragment = DescriptionFragment()
+    var scanFragment = HandCameraFragment()
+
+    lateinit var fragmentList: ArrayList<Fragment>
 
     var signIndex = -1
+    var lastPageNumber = 0
+
+    companion object {
+        const val MAIN = 0
+        const val INFO = 1
+        const val MATCH = 2
+        const val SCAN = 0
+        const val SETTINGS = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Analytic.openMain()
         signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
-
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.flContainerMain, mainFragment)
-            .add(R.id.flContainerMain, matchFragment)
-            .add(R.id.flContainerMain, infoFragment)
-            .commit()
-
-        //supportFragmentManager.beginTransaction().replace(R.id.flContainerMain, LoadFragment()).commit()
-
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()
 
-        if (!NetState.isConnected()) {
+        /*if (!NetState.isConnected()) {
             L.log("ConnectionFragment")
             supportFragmentManager.beginTransaction()
                 .replace(R.id.flContainerMain, ConnectionFragment()).commit()
-        }
+        }*/
 
-        bnvMain.setOnNavigationItemSelectedListener(bnvListener)
+        bnvBlackMain.setOnNavigationItemSelectedListener(bnvListener)
         setBNVOwnSignIcon()
+    }
 
+    private fun bindFragmentManager() {
+        for (i in fragmentList.indices) {
+            supportFragmentManager.beginTransaction().add(R.id.flContainerMain, fragmentList[i])
+                .hide(fragmentList[i]).commit()
+        }
+        supportFragmentManager.beginTransaction().show(fragmentList[lastPageNumber])
+    }
+
+    private fun fillFragmentList(signList: List<Sign>) {
+        fragmentList = arrayListOf()
+        fragmentList.add(MyHoroscopeFragment.newInstance(signList[signIndex], signIndex))
+        fragmentList.add(infoFragment)
+        fragmentList.add(matchFragment)
     }
 
     private fun setBNVOwnSignIcon() {
         var index = getSignIndexShuffleArray(PreferencesProvider.getBirthday()!!)
         var iconId = resources.obtainTypedArray(R.array.match_signs_imgs).getResourceId(index, -1)
-        bnvMain.menu.getItem(0).setIcon(iconId)
+        bnvBlackMain.menu.getItem(0).setIcon(iconId)
     }
 
     override fun onResume() {
         super.onResume()
         vm.getLD().observe(this,
             Observer<List<Sign>> {
-                Log.e("LOL", "replace")
-                mainFragment = MyHoroscopeFragment.newInstance(it[signIndex], signIndex)
-                supportFragmentManager.beginTransaction().replace(R.id.flContainerMain, mainFragment).commit()
+                pbMain.visibility = View.GONE
+                fillFragmentList(it)
+                bindFragmentManager()
+                openPage(MAIN)
             })
     }
 
@@ -97,35 +111,18 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when (it.itemId) {
             R.id.bnv_main -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .hide(supportFragmentManager.findFragmentById(R.id.flContainerMain)!!)
-                    .show(mainFragment)
-                    .commit()
+                openPage(MAIN)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_info -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .hide(supportFragmentManager.findFragmentById(R.id.flContainerMain)!!)
-                    .show(infoFragment)
-                    .commit()
+                openPage(MATCH)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_match -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .hide(supportFragmentManager.findFragmentById(R.id.flContainerMain)!!)
-                    .show(matchFragment)
-                    .commit()
+                openPage(MATCH)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_hand -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .hide(supportFragmentManager.findFragmentById(R.id.flContainerMain)!!)
-                    .show(scanFragment)
-                    .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_settings -> {
@@ -136,6 +133,12 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             }
         }
 
+    }
+
+    private fun openPage(numberSection: Int) {
+        supportFragmentManager.beginTransaction().hide(fragmentList[lastPageNumber]).commit()
+        supportFragmentManager.beginTransaction().show(fragmentList[numberSection]).commit()
+        lastPageNumber = numberSection
     }
 
 
