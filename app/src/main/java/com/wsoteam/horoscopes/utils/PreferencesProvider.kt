@@ -228,6 +228,15 @@ object PreferencesProvider {
         set(value) = editor { it?.putInt(GENDER_TAG, value) }!!
 
 
+    private const val RELATIONSHIP_TAG = "RELATIONSHIP_TAG"
+    const val SINGLE = 0
+    const val UNSINGLE = 1
+
+    var userRelationship: Int
+        get() = getInstance()?.getInt(RELATIONSHIP_TAG, SINGLE)!!
+        set(value) = editor { it?.putInt(RELATIONSHIP_TAG, value) }!!
+
+
     private const val BIRTHTIME_TAG = "BIRTHTIME_TAG"
 
     var birthTime: String
@@ -255,6 +264,12 @@ object PreferencesProvider {
     var handInfoIndex: Int
         get() = getInstance()?.getInt(HAND_INFO_TAG, EMPTY_HAND_INFO)!!
         set(value) = editor { it?.putInt(HAND_INFO_TAG, value) }!!
+
+    private const val PLACE_TAG = "PLACE_TAG"
+
+    var userPlace: String
+        get() = getInstance()?.getString(PLACE_TAG, "")!!
+        set(value) = editor { it?.putString(PLACE_TAG, value) }!!
 
 
 }
