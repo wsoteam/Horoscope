@@ -19,6 +19,8 @@ import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
+import com.wsoteam.horoscopes.presentation.profile.ProfileFragment
+import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.choiceSign
@@ -37,6 +39,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var descriptionFragment = DescriptionFragment()
     var scanFragment = HandCameraFragment()
     lateinit var handResultFragment : HandResultsFragment
+     var settingsFragment = ProfileFragment()
 
     lateinit var fragmentList: ArrayList<Fragment>
 
@@ -48,7 +51,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         const val INFO = 1
         const val MATCH = 2
         const val SCAN = 3
-        const val SETTINGS = 0
+        const val SETTINGS = 4
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +99,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         }else{
             fragmentList.add(scanFragment)
         }
+        fragmentList.add(settingsFragment)
     }
 
     private fun setBNVOwnSignIcon() {
@@ -133,6 +137,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_settings -> {
+                openPage(SETTINGS)
                 return@OnNavigationItemSelectedListener true
             }
             else -> {

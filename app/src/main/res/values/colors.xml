@@ -59,5 +59,7 @@
     <color name="head_line">#ed9e44</color>
     <color name="heart_line">#ac78e5</color>
 
+    <color name="privacy_url">#bd84fd</color>
+
 
 </resources>
