@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
+import com.wsoteam.horoscopes.presentation.hand.HandResultsFragment
 import com.wsoteam.horoscopes.presentation.horoscope.MyHoroscopeFragment
 import com.wsoteam.horoscopes.presentation.info.DescriptionFragment
 import com.wsoteam.horoscopes.presentation.info.InfoFragment
@@ -24,6 +25,7 @@ import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.black_main_activity.*
+import kotlin.random.Random
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks, MyHoroscopeFragment.MainPageCallbacks {
@@ -34,6 +36,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var infoFragment = InfoFragment()
     var descriptionFragment = DescriptionFragment()
     var scanFragment = HandCameraFragment()
+    lateinit var handResultFragment : HandResultsFragment
 
     lateinit var fragmentList: ArrayList<Fragment>
 
@@ -44,7 +47,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         const val MAIN = 0
         const val INFO = 1
         const val MATCH = 2
-        const val SCAN = 0
+        const val SCAN = 3
         const val SETTINGS = 0
     }
 
@@ -86,6 +89,13 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         fragmentList.add(MyHoroscopeFragment.newInstance(signList[signIndex], signIndex))
         fragmentList.add(infoFragment)
         fragmentList.add(matchFragment)
+
+        if (PreferencesProvider.handInfoIndex != PreferencesProvider.EMPTY_HAND_INFO){
+            handResultFragment = HandResultsFragment()
+            fragmentList.add(handResultFragment)
+        }else{
+            fragmentList.add(scanFragment)
+        }
     }
 
     private fun setBNVOwnSignIcon() {
@@ -119,6 +129,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_hand -> {
+                openPage(SCAN)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_settings -> {
@@ -164,6 +175,14 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     override fun openNextScreen() {
+        PreferencesProvider.handInfoIndex = Random.nextInt(0, 11)
+        handResultFragment = HandResultsFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flContainerMain, handResultFragment)
+            .remove(scanFragment)
+            .show(handResultFragment)
+            .commit()
     }
 
     override fun openMatch() {

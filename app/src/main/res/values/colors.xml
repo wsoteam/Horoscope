@@ -55,5 +55,9 @@
     <color name="match_result_signs">#bd84fd</color>
     <color name="img_sign_color">#000000</color>
 
+    <color name="life_line">#47b372</color>
+    <color name="head_line">#ed9e44</color>
+    <color name="heart_line">#ac78e5</color>
+
 
 </resources>

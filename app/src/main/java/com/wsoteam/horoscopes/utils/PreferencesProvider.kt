@@ -249,5 +249,12 @@ object PreferencesProvider {
         get() = getInstance()?.getInt(ROAD_AFTER_BUY, DEF_ROAD)!!
         set(value) = editor { it?.putInt(ROAD_AFTER_BUY, value) }!!
 
+    private const val HAND_INFO_TAG = "HAND_INFO_TAG"
+    const val EMPTY_HAND_INFO = -1
+
+    var handInfoIndex: Int
+        get() = getInstance()?.getInt(HAND_INFO_TAG, EMPTY_HAND_INFO)!!
+        set(value) = editor { it?.putInt(HAND_INFO_TAG, value) }!!
+
 
 }

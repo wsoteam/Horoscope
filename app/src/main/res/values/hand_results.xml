@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="hands_imgs">
+        <item>@drawable/img_hand_life</item>
+        <item>@drawable/img_hand_head</item>
+        <item>@drawable/img_head_heart</item>
+    </integer-array>
+
+    <string-array name="hands_titles">
+        <item>Life line</item>
+        <item>Head line</item>
+        <item>Heart line</item>
+    </string-array>
+
+    <integer-array name="progress_shapes">
+        <item>@drawable/cp_p_life</item>
+        <item>@drawable/cp_p_head</item>
+        <item>@drawable/cp_p_heart</item>
+    </integer-array>
+
+    <integer-array name="colors">
+        <item>@color/life_line</item>
+        <item>@color/head_line</item>
+        <item>@color/heart_line</item>
+    </integer-array>
+
+    <integer-array name="hand_percents">
+        <item>@array/percents_var_1</item>
+        <item>@array/percents_var_2</item>
+        <item>@array/percents_var_3</item>
+        <item>@array/percents_var_4</item>
+        <item>@array/percents_var_5</item>
+        <item>@array/percents_var_6</item>
+        <item>@array/percents_var_7</item>
+        <item>@array/percents_var_8</item>
+        <item>@array/percents_var_9</item>
+        <item>@array/percents_var_10</item>
+    </integer-array>
+
+    <integer-array name="hands_texts">
+        <item>@array/hand_texts_var_1</item>
+        <item>@array/hand_texts_var_2</item>
+        <item>@array/hand_texts_var_3</item>
+        <item>@array/hand_texts_var_4</item>
+        <item>@array/hand_texts_var_5</item>
+        <item>@array/hand_texts_var_6</item>
+        <item>@array/hand_texts_var_7</item>
+        <item>@array/hand_texts_var_8</item>
+        <item>@array/hand_texts_var_9</item>
+        <item>@array/hand_texts_var_10</item>
+    </integer-array>
+
+    <integer-array name="percents_var_1">
+        <item>87</item>
+        <item>86</item>
+        <item>78</item>
+    </integer-array>
+
+    <integer-array name="percents_var_2">
+        <item>73</item>
+        <item>72</item>
+        <item>70</item>
+    </integer-array>
+
+    <integer-array name="percents_var_3">
+        <item>87</item>
+        <item>88</item>
+        <item>84</item>
+    </integer-array>
+
+    <integer-array name="percents_var_4">
+        <item>73</item>
+        <item>73</item>
+        <item>71</item>
+    </integer-array>
+
+    <integer-array name="percents_var_5">
+        <item>84</item>
+        <item>88</item>
+        <item>83</item>
+    </integer-array>
+
+    <integer-array name="percents_var_6">
+        <item>86</item>
+        <item>73</item>
+        <item>84</item>
+    </integer-array>
+
+    <integer-array name="percents_var_7">
+        <item>84</item>
+        <item>81</item>
+        <item>73</item>
+    </integer-array>
+
+    <integer-array name="percents_var_8">
+        <item>83</item>
+        <item>77</item>
+        <item>86</item>
+    </integer-array>
+
+    <integer-array name="percents_var_9">
+        <item>87</item>
+        <item>69</item>
+        <item>88</item>
+    </integer-array>
+
+    <integer-array name="percents_var_10">
+        <item>70</item>
+        <item>89</item>
+        <item>90</item>
+    </integer-array>
+
+
+
+
+
+    <string-array name="hand_texts_var_1">
+        <item>You could overcome difficulties with the help of friends and achieve great success in career.</item>
+        <item>It shows you have a strong vitality and are full of energy. Your social status could be upgraded quickly with your hard-working. Even though there is no great achievement during your life, you could be satisfied and enjoy a happy life.</item>
+        <item>You have great verbal dexterity. When meeting your favorite object, you are good at creating a romantic atmosphere and speaking out your love to him/her.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_2">
+        <item>It shows you have a very strong vitality. Especially, you have a strong resistance to disease and self-recovery ability after an illness. In addition, you usually can receive additional strength and support from family members.</item>
+        <item>You are also smart and brilliant. Sometimes, you even have a higher ability to do things.</item>
+        <item>It indicates an abundance of love, great dreams, and high expectations.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_3">
+        <item>You could overcome difficulties with the help of friends and achieve great success in career.</item>
+        <item>You may have many obstructions on the way to start your business or in your work. But by using your wisdom and rich experience, you could get an achievement.</item>
+        <item>It indicates a willingness to sacrifice everything for love</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_4">
+        <item>You have limited energy and are easy to get tired. Also, you are cautious when it comes to relationships</item>
+        <item>You are usually slow to respond, hasty, careless, indecisive and impulsive. However, your advantage is that you could finish the assigned task in a systematic way.</item>
+        <item>It indicates an abundance of love, great dreams, and high expectations.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_5">
+        <item>You are responsive, good at thinking and more considerate than others. At the same time, you are easy to think too much and get into a blind alley.</item>
+        <item>You usually are not stable in life and career during the youth time. After 50 years, you are expected to enjoy a good fortune in a career which also requires you to work hard instead of enjoying your old age.</item>
+        <item>You usually give others an uneasy feeling because you don\'t dare to chase and express your love feelings. So, there are twists and turns with your love relationship or marriage life.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_6">
+        <item>You are gentle, tolerant, realistic and have strong interpersonal skills. In fields like mass media, PR, literature, social sciences, psychology, etc. you can show off your talents completely.</item>
+        <item>It indicates a smooth career fortune during the younger days and a worse fortune after the middle age.</item>
+        <item>It indicates a willingness to sacrifice everything for love</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_7">
+        <item>You have limited energy and are easy to get tired. Also, you are cautious when it comes to relationships</item>
+        <item>You are also smart and brilliant. Sometimes, you even have a higher ability to do things.</item>
+        <item>You are too straightforward, would rather break than bend. In career, you could get success although you undergo a lot of hardships. Only if your career line is clear without broken, you are fit to engage in speculation. In a love aspect, the man is usually romantic and henpecked.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_8">
+        <item>You have limited energy and are easy to get tired. Also, you are cautious when it comes to relationships</item>
+        <item>You may have many obstructions on the way to start your business or in your work. But by using your wisdom and rich experience, you could get an achievement.</item>
+        <item>You could accept two relationships at the same time. You are usually talented, pretty or handsome, attracting the opposite sex greatly.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_9">
+        <item>You could overcome difficulties with the help of friends and achieve great success in career.</item>
+        <item>Strong ability to start and run your own career or business. You usually emphasis on credibility thus could have a successful career with endlessly strives.</item>
+        <item>It shows you are passionate, gentle and usually have a happy family.</item>
+    </string-array>
+
+    <string-array name="hand_texts_var_10">
+        <item>You are suited to a life of physical labor and are good at sports.</item>
+        <item>Strong ability to start and run your own career or business. You usually emphasis on credibility thus could have a successful career with endlessly strives.</item>
+        <item>It indicates purely true love.</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:background="@color/black">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="36dp">
+
+        <ImageView
+            android:id="@+id/ivHand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_hand_example"
+            android:layout_marginStart="60dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="51dp"
+            android:layout_marginEnd="68dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/muller_medium"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                tools:textColor="#47b372"
+                android:layout_gravity="center_horizontal"
+                tools:text="Life line"
+                />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ProgressBar
+                    android:id="@+id/pbMatch"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="94dp"
+                    android:layout_height="94dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@drawable/cp_back_life"
+                    android:indeterminate="false"
+                    android:indeterminateOnly="false"
+                    android:progress="76"
+                    android:progressDrawable="@drawable/cp_p_life"
+                    android:rotation="180" />
+
+
+                <TextView
+                    android:id="@+id/tvProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/muller_medium"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    tools:text="76%"/>
+
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muller"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:layout_marginTop="6dp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="5.4sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="25dp"
+        tools:text="You are susceptible to illness. It doesn’t mean a short lifespan. In personality, you are a person of integrity and down to earth by a little timid. Besides, other people can early influence or control them in life."
+        />
+
+</LinearLayout>
