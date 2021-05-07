@@ -160,6 +160,16 @@
     <style name="CalendarTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColorPrimary">#000000</item>
         <item name="colorAccent">#2e2c5c</item>
+
+    </style>
+
+    <style name="CalendarThemeBlack" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="colorAccent">#6301f6</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText">
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="timePicker" parent="Theme.AppCompat.Light.Dialog">

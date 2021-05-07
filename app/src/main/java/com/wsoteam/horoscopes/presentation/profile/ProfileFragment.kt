@@ -10,6 +10,7 @@ import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.presentation.profile.dialogs.DateFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.form_activity.*
 import kotlinx.android.synthetic.main.profile_fragment.*
@@ -66,6 +67,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
+
+        edtBirth.setOnClickListener {
+            DateFragment().show(requireFragmentManager(), "")
+        }
     }
 
     private fun makeSpan() {
