@@ -1,9 +1,15 @@
 package com.wsoteam.horoscopes
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +36,8 @@ import kotlinx.android.synthetic.main.black_main_activity.*
 import kotlin.random.Random
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
-    MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks, MyHoroscopeFragment.MainPageCallbacks {
+    MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks,
+    MyHoroscopeFragment.MainPageCallbacks {
 
     lateinit var vm: MainVM
     var matchFragment = MatchFragment()
@@ -38,8 +45,8 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var infoFragment = InfoFragment()
     var descriptionFragment = DescriptionFragment()
     var scanFragment = HandCameraFragment()
-    lateinit var handResultFragment : HandResultsFragment
-     var settingsFragment = ProfileFragment()
+    lateinit var handResultFragment: HandResultsFragment
+    var settingsFragment = ProfileFragment()
 
     lateinit var fragmentList: ArrayList<Fragment>
 
@@ -52,6 +59,9 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         const val MATCH = 2
         const val SCAN = 3
         const val SETTINGS = 4
+
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,10 +103,10 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         fragmentList.add(infoFragment)
         fragmentList.add(matchFragment)
 
-        if (PreferencesProvider.handInfoIndex != PreferencesProvider.EMPTY_HAND_INFO){
+        if (PreferencesProvider.handInfoIndex != PreferencesProvider.EMPTY_HAND_INFO) {
             handResultFragment = HandResultsFragment()
             fragmentList.add(handResultFragment)
-        }else{
+        } else {
             fragmentList.add(scanFragment)
         }
         fragmentList.add(settingsFragment)
@@ -134,6 +144,15 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             }
             R.id.bnv_hand -> {
                 openPage(SCAN)
+                if (fragmentList[SCAN] is HandCameraFragment) {
+                    if (allPermissionsGranted()) {
+                        scanFragment.startCamera()
+                    } else {
+                        ActivityCompat.requestPermissions(
+                            this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+                        )
+                    }
+                }
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_settings -> {
@@ -145,6 +164,29 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             }
         }
 
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults:
+        IntArray
+    ) {
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                scanFragment.startCamera()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            this, it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun openPage(numberSection: Int) {
@@ -203,4 +245,6 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             .addToBackStack(null)
             .commit()
     }
+
+
 }

@@ -27,9 +27,9 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
+class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
 
-    interface Callbacks{
+    interface Callbacks {
         fun openNextScreen()
     }
 
@@ -48,16 +48,6 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
         super.onViewCreated(view, savedInstanceState)
 
         initObjectDetector()
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-        }
-
         cameraExecutor = Executors.newSingleThreadExecutor()
         disableHandDetected()
 
@@ -80,7 +70,7 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
             ivScan.translationY = it.animatedValue.toString().toFloat()
         }
 
-        objectAnimator.addListener(object : Animator.AnimatorListener{
+        objectAnimator.addListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
@@ -109,7 +99,7 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
                     if (tvIdicator.isEnabled && Calendar.getInstance().timeInMillis - lastDetect >= LOST_DETECT_INTERVAL) {
                         disableHandDetected()
                     }
-                }catch (ex : java.lang.Exception){
+                } catch (ex: java.lang.Exception) {
 
                 }
             }
@@ -131,7 +121,7 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
     }
 
 
-    private fun startCamera() {
+    fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener(Runnable {
@@ -147,7 +137,8 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
                 .build()
 
             val imageAnalyzer = ImageAnalysis.Builder().build().also {
-                it.setAnalyzer(cameraExecutor,
+                it.setAnalyzer(
+                    cameraExecutor,
                     ImageAnalyzer(
                         object :
                             IImageAnalyzer {
@@ -215,23 +206,7 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray
-    ) {
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                startCamera()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                requireActivity().finish()
-            }
-        }
-    }
+
 
 
     companion object {

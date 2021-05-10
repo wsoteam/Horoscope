@@ -22,6 +22,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
+import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
 import kotlinx.android.synthetic.main.hand_camera_activity.*
@@ -32,18 +33,60 @@ import java.util.concurrent.Executors
 class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_host_activity),
     HandCameraFragment.Callbacks {
 
+    lateinit var handCameraFragment: HandCameraFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        handCameraFragment = HandCameraFragment()
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainer, HandCameraFragment())
+            .add(R.id.flContainer, handCameraFragment)
             .commit()
+
+
+        if (allPermissionsGranted()) {
+            handCameraFragment.startCamera()
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
+            )
+        }
 
     }
 
     override fun openNextScreen() {
         startActivity(Intent(this, EnterActivity::class.java))
         finishAffinity()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults:
+        IntArray
+    ) {
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                handCameraFragment.startCamera()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                onBackPressed()
+            }
+        }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            this, it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    companion object {
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }
 }
