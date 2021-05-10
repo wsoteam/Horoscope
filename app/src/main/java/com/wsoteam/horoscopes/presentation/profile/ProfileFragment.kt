@@ -1,5 +1,7 @@
 package com.wsoteam.horoscopes.presentation.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
@@ -11,13 +13,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.profile.dialogs.DateFragment
+import com.wsoteam.horoscopes.presentation.profile.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.form_activity.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.edtName
 import java.util.*
 
-class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callbacks {
+class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callbacks, TimeDialog.Callbacks {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +45,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callba
             selectGender(PreferencesProvider.FEMALE)
         }
         tvPrivacy.setOnClickListener {
-
+            var intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://cloud.mail.ru/public/3DGd/aR8UVay3N")
+            startActivity(intent)
         }
 
         edtName.addTextChangedListener(object : TextWatcher {
@@ -75,8 +80,23 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callba
                     setTargetFragment(this@ProfileFragment, -1)
                     show(this@ProfileFragment.requireFragmentManager(), "")
                 }
-
         }
+
+        edtTimeBirth.setOnClickListener {
+            TimeDialog
+                .newInstance(getMinute(), getHour()).apply {
+                    setTargetFragment(this@ProfileFragment, -1)
+                    show(this@ProfileFragment.requireFragmentManager(), "")
+                }
+        }
+    }
+
+    private fun getMinute(): Int {
+        return PreferencesProvider.birthTime.split(":")[1].toInt()
+    }
+
+    private fun getHour(): Int {
+        return PreferencesProvider.birthTime.split(":")[0].toInt()
     }
 
     private fun getYear(): Int {
@@ -148,5 +168,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callba
     override fun setNewBirthday(date: String) {
         edtBirth.setText(date)
         PreferencesProvider.setBirthday(date)
+    }
+
+    override fun setNewTime(time: String) {
+        edtTimeBirth.setText(time)
+        PreferencesProvider.birthTime = time
     }
 }
