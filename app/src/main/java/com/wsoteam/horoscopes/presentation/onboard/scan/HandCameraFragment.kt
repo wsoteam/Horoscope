@@ -105,8 +105,12 @@ class HandCameraFragment :Fragment(R.layout.hand_camera_activity) {
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                if (tvIdicator.isEnabled && Calendar.getInstance().timeInMillis - lastDetect >= LOST_DETECT_INTERVAL) {
-                    disableHandDetected()
+                try {
+                    if (tvIdicator.isEnabled && Calendar.getInstance().timeInMillis - lastDetect >= LOST_DETECT_INTERVAL) {
+                        disableHandDetected()
+                    }
+                }catch (ex : java.lang.Exception){
+
                 }
             }
         }

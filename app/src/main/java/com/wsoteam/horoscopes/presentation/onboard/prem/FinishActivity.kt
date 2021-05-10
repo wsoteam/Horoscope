@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.premium.SubsIds
@@ -32,7 +33,7 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
         super.onCreate(savedInstanceState)
         setPrice()
         tvSkip.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, BlackMainActivity::class.java))
             finishAffinity()
         }
 
@@ -71,7 +72,7 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, BlackMainActivity::class.java))
         finishAffinity()
     }
 

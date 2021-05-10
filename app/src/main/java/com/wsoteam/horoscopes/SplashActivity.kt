@@ -28,6 +28,7 @@ import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.ILoadState
 import com.wsoteam.horoscopes.presentation.main.MainVM
+import com.wsoteam.horoscopes.presentation.onboard.HostActivity
 import com.wsoteam.horoscopes.presentation.premium.ab.DayCatPremiumActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.EnterActivity
 import com.wsoteam.horoscopes.presentation.premium.onboarding.diamond.DiamondEnterActivity
@@ -114,7 +115,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             if (!PreferencesProvider.isShowOnboard) {
                 L.log(PreferencesProvider.getVersion()!!)
                 PreferencesProvider.isShowOnboard = true
-                intent = when (PreferencesProvider.getVersion()) {
+                /*intent = when (PreferencesProvider.getVersion()) {
                     ABConfig.A -> {
                         dropNewTheme()
                         Intent(this, DiamondEnterActivity::class.java)
@@ -151,7 +152,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                         setNewTheme()
                         Intent(this, EnterActivity::class.java)
                     }
-                }
+                }*/
+                setNewTheme()
+                intent = Intent(this, HostActivity::class.java)
                 L.log("Enter activity enter")
             } else {
                 intent = Intent(this, FormActivity::class.java)

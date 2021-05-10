@@ -193,7 +193,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ivToolShare.visibility = View.GONE
         }
 
-        Log.e("LOL", "Main create")
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         supportFragmentManager
