@@ -1,6 +1,6 @@
 package com.wsoteam.horoscopes
 
-import android.app.PendingIntent
+import android.app.*
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
@@ -24,21 +24,16 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.astrologer.WomanActivity
 import com.wsoteam.horoscopes.presentation.astrologer.hands.HandsActivity
 import com.wsoteam.horoscopes.presentation.ball.BallFragment
 import com.wsoteam.horoscopes.presentation.empty.ConnectionFragment
-import com.wsoteam.horoscopes.presentation.info.DescriptionFragment
-import com.wsoteam.horoscopes.presentation.info.InfoFragment
 import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
-import com.wsoteam.horoscopes.presentation.match.MatchFragment
-import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.HostActivity
-import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
+import com.wsoteam.horoscopes.presentation.onboard.prem.FinishActivity
 import com.wsoteam.horoscopes.presentation.premium.PremiumFragment
 import com.wsoteam.horoscopes.presentation.premium.PremiumHostActivity
 import com.wsoteam.horoscopes.presentation.settings.SettingsActivity
@@ -56,8 +51,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var vm: MainVM
     var birthSignIndex = -1
@@ -68,11 +62,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var premFragment = PremiumFragment()
     var mainFragment = LoadFragment() as Fragment
     var ballFragment = BallFragment() as Fragment
-    var matchFagment = MatchFragment() as Fragment
-    var matchResultFragment = MatchResultFragment() as Fragment
-    var infoFragment = InfoFragment() as Fragment
-    var descriptionFragment = DescriptionFragment() as Fragment
-    var scanFragment = HandCameraFragment() as Fragment
 
     var listIndexes = listOf<Int>(
         R.id.nav_aries, R.id.nav_taurus,
@@ -87,34 +76,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 openMainFragment()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.bnv_info -> {
-                window.statusBarColor = Color.rgb(0, 0, 0)
-                nestedScrollView.visibility = View.GONE
-                flContainerMatch.visibility = View.VISIBLE
-                supportFragmentManager.beginTransaction().hide(mainFragment)
-                    .add(R.id.flContainerMatch, infoFragment).show(infoFragment).commit()
-                changeNavigationState(false)
+            R.id.bnv_prem -> {
+                PreferencesProvider.setBeforePremium(Analytic.nav_premium)
+                openPremiumFragment()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.bnv_match -> {
-                window.statusBarColor = Color.rgb(0, 0, 0)
-                nestedScrollView.visibility = View.GONE
-                flContainerMatch.visibility = View.VISIBLE
-                supportFragmentManager.beginTransaction().hide(mainFragment)
-                    .add(R.id.flContainerMatch, matchFagment).show(matchFagment).commit()
-                changeNavigationState(false)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.bnv_hand -> {
-                window.statusBarColor = Color.rgb(0, 0, 0)
-                nestedScrollView.visibility = View.GONE
-                flContainerMatch.visibility = View.VISIBLE
-                supportFragmentManager.beginTransaction().hide(mainFragment)
-                    .add(R.id.flContainerMatch, scanFragment).show(scanFragment).commit()
-                changeNavigationState(false)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.bnv_settings -> {
+            R.id.bnv_balls -> {
+                openBallFragment()
                 return@OnNavigationItemSelectedListener true
             }
             else -> {
@@ -202,6 +170,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    fun openPremSection() {
+        bnvMain.selectedItemId = R.id.bnv_prem
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -217,7 +189,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setWhiteViews()
         }
 
-        if (Config.FOR_TEST) {
+        if (Config.FOR_TEST){
             ivToolShare.visibility = View.GONE
         }
 
@@ -230,7 +202,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .add(R.id.flContainer, BallFragment())
             .commit()
 
-        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST && false) {
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST) {
             adView.visibility = View.VISIBLE
             adView.loadAd(AdRequest.Builder().build())
         }
@@ -246,14 +218,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (PreferencesProvider.getVersion() != ABConfig.A && PreferencesProvider.getVersion() != ABConfig.G) {
             ivToolAstro.visibility = View.VISIBLE
             var intent = when (PreferencesProvider.getVersion()) {
-                ABConfig.B, ABConfig.C, ABConfig.H -> Intent(
-                    this@MainActivity,
-                    WomanActivity::class.java
-                )
-                ABConfig.E, ABConfig.D, ABConfig.F -> Intent(
-                    this@MainActivity,
-                    HandsActivity::class.java
-                )
+                ABConfig.B, ABConfig.C, ABConfig.H -> Intent(this@MainActivity, WomanActivity::class.java)
+                ABConfig.E, ABConfig.D, ABConfig.F -> Intent(this@MainActivity, HandsActivity::class.java)
                 else -> Intent(this@MainActivity, WomanActivity::class.java)
             }
             ivToolAstro.setOnClickListener {
@@ -316,11 +282,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         bnvMain.setOnNavigationItemSelectedListener(bnvListener)
         if (!PreferencesProvider.isADEnabled()) {
+            bnvMain.menu.removeItem(R.id.bnv_prem)
             nav_view.menu.removeItem(R.id.nav_off_ads)
         }
 
-        //startActivity(Intent(this, HostActivity::class.java))
-        //startActivity(Intent(this, FinishActivity::class.java))
     }
 
     private fun setWhiteViews() {
@@ -335,29 +300,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun changeNavigationDrawer() {
     }
 
-    override fun openMatchResultFragment(matchPair: MatchPair, ownIndex: Int, matchIndex: Int) {
-        matchResultFragment = MatchResultFragment.newInstance(matchPair, ownIndex, matchIndex)
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.flContainerMatch, matchResultFragment)
-            .hide(matchFagment)
-            .show(matchResultFragment)
-            .commit()
-    }
-
-    override fun openDescriptionFragment(index: Int) {
-        descriptionFragment = DescriptionFragment.newInstance(index)
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.flContainerMatch, descriptionFragment)
-            .hide(infoFragment)
-            .show(descriptionFragment)
-            .commit()
-    }
-
-    override fun openNextScreen() {
-    }
-
     override fun onResume() {
         super.onResume()
         vm.getLD().observe(this,
@@ -365,6 +307,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.e("LOL", "observe")
                 setFirstUI()
             })
+        //kek()
+        //lol()
     }
 
     private fun share() {
@@ -427,16 +371,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
     }
 
-    override fun openPremiumScreen() {
-        PreferencesProvider.roadAfterBuy = PreferencesProvider.MATCH_RESULT_ROAD
-        startActivity(
-            Intent(this, PremiumHostActivity::class.java).putExtra(
-                Config.OPEN_PREM,
-                Config.OPEN_PREM_FROM_MATCH
-            )
-        )
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         L.log("onNavigationItemSelected")
         val index = listIndexes.indexOf(item.itemId)
@@ -472,7 +406,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     transaction.addToBackStack(null)
                 }
                 transaction.commit()
-
                 tvToolTitle.text = getString(R.string.settings)
                 if (llTools.visibility == View.VISIBLE) {
                     llTools.visibility = View.INVISIBLE
@@ -527,5 +460,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-}
 
+
+
+
+}

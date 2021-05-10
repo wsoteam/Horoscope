@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bnv_main"
+        android:icon="@drawable/ic_bnav_main" />
+
+    <item
+        android:id="@+id/bnv_info"
+        android:icon="@drawable/ic_bnav_info" />
+
+    <item
+        android:id="@+id/bnv_match"
+        android:icon="@drawable/ic_bnav_match"/>
+
+    <item
+        android:id="@+id/bnv_hand"
+        android:icon="@drawable/ic_bnav_hand"/>
+
+
+    <item
+        android:id="@+id/bnv_settings"
+        android:icon="@drawable/ic_bnav_settings"/>
+
+
+</menu>

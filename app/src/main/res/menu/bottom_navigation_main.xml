@@ -3,24 +3,18 @@
 
     <item
         android:id="@+id/bnv_main"
-        android:icon="@drawable/ic_bnav_main" />
+        android:icon="@drawable/ic_horos_bnv"
+        android:title="@string/horoscope" />
 
     <item
-        android:id="@+id/bnv_info"
-        android:icon="@drawable/ic_bnav_info" />
+        android:id="@+id/bnv_prem"
+        android:icon="@drawable/ic_prem_bnv"
+        android:title="@string/premium" />
 
     <item
-        android:id="@+id/bnv_match"
-        android:icon="@drawable/ic_bnav_match"/>
-
-    <item
-        android:id="@+id/bnv_hand"
-        android:icon="@drawable/ic_bnav_hand"/>
-
-
-    <item
-        android:id="@+id/bnv_settings"
-        android:icon="@drawable/ic_bnav_settings"/>
+        android:id="@+id/bnv_balls"
+        android:icon="@drawable/ic_ball_bnv"
+        android:title="@string/magic_ball"/>
 
 
 </menu>
