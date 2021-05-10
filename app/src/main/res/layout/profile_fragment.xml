@@ -68,6 +68,7 @@
             android:textStyle="normal"
             android:textColor="#DEFFFFFF"
             android:hint="Date of Birth"
+            android:focusable="false"
             android:backgroundTint="#66FFFFFF"
             android:textColorHint="#99FFFFFF"
             android:inputType="textCapSentences"

@@ -15,8 +15,9 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.form_activity.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.edtName
+import java.util.*
 
-class ProfileFragment : Fragment(R.layout.profile_fragment) {
+class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callbacks {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,9 +70,27 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         })
 
         edtBirth.setOnClickListener {
-            DateFragment().show(requireFragmentManager(), "")
+            DateFragment
+                .newInstance(getDay(), getMonth(), getYear()).apply {
+                    setTargetFragment(this@ProfileFragment, -1)
+                    show(this@ProfileFragment.requireFragmentManager(), "")
+                }
+
         }
     }
+
+    private fun getYear(): Int {
+        return PreferencesProvider.getBirthday()!!.split(".")[2].toInt()
+    }
+
+    private fun getMonth(): Int {
+        return PreferencesProvider.getBirthday()!!.split(".")[1].toInt()
+    }
+
+    private fun getDay(): Int {
+        return PreferencesProvider.getBirthday()!!.split(".")[0].toInt()
+    }
+
 
     private fun makeSpan() {
         var span = SpannableString(tvPrivacy.text)
@@ -124,5 +143,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             flFemale.isSelected = true
             PreferencesProvider.userGender = PreferencesProvider.FEMALE
         }
+    }
+
+    override fun setNewBirthday(date: String) {
+        edtBirth.setText(date)
+        PreferencesProvider.setBirthday(date)
     }
 }
