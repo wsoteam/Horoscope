@@ -1,8 +1,10 @@
 package com.wsoteam.horoscopes.presentation.onboard.prem
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.BlackMainActivity
@@ -40,6 +42,10 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
                 }
             })
         }
+
+        if (intent?.getBooleanExtra(FROM_TAG, false) == true){
+            ivClose.visibility = View.INVISIBLE
+        }
     }
 
     private fun setUserData() {
@@ -75,5 +81,15 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
         PreferencesProvider.setADStatus(false)
         startActivity(Intent(this, BlackMainActivity::class.java))
         finishAffinity()
+    }
+
+    companion object{
+        private const val FROM_TAG = "FROM_TAG"
+
+        fun getIntent(context: Context, isFromMain : Boolean) : Intent{
+            return Intent(context, EnterActivity::class.java).apply {
+                putExtra(FROM_TAG, isFromMain)
+            }
+        }
     }
 }

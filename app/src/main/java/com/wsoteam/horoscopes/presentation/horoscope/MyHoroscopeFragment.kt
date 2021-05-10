@@ -15,6 +15,7 @@ import com.wsoteam.horoscopes.presentation.horoscope.pager.HoroscopePagerAdapter
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.MonthlyFragment
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.TodayFragment
 import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.YearlyFragment
+import com.wsoteam.horoscopes.presentation.profile.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.my_horoscope_fragment.*
@@ -68,6 +69,10 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
         btnShowAd.setOnClickListener {
             showAd()
+        }
+
+        btnPrem.setOnClickListener {
+            (requireActivity() as MainPageCallbacks).openPremFromMain()
         }
 
     }
@@ -141,6 +146,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
     interface MainPageCallbacks {
         fun openMatch()
         fun openAbout()
+        fun openPremFromMain()
     }
 
 

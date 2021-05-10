@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ import com.wsoteam.horoscopes.presentation.main.LoadFragment
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
 import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
+import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.presentation.profile.ProfileFragment
 import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
@@ -190,7 +192,9 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     private fun openPage(numberSection: Int) {
+
         supportFragmentManager.beginTransaction().hide(fragmentList[lastPageNumber]).commit()
+
         supportFragmentManager.beginTransaction().show(fragmentList[numberSection]).commit()
         lastPageNumber = numberSection
     }
@@ -208,6 +212,11 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     override fun openPremiumScreen() {
+        startActivity(EnterActivity.getIntent(this, true))
+    }
+
+    override fun openPremFromMain() {
+        startActivity(EnterActivity.getIntent(this, true))
     }
 
     override fun openDescriptionFragment(index: Int) {
@@ -219,6 +228,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             .show(descriptionFragment)
             .addToBackStack(null)
             .commit()
+
     }
 
     override fun openNextScreen() {
