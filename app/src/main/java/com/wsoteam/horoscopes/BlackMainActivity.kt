@@ -293,6 +293,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         supportFragmentManager
             .beginTransaction()
             .add(R.id.flContainerMain, mainFragments[mainFragments.size - 1])
+            .hide(mainFragments[0])
             .show(mainFragments[mainFragments.size - 1])
             .commit()
     }
