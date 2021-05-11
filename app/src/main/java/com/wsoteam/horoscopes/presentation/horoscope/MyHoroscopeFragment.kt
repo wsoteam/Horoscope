@@ -64,7 +64,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
         }
 
         llLock.setOnClickListener {
-
+            //empty listener for intercept clicks and scroll
         }
 
         btnShowAd.setOnClickListener {

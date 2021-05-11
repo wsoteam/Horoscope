@@ -35,6 +35,7 @@ import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.black_main_activity.*
+import java.lang.Exception
 import kotlin.random.Random
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
@@ -42,18 +43,22 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MyHoroscopeFragment.MainPageCallbacks {
 
     lateinit var vm: MainVM
-    var matchFragment = MatchFragment()
-    var matchResultFragment = MatchResultFragment()
-    var infoFragment = InfoFragment()
-    var descriptionFragment = DescriptionFragment()
-    var scanFragment = HandCameraFragment()
-    lateinit var handResultFragment: HandResultsFragment
+
     var settingsFragment = ProfileFragment()
 
-    lateinit var fragmentList: ArrayList<Fragment>
+    lateinit var fragmentList: ArrayList<ArrayList<Fragment>>
+
+    lateinit var mainFragments: ArrayList<Fragment>
+    lateinit var infoFragments: ArrayList<Fragment>
+    lateinit var matchFragments: ArrayList<Fragment>
+    lateinit var handCameras: ArrayList<Fragment>
+    lateinit var settingsFragments: ArrayList<Fragment>
 
     var signIndex = -1
     var lastPageNumber = 0
+
+    var isNeedRemove = false
+
 
     companion object {
         const val MAIN = 0
@@ -61,6 +66,8 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         const val MATCH = 2
         const val SCAN = 3
         const val SETTINGS = 4
+
+        const val MATCH_RESULT = "MATCH_RESULT"
 
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
@@ -93,25 +100,51 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
     private fun bindFragmentManager() {
         for (i in fragmentList.indices) {
-            supportFragmentManager.beginTransaction().add(R.id.flContainerMain, fragmentList[i])
-                .hide(fragmentList[i]).commit()
+            for (j in fragmentList[i].indices) {
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.flContainerMain, fragmentList[i][j])
+                    .hide(fragmentList[i][j]).commit()
+            }
         }
-        supportFragmentManager.beginTransaction().show(fragmentList[lastPageNumber])
+        supportFragmentManager.beginTransaction()
+            .show(fragmentList[lastPageNumber][fragmentList[lastPageNumber].size - 1])
     }
 
     private fun fillFragmentList(signList: List<Sign>) {
+        mainFragments = arrayListOf()
+        infoFragments = arrayListOf()
+        matchFragments = arrayListOf()
+        handCameras = arrayListOf()
+        settingsFragments = arrayListOf()
+
         fragmentList = arrayListOf()
-        fragmentList.add(MyHoroscopeFragment.newInstance(signList[signIndex], signIndex))
-        fragmentList.add(infoFragment)
-        fragmentList.add(matchFragment)
+
+        var horoFragment = MyHoroscopeFragment.newInstance(signList[signIndex], signIndex)
+        mainFragments.add(horoFragment)
+
+        var infoFragment = InfoFragment()
+        infoFragments.add(infoFragment)
+
+        var matchFragment = MatchFragment()
+        matchFragments.add(matchFragment)
 
         if (PreferencesProvider.handInfoIndex != PreferencesProvider.EMPTY_HAND_INFO) {
-            handResultFragment = HandResultsFragment()
-            fragmentList.add(handResultFragment)
+            var handResultsFragment = HandResultsFragment()
+            handCameras.add(handResultsFragment)
         } else {
-            fragmentList.add(scanFragment)
+            var handCameraFragment = HandCameraFragment()
+            handCameras.add(handCameraFragment)
         }
-        fragmentList.add(settingsFragment)
+
+        var settingsFragment = ProfileFragment()
+        settingsFragments.add(settingsFragment)
+
+        fragmentList.add(mainFragments)
+        fragmentList.add(infoFragments)
+        fragmentList.add(matchFragments)
+        fragmentList.add(handCameras)
+        fragmentList.add(settingsFragments)
+
     }
 
     private fun setBNVOwnSignIcon() {
@@ -145,17 +178,18 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_hand -> {
-                openPage(SCAN)
-                if (fragmentList[SCAN] is HandCameraFragment) {
-                    if (allPermissionsGranted()) {
-                        scanFragment.startCamera()
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-                        )
+                if (allPermissionsGranted()) {
+                    openPage(SCAN)
+                    if (fragmentList[SCAN][fragmentList[SCAN].size - 1] is HandCameraFragment) {
+                        (fragmentList[SCAN][fragmentList[SCAN].size - 1] as HandCameraFragment).startCamera()
                     }
+                    return@OnNavigationItemSelectedListener true
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+                    )
+                    return@OnNavigationItemSelectedListener false
                 }
-                return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_settings -> {
                 openPage(SETTINGS)
@@ -174,7 +208,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
-                scanFragment.startCamera()
+                bnvBlackMain.selectedItemId = R.id.bnv_hand
             } else {
                 Toast.makeText(
                     this,
@@ -192,22 +226,27 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     private fun openPage(numberSection: Int) {
+        supportFragmentManager.beginTransaction()
+            .hide(fragmentList[lastPageNumber][fragmentList[lastPageNumber].size - 1]).commit()
+        if (isNeedRemove) {
+            fragmentList[lastPageNumber].removeAt(fragmentList[lastPageNumber].size - 1)
+        }
+        supportFragmentManager.beginTransaction()
+            .show(fragmentList[numberSection][fragmentList[numberSection].size - 1]).commit()
 
-        supportFragmentManager.beginTransaction().hide(fragmentList[lastPageNumber]).commit()
-
-        supportFragmentManager.beginTransaction().show(fragmentList[numberSection]).commit()
         lastPageNumber = numberSection
+        isNeedRemove = false
     }
 
 
     override fun openMatchResultFragment(matchPair: MatchPair, ownIndex: Int, matchIndex: Int) {
-        matchResultFragment = MatchResultFragment.newInstance(matchPair, ownIndex, matchIndex)
+        var matchResultFragment = MatchResultFragment.newInstance(matchPair, ownIndex, matchIndex)
+        matchFragments.add(matchResultFragment)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainerMain, matchResultFragment)
-            .hide(matchFragment)
-            .show(matchResultFragment)
-            .addToBackStack(null)
+            .add(R.id.flContainerMain, matchFragments[matchFragments.size - 1])
+            .hide(matchFragments[0])
+            .show(matchFragments[matchFragments.size - 1])
             .commit()
     }
 
@@ -220,26 +259,28 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     override fun openDescriptionFragment(index: Int) {
-        descriptionFragment = DescriptionFragment.newInstance(index)
+        var descriptionFragment = DescriptionFragment.newInstance(index)
+        infoFragments.add(descriptionFragment)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainerMain, descriptionFragment)
-            .hide(infoFragment)
-            .show(descriptionFragment)
-            .addToBackStack(null)
+            .add(R.id.flContainerMain, infoFragments[infoFragments.size - 1])
+            .hide(infoFragments[0])
+            .show(infoFragments[infoFragments.size - 1])
             .commit()
-
     }
 
     override fun openNextScreen() {
         PreferencesProvider.handInfoIndex = Random.nextInt(0, 11)
-        handResultFragment = HandResultsFragment()
+        var handResultFragment = HandResultsFragment()
+        handCameras.add(handResultFragment)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainerMain, handResultFragment)
-            .remove(scanFragment)
-            .show(handResultFragment)
+            .add(R.id.flContainerMain, fragmentList[SCAN][fragmentList[SCAN].size - 1])
+            .remove(fragmentList[SCAN][0])
+            .show(fragmentList[SCAN][fragmentList[SCAN].size - 1])
             .commit()
+
+        fragmentList[SCAN].removeAt(0)
     }
 
     override fun openMatch() {
@@ -247,14 +288,47 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     override fun openAbout() {
-        descriptionFragment = DescriptionFragment.newInstance(signIndex)
+        var descriptionFragment = DescriptionFragment.newInstance(signIndex)
+        mainFragments.add(descriptionFragment)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainerMain, descriptionFragment)
-            .show(descriptionFragment)
-            .addToBackStack(null)
+            .add(R.id.flContainerMain, mainFragments[mainFragments.size - 1])
+            .show(mainFragments[mainFragments.size - 1])
             .commit()
     }
 
-
+    override fun onBackPressed() {
+        when (bnvBlackMain.selectedItemId) {
+            R.id.bnv_main -> {
+                if (fragmentList[0].size > 1) {
+                    isNeedRemove = true
+                    bnvBlackMain.selectedItemId = R.id.bnv_main
+                } else {
+                    super.onBackPressed()
+                }
+            }
+            R.id.bnv_info -> {
+                if (fragmentList[1].size > 1) {
+                    isNeedRemove = true
+                    bnvBlackMain.selectedItemId = R.id.bnv_info
+                } else {
+                    bnvBlackMain.selectedItemId = R.id.bnv_main
+                }
+            }
+            R.id.bnv_match -> {
+                if (fragmentList[2].size > 1) {
+                    isNeedRemove = true
+                    bnvBlackMain.selectedItemId = R.id.bnv_match
+                } else {
+                    bnvBlackMain.selectedItemId = R.id.bnv_main
+                }
+            }
+            R.id.bnv_hand -> {
+                bnvBlackMain.selectedItemId = R.id.bnv_main
+            }
+            R.id.bnv_settings -> {
+                bnvBlackMain.selectedItemId = R.id.bnv_main
+            }
+        }
+    }
 }
