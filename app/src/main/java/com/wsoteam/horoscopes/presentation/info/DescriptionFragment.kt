@@ -24,6 +24,11 @@ class DescriptionFragment : Fragment(R.layout.description_fragment){
         tvQuality.text = resources.getStringArray(R.array.info_signs_quality)[index]
         tvLuckyDates.text = resources.getStringArray(R.array.info_signs_lucky_dates)[index]
         tvDescription.text = resources.getStringArray(R.array.info_signs_description)[index]
+
+        ivBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
     }
 
     companion object{
