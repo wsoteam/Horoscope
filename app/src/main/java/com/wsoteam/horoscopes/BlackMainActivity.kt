@@ -40,11 +40,9 @@ import kotlin.random.Random
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     MatchFragment.Callbacks, InfoFragment.InfoFragmentCallbacks, HandCameraFragment.Callbacks,
-    MyHoroscopeFragment.MainPageCallbacks {
+    MyHoroscopeFragment.MainPageCallbacks, ProfileFragment.Callbacks {
 
     lateinit var vm: MainVM
-
-    var settingsFragment = ProfileFragment()
 
     lateinit var fragmentList: ArrayList<ArrayList<Fragment>>
 
@@ -58,7 +56,6 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var lastPageNumber = 0
 
     var isNeedRemove = false
-
 
     companion object {
         const val MAIN = 0
@@ -297,6 +294,30 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             .show(mainFragments[mainFragments.size - 1])
             .commit()
     }
+
+    override fun refreshSing() {
+        signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
+        setBNVOwnSignIcon()
+
+        for (i in matchFragments.indices){
+            matchFragments.removeAt(i)
+        }
+
+        for (i in mainFragments.indices){
+            mainFragments.removeAt(i)
+        }
+
+        matchFragments.add(MatchFragment())
+        mainFragments.add(MyHoroscopeFragment.newInstance(vm.getLD().value!![signIndex], signIndex))
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.flContainerMain, matchFragments[0])
+            .add(R.id.flContainerMain, mainFragments[0])
+            .hide(matchFragments[0])
+            .hide(mainFragments[0])
+            .commit()
+    }
+
 
     override fun onBackPressed() {
         when (bnvBlackMain.selectedItemId) {

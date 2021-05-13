@@ -22,6 +22,10 @@ import java.util.*
 
 class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callbacks, TimeDialog.Callbacks {
 
+    interface Callbacks{
+        fun refreshSing()
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -168,6 +172,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callba
     override fun setNewBirthday(date: String) {
         edtBirth.setText(date)
         PreferencesProvider.setBirthday(date)
+        (requireActivity() as Callbacks).refreshSing()
     }
 
     override fun setNewTime(time: String) {

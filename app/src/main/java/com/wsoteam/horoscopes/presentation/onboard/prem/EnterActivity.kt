@@ -44,7 +44,9 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
         }
 
         if (intent?.getBooleanExtra(FROM_TAG, false) == true){
-            ivClose.visibility = View.INVISIBLE
+            ivClose.setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 

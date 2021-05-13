@@ -32,7 +32,7 @@
         android:layout_gravity="bottom"
         android:theme="@style/Widget.BottomNavigationView"
         app:itemHorizontalTranslationEnabled="true"
-        app:itemIconSize="16dp"
+        app:itemIconSize="24dp"
         app:itemIconTint="@drawable/bnv_selector"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"

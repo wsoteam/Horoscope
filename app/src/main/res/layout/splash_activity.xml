@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/stories_activity"/>
+    <!--<include layout="@layout/stories_activity"/>-->
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="4dp"
-        app:srcCompat="@color/main_violet"/>
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/back_stars"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivMain"
@@ -24,12 +25,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:letterSpacing="0.16"
-        android:lineSpacingExtra="6.8sp"
+        android:letterSpacing="0.01"
         android:textColor="#ffffff"
         android:layout_gravity="center"
         android:layout_marginTop="180dp"
-        android:fontFamily="@font/roboto"
+        android:textStyle="normal"
+        android:fontFamily="@font/muller_medium"
         android:textSize="32sp"
         android:elevation="4dp"
         android:text="@string/splash_title" />

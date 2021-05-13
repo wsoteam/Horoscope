@@ -74,11 +74,9 @@
                     android:background="@drawable/selector_button_start_onboard"
                     android:drawableStart="@drawable/selector_s_aries"
                     android:fontFamily="@font/muller_bold"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:paddingStart="16dp"
-                    android:paddingTop="12dp"
                     android:paddingEnd="21dp"
-                    android:paddingBottom="12dp"
                     android:text="@string/about"
                     android:textAllCaps="false"
                     android:textColor="#1a072f"
@@ -94,9 +92,8 @@
                     android:drawableStart="@drawable/ic_heart_match_horo"
                     android:fontFamily="@font/muller_bold"
                     android:paddingStart="16dp"
-                    android:paddingTop="12dp"
                     android:paddingEnd="21dp"
-                    android:paddingBottom="12dp"
+                    android:gravity="center"
                     android:text="@string/match"
                     android:textAllCaps="false"
                     android:textColor="#1a072f"
@@ -160,7 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="280dp"
         android:orientation="vertical">
 
         <ImageView
