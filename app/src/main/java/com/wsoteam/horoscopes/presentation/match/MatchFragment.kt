@@ -2,19 +2,12 @@ package com.wsoteam.horoscopes.presentation.match
 
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.OnUserEarnedRewardListener
-import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
-import com.wsoteam.horoscopes.presentation.match.controller.IClick
-import com.wsoteam.horoscopes.presentation.match.controller.MatchSignsAdapter
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
 import com.wsoteam.horoscopes.presentation.match.pager.MatchPagerAdapter
 import com.wsoteam.horoscopes.presentation.match.pager.fragments.DateMatchFragment
@@ -22,6 +15,7 @@ import com.wsoteam.horoscopes.presentation.match.pager.fragments.SignsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
+import com.wsoteam.horoscopes.utils.match.MatchConverter
 import kotlinx.android.synthetic.main.match_fragment.*
 
 class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks {
@@ -71,7 +65,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
         })
 
         btnShow.setOnClickListener {
-            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+            if (PreferencesProvider.isADEnabled() && !MatchConverter.isShowedAdForIndex(matchIndex)) {
                 UnlockDialog
                     .newInstance(matchPair)
                     .apply {
@@ -116,11 +110,12 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
     }
 
     override fun showAd() {
-        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !MatchConverter.isShowedAdForIndex(matchIndex)) {
             AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()
-                    if (PreferencesProvider.isShowRewarded) {
+                    AdWorker.loadReward()
+                    if (MatchConverter.isShowedAdForIndex(matchIndex)) {
                         openMatchResult()
                     }
                 }
@@ -128,7 +123,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
             AdWorker.rewardedAd!!.show(
                 requireActivity()
             ) {
-                PreferencesProvider.isShowRewarded = true
+                MatchConverter.addNewShowedMatchIndex(matchIndex)
             }
         } else {
             openMatchResult()

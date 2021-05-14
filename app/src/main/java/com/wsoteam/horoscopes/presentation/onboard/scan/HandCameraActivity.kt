@@ -61,6 +61,9 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_host_activity)
         finishAffinity()
     }
 
+    override fun openPremFromHand() {
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults:
         IntArray

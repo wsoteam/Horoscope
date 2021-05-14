@@ -16,21 +16,27 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.presentation.hand.dialogs.UnlockScanDialog
+import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
+import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import kotlinx.android.synthetic.main.hand_camera_activity.*
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
+class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDialog.Callbacks {
 
     interface Callbacks {
         fun openNextScreen()
+        fun openPremFromHand()
     }
 
     private var imageCapture: ImageCapture? = null
@@ -44,6 +50,22 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     private val DETECTOR_HAND_LABEL = "Band Aid"
     private val LOST_DETECT_INTERVAL = 500L
 
+    override fun showAd() {
+        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+            AdWorker.rewardedAd!!.show(
+                requireActivity()
+            ) {
+                PreferencesProvider.isShowRewarded = true
+            }
+        } else {
+            scanHand()
+        }
+    }
+
+    override fun unlockPrem() {
+        (requireActivity() as Callbacks).openPremFromHand()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -54,12 +76,24 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
         startPreviewUpdater()
 
         ivTakePhoto.setOnClickListener {
-            bitmap = viewFinder.bitmap!!
-            Glide.with(this).load(bitmap).into(ivPreview)
-            ivPreview.visibility = View.VISIBLE
-            timer.cancel()
-            startScanning()
+            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+                UnlockScanDialog()
+                    .apply {
+                        setTargetFragment(this@HandCameraFragment, -1)
+                        show(this@HandCameraFragment.requireFragmentManager(), "")
+                    }
+            } else {
+                scanHand()
+            }
         }
+    }
+
+    private fun scanHand() {
+        bitmap = viewFinder.bitmap!!
+        Glide.with(this).load(bitmap).into(ivPreview)
+        ivPreview.visibility = View.VISIBLE
+        timer.cancel()
+        startScanning()
     }
 
     private fun startScanning() {
@@ -159,7 +193,6 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
                     this, cameraSelector, preview, imageCapture, imageAnalyzer
                 )
             } catch (exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
             }
 
         }, ContextCompat.getMainExecutor(requireContext()))
@@ -200,19 +233,17 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
         ivHand.visibility = View.INVISIBLE
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            requireContext(), it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-
-
 
     companion object {
-        private const val TAG = "CameraXBasic"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val FROM_TAG = "FROM_TAG"
+
+        fun newInstance(isFromInsideApp: Boolean): HandCameraFragment {
+            var args = Bundle().apply {
+                putBoolean(FROM_TAG, isFromInsideApp)
+            }
+            return HandCameraFragment().apply {
+                arguments = args
+            }
+        }
     }
 }

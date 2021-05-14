@@ -198,6 +198,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         PreferencesProvider.isShowRewarded = false
+        PreferencesProvider.listShowedSigns = PreferencesProvider.EMPTY_LIST
         FirebaseMessaging
             .getInstance()
             .subscribeToTopic("news")
@@ -232,10 +233,10 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
         vm.preLoadData(object : ILoadState {
             override fun throwError(message: String) {
-                isNetStateOk = false
+                /*isNetStateOk = false
                 ErrorInterceptor.throwError(message)
                 startActivity(Intent(this@SplashActivity, NetLostActivity::class.java))
-                finishAffinity()
+                finishAffinity()*/
             }
         })
 

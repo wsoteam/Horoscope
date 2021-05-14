@@ -5,6 +5,7 @@ import android.util.Log
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.frequency.InterFrequency
@@ -45,7 +46,7 @@ object AdWorker {
                 ETimer.trackStart(ETimer.FIRST_LOAD_INTER)
             }
 
-            initReward(context)
+            loadReward()
             mInterstitialAd?.adListener = object : AdListener() {
 
                 override fun onAdClicked() {
@@ -105,7 +106,8 @@ object AdWorker {
         }
     }
 
-    private fun initReward(context: Context) {
+    fun loadReward() {
+        var context = App.getInstance()
         RewardedAd.load(
             context,
             context.resources.getString(com.wsoteam.horoscopes.R.string.reward_video),
@@ -117,7 +119,7 @@ object AdWorker {
                     Log.e("LOL", "fail")
                     counterRewardFailed++
                     if (counterRewardFailed <= MAX_QUERY_REWARD_VIDEO) {
-                        initReward(context)
+                        loadReward()
                     }
                     rewardedAd = null
                 }
@@ -127,8 +129,6 @@ object AdWorker {
                     counterRewardFailed = 0
                     rewardedAd = p0
                 }
-
-
             })
     }
 

@@ -249,6 +249,13 @@ object PreferencesProvider {
         get() = getInstance()?.getBoolean(IS_SHOW_REWARD_TAG, false)!!
         set(value) = editor { it?.putBoolean(IS_SHOW_REWARD_TAG, value) }!!
 
+    private const val SHOWED_AD_ON_PAIRS_TAG = "SHOWED_AD_ON_PAIRS_TAG"
+    const val EMPTY_LIST = ""
+
+    var listShowedSigns: String
+        get() = getInstance()?.getString(SHOWED_AD_ON_PAIRS_TAG, EMPTY_LIST)!!
+        set(value) = editor { it?.putString(SHOWED_AD_ON_PAIRS_TAG, value) }!!
+
 
     private const val ROAD_AFTER_BUY = "ROAD_AFTER_BUY"
     const val DEF_ROAD = 0

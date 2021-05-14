@@ -255,6 +255,10 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         startActivity(EnterActivity.getIntent(this, true))
     }
 
+    override fun openPremFromHand() {
+        startActivity(EnterActivity.getIntent(this, true))
+    }
+
     override fun openDescriptionFragment(index: Int) {
         var descriptionFragment = DescriptionFragment.newInstance(index)
         infoFragments.add(descriptionFragment)

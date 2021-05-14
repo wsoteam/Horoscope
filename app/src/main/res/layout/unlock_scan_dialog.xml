@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#2c2839"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_lock_scan"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="124dp"
+                android:layout_marginEnd="124dp"/>
+
+
+
+            <Button
+                android:id="@+id/btnShowAd"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="64dp"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="#1a072f"
+                android:text="@string/read_once"
+                android:textAllCaps="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="43dp"
+                android:drawableStart="@drawable/ic_play_ad"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="30dp"
+                android:paddingStart="11dp"
+                android:background="@drawable/selector_button_start_onboard"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"/>
+
+
+            <Button
+                android:id="@+id/btnPrem"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="64dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:text="@string/unlock_forever"
+                android:textAllCaps="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="43dp"
+                android:background="@drawable/shape_btn_unlock"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>
