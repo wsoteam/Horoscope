@@ -9,6 +9,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
@@ -63,7 +66,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
+class SplashActivity : AppCompatActivity() {
 
     var counter = 0
     var MAX = 4
@@ -197,6 +200,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        setContentView(R.layout.splash_activity)
+
         PreferencesProvider.isShowRewarded = false
         PreferencesProvider.listShowedSigns = PreferencesProvider.EMPTY_LIST
         FirebaseMessaging
