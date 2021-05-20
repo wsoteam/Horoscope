@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
@@ -76,6 +78,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()
+        preloadSignImgs()
 
         /*if (!NetState.isConnected()) {
             L.log("ConnectionFragment")
@@ -93,6 +96,18 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 bindFragmentManager()
                 openPage(MAIN)
             })
+
+
+    }
+
+    private fun preloadSignImgs() {
+        var signImgs = resources.obtainTypedArray(R.array.sign_draws_info)
+
+        for (i in 0 until signImgs.length()){
+            Glide.with(this)
+                .load(signImgs.getResourceId(i, -1))
+                .preload()
+        }
     }
 
     private fun bindFragmentManager() {

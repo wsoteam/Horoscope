@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.presentation.onboard
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
@@ -7,6 +8,8 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -16,7 +19,7 @@ import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.*
 import com.wsoteam.horoscopes.presentation.onboard.scan.ScanIntroActivtity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlinx.android.synthetic.main.host_activity.*
-import kotlinx.android.synthetic.main.host_activity.diOnboard
+
 
 class HostActivity : AppCompatActivity(R.layout.host_activity) {
 
@@ -84,6 +87,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
                 if (position == 1){
                     btnStart.isEnabled = true
                 }
+                hideKeyboard()
             }
         })
 
@@ -127,6 +131,16 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
             " name -- ${PreferencesProvider.getName()}, gender -- ${PreferencesProvider.userGender}, time -- ${PreferencesProvider.birthTime}, birth -- ${PreferencesProvider.getBirthday()}"
         )
         startActivity(Intent(this, ScanIntroActivtity::class.java))
+    }
+
+    private fun hideKeyboard() {
+        val imm: InputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view: View? = currentFocus
+        if (view == null) {
+            view = View(this)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 

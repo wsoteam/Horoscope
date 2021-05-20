@@ -22,6 +22,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
+import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.hand.dialogs.UnlockScanDialog
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
@@ -76,7 +77,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
         startPreviewUpdater()
 
         ivTakePhoto.setOnClickListener {
-            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded && requireActivity() is BlackMainActivity) {
                 UnlockScanDialog()
                     .apply {
                         setTargetFragment(this@HandCameraFragment, -1)

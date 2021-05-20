@@ -31,4 +31,24 @@
         <item>@drawable/img_onboard_pisces</item>
     </integer-array>
 
+
+
+
+
+
+    <integer-array name="sign_draws_info">
+        <item>@drawable/img_onboard_aries</item>
+        <item>@drawable/img_onboard_taurus</item>
+        <item>@drawable/img_onboard_gemini</item>
+        <item>@drawable/img_onboard_cancer</item>
+        <item>@drawable/img_onboard_leo</item>
+        <item>@drawable/img_onboard_virgo</item>
+        <item>@drawable/img_onboard_libra</item>
+        <item>@drawable/img_onboard_scorpio</item>
+        <item>@drawable/img_onboard_sagittarius</item>
+        <item>@drawable/img_onboard_capricorn</item>
+        <item>@drawable/img_onboard_aquarius</item>
+        <item>@drawable/img_onboard_pisces</item>
+    </integer-array>
+
 </resources>

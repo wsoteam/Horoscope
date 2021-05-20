@@ -131,7 +131,7 @@
         <activity
             android:name=".presentation.premium.PremiumHostActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
+
             android:theme="@style/Premium" />
 
         <activity
@@ -354,6 +354,7 @@
 
         <activity
             android:name=".presentation.onboard.HostActivity"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
             android:theme="@style/CameraActivity" />
 

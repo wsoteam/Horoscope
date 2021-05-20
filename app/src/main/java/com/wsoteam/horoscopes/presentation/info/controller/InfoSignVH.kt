@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.wsoteam.horoscopes.R
 import kotlinx.android.synthetic.main.info_sign_vh.view.*
 
@@ -27,6 +28,7 @@ class InfoSignVH(
 
     fun bind(imgId: Int, name: String) {
         itemView.tvSign.text = name
-        itemView.ivSign.setImageResource(imgId)
+        //itemView.ivSign.setImageResource(imgId)
+        Glide.with(itemView.context).asDrawable().load(imgId).into(itemView.ivSign)
     }
 }

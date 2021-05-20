@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class InfoSignAdapter(
-    val signImgs: TypedArray,
+    val signImgs: ArrayList<Int>,
     val signNames: Array<String>,
     val callbacks: Callbacks
 ) :
@@ -18,11 +18,11 @@ class InfoSignAdapter(
     }
 
     override fun getItemCount(): Int {
-        return signNames.size
+        return signImgs.size
     }
 
     override fun onBindViewHolder(holder: InfoSignVH, position: Int) {
-        holder.bind(signImgs.getResourceId(position, -1), signNames[position])
+        holder.bind(signImgs[position], signNames[position])
     }
 
 
