@@ -14,6 +14,7 @@ import com.wsoteam.horoscopes.presentation.match.pager.fragments.DateMatchFragme
 import com.wsoteam.horoscopes.presentation.match.pager.fragments.SignsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.match.MatchConverter
 import kotlinx.android.synthetic.main.match_fragment.*
@@ -22,7 +23,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
 
     interface Callbacks {
         fun openMatchResultFragment(matchPair: MatchPair, ownIndex: Int, matchIndex: Int)
-        fun openPremiumScreen()
+        fun openPremiumScreenMatch()
     }
 
     private lateinit var imgsArray: TypedArray
@@ -119,10 +120,16 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
                         openMatchResult()
                     }
                 }
+
+                override fun onAdShowedFullScreenContent() {
+                    Events.startRewAd(Events.ad_show_match)
+                    super.onAdShowedFullScreenContent()
+                }
             }
             AdWorker.rewardedAd!!.show(
                 requireActivity()
             ) {
+                Events.endRewAd(Events.ad_show_match)
                 MatchConverter.addNewShowedMatchIndex(matchIndex)
             }
         } else {
@@ -139,7 +146,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
     }
 
     override fun unlockPrem() {
-        (activity as Callbacks).openPremiumScreen()
+        (activity as Callbacks).openPremiumScreenMatch()
     }
 
     companion object {

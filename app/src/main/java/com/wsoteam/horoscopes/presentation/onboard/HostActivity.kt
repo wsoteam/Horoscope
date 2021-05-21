@@ -18,6 +18,7 @@ import com.wsoteam.horoscopes.presentation.onboard.pager.OnboardAdapter
 import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.*
 import com.wsoteam.horoscopes.presentation.onboard.scan.ScanIntroActivtity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import kotlinx.android.synthetic.main.host_activity.*
 
 
@@ -27,6 +28,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Events.openPageOnboard(0)
         fillFragmentsList()
         updateUI()
     }
@@ -78,6 +80,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
             }
 
             override fun onPageSelected(position: Int) {
+                Events.openPageOnboard(position)
                 if (position == 0) {
                     btnStart.text = getString(R.string.start_onboard)
                 } else {

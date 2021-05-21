@@ -18,6 +18,7 @@ import com.wsoteam.horoscopes.presentation.horoscope.pager.pages.YearlyFragment
 import com.wsoteam.horoscopes.presentation.profile.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import kotlinx.android.synthetic.main.my_horoscope_fragment.*
 
 class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
@@ -91,12 +92,18 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
             AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()
+                    AdWorker.loadReward()
+                }
 
+                override fun onAdShowedFullScreenContent() {
+                    Events.startRewAd(Events.ad_show_main)
+                    super.onAdShowedFullScreenContent()
                 }
             }
             AdWorker.rewardedAd!!.show(
                 requireActivity()
             ) {
+                Events.endRewAd(Events.ad_show_main)
                 PreferencesProvider.isShowRewarded = true
             }
         } else {

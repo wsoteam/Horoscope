@@ -19,6 +19,7 @@ import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.view.countdown.CountDownClock
 import kotlinx.android.synthetic.main.enter_prem_activity.*
 import kotlinx.android.synthetic.main.finish_prem_activity.*
@@ -31,13 +32,16 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Events.openCountDown()
         setPrice()
         tvSkip.setOnClickListener {
+            Events.closeCountDown()
             startActivity(Intent(this, BlackMainActivity::class.java))
             finishAffinity()
         }
 
         btnBuy.setOnClickListener {
+            Events.clickTrialButtonCountDown()
             SubscriptionProvider.startChoiseSub(this, SubsIds.HAND_SCAN, object :
                 InAppCallback {
                 override fun trialSucces() {
@@ -69,6 +73,7 @@ class FinishActivity : AppCompatActivity(R.layout.finish_prem_activity) {
     }
 
     private fun handlInApp() {
+        Events.trialCountDown()
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import kotlinx.android.synthetic.main.description_fragment.*
 
 class DescriptionFragment : Fragment(R.layout.description_fragment){
@@ -28,6 +29,7 @@ class DescriptionFragment : Fragment(R.layout.description_fragment){
         ivBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        Events.openSign(resources.getStringArray(R.array.names_signs)[index])
 
     }
 

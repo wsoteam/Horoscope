@@ -1,7 +1,6 @@
 package com.wsoteam.horoscopes
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +8,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.models.Sign
@@ -30,14 +27,13 @@ import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.presentation.profile.ProfileFragment
-import com.wsoteam.horoscopes.presentation.settings.SettingsFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.android.synthetic.main.black_main_activity.*
-import java.lang.Exception
 import kotlin.random.Random
 
 class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
@@ -74,7 +70,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Analytic.openMain()
+        Events.openPage(Events.main_page)
         signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()
@@ -178,18 +174,22 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var bnvListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when (it.itemId) {
             R.id.bnv_main -> {
+                Events.openPage(Events.main_page)
                 openPage(MAIN)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_info -> {
+                Events.openPage(Events.info_page)
                 openPage(INFO)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_match -> {
+                Events.openPage(Events.match_page)
                 openPage(MATCH)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bnv_hand -> {
+                Events.openPage(Events.scan_page)
                 if (allPermissionsGranted()) {
                     openPage(SCAN)
                     if (fragmentList[SCAN][fragmentList[SCAN].size - 1] is HandCameraFragment) {
@@ -204,6 +204,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 }
             }
             R.id.bnv_settings -> {
+                Events.openPage(Events.settings_page)
                 openPage(SETTINGS)
                 return@OnNavigationItemSelectedListener true
             }
@@ -262,16 +263,16 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             .commit()
     }
 
-    override fun openPremiumScreen() {
-        startActivity(EnterActivity.getIntent(this, true))
+    override fun openPremiumScreenMatch() {
+        startActivity(EnterActivity.getIntent(this, EnterActivity.from_match))
     }
 
     override fun openPremFromMain() {
-        startActivity(EnterActivity.getIntent(this, true))
+        startActivity(EnterActivity.getIntent(this, EnterActivity.from_main_page))
     }
 
     override fun openPremFromHand() {
-        startActivity(EnterActivity.getIntent(this, true))
+        startActivity(EnterActivity.getIntent(this, EnterActivity.from_scan_page))
     }
 
     override fun openDescriptionFragment(index: Int) {

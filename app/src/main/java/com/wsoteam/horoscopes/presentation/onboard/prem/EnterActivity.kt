@@ -16,6 +16,7 @@ import com.wsoteam.horoscopes.utils.InAppCallback
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.choiceSign
 import kotlinx.android.synthetic.main.enter_prem_activity.*
 import kotlinx.android.synthetic.main.green_prem_activity.*
@@ -24,17 +25,27 @@ import java.text.DecimalFormat
 
 class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
 
+    private var from = "unknown"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        from = intent?.getStringExtra(FROM_TAG)!!
+        Events.openPremPage(from)
         setPrice()
         setUserData()
 
         ivClose.setOnClickListener {
-            QuestDialog().show(supportFragmentManager, "")
+            Events.closePremPage(from)
+            if (from != from_onboard){
+                onBackPressed()
+            }else{
+                QuestDialog().show(supportFragmentManager, "")
+            }
         }
 
 
         btnTrial.setOnClickListener {
+            Events.clickButtonTrial(from)
             SubscriptionProvider.startChoiseSub(this, SubsIds.HAND_SCAN, object :
                 InAppCallback {
                 override fun trialSucces() {
@@ -42,20 +53,16 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
                 }
             })
         }
-
-        if (intent?.getBooleanExtra(FROM_TAG, false) == true){
-            ivClose.setOnClickListener {
-                onBackPressed()
-            }
-        }
     }
 
     private fun setUserData() {
-        var signName = resources.getStringArray(R.array.names_signs)[choiceSign(PreferencesProvider.getBirthday()!!)]
-        tvTitle.text = getString(R.string.prem_onboard_info, PreferencesProvider.getName(), signName)
+        var signName =
+            resources.getStringArray(R.array.names_signs)[choiceSign(PreferencesProvider.getBirthday()!!)]
+        tvTitle.text =
+            getString(R.string.prem_onboard_info, PreferencesProvider.getName(), signName)
     }
 
-    private fun setPrice(){
+    private fun setPrice() {
         try {
             var unit = PreferencesProvider.getPriceUnit()!!
             var price = PreferencesProvider.getPriceValue()!!.toDouble() / 1_000_000
@@ -65,19 +72,21 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
 
             var formatter = DecimalFormat("#0.00")
 
-            tvTrial.text = getString(R.string.after_trial_ends_449_00_week, "${formatter.format(price)} $unit")
-        }catch (ex : Exception){
+            tvTrial.text =
+                getString(R.string.after_trial_ends_449_00_week, "${formatter.format(price)} $unit")
+        } catch (ex: Exception) {
             Log.e("LOL", ex.message)
         }
     }
 
 
-    fun openNextScreen(){
+    fun openNextScreen() {
         startActivity(Intent(this, FinishActivity::class.java))
         finish()
     }
 
     private fun handlInApp() {
+        Events.trial(from)
         FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
@@ -85,12 +94,16 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
         finishAffinity()
     }
 
-    companion object{
+    companion object {
         private const val FROM_TAG = "FROM_TAG"
+        const val from_onboard = "from_onboard"
+        const val from_main_page = "from_main_page"
+        const val from_match = "from_match"
+        const val from_scan_page = "from_scan_page"
 
-        fun getIntent(context: Context, isFromMain : Boolean) : Intent{
+        fun getIntent(context: Context, from: String): Intent {
             return Intent(context, EnterActivity::class.java).apply {
-                putExtra(FROM_TAG, isFromMain)
+                putExtra(FROM_TAG, from)
             }
         }
     }

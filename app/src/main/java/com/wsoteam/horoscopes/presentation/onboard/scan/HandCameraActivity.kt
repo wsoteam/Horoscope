@@ -25,6 +25,7 @@ import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import kotlinx.android.synthetic.main.hand_camera_activity.*
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -57,7 +58,8 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_host_activity)
     }
 
     override fun openNextScreen() {
-        startActivity(Intent(this, EnterActivity::class.java))
+        Events.successOnboardScan()
+        startActivity(EnterActivity.getIntent(this, EnterActivity.from_onboard))
         finishAffinity()
     }
 
@@ -70,8 +72,10 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_host_activity)
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
+                Events.successScanPermOnboard()
                 handCameraFragment.startCamera()
             } else {
+                Events.failureScanPermOnboard()
                 Toast.makeText(
                     this,
                     "Permissions not granted by the user.",

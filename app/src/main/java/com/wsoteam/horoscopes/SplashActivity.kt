@@ -50,6 +50,7 @@ import com.wsoteam.horoscopes.utils.analytics.ErrorInterceptor
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
 import com.wsoteam.horoscopes.utils.analytics.experior.ETimer
 import com.wsoteam.horoscopes.utils.analytics.experior.TagManager
+import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.fcm.FCMWork
 import com.wsoteam.horoscopes.utils.loger.L
@@ -202,7 +203,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         setContentView(R.layout.splash_activity)
-
+        Events.openSplash()
         PreferencesProvider.isShowRewarded = false
         PreferencesProvider.listShowedSigns = PreferencesProvider.EMPTY_LIST
         FirebaseMessaging

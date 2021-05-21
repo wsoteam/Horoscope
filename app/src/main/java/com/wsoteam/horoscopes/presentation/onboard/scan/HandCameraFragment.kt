@@ -28,6 +28,8 @@ import com.wsoteam.horoscopes.presentation.hand.dialogs.UnlockScanDialog
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
+import com.wsoteam.horoscopes.utils.analytics.new.Events
+import com.wsoteam.horoscopes.utils.match.MatchConverter
 import kotlinx.android.synthetic.main.hand_camera_activity.*
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -53,9 +55,22 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
 
     override fun showAd() {
         if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+            AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent()
+                    AdWorker.loadReward()
+                }
+
+                override fun onAdShowedFullScreenContent() {
+                    Events.startRewAd(Events.ad_show_scan)
+                    super.onAdShowedFullScreenContent()
+                }
+            }
+
             AdWorker.rewardedAd!!.show(
                 requireActivity()
             ) {
+                Events.endRewAd(Events.ad_show_scan)
                 PreferencesProvider.isShowRewarded = true
             }
         } else {
