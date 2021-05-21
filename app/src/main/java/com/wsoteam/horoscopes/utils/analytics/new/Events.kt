@@ -38,7 +38,7 @@ object Events {
     private const val click_button_trial_countdown = "click_button_trial_countdown"
     private const val countdown_trial = "countdown_trial"
     private const val open_countdown = "open_countdown"
-    private const val close_countdown = "open_countdown"
+    private const val close_countdown = "close_countdown"
 
     private const val open_page = "open_page"
     private const val page = "page"
