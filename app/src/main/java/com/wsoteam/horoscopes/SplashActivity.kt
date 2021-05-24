@@ -161,7 +161,7 @@ class SplashActivity : AppCompatActivity() {
                 intent = Intent(this, HostActivity::class.java)
                 L.log("Enter activity enter")
             } else {
-                intent = Intent(this, FormActivity::class.java)
+                intent = Intent(this, HostActivity::class.java)
                 L.log("formActivity enter")
             }
         }

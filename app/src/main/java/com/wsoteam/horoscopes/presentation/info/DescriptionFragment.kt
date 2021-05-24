@@ -3,9 +3,15 @@ package com.wsoteam.horoscopes.presentation.info
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.AdRequest
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.analytics.new.Events
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.description_fragment.*
+import kotlinx.android.synthetic.main.description_fragment.adView
 
 class DescriptionFragment : Fragment(R.layout.description_fragment){
 
@@ -31,6 +37,11 @@ class DescriptionFragment : Fragment(R.layout.description_fragment){
         }
         Events.openSign(resources.getStringArray(R.array.names_signs)[index])
 
+
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST) {
+            adView.visibility = View.VISIBLE
+            adView.loadAd(AdRequest.Builder().build())
+        }
     }
 
     companion object{

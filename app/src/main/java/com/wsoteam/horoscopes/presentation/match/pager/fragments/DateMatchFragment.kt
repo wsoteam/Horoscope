@@ -6,10 +6,16 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.AdRequest
+import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.match.MatchFragment
+import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.BannerFrequency
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import kotlinx.android.synthetic.main.date_match_fragment.*
+import kotlinx.android.synthetic.main.date_match_fragment.adView
+import kotlinx.android.synthetic.main.match_result_fragment.*
 
 class DateMatchFragment : Fragment(R.layout.date_match_fragment) {
 
@@ -54,6 +60,11 @@ class DateMatchFragment : Fragment(R.layout.date_match_fragment) {
             }
         })
 
+
+        if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow() && !Config.FOR_TEST) {
+            adView.visibility = View.VISIBLE
+            adView.loadAd(AdRequest.Builder().build())
+        }
     }
 
     private fun setMatchSign() {

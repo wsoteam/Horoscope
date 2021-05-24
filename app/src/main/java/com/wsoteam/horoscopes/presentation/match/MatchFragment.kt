@@ -4,6 +4,7 @@ import android.content.res.TypedArray
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.material.tabs.TabLayout
 import com.wsoteam.horoscopes.R
@@ -18,6 +19,8 @@ import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.match.MatchConverter
 import kotlinx.android.synthetic.main.match_fragment.*
+import kotlinx.android.synthetic.main.match_fragment.tlType
+import kotlinx.android.synthetic.main.my_horoscope_fragment.*
 
 class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks {
 
@@ -62,6 +65,22 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
                     0 -> vpMatch.currentItem = 0
                     1 -> vpMatch.currentItem = 1
                 }
+            }
+        })
+
+        vpMatch.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                tlType.getTabAt(position)!!.select()
             }
         })
 

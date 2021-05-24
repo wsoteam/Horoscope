@@ -17,8 +17,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="309dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_red_ref" />
+                android:scaleType="fitXY" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivClose"

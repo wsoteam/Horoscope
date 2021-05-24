@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer-array name="info_signs_imgs">
-        <item>@drawable/img_info_aries</item>
-        <item>@drawable/img_info_taurus</item>
-        <item>@drawable/img_info_gemini</item>
-        <item>@drawable/img_info_cancer</item>
-        <item>@drawable/img_info_leo</item>
-        <item>@drawable/img_info_virgo</item>
-        <item>@drawable/img_info_libra</item>
-        <item>@drawable/img_info_scorpio</item>
-        <item>@drawable/img_info_sagittarius</item>
-        <item>@drawable/img_info_capricorn</item>
-        <item>@drawable/img_info_aquarius</item>
-        <item>@drawable/img_info_pisces</item>
-    </integer-array>
+
 
 
     <string-array name="info_signs_intervals">

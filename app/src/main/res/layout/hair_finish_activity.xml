@@ -54,8 +54,7 @@
             android:layout_width="328dp"
             android:layout_height="274dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="37dp"
-            android:src="@drawable/img_violent_girl" />
+            android:layout_marginTop="37dp" />
 
     </LinearLayout>
 

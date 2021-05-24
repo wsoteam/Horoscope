@@ -78,6 +78,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment), DateFragment.Callba
             }
         })
 
+
         edtBirth.setOnClickListener {
             DateFragment
                 .newInstance(getDay(), getMonth(), getYear()).apply {

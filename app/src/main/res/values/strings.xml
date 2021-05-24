@@ -15,7 +15,8 @@
     <string name="reward_video" translatable="false">ca-app-pub-9335069695317044/1211431088</string>-->
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
-    <string name="amplitude_id">3031a61ead2f7482d87c899794cec751</string>
+    <!--<string name="amplitude_id">3031a61ead2f7482d87c899794cec751</string>-->
+    <string name="amplitude_id">751a9cc2aa612a06962e62e5e1f3b38d</string>
     <string name="fender_id">nMMITxQP2vlSvBuuHLxNDrQxRpw2r21I</string>
     <string name="qonversion_id">rUC-czxB0dMVbaQHM8LOuRtZ1RQr2BE9</string>
     <string name="release_user_expirior_id">8c61caf3-a16c-40a0-be6a-ed6e73161265</string>
