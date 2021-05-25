@@ -158,12 +158,12 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
     }
 
     private fun initObjectDetector() {
-        val localModel = LocalModel.Builder().setAssetFilePath("model9.tflite").build()
+        val localModel = LocalModel.Builder().setAssetFilePath("model.tflite").build()
 
         val options = CustomObjectDetectorOptions.Builder(localModel)
             .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
             .enableClassification()
-            .setClassificationConfidenceThreshold(0.1f)
+            .setClassificationConfidenceThreshold(0.0f)
             .setMaxPerObjectLabelCount(1)
             .build()
 
