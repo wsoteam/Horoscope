@@ -244,10 +244,16 @@ object PreferencesProvider {
         set(value) = editor { it?.putString(BIRTHTIME_TAG, value) }!!
 
 
-    private const val IS_SHOW_REWARD_TAG = "IS_SHOW_REWARD_TAG"
-    var isShowRewarded: Boolean
-        get() = getInstance()?.getBoolean(IS_SHOW_REWARD_TAG, false)!!
-        set(value) = editor { it?.putBoolean(IS_SHOW_REWARD_TAG, value) }!!
+    private const val IS_SHOW_REWARD_MAIN_TAG = "IS_SHOW_REWARD_MAIN_TAG"
+    var isShowRewardedMain: Boolean
+        get() = getInstance()?.getBoolean(IS_SHOW_REWARD_MAIN_TAG, false)!!
+        set(value) = editor { it?.putBoolean(IS_SHOW_REWARD_MAIN_TAG, value) }!!
+
+
+    private const val IS_SHOW_REWARD_SCAN_TAG = "IS_SHOW_REWARD_SCAN_TAG"
+    var isShowRewardedScan: Boolean
+        get() = getInstance()?.getBoolean(IS_SHOW_REWARD_SCAN_TAG, false)!!
+        set(value) = editor { it?.putBoolean(IS_SHOW_REWARD_SCAN_TAG, value) }!!
 
     private const val SHOWED_AD_ON_PAIRS_TAG = "SHOWED_AD_ON_PAIRS_TAG"
     const val EMPTY_LIST = ""

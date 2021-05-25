@@ -80,7 +80,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
     override fun onResume() {
         super.onResume()
-        if (!PreferencesProvider.isShowRewarded && PreferencesProvider.isADEnabled()) {
+        if (!PreferencesProvider.isShowRewardedMain && PreferencesProvider.isADEnabled()) {
             llLock.visibility = View.VISIBLE
         } else {
             llLock.visibility = View.GONE
@@ -104,7 +104,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
                 requireActivity()
             ) {
                 Events.endRewAd(Events.ad_show_main)
-                PreferencesProvider.isShowRewarded = true
+                PreferencesProvider.isShowRewardedMain = true
             }
         } else {
             llLock.visibility = View.GONE

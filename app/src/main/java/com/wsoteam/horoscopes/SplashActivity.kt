@@ -204,7 +204,7 @@ class SplashActivity : AppCompatActivity() {
         //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         setContentView(R.layout.splash_activity)
         Events.openSplash()
-        PreferencesProvider.isShowRewarded = false
+        PreferencesProvider.isShowRewardedMain = false
         PreferencesProvider.listShowedSigns = PreferencesProvider.EMPTY_LIST
         FirebaseMessaging
             .getInstance()

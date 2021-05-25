@@ -54,7 +54,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
     private val LOST_DETECT_INTERVAL = 500L
 
     override fun showAd() {
-        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded) {
+        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewardedScan) {
             AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()
@@ -71,7 +71,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
                 requireActivity()
             ) {
                 Events.endRewAd(Events.ad_show_scan)
-                PreferencesProvider.isShowRewarded = true
+                PreferencesProvider.isShowRewardedScan = true
             }
         } else {
             scanHand()
@@ -92,7 +92,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
         startPreviewUpdater()
 
         ivTakePhoto.setOnClickListener {
-            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewarded && requireActivity() is BlackMainActivity) {
+            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewardedScan && requireActivity() is BlackMainActivity) {
                 UnlockScanDialog()
                     .apply {
                         setTargetFragment(this@HandCameraFragment, -1)
@@ -158,7 +158,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
     }
 
     private fun initObjectDetector() {
-        val localModel = LocalModel.Builder().setAssetFilePath("model.tflite").build()
+        val localModel = LocalModel.Builder().setAssetFilePath("model9.tflite").build()
 
         val options = CustomObjectDetectorOptions.Builder(localModel)
             .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
@@ -221,6 +221,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
         objectDetector.process(image).addOnSuccessListener {
             for (detectedObject in it) {
                 for (label in detectedObject.labels) {
+                    Log.e("LOL", label.text)
                     if (label.text == DETECTOR_HAND_LABEL) {
                         enableHandDetected()
                     }

@@ -46,5 +46,7 @@ class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
         adapter = HandResultAdapter(listTitles, listHandsImages, colors, progressShapes, percents, texts)
         rvResults.adapter = adapter
         rvResults.layoutManager = LinearLayoutManager(requireContext())
+
+
     }
 }
