@@ -35,7 +35,7 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDialog.Callbacks {
+class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
 
     interface Callbacks {
         fun openNextScreen()
@@ -53,34 +53,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
     private val DETECTOR_HAND_LABEL = "Band Aid"
     private val LOST_DETECT_INTERVAL = 500L
 
-    override fun showAd() {
-        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewardedScan) {
-            AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    super.onAdDismissedFullScreenContent()
-                    AdWorker.loadReward()
-                }
 
-                override fun onAdShowedFullScreenContent() {
-                    Events.startRewAd(Events.ad_show_scan)
-                    super.onAdShowedFullScreenContent()
-                }
-            }
-
-            AdWorker.rewardedAd!!.show(
-                requireActivity()
-            ) {
-                Events.endRewAd(Events.ad_show_scan)
-                PreferencesProvider.isShowRewardedScan = true
-            }
-        } else {
-            scanHand()
-        }
-    }
-
-    override fun unlockPrem() {
-        (requireActivity() as Callbacks).openPremFromHand()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -92,15 +65,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity), UnlockScanDi
         startPreviewUpdater()
 
         ivTakePhoto.setOnClickListener {
-            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewardedScan && requireActivity() is BlackMainActivity) {
-                UnlockScanDialog()
-                    .apply {
-                        setTargetFragment(this@HandCameraFragment, -1)
-                        show(this@HandCameraFragment.requireFragmentManager(), "")
-                    }
-            } else {
-                scanHand()
-            }
+            scanHand()
         }
     }
 

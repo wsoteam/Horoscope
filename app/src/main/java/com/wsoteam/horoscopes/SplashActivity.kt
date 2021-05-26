@@ -205,6 +205,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.splash_activity)
         Events.openSplash()
         PreferencesProvider.isShowRewardedMain = false
+        PreferencesProvider.isShowRewardedScan = false
         PreferencesProvider.listShowedSigns = PreferencesProvider.EMPTY_LIST
         FirebaseMessaging
             .getInstance()

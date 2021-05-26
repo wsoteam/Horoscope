@@ -24,6 +24,7 @@ class UnlockScanDialog : DialogFragment() {
     ): View? {
         var view = inflater.inflate(R.layout.unlock_scan_dialog, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(0))
+        dialog?.setCancelable(false)
         return view
     }
 
@@ -31,12 +32,10 @@ class UnlockScanDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btnShowAd.setOnClickListener {
             (targetFragment as Callbacks).showAd()
-            dismiss()
         }
 
         btnPrem.setOnClickListener {
             (targetFragment as Callbacks).unlockPrem()
-            dismiss()
         }
 
     }
