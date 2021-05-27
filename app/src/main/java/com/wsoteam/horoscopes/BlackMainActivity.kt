@@ -28,6 +28,7 @@ import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.presentation.profile.ProfileFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.choiceSign
@@ -93,7 +94,10 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 openPage(MAIN)
             })
 
-
+        if (PreferencesProvider.isNeedShowInterAfterOnboard && PreferencesProvider.isADEnabled()){
+            AdWorker.showInter()
+            PreferencesProvider.isNeedShowInterAfterOnboard = false
+        }
     }
 
     private fun preloadSignImgs() {

@@ -28,6 +28,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PreferencesProvider.isNeedShowInterAfterOnboard = true
         Events.openPageOnboard(0)
         fillFragmentsList()
         updateUI()

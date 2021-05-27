@@ -13,8 +13,8 @@ android {
         applicationId "com.wsoteam.horoscopes"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 29
-        versionName "1.0.27dev"
+        versionCode 36
+        versionName "1.0.34"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

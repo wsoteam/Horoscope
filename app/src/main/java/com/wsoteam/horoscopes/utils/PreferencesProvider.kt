@@ -284,5 +284,11 @@ object PreferencesProvider {
         get() = getInstance()?.getString(PLACE_TAG, "")!!
         set(value) = editor { it?.putString(PLACE_TAG, value) }!!
 
+    private const val IS_NEED_SHOW_INTER_AFTER_ONBOARD_TAG = "IS_NEED_SHOW_INTER_AFTER_ONBOARD_TAG"
+
+    var isNeedShowInterAfterOnboard: Boolean
+        get() = getInstance()?.getBoolean(IS_NEED_SHOW_INTER_AFTER_ONBOARD_TAG, false)!!
+        set(value) = editor { it?.putBoolean(IS_NEED_SHOW_INTER_AFTER_ONBOARD_TAG, value) }!!
+
 
 }
