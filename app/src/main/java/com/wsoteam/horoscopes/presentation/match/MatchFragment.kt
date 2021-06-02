@@ -111,11 +111,9 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
             ivMatchSign.setImageResource(imgsArray.getResourceId(position, -1))
             btnShow.isEnabled = true
             matchIndex = position
+            matchPair.matchImgId = imgsArray.getResourceId(matchIndex, -1)
+            matchPair.matchSignName = signsNames[matchIndex]
         }
-
-
-        matchPair.matchImgId = imgsArray.getResourceId(matchIndex, -1)
-        matchPair.matchSignName = signsNames[matchIndex]
     }
 
     fun setOwnSign() {

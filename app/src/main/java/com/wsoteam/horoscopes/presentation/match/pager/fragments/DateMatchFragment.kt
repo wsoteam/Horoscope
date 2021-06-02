@@ -74,4 +74,6 @@ class DateMatchFragment : Fragment(R.layout.date_match_fragment) {
             (parentFragment as MatchFragment).setMatchSign(MatchFragment.EMPTY_SIGN_INDEX)
         }
     }
+
+
 }
