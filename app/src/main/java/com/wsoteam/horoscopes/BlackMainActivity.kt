@@ -291,7 +291,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     }
 
     override fun openNextScreen() {
-        PreferencesProvider.handInfoIndex = Random.nextInt(0, 11)
+        PreferencesProvider.handInfoIndex = Random.nextInt(0, 10)
         var handResultFragment = HandResultsFragment()
         handCameras.add(handResultFragment)
         supportFragmentManager

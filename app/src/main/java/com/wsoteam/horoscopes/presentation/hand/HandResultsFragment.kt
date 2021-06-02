@@ -37,6 +37,12 @@ class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
         super.onViewCreated(view, savedInstanceState)
         index = PreferencesProvider.handInfoIndex
 
+        //hotfix
+        if (index >= 10){
+            PreferencesProvider.handInfoIndex = 9
+            index = 9
+        }
+
         listTitles = resources.getStringArray(R.array.hands_titles)
         listHandsImages = resources.obtainTypedArray(R.array.hands_imgs)
         colors = resources.obtainTypedArray(R.array.colors)
