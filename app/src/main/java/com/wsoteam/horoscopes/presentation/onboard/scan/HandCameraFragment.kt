@@ -123,7 +123,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     }
 
     private fun initObjectDetector() {
-        val localModel = LocalModel.Builder().setAssetFilePath("model.tflite").build()
+        val localModel = LocalModel.Builder().setAssetFilePath("detect.tflite").build()
 
         val options = CustomObjectDetectorOptions.Builder(localModel)
             .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)

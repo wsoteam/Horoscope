@@ -35,6 +35,7 @@ android {
         noCompress "tflite"
     }
 
+
 }
 
 dependencies {
