@@ -24,7 +24,6 @@ import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
-import com.wsoteam.horoscopes.ml.ModelQ
 import com.wsoteam.horoscopes.presentation.hand.dialogs.UnlockScanDialog
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -124,7 +123,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     }
 
     private fun initObjectDetector() {
-        val localModel = LocalModel.Builder().setAssetFilePath("detect.tflite").build()
+        val localModel = LocalModel.Builder().setAssetFilePath("model.tflite").build()
 
 
         val options = CustomObjectDetectorOptions.Builder(localModel)
