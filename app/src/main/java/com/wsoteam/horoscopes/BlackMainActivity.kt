@@ -88,6 +88,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
         vm.getLD().observe(this,
             Observer<List<Sign>> {
+                bnvBlackMain.visibility = View.VISIBLE
                 pbMain.visibility = View.GONE
                 fillFragmentList(it)
                 bindFragmentManager()
@@ -344,37 +345,41 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
 
     override fun onBackPressed() {
-        when (bnvBlackMain.selectedItemId) {
-            R.id.bnv_main -> {
-                if (fragmentList[0].size > 1) {
-                    isNeedRemove = true
+        if (this::fragmentList.isInitialized) {
+            when (bnvBlackMain.selectedItemId) {
+                R.id.bnv_main -> {
+                    if (fragmentList[0].size > 1) {
+                        isNeedRemove = true
+                        bnvBlackMain.selectedItemId = R.id.bnv_main
+                    } else {
+                        super.onBackPressed()
+                    }
+                }
+                R.id.bnv_info -> {
+                    if (fragmentList[1].size > 1) {
+                        isNeedRemove = true
+                        bnvBlackMain.selectedItemId = R.id.bnv_info
+                    } else {
+                        bnvBlackMain.selectedItemId = R.id.bnv_main
+                    }
+                }
+                R.id.bnv_match -> {
+                    if (fragmentList[2].size > 1) {
+                        isNeedRemove = true
+                        bnvBlackMain.selectedItemId = R.id.bnv_match
+                    } else {
+                        bnvBlackMain.selectedItemId = R.id.bnv_main
+                    }
+                }
+                R.id.bnv_hand -> {
                     bnvBlackMain.selectedItemId = R.id.bnv_main
-                } else {
-                    super.onBackPressed()
+                }
+                R.id.bnv_settings -> {
+                    bnvBlackMain.selectedItemId = R.id.bnv_main
                 }
             }
-            R.id.bnv_info -> {
-                if (fragmentList[1].size > 1) {
-                    isNeedRemove = true
-                    bnvBlackMain.selectedItemId = R.id.bnv_info
-                } else {
-                    bnvBlackMain.selectedItemId = R.id.bnv_main
-                }
-            }
-            R.id.bnv_match -> {
-                if (fragmentList[2].size > 1) {
-                    isNeedRemove = true
-                    bnvBlackMain.selectedItemId = R.id.bnv_match
-                } else {
-                    bnvBlackMain.selectedItemId = R.id.bnv_main
-                }
-            }
-            R.id.bnv_hand -> {
-                bnvBlackMain.selectedItemId = R.id.bnv_main
-            }
-            R.id.bnv_settings -> {
-                bnvBlackMain.selectedItemId = R.id.bnv_main
-            }
+        }else{
+            super.onBackPressed()
         }
     }
 }

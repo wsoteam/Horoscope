@@ -31,6 +31,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvBlackMain"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:background="#000000"

@@ -39,11 +39,11 @@ class HandCameraActivity : AppCompatActivity(R.layout.hand_camera_host_activity)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handCameraFragment = HandCameraFragment()
+
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.flContainer, handCameraFragment)
-            .commit()
-
+            .replace(R.id.flContainer, handCameraFragment)
+            .commitNow()
 
         if (allPermissionsGranted()) {
             handCameraFragment.startCamera()

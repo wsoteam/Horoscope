@@ -24,6 +24,7 @@ import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.ml.ModelQ
 import com.wsoteam.horoscopes.presentation.hand.dialogs.UnlockScanDialog
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -125,6 +126,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     private fun initObjectDetector() {
         val localModel = LocalModel.Builder().setAssetFilePath("detect.tflite").build()
 
+
         val options = CustomObjectDetectorOptions.Builder(localModel)
             .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
             .enableClassification()
@@ -201,18 +203,18 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     }
 
     private fun disableHandDetected() {
-        tvIdicator.isEnabled = false
-        tvIdicator.text = getString(R.string.searching_palm)
-        ivTakePhoto.isEnabled = false
-        ivHand.visibility = View.VISIBLE
+        tvIdicator?.isEnabled = false
+        tvIdicator?.text = getString(R.string.searching_palm)
+        ivTakePhoto?.isEnabled = false
+        ivHand?.visibility = View.VISIBLE
     }
 
     private fun enableHandDetected() {
-        tvIdicator.isEnabled = true
-        tvIdicator.text = getString(R.string.searching_palm_enabled)
-        ivTakePhoto.isEnabled = true
+        tvIdicator?.isEnabled = true
+        tvIdicator?.text = getString(R.string.searching_palm_enabled)
+        ivTakePhoto?.isEnabled = true
         lastDetect = Calendar.getInstance().timeInMillis
-        ivHand.visibility = View.INVISIBLE
+        ivHand?.visibility = View.INVISIBLE
     }
 
 
