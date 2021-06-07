@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -22,8 +23,10 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
+import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
+import com.wsoteam.horoscopes.camera.ObjectDetectorAnalyzer
 import com.wsoteam.horoscopes.presentation.hand.dialogs.UnlockScanDialog
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -44,8 +47,6 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
 
     private var imageCapture: ImageCapture? = null
 
-    private lateinit var cameraExecutor: ExecutorService
-    private lateinit var objectDetector: ObjectDetector
     private lateinit var timer: CountDownTimer
     private var lastDetect = -1L
     private lateinit var bitmap: Bitmap
@@ -53,19 +54,75 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     private val DETECTOR_HAND_LABEL = "Band Aid"
     private val LOST_DETECT_INTERVAL = 500L
 
+    private lateinit var executor: ExecutorService
+
+
+    private val objectDetectorConfig = ObjectDetectorAnalyzer.Config(
+        minimumConfidence = 0.5f,
+        numDetection = 10,
+        inputSize = 300,
+        isQuantized = true,
+        modelFile = "detect.tflite",
+        labelsFile = "labelmap.txt"
+    )
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        executor = Executors.newSingleThreadExecutor()
 
-        initObjectDetector()
-        cameraExecutor = Executors.newSingleThreadExecutor()
         disableHandDetected()
-
         startPreviewUpdater()
 
         ivTakePhoto.setOnClickListener {
             scanHand()
+        }
+
+
+    }
+
+    private fun getProcessCameraProvider(onDone: (ProcessCameraProvider) -> Unit) {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+        cameraProviderFuture.addListener(
+            Runnable { onDone.invoke(cameraProviderFuture.get()) },
+            ContextCompat.getMainExecutor(requireContext())
+        )
+    }
+
+    private fun bindCamera(cameraProvider: ProcessCameraProvider) {
+        val preview = Preview.Builder()
+            .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+            .build()
+
+        val imageAnalysis = ImageAnalysis.Builder()
+            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+            .build()
+
+        imageAnalysis.setAnalyzer(
+            executor,
+            ObjectDetectorAnalyzer(App.getInstance().applicationContext, objectDetectorConfig, ::onDetectionResult)
+        )
+
+        val cameraSelector = CameraSelector.Builder()
+            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+            .build()
+
+        cameraProvider.unbindAll()
+
+        cameraProvider.bindToLifecycle(
+            this,
+            cameraSelector,
+            imageAnalysis,
+            preview
+        )
+
+        preview.setSurfaceProvider(viewFinder.createSurfaceProvider())
+    }
+
+    private fun onDetectionResult(result: ObjectDetectorAnalyzer.Result) {
+        if (result?.objects?.size > 0){
+            Log.e("LOL", result.objects[0].title)
         }
     }
 
@@ -122,84 +179,14 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
         timer.start()
     }
 
-    private fun initObjectDetector() {
-        val localModel = LocalModel.Builder().setAssetFilePath("model.tflite").build()
 
-
-        val options = CustomObjectDetectorOptions.Builder(localModel)
-            .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
-            .enableClassification()
-            .setClassificationConfidenceThreshold(0.0f)
-            .setMaxPerObjectLabelCount(1)
-            .build()
-
-        objectDetector = ObjectDetection.getClient(options)
-    }
 
 
     fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-
-        cameraProviderFuture.addListener(Runnable {
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(viewFinder.createSurfaceProvider())
-                }
-
-            imageCapture = ImageCapture.Builder()
-                .build()
-
-            val imageAnalyzer = ImageAnalysis.Builder().build().also {
-                it.setAnalyzer(
-                    cameraExecutor,
-                    ImageAnalyzer(
-                        object :
-                            IImageAnalyzer {
-                            override fun updateImage(
-                                image: InputImage,
-                                imageProxy: ImageProxy
-                            ) {
-                                processImage(image, imageProxy)
-                            }
-                        })
-                )
-            }
-
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture, imageAnalyzer
-                )
-            } catch (exc: Exception) {
-            }
-
-        }, ContextCompat.getMainExecutor(requireContext()))
+        getProcessCameraProvider(::bindCamera)
     }
 
-    private fun processImage(
-        image: InputImage,
-        imageProxy: ImageProxy
-    ) {
-        objectDetector.process(image).addOnSuccessListener {
-            for (detectedObject in it) {
-                for (label in detectedObject.labels) {
-                    Log.e("LOL", label.text)
-                    if (label.text == DETECTOR_HAND_LABEL) {
-                        enableHandDetected()
-                    }
-                }
-            }
-            imageProxy.close()
-        }
-            .addOnFailureListener {
-                disableHandDetected()
-                imageProxy.close()
-            }
-    }
+
 
     private fun disableHandDetected() {
         tvIdicator?.isEnabled = false
