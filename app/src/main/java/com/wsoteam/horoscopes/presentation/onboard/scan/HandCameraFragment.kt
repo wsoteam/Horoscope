@@ -45,14 +45,12 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
         fun openPremFromHand()
     }
 
-    private var imageCapture: ImageCapture? = null
-
     private lateinit var timer: CountDownTimer
     private var lastDetect = -1L
     private lateinit var bitmap: Bitmap
 
-    private val DETECTOR_HAND_LABEL = "Band Aid"
-    private val LOST_DETECT_INTERVAL = 500L
+    private val DETECTOR_HAND_LABEL = "person"
+    private val LOST_DETECT_INTERVAL = 200L
 
     private lateinit var executor: ExecutorService
 
@@ -122,7 +120,13 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
 
     private fun onDetectionResult(result: ObjectDetectorAnalyzer.Result) {
         if (result?.objects?.size > 0){
-            Log.e("LOL", result.objects[0].title)
+            for (i in result.objects.indices){
+                Log.e("LOL", result.objects[i].title)
+                if (result.objects[i].title == DETECTOR_HAND_LABEL){
+                    enableHandDetected()
+                }
+            }
+
         }
     }
 
