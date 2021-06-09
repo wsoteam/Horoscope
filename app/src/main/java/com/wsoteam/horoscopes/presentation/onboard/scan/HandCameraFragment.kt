@@ -50,7 +50,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
     private lateinit var bitmap: Bitmap
 
     private val DETECTOR_HAND_LABEL = "person"
-    private val LOST_DETECT_INTERVAL = 200L
+    private val LOST_DETECT_INTERVAL = 500L
 
     private lateinit var executor: ExecutorService
 
@@ -143,7 +143,7 @@ class HandCameraFragment : Fragment(R.layout.hand_camera_activity) {
         var objectAnimator = ObjectAnimator.ofFloat(ivScan.translationY, 900f)
         objectAnimator.duration = 5_000L
         objectAnimator.addUpdateListener {
-            ivScan.translationY = it.animatedValue.toString().toFloat()
+            ivScan?.translationY = it.animatedValue.toString().toFloat()
         }
 
         objectAnimator.addListener(object : Animator.AnimatorListener {
