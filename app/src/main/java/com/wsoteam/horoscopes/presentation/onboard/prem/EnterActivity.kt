@@ -2,6 +2,7 @@ package com.wsoteam.horoscopes.presentation.onboard.prem
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -53,6 +54,7 @@ class EnterActivity : AppCompatActivity(R.layout.enter_prem_activity) {
                 }
             })
         }
+
     }
 
     private fun setUserData() {
