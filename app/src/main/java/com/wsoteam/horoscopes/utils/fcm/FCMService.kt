@@ -40,8 +40,7 @@ class FCMService : FirebaseMessagingService() {
         var endHour = p0.data[END_HOUR_KEY]!!.toInt()
         var currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         var currentDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR) + 10
-        Log.e("LOL", "is need -- ${PreferencesProvider.isNeedShowFCM}")
-        return if (currentHour in startHour..endHour && currentDay != PreferencesProvider.lastFCMTime && PreferencesProvider.isNeedShowFCM == ABConfig.NEED_FCM){
+        return if (currentHour in startHour..endHour && currentDay != PreferencesProvider.lastFCMTime){
             PreferencesProvider.lastFCMTime = currentDay
             true
         }else{

@@ -315,7 +315,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun trackFCMOpen() {
-        if(intent?.getStringExtra(Config.FCM_INTENT_TAG) != null && intent?.getStringExtra(Config.FCM_INTENT_TAG) == Config.FCM_INTENT_DATA){
+        if (intent?.getStringExtra(Config.FCM_INTENT_TAG) != null && intent?.getStringExtra(Config.FCM_INTENT_TAG) == Config.FCM_INTENT_DATA) {
             Analytic.openFCMNotif()
         }
     }
@@ -428,28 +428,23 @@ class SplashActivity : AppCompatActivity() {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
             setABTestConfig(
-                firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING),
-                firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt(),
-                firebaseRemoteConfig.getString(ABConfig.REQUEST_NEED_FCM)
+                firebaseRemoteConfig.getString(ABConfig.REWARD_TAG)
             )
         }
     }
 
     private fun setABTestConfig(
-        version: String,
-        priceIndex: Int,
-        isNeedFCM: String
+        version: String
     ) {
         L.log("set test")
-        L.log("$priceIndex")
-        PreferencesProvider.setVersion(version)
-        PreferencesProvider.priceIndex = priceIndex
-        PreferencesProvider.isNeedShowFCM = isNeedFCM
-        Analytic.setABVersion(version, priceIndex, isNeedFCM)
-        Analytic.setVersion()
-        if (!PreferencesProvider.isShowOnboard) {
-            Analytic.firstSetVer()
+        Log.e("LOL", version)
+        var defaultVersion = ABConfig.REWARD_NEED
+        if (version != null && version != ""){
+            defaultVersion = version
         }
+        PreferencesProvider.isMultipleRewardAd = defaultVersion
+        Analytic.setABVersion(defaultVersion)
+        Analytic.setVersion()
         postGoNext(1, "setABTestConfig")
     }
 

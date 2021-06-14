@@ -15,6 +15,7 @@ import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.new.Events
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.hand_results_fragment.*
 
 class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
@@ -38,7 +39,7 @@ class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
         index = PreferencesProvider.handInfoIndex
 
         //hotfix
-        if (index >= 10){
+        if (index >= 10) {
             PreferencesProvider.handInfoIndex = 9
             index = 9
         }
@@ -63,8 +64,17 @@ class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
         rvResults.layoutManager = LinearLayoutManager(requireContext())
 
 
-        if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewardedScan) {
-            flLock.visibility = View.VISIBLE
+        if (PreferencesProvider.isMultipleRewardAd == ABConfig.REWARD_NEED) {
+            if (PreferencesProvider.isADEnabled() && !PreferencesProvider.isShowRewardedScan) {
+                flLock.visibility = View.VISIBLE
+            }
+        } else {
+            if (PreferencesProvider.isADEnabled() && (!PreferencesProvider.isShowRewardedMain
+                        && !PreferencesProvider.isShowRewardedScan
+                        && PreferencesProvider.listShowedSigns == PreferencesProvider.EMPTY_LIST)
+            ) {
+                flLock.visibility = View.VISIBLE
+            }
         }
 
         btnShowAd.setOnClickListener {

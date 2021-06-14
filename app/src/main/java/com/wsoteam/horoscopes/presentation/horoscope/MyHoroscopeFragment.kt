@@ -19,6 +19,7 @@ import com.wsoteam.horoscopes.presentation.profile.dialogs.TimeDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.new.Events
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.my_horoscope_fragment.*
 
 class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
@@ -80,10 +81,22 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
     override fun onResume() {
         super.onResume()
-        if (!PreferencesProvider.isShowRewardedMain && PreferencesProvider.isADEnabled()) {
-            llLock.visibility = View.VISIBLE
+        if (PreferencesProvider.isMultipleRewardAd == ABConfig.REWARD_NEED) {
+            if (!PreferencesProvider.isShowRewardedMain && PreferencesProvider.isADEnabled()) {
+                llLock.visibility = View.VISIBLE
+            } else {
+                llLock.visibility = View.GONE
+            }
         } else {
-            llLock.visibility = View.GONE
+            if ((!PreferencesProvider.isShowRewardedMain
+                        && !PreferencesProvider.isShowRewardedScan
+                        && PreferencesProvider.listShowedSigns == PreferencesProvider.EMPTY_LIST)
+                && PreferencesProvider.isADEnabled()
+            ) {
+                llLock.visibility = View.VISIBLE
+            } else {
+                llLock.visibility = View.GONE
+            }
         }
     }
 

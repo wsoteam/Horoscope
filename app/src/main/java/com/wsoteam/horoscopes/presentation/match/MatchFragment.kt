@@ -18,6 +18,7 @@ import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.match.MatchConverter
+import com.wsoteam.horoscopes.utils.remote.ABConfig
 import kotlinx.android.synthetic.main.match_fragment.*
 import kotlinx.android.synthetic.main.match_fragment.tlType
 import kotlinx.android.synthetic.main.my_horoscope_fragment.*
@@ -68,7 +69,7 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
             }
         })
 
-        vpMatch.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        vpMatch.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -85,15 +86,34 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
         })
 
         btnShow.setOnClickListener {
-            if (PreferencesProvider.isADEnabled() && !MatchConverter.isShowedAdForIndex(matchIndex)) {
-                UnlockDialog
-                    .newInstance(matchPair)
-                    .apply {
-                        setTargetFragment(this@MatchFragment, -1)
-                        show(this@MatchFragment.requireFragmentManager(), "")
-                    }
-            }else{
-                openMatchResult()
+            if (PreferencesProvider.isMultipleRewardAd == ABConfig.REWARD_NEED) {
+                if (PreferencesProvider.isADEnabled() && !MatchConverter.isShowedAdForIndex(
+                        matchIndex
+                    )
+                ) {
+                    UnlockDialog
+                        .newInstance(matchPair)
+                        .apply {
+                            setTargetFragment(this@MatchFragment, -1)
+                            show(this@MatchFragment.requireFragmentManager(), "")
+                        }
+                } else {
+                    openMatchResult()
+                }
+            } else {
+                if (PreferencesProvider.isADEnabled() && (!PreferencesProvider.isShowRewardedMain
+                            && !PreferencesProvider.isShowRewardedScan
+                            && PreferencesProvider.listShowedSigns == PreferencesProvider.EMPTY_LIST)
+                ) {
+                    UnlockDialog
+                        .newInstance(matchPair)
+                        .apply {
+                            setTargetFragment(this@MatchFragment, -1)
+                            show(this@MatchFragment.requireFragmentManager(), "")
+                        }
+                } else {
+                    openMatchResult()
+                }
             }
         }
     }
@@ -128,7 +148,10 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
     }
 
     override fun showAd() {
-        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !MatchConverter.isShowedAdForIndex(matchIndex)) {
+        if (AdWorker.rewardedAd != null && PreferencesProvider.isADEnabled() && !MatchConverter.isShowedAdForIndex(
+                matchIndex
+            )
+        ) {
             AdWorker.rewardedAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()

@@ -31,7 +31,6 @@ class PremiumHostActivity : AppCompatActivity() {
         }
         setContentView(R.layout.premium_host_activity)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
-        version = PreferencesProvider.getVersionIndex()
         open_from = intent.getStringExtra(Config.OPEN_PREM)
 
 

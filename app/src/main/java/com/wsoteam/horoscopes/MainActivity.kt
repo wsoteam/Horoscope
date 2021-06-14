@@ -214,17 +214,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ivToolPrem.visibility = View.GONE
         }
 
-        if (PreferencesProvider.getVersion() != ABConfig.A && PreferencesProvider.getVersion() != ABConfig.G) {
-            ivToolAstro.visibility = View.VISIBLE
-            var intent = when (PreferencesProvider.getVersion()) {
-                ABConfig.B, ABConfig.C, ABConfig.H -> Intent(this@MainActivity, WomanActivity::class.java)
-                ABConfig.E, ABConfig.D, ABConfig.F -> Intent(this@MainActivity, HandsActivity::class.java)
-                else -> Intent(this@MainActivity, WomanActivity::class.java)
-            }
-            ivToolAstro.setOnClickListener {
-                startActivity(intent)
-            }
-        }
+
 
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()

@@ -24,7 +24,7 @@ object Analytic {
     private val ad_show = "ad_show"
 
     private val set_ver = "set_ver"
-    private val AB = "AB"
+    private val AB = "AB_REWARD"
     private val PRICE = "PRICE"
     private val FCM_STATUS = "FCM_STATUS"
 
@@ -340,11 +340,9 @@ object Analytic {
         Amplitude.getInstance().identify(identify)
     }
 
-    fun setABVersion(version: String, priceIndex: Int, needFCM: String) {
+    fun setABVersion(version: String) {
         var identify = Identify()
             .set(AB, version)
-            .set(PRICE, priceIndex)
-            .set(FCM_STATUS, needFCM)
         Amplitude.getInstance().identify(identify)
     }
 

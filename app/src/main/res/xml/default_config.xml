@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
-        <key>prem_2501</key>
-        <value>onboard_diamond</value>
-        <key>prices</key>
-        <value>0</value>
-        <key>is_need_fcm</key>
+        <key>reward_tag</key>
         <value>need</value>
     </entry>
 </defaultsMap>

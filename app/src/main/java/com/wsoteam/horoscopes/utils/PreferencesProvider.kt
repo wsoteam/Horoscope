@@ -138,15 +138,9 @@ object PreferencesProvider {
         return pastCount == 0 || pastCount == Config.PREM_SHOW_FREQUENCY
     }
 
-    fun getVersionIndex() = intoIndex(getVersion())
 
-    private fun intoIndex(version: String?): Int {
-        return when (version) {
-            ABConfig.A -> 0
-            ABConfig.B -> 1
-            else -> 0
-        }
-    }
+
+
 
     var firstEnter: Int
         get() = getInstance()?.getInt(FIRST_ENTER_TAG, -1)!!
@@ -172,9 +166,6 @@ object PreferencesProvider {
         get() = getInstance()?.getInt(BAN_FREQUENCY_TAG, 0)!!
         set(value) = editor { it?.putInt(BAN_FREQUENCY_TAG, value) }!!
 
-    var priceIndex: Int
-        get() = getInstance()?.getInt(PRICE_INDEX_TAG, 0)!!
-        set(value) = editor { it?.putInt(PRICE_INDEX_TAG, value) }!!
 
     var isShowOnboard: Boolean
         get() = getInstance()?.getBoolean(SHOW_ONBOARD_TAG, false)!!
@@ -212,10 +203,6 @@ object PreferencesProvider {
     var lastFCMTime: Int
         get() = getInstance()?.getInt(LAST_FCM_TIME_TAG, -1)!!
         set(value) = editor { it?.putInt(LAST_FCM_TIME_TAG, value) }!!
-
-    var isNeedShowFCM: String
-        get() = getInstance()?.getString(AB_FCM_TAG, ABConfig.NEED_FCM)!!
-        set(value) = editor { it?.putString(AB_FCM_TAG, value) }!!
 
     ////New onboard
 
@@ -289,6 +276,13 @@ object PreferencesProvider {
     var isNeedShowInterAfterOnboard: Boolean
         get() = getInstance()?.getBoolean(IS_NEED_SHOW_INTER_AFTER_ONBOARD_TAG, false)!!
         set(value) = editor { it?.putBoolean(IS_NEED_SHOW_INTER_AFTER_ONBOARD_TAG, value) }!!
+
+
+    private const val IS_MULTIPLE_REWARD = "IS_MULTIPLE_REWARD"
+
+    var isMultipleRewardAd: String
+        get() = getInstance()?.getString(IS_MULTIPLE_REWARD, "")!!
+        set(value) = editor { it?.putString(IS_MULTIPLE_REWARD, value) }!!
 
 
 }

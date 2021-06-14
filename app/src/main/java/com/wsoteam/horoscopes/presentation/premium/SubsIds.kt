@@ -17,7 +17,7 @@ object SubsIds {
     const val HAND_SCAN = "handscanner_sub"
 
     fun getId(): String {
-        return if (PreferencesProvider.getVersion() == ABConfig.A) {
+        return if (true) {
             SMALL_DIAMOND
         } else {
             BIG_DIAMOND
