@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.MatchPair.MatchPair
 import com.wsoteam.horoscopes.presentation.match.dialogs.UnlockDialog
@@ -162,15 +163,20 @@ class MatchFragment : Fragment(R.layout.match_fragment), UnlockDialog.Callbacks 
                 }
 
                 override fun onAdShowedFullScreenContent() {
+                    FirebaseAnalytics.getInstance(requireContext()).logEvent("reward_show", null)
                     Events.startRewAd(Events.ad_show_match)
                     super.onAdShowedFullScreenContent()
                 }
+
+
             }
+
             AdWorker.rewardedAd!!.show(
                 requireActivity()
             ) {
                 Events.endRewAd(Events.ad_show_match)
                 MatchConverter.addNewShowedMatchIndex(matchIndex)
+                FirebaseAnalytics.getInstance(requireContext()).logEvent("reward_end", null)
             }
         } else {
             openMatchResult()

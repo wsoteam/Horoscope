@@ -9,6 +9,7 @@ import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.presentation.horoscope.pager.HoroscopePagerAdapter
@@ -110,6 +111,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
 
                 override fun onAdShowedFullScreenContent() {
                     Events.startRewAd(Events.ad_show_main)
+                    FirebaseAnalytics.getInstance(requireContext()).logEvent("reward_show", null)
                     super.onAdShowedFullScreenContent()
                 }
             }
@@ -118,6 +120,7 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
             ) {
                 Events.endRewAd(Events.ad_show_main)
                 PreferencesProvider.isShowRewardedMain = true
+                FirebaseAnalytics.getInstance(requireContext()).logEvent("reward_end", null)
             }
         } else {
             llLock.visibility = View.GONE

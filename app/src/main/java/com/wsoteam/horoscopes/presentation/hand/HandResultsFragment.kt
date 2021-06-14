@@ -7,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.BlackMainActivity
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.hand.controllers.HandResultAdapter
@@ -96,6 +97,7 @@ class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
 
                 override fun onAdShowedFullScreenContent() {
                     Events.startRewAd(Events.ad_show_scan)
+                    FirebaseAnalytics.getInstance(requireContext()).logEvent("reward_show", null)
                     super.onAdShowedFullScreenContent()
                 }
             }
@@ -106,6 +108,7 @@ class HandResultsFragment : Fragment(R.layout.hand_results_fragment) {
                 Events.endRewAd(Events.ad_show_scan)
                 PreferencesProvider.isShowRewardedScan = true
                 flLock.visibility = View.INVISIBLE
+                FirebaseAnalytics.getInstance(requireContext()).logEvent("reward_end", null)
             }
         } else {
             flLock.visibility = View.INVISIBLE

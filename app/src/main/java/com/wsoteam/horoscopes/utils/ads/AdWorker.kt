@@ -5,6 +5,7 @@ import android.util.Log
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
@@ -52,6 +53,7 @@ object AdWorker {
                 override fun onAdClicked() {
                     super.onAdClicked()
                     FBAnalytic.logAdClickEvent(context, "interstitial")
+                    FirebaseAnalytics.getInstance(context).logEvent("click_inter", null)
                 }
 
                 override fun onAdClosed() {
@@ -101,6 +103,7 @@ object AdWorker {
                 override fun onAdOpened() {
                     super.onAdOpened()
                     Analytic.showAd()
+                    FirebaseAnalytics.getInstance(context).logEvent("show_inter", null)
                 }
             }
         }
