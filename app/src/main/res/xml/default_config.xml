@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
-        <key>reward_tag</key>
+        <key>ad_tag</key>
         <value>need</value>
     </entry>
 </defaultsMap>

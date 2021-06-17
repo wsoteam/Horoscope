@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
@@ -22,6 +23,7 @@ import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
@@ -418,12 +420,13 @@ class SplashActivity : AppCompatActivity() {
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        var config = FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(3600).build()
+        firebaseRemoteConfig.setConfigSettingsAsync(config)
         firebaseRemoteConfig.setDefaultsAsync(R.xml.default_config)
-
-        firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
+        firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                firebaseRemoteConfig.activate()
                 Amplitude.getInstance().logEvent("norm_ab")
+                Log.e("LOL", firebaseRemoteConfig.getString(ABConfig.REWARD_TAG))
             } else {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
@@ -437,7 +440,6 @@ class SplashActivity : AppCompatActivity() {
         version: String
     ) {
         L.log("set test")
-        Log.e("LOL", version)
         var defaultVersion = ABConfig.REWARD_NEED
         if (version != null && version != ""){
             defaultVersion = version

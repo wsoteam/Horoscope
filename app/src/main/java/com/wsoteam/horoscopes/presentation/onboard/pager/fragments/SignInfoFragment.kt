@@ -14,6 +14,7 @@ class SignInfoFragment : Fragment(R.layout.sign_info_fragment) {
         if(isVisibleToUser){
             var signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
 
+            Log.e("LOL", "sign index --- $signIndex")
             tvTitle.text = "You are ${resources.getStringArray(R.array.names_signs)[signIndex]}"
             tvInfo.text = resources.getStringArray(R.array.sign_info)[signIndex]
             ivSign.setImageResource(resources.obtainTypedArray(R.array.sign_draws).getResourceId(signIndex, 0))
