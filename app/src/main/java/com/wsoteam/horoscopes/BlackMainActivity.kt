@@ -88,9 +88,10 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
 
         vm.getLD().observe(this,
             Observer<List<Sign>> {
+                var newSignList = getFixList(it)
                 bnvBlackMain.visibility = View.VISIBLE
                 pbMain.visibility = View.GONE
-                fillFragmentList(it)
+                fillFragmentList(newSignList)
                 bindFragmentManager()
                 openPage(MAIN)
             })
@@ -99,6 +100,21 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             AdWorker.showInter()
             PreferencesProvider.isNeedShowInterAfterOnboard = false
         }
+    }
+
+    private fun getFixList(it: List<Sign>?) : List<Sign> {
+        var arrayFixStrings = arrayListOf<String>()
+        for (i in resources.getStringArray(R.array.names_signs)){
+            arrayFixStrings.add(resources.getString(R.string.fix_string, i))
+        }
+
+        for (i in it!!.indices){
+            for (fixString in arrayFixStrings){
+                it[i].month.text = it[i].month.text.replace(fixString, " ")
+            }
+        }
+
+        return it
     }
 
     private fun preloadSignImgs() {

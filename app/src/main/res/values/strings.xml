@@ -57,6 +57,8 @@
         <item>Pisces</item>
     </string-array>
 
+    <string name="fix_string">â¨Mark down the best dates for your zodiac sign with your %s Monthly Horoscope! â¨</string>
+
     <integer-array name="imgs_signs">
         <item>@drawable/img_sign_aries</item>
         <item>@drawable/img_sign_taurus</item>
