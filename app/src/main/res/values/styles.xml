@@ -16,7 +16,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:navigationBarColor">#22191d</item>
-        <item name="android:windowBackground">@drawable/back_new_1</item>
+        <item name="android:windowBackground">@drawable/back_stars</item>
     </style>
 
 

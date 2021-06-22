@@ -9,41 +9,25 @@ import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.info.controller.InfoSignAdapter
 import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.ab.controller.ChoiseSignAdapter
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.getDateFromSign
 import kotlinx.android.synthetic.main.choise_fragment.*
 
 class ChoiseSignFragment : Fragment(R.layout.choise_fragment) {
 
     private lateinit var signImgs: TypedArray
     private lateinit var signNames: Array<String>
-    private lateinit var dates: ArrayList<String>
 
     private lateinit var adapter: ChoiseSignAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fillDates()
+
         signNames = resources.getStringArray(R.array.names_signs)
         rvSigns.layoutManager = GridLayoutManager(requireContext(), 4)
         adapter = ChoiseSignAdapter(getImgs(), signNames)
         rvSigns.adapter = adapter
-
     }
 
-    private fun fillDates() {
-        dates = arrayListOf()
-        dates.add("25.03.1990")
-        dates.add("25.04.1990")
-        dates.add("25.05.1990")
-        dates.add("25.06.1990")
-        dates.add("25.07.1990")
-        dates.add("25.08.1990")
-        dates.add("25.09.1990")
-        dates.add("25.10.1990")
-        dates.add("25.11.1990")
-        dates.add("25.12.1990")
-        dates.add("25.01.1990")
-        dates.add("25.02.1990")
-    }
 
     private fun getImgs(): ArrayList<Int> {
         var listImgs = arrayListOf<Int>()
@@ -67,7 +51,7 @@ class ChoiseSignFragment : Fragment(R.layout.choise_fragment) {
     }
 
     fun saveData() {
-        var birthDay = dates[adapter.getSelectedItem()]
+        var birthDay = getDateFromSign(adapter.getSelectedItem())
         PreferencesProvider.setBirthday(birthDay)
     }
 

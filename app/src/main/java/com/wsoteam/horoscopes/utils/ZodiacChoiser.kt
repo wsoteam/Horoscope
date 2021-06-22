@@ -24,10 +24,10 @@ fun choiceSign(date: String): Int {
     }
 }
 
-fun getSignIndexShuffleArray(date: String) : Int{
+fun getSignIndexShuffleArray(date: String): Int {
     var oldIndex = choiceSign(date)
 
-    return when(oldIndex){
+    return when (oldIndex) {
         0 -> 0
         1 -> 2
         2 -> 4
@@ -42,4 +42,22 @@ fun getSignIndexShuffleArray(date: String) : Int{
         11 -> 11
         else -> throw IllegalArgumentException("ZodiacChoicer error, new array")
     }
+}
+
+fun getDateFromSign(indexShuffle: Int): String {
+    var dates = arrayListOf<String>()
+    dates.add("25.03.1990")
+    dates.add("25.04.1990")
+    dates.add("25.05.1990")
+    dates.add("25.06.1990")
+    dates.add("25.07.1990")
+    dates.add("25.08.1990")
+    dates.add("25.09.1990")
+    dates.add("25.10.1990")
+    dates.add("25.11.1990")
+    dates.add("25.12.1990")
+    dates.add("25.01.1990")
+    dates.add("25.02.1990")
+
+    return dates[indexShuffle]
 }

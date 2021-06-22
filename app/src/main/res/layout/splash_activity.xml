@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:elevation="4dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/back_new_1"/>
+        app:srcCompat="@drawable/back_stars"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivMain"
