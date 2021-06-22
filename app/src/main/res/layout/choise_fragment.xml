@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="28sp"
+            android:textColor="#ffffff"
+            android:text="Your astral sign"
+            android:layout_marginTop="106dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSigns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="6dp"/>
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

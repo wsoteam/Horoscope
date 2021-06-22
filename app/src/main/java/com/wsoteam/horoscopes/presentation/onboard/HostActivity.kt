@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.onboard.pager.OnboardAdapter
 import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.*
+import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.ab.ChoiseSignFragment
 import com.wsoteam.horoscopes.presentation.onboard.scan.ScanIntroActivtity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.new.Events
@@ -25,6 +26,7 @@ import kotlinx.android.synthetic.main.host_activity.*
 class HostActivity : AppCompatActivity(R.layout.host_activity) {
 
     private lateinit var fragmentsList: ArrayList<Fragment>
+    private var isDateFragment = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +39,15 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
     private fun fillFragmentsList() {
         fragmentsList = arrayListOf()
         fragmentsList.add(WelcomeFragment())
-        fragmentsList.add(BirthdayFragment())
+
+        if (isDateFragment){
+            fragmentsList.add(BirthdayFragment())
+        }else{
+            fragmentsList.add(ChoiseSignFragment())
+        }
+
         fragmentsList.add(NameFragment())
         fragmentsList.add(GenderFragment())
-        fragmentsList.add(BirthTimeFragment())
         fragmentsList.add(SignInfoFragment())
     }
 
@@ -88,7 +95,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
                     btnStart.text = getString(R.string.next_on)
                 }
 
-                if (position == 1){
+                if (position == 1) {
                     btnStart.isEnabled = true
                 }
                 hideKeyboard()
@@ -104,8 +111,12 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
         when (currentItem) {
             0 -> vpOnboard.currentItem = currentItem + 1
             1 -> {
-                if (checkBirthday()){
-                    (fragmentsList[1] as BirthdayFragment).saveData()
+                if (checkBirthday()) {
+                    if (isDateFragment){
+                        (fragmentsList[1] as BirthdayFragment).saveData()
+                    }else{
+                        (fragmentsList[1] as ChoiseSignFragment).saveData()
+                    }
                     vpOnboard.currentItem = currentItem + 1
                 }
             }
@@ -120,10 +131,6 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
                 vpOnboard.currentItem = currentItem + 1
             }
             4 -> {
-                (fragmentsList[4] as BirthTimeFragment).saveData()
-                vpOnboard.currentItem = currentItem + 1
-            }
-            5 -> {
                 bindFinish()
             }
         }
@@ -153,7 +160,12 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
     }
 
     private fun checkBirthday(): Boolean {
-        return (fragmentsList[1] as BirthdayFragment).checkFields()
+        if (isDateFragment){
+            return (fragmentsList[1] as BirthdayFragment).checkFields()
+        }else{
+            return true
+        }
+
     }
 
     override fun onBackPressed() {

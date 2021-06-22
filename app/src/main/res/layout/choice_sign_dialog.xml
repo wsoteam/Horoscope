@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        android:background="@color/black">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/muller_medium"
+                android:textStyle="normal"
+                android:textSize="19sp"
+                android:textColor="#ffffff"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Change my sign"
+                />
+
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_close_choice_sign"
+                android:padding="16dp"/>
+
+        </FrameLayout>
+
+
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvChoiceSign"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="225dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/muller_medium"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#2a0762"
+            android:gravity="center"
+            android:text="OK"
+            android:background="@drawable/shape_button_start"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>
