@@ -167,7 +167,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             var handCameraFragment = HandCameraFragment()
             handCameras.add(handCameraFragment)
         }
-        
+
 
         if (isNeedDateFragment) {
             settingsFragments.add(ProfileFragment())
