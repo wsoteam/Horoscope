@@ -1,6 +1,5 @@
 package com.wsoteam.horoscopes.presentation.profile.dialogs
 
-import android.content.res.TypedArray
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +12,10 @@ import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.ab.controller
 import kotlinx.android.synthetic.main.choice_sign_dialog.*
 
 class ChoiceSignDialog : DialogFragment() {
+
+    interface Callbacks{
+        fun setNewSign(index : Int)
+    }
 
     private lateinit var adapter : ChoiseSignAdapter
     private lateinit var signNames: Array<String>
@@ -28,13 +31,21 @@ class ChoiceSignDialog : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        signNames = resources.getStringArray(R.array.names_signs)
+        rvChoiceSign.layoutManager = GridLayoutManager(requireContext(), 4)
+        adapter = ChoiseSignAdapter(getImgs(), signNames)
+        rvChoiceSign.adapter = adapter
+
+
         ivClose.setOnClickListener {
             dismiss()
         }
 
-        signNames = resources.getStringArray(R.array.names_signs)
-        rvChoiceSign.layoutManager = GridLayoutManager(requireContext(), 4)
-        adapter = ChoiseSignAdapter(getImgs(), signNames)
+        btnOk.setOnClickListener {
+            var index = adapter.getSelectedItem()
+            (targetFragment as Callbacks).setNewSign(index)
+            dismiss()
+        }
     }
 
     private fun getImgs(): ArrayList<Int> {
@@ -56,5 +67,18 @@ class ChoiceSignDialog : DialogFragment() {
         listImgs.add(R.drawable.img_onboard_pisces)
 
         return listImgs
+    }
+
+    companion object{
+        private const val SIGN_INDEX_TAG = "SIGN_INDEX_TAG"
+
+        fun newInstance(signIndex : Int) : ChoiceSignDialog{
+            var args = Bundle().apply {
+                putInt(SIGN_INDEX_TAG, signIndex)
+            }
+            return ChoiceSignDialog().apply {
+                arguments = args
+            }
+        }
     }
 }

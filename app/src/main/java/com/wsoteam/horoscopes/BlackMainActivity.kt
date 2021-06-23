@@ -27,6 +27,7 @@ import com.wsoteam.horoscopes.presentation.match.MatchResultFragment
 import com.wsoteam.horoscopes.presentation.onboard.prem.EnterActivity
 import com.wsoteam.horoscopes.presentation.onboard.scan.HandCameraFragment
 import com.wsoteam.horoscopes.presentation.profile.ProfileFragment
+import com.wsoteam.horoscopes.presentation.profile.TProfileFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
 import com.wsoteam.horoscopes.utils.analytics.Analytic
@@ -55,6 +56,8 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     var lastPageNumber = 0
 
     var isNeedRemove = false
+
+    var isNeedDateFragment = false
 
     companion object {
         const val MAIN = 0
@@ -96,20 +99,20 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                 openPage(MAIN)
             })
 
-        if (PreferencesProvider.isNeedShowInterAfterOnboard && PreferencesProvider.isADEnabled()){
+        if (PreferencesProvider.isNeedShowInterAfterOnboard && PreferencesProvider.isADEnabled()) {
             AdWorker.showInter()
             PreferencesProvider.isNeedShowInterAfterOnboard = false
         }
     }
 
-    private fun getFixList(it: List<Sign>?) : List<Sign> {
+    private fun getFixList(it: List<Sign>?): List<Sign> {
         var arrayFixStrings = arrayListOf<String>()
-        for (i in resources.getStringArray(R.array.names_signs)){
+        for (i in resources.getStringArray(R.array.names_signs)) {
             arrayFixStrings.add(resources.getString(R.string.fix_string, i))
         }
 
-        for (i in it!!.indices){
-            for (fixString in arrayFixStrings){
+        for (i in it!!.indices) {
+            for (fixString in arrayFixStrings) {
                 it[i].month.text = it[i].month.text.replace(fixString, " ")
             }
         }
@@ -120,7 +123,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     private fun preloadSignImgs() {
         var signImgs = resources.obtainTypedArray(R.array.sign_draws_info)
 
-        for (i in 0 until signImgs.length()){
+        for (i in 0 until signImgs.length()) {
             Glide.with(this)
                 .load(signImgs.getResourceId(i, -1))
                 .preload()
@@ -164,9 +167,14 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             var handCameraFragment = HandCameraFragment()
             handCameras.add(handCameraFragment)
         }
+        
 
-        var settingsFragment = ProfileFragment()
-        settingsFragments.add(settingsFragment)
+        if (isNeedDateFragment) {
+            settingsFragments.add(ProfileFragment())
+        }else{
+            settingsFragments.add(TProfileFragment())
+        }
+
 
         fragmentList.add(mainFragments)
         fragmentList.add(infoFragments)
@@ -340,11 +348,11 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
         signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
         setBNVOwnSignIcon()
 
-        for (i in matchFragments.indices){
+        for (i in matchFragments.indices) {
             matchFragments.removeAt(i)
         }
 
-        for (i in mainFragments.indices){
+        for (i in mainFragments.indices) {
             mainFragments.removeAt(i)
         }
 
@@ -394,7 +402,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
                     bnvBlackMain.selectedItemId = R.id.bnv_main
                 }
             }
-        }else{
+        } else {
             super.onBackPressed()
         }
     }
