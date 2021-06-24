@@ -3,7 +3,6 @@ package com.wsoteam.horoscopes
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,12 +29,12 @@ import com.wsoteam.horoscopes.presentation.profile.ProfileFragment
 import com.wsoteam.horoscopes.presentation.profile.TProfileFragment
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdWorker
-import com.wsoteam.horoscopes.utils.analytics.Analytic
 import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import com.wsoteam.horoscopes.utils.remote.ABDate
+import com.wsoteam.horoscopes.utils.text.SignEditor
 import kotlinx.android.synthetic.main.black_main_activity.*
 import kotlin.random.Random
 
@@ -117,6 +116,16 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
             for (fixString in arrayFixStrings) {
                 it[i].month.text = it[i].month.text.replace(fixString, " ")
             }
+        }
+
+        for (i in it.indices){
+            it[i].month.text = SignEditor.editText(it[i].month.text)
+            it[i].today.text = SignEditor.editText(it[i].today.text)
+            it[i].week.text = SignEditor.editText(it[i].week.text)
+            it[i].week.career = SignEditor.editText(it[i].week.career)
+            it[i].week.love= SignEditor.editText(it[i].week.love)
+            it[i].week.money = SignEditor.editText(it[i].week.money)
+            it[i].week.wellness = SignEditor.editText(it[i].week.wellness)
         }
 
         return it
