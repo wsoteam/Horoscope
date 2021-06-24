@@ -35,6 +35,7 @@ import com.wsoteam.horoscopes.utils.analytics.new.Events
 import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import com.wsoteam.horoscopes.utils.net.state.NetState
+import com.wsoteam.horoscopes.utils.remote.ABDate
 import kotlinx.android.synthetic.main.black_main_activity.*
 import kotlin.random.Random
 
@@ -75,6 +76,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Events.openPage(Events.main_page)
+        isNeedDateFragment = ABDate.isDateNeed()
         signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()

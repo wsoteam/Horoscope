@@ -431,7 +431,7 @@ class SplashActivity : AppCompatActivity() {
                 Amplitude.getInstance().logEvent("crash_ab")
             }
             setABTestConfig(
-                firebaseRemoteConfig.getString(ABConfig.REWARD_TAG)
+                firebaseRemoteConfig.getString(ABConfig.DATE_TAG)
             )
         }
     }
@@ -440,11 +440,12 @@ class SplashActivity : AppCompatActivity() {
         version: String
     ) {
         L.log("set test")
-        var defaultVersion = ABConfig.REWARD_NEED
+        var defaultVersion = ABConfig.DATE_NEED
         if (version != null && version != ""){
             defaultVersion = version
         }
         PreferencesProvider.isMultipleRewardAd = defaultVersion
+        PreferencesProvider.isDateNeed = defaultVersion
         Analytic.setABVersion(defaultVersion)
         Analytic.setVersion()
         postGoNext(1, "setABTestConfig")

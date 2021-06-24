@@ -24,7 +24,7 @@ object Analytic {
     private val ad_show = "ad_show"
 
     private val set_ver = "set_ver"
-    private val AB = "AB_REWARD"
+    private val AB = "AB_DATE"
     private val PRICE = "PRICE"
     private val FCM_STATUS = "FCM_STATUS"
 

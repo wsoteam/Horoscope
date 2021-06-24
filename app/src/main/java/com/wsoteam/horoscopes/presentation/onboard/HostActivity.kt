@@ -20,6 +20,7 @@ import com.wsoteam.horoscopes.presentation.onboard.pager.fragments.ab.ChoiseSign
 import com.wsoteam.horoscopes.presentation.onboard.scan.ScanIntroActivtity
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.new.Events
+import com.wsoteam.horoscopes.utils.remote.ABDate
 import kotlinx.android.synthetic.main.host_activity.*
 
 
@@ -31,6 +32,7 @@ class HostActivity : AppCompatActivity(R.layout.host_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         PreferencesProvider.isNeedShowInterAfterOnboard = true
+        isDateFragment = ABDate.isDateNeed()
         Events.openPageOnboard(0)
         fillFragmentsList()
         updateUI()

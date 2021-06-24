@@ -279,10 +279,16 @@ object PreferencesProvider {
 
 
     private const val IS_MULTIPLE_REWARD = "IS_MULTIPLE_REWARD"
-
     var isMultipleRewardAd: String
         get() = getInstance()?.getString(IS_MULTIPLE_REWARD, "")!!
         set(value) = editor { it?.putString(IS_MULTIPLE_REWARD, value) }!!
+
+
+
+    private const val IS_DATE_NEED = "IS_DATE_NEED"
+    var isDateNeed: String
+        get() = getInstance()?.getString(IS_DATE_NEED, "")!!
+        set(value) = editor { it?.putString(IS_DATE_NEED, value) }!!
 
 
 }

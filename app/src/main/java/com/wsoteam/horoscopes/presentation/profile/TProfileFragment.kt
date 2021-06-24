@@ -11,9 +11,11 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.profile.dialogs.ChoiceSignDialog
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.choiceSign
 import com.wsoteam.horoscopes.utils.getDateFromSign
 import com.wsoteam.horoscopes.utils.getSignIndexShuffleArray
 import kotlinx.android.synthetic.main.tprofile_fragment.*
@@ -21,9 +23,6 @@ import kotlinx.android.synthetic.main.tprofile_fragment.*
 
 class TProfileFragment : Fragment(R.layout.tprofile_fragment), ChoiceSignDialog.Callbacks {
 
-    interface Callbacks{
-        fun refreshSing()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +31,6 @@ class TProfileFragment : Fragment(R.layout.tprofile_fragment), ChoiceSignDialog.
         setListeners()
 
     }
-
 
     private fun setListeners() {
         flSingle.setOnClickListener {
@@ -55,7 +53,7 @@ class TProfileFragment : Fragment(R.layout.tprofile_fragment), ChoiceSignDialog.
 
         btnChoiceSign.setOnClickListener {
             ChoiceSignDialog
-                .newInstance(getSignIndexShuffleArray(PreferencesProvider.getBirthday()!!)).apply {
+                .newInstance(choiceSign(PreferencesProvider.getBirthday()!!)).apply {
                     setTargetFragment(this@TProfileFragment, -1)
                     show(this@TProfileFragment.requireFragmentManager(), "")
                 }

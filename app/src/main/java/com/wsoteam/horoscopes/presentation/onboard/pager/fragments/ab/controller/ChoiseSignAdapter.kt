@@ -1,5 +1,6 @@
 package com.wsoteam.horoscopes.presentation.onboard.pager.fragments.ab.controller
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,8 @@ class ChoiseSignAdapter(
         })
     }
 
-    private fun selectNewItem(position: Int) {
+    fun selectNewItem(position: Int) {
+        Log.e("LOL", position.toString())
         lastSelectedItem = position
         notifyDataSetChanged()
     }

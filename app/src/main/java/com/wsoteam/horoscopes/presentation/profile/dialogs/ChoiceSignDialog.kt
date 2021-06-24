@@ -35,6 +35,7 @@ class ChoiceSignDialog : DialogFragment() {
         rvChoiceSign.layoutManager = GridLayoutManager(requireContext(), 4)
         adapter = ChoiseSignAdapter(getImgs(), signNames)
         rvChoiceSign.adapter = adapter
+        adapter.selectNewItem(arguments!!.getInt(SIGN_INDEX_TAG))
 
 
         ivClose.setOnClickListener {
