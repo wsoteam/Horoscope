@@ -261,7 +261,7 @@ class SplashActivity : AppCompatActivity() {
         bindRetention()
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
-        NativeProvider.loadNative()
+        //NativeProvider.loadNative()
         bindTest()
         //refreshNotifications()
 

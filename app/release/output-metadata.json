@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.wsoteam.horoscopes",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 52,
+      "versionName": "1.0.46",
+      "enabled": true,
+      "outputFile": "app-release.apk"
+    }
+  ]
+}
