@@ -2,17 +2,17 @@
     <string name="app_name">Astropedia</string>
 
     <!--Test-->
-    <!--<string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_key" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
-    <string name="reward_video" translatable="false">ca-app-pub-3940256099942544/5224354917</string>-->
+    <string name="reward_video" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
-    <string name="admob_key" translatable="false">ca-app-pub-9335069695317044~4687641664</string>
+    <!--<string name="admob_key" translatable="false">ca-app-pub-9335069695317044~4687641664</string>
     <string name="interstitial_id" translatable="false">ca-app-pub-9335069695317044/1023728829</string>
     <string name="banner_id" translatable="false">ca-app-pub-9335069695317044/1936165872</string>
     <string name="native_ad" translatable="false">ca-app-pub-9335069695317044/7173014831</string>
-    <string name="reward_video" translatable="false">ca-app-pub-9335069695317044/1211431088</string>
+    <string name="reward_video" translatable="false">ca-app-pub-9335069695317044/1211431088</string>-->
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
     <!--<string name="amplitude_id">3031a61ead2f7482d87c899794cec751</string>-->

@@ -75,7 +75,7 @@ class BlackMainActivity : AppCompatActivity(R.layout.black_main_activity),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Events.openPage(Events.main_page)
-        //isNeedDateFragment = ABDate.isDateNeed()
+        isNeedDateFragment = ABDate.isDateNeed()
         signIndex = choiceSign(PreferencesProvider.getBirthday()!!)
         vm = ViewModelProviders.of(this).get(MainVM::class.java)
         vm.setupCachedData()

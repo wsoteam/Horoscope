@@ -20,8 +20,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="280dp"
-                android:layout_height="182dp"
-                app:srcCompat="@drawable/cat"/>
+                android:layout_height="182dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
