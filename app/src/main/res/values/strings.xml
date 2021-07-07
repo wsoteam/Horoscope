@@ -379,6 +379,23 @@ You will pay today, cancel any time before then.
         <item>@drawable/selector_s_pisces</item>
     </integer-array>
 
+
+    <integer-array name="btn_ic_signs">
+        <item>@drawable/ic_s_aries_black</item>
+        <item>@drawable/ic_s_libra_black</item>
+        <item>@drawable/ic_s_taurus_black</item>
+        <item>@drawable/ic_s_scorpio_black</item>
+        <item>@drawable/ic_s_gemini_black</item>
+        <item>@drawable/ic_s_sagittarius_black</item>
+        <item>@drawable/ic_s_cancer_black</item>
+        <item>@drawable/ic_s_capricorn_black</item>
+        <item>@drawable/ic_s_leo_black</item>
+        <item>@drawable/ic_s_aquarius_black</item>
+        <item>@drawable/ic_s_virgo_black</item>
+        <item>@drawable/ic_s_piscecs_black</item>
+    </integer-array>
+
+
     <string-array name="match_signs_names">
         <item>Aries</item>
         <item>Libra</item>

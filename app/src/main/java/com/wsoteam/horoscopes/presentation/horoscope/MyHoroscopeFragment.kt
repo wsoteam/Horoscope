@@ -128,19 +128,12 @@ class MyHoroscopeFragment : Fragment(R.layout.my_horoscope_fragment) {
     }
 
     private fun updateUI() {
-        var drawable = VectorDrawableCompat.create(
-            resources,
-            resources.obtainTypedArray(R.array.match_signs_imgs).getResourceId(index, -1), null
-        ) as Drawable
-        drawable = DrawableCompat.wrap(drawable)
-        DrawableCompat.setTint(drawable, resources.getColor(R.color.img_sign_color))
-
         ivSign.setImageResource(
             resources.obtainTypedArray(R.array.sign_draws).getResourceId(index, -1)
         )
         tvSign.text = resources.getStringArray(R.array.names_signs)[index]
         tvInterval.text = resources.getStringArray(R.array.info_signs_intervals)[index]
-        btnAbout.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
+        btnAbout.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(resources.obtainTypedArray(R.array.btn_ic_signs).getResourceId(index, -1)), null, null, null)
     }
 
     private fun fillFragmentList() {
