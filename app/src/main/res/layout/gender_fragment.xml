@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:background="@color/black">
 
     <LinearLayout
@@ -37,12 +38,12 @@
                 android:orientation="vertical">
 
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_gender"
-                    android:src="@drawable/selector_gender_male"
+                    app:srcCompat="@drawable/selector_gender_male"
                     android:enabled="true"
                     android:padding="25dp"/>
 
@@ -73,12 +74,12 @@
                 android:orientation="vertical">
 
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_gender"
-                    android:src="@drawable/selector_gender_female"
+                    app:srcCompat="@drawable/selector_gender_female"
                     android:enabled="false"
                     android:padding="25dp"/>
 

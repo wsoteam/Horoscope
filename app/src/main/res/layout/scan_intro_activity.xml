@@ -1,188 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_stars"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/muller"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:textColor="#ffffff"
-            android:text="@string/scan_your_palm_to_know_your_fate"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="17dp"
-            />
-
-        <FrameLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/back_stars" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_hand_scan_intro"
-                android:layout_gravity="center"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_left_top_intro"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:src="@drawable/img_right_top_intro"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:src="@drawable/img_left_bottom_intro"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:src="@drawable/img_right_bottom_intro"/>
-            
-        </FrameLayout>
-        
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="34dp"
-            android:weightSum="3"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/muller_medium"
-                android:textStyle="normal"
-                android:textSize="28sp"
-                android:textColor="#ea9245"
-                android:letterSpacing="0.04"
-                android:text="@string/head"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:drawableBottom="@drawable/ic_intro_quest"
-                android:drawablePadding="16dp"
-                />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/muller"
+                android:text="@string/scan_your_palm_to_know_your_fate"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="12dp"
+                    app:srcCompat="@drawable/img_hand_scan_intro" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_left_top_intro" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/img_right_top_intro" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/img_left_bottom_intro" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:src="@drawable/img_right_bottom_intro" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="34dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/muller_medium"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.04"
+                    android:text="@string/head"
+                    android:textColor="#ea9245"
+                    android:textSize="28sp"
+                    android:textStyle="normal"
+                    app:drawableBottomCompat="@drawable/ic_intro_quest" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/muller_medium"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.04"
+                    android:text="@string/life"
+                    android:textColor="#319151"
+                    android:textSize="28sp"
+                    android:textStyle="normal"
+                    app:drawableBottomCompat="@drawable/ic_intro_quest" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/muller_medium"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.04"
+                    android:text="@string/heart"
+                    android:textColor="#b86bd6"
+                    android:textSize="28sp"
+                    android:textStyle="normal"
+                    app:drawableBottomCompat="@drawable/ic_intro_quest" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/muller_medium"
-                android:textStyle="normal"
-                android:textSize="28sp"
-                android:textColor="#319151"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="31dp"
+                android:fontFamily="@font/muller"
                 android:letterSpacing="0.04"
-                android:text="@string/life"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:drawableBottom="@drawable/ic_intro_quest"
-                android:drawablePadding="16dp"
-                />
-
+                android:text="@string/take_a_photo_of_your_left_hand"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/muller_medium"
-                android:textStyle="normal"
-                android:textSize="28sp"
-                android:textColor="#b86bd6"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/muller"
                 android:letterSpacing="0.04"
-                android:text="@string/heart"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:drawableBottom="@drawable/ic_intro_quest"
-                android:drawablePadding="16dp"
-                />
-            
-            
+                android:text="@string/your_hand_must_be_placed_in_the_frame"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="19dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.04"
+                android:padding="8dp"
+                android:text="@string/skip"
+                android:textColor="#bd84fd"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnScan"
+                android:layout_width="201dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="21dp"
+                android:background="@drawable/shape_button_start"
+                android:fontFamily="@font/muller_bold"
+                android:letterSpacing="0.04"
+                android:paddingStart="65dp"
+                android:paddingEnd="65dp"
+                android:text="@string/scan"
+                android:textAllCaps="false"
+                android:textColor="#1a072f"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/muller"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="#ffffff"
-            android:letterSpacing="0.04"
-            android:layout_marginTop="31dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/take_a_photo_of_your_left_hand"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/muller"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="#ffffff"
-            android:letterSpacing="0.04"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/your_hand_must_be_placed_in_the_frame"
-            />
-
-        <TextView
-            android:id="@+id/tvSkip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:textColor="#bd84fd"
-            android:letterSpacing="0.04"
-            android:padding="8dp"
-            android:layout_marginTop="19dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/skip"
-            />
-
-        <Button
-            android:id="@+id/btnScan"
-            android:layout_width="201dp"
-            android:layout_height="36dp"
-            android:fontFamily="@font/muller_bold"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:textColor="#1a072f"
-            android:letterSpacing="0.04"
-            android:text="@string/scan"
-            android:textAllCaps="false"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="21dp"
-            android:paddingEnd="65dp"
-            android:paddingStart="65dp"
-            android:background="@drawable/shape_button_start"/>
-
-    </LinearLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</ScrollView>
