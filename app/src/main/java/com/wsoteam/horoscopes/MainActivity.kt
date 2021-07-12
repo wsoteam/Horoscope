@@ -273,7 +273,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (NetState.isConnected()) {
             supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment())
                 .commit()
-            vm.reloadData()
+            //vm.reloadData()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             AdWorker.init(this)
         } else {

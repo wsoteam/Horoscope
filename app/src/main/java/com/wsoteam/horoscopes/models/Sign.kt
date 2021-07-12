@@ -1,18 +1,15 @@
 package com.wsoteam.horoscopes.models
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.JsonClass
 import java.io.Serializable
 
-data class Sign (@SerializedName("today")
+@JsonClass(generateAdapter = true)
+data class Sign (
                  var today : Today,
-                 @SerializedName("tomorrow")
+                 var yesterday : Yesterday,
                  var tomorrow : Tomorrow,
-                 @SerializedName("week")
                  var week : Week,
-                 @SerializedName("month")
                  var month : Month,
-                 @SerializedName("year")
-                 var year : Year,
-                 @SerializedName("yesterday")
-                 var yesterday : Yesterday) : Serializable {
+                 var year : Year) : Serializable {
 }

@@ -104,4 +104,6 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
     implementation 'com.userexperior:userexperior-android:+'
 
+    implementation "com.squareup.moshi:moshi:1.9.1"
+
 }
