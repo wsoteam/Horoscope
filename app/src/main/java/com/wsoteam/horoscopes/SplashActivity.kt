@@ -122,10 +122,14 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             PreferencesProvider.isSetuped = true
         }
 
+        //Server query
         var vm = ViewModelProviders
             .of(this)
             .get(MainVM::class.java)
         vm.preLoadData()
+
+
+
         if (PreferencesProvider.getBirthday() != "") {
             CacheData.setObserver(object : ICachedData {
                 override fun cachedDataReady() {

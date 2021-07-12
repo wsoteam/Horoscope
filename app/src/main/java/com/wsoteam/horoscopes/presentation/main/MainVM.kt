@@ -52,6 +52,7 @@ class MainVM : ViewModel() {
     }
 
     private suspend fun getData(): List<Sign> {
+        // Тут получаем список знаков
         L.log("getData")
         return if (Locale.getDefault().language == PT_LOCALE){
             RepositoryGets.getAPI().getPTData().await()
