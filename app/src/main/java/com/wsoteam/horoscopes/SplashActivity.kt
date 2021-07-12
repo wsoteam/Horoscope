@@ -122,7 +122,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             PreferencesProvider.isSetuped = true
         }
 
-        //Server query
+        //Server query ollo
         var vm = ViewModelProviders
             .of(this)
             .get(MainVM::class.java)
