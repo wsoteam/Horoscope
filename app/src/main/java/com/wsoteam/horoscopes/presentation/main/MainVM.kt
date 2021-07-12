@@ -2,7 +2,10 @@ package com.wsoteam.horoscopes.presentation.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.wsoteam.horoscopes.App
 import com.wsoteam.horoscopes.models.Global
 import com.wsoteam.horoscopes.models.Sign
@@ -25,7 +28,7 @@ class MainVM : ViewModel() {
 
     private val dataLD = MutableLiveData<List<Sign>>()
 
-   fun preLoadData() {
+    fun preLoadData() {
         L.log("preLoadData")
         if (NetState.isConnected()) {
             job = vmScope.launch {
@@ -72,9 +75,10 @@ class MainVM : ViewModel() {
 
         return data*/
 
-       var json: String
-        var moshi = Moshi.Builder().build()
-        var jsonAdapter = moshi.adapter(Sign::class.java)
+        var json: String
+        var moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        var listType = Types.newParameterizedType(List::class.java, Sign::class.java)
+        var jsonAdapter = moshi.adapter<List<Sign>>(listType)
         try {
             var inputStream = App.getInstance().assets.open("number1.json")
             var size = inputStream.available()
@@ -82,7 +86,7 @@ class MainVM : ViewModel() {
             inputStream.read(buffer)
             inputStream.close()
             json = String(buffer, charset("UTF-8"))
-            return jsonAdapter.fromJson(json)
+            return jsonAdapter.fromJson(json)!!
         } catch (e: Exception) {
         }
         return null!!

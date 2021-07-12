@@ -105,5 +105,5 @@ dependencies {
     implementation 'com.userexperior:userexperior-android:+'
 
     implementation "com.squareup.moshi:moshi:1.9.1"
-
+    implementation "com.squareup.moshi:moshi-kotlin:1.9.1"
 }
