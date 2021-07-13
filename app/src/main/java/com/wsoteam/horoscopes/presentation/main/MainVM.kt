@@ -11,6 +11,7 @@ import com.wsoteam.horoscopes.models.Global
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.models.Today
 import com.wsoteam.horoscopes.models.Yesterday
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.coroutines.CoroutineScope
@@ -20,6 +21,10 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainVM : ViewModel() {
+
+    private val FIRST_FILE = "number1.json"
+    private val SECOND_FILE = "number2.json"
+    private val THIRD_FILE = "number3.json"
 
     private val PT_LOCALE = "pt"
 
@@ -58,29 +63,13 @@ class MainVM : ViewModel() {
 
 
     fun getData(): List<Sign> {
-        // Тут получаем список знаков
-        /*L.log("getData")
-        return if (Locale.getDefault().language == PT_LOCALE){
-            RepositoryGets.getAPI().getPTData().await()
-        }else{
-            RepositoryGets.getAPI().getData().await()
-        }*/
-
-
-        /*val file_name = "number1.json"
-        val bufferReader = App.getInstance().assets.open(file_name).bufferedReader()
-        val data = bufferReader.use {
-            it.readText()
-        }
-
-        return data*/
-
+        var path = getTodayPath()
         var json: String
         var moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         var listType = Types.newParameterizedType(List::class.java, Sign::class.java)
         var jsonAdapter = moshi.adapter<List<Sign>>(listType)
         try {
-            var inputStream = App.getInstance().assets.open("number1.json")
+            var inputStream = App.getInstance().assets.open(path)
             var size = inputStream.available()
             var buffer = ByteArray(size)
             inputStream.read(buffer)
@@ -90,6 +79,27 @@ class MainVM : ViewModel() {
         } catch (e: Exception) {
         }
         return null!!
+    }
+
+    private fun getTodayPath(): String {
+        var counter = PreferencesProvider.pathCounter
+        var lastEnterDay = PreferencesProvider.lastEnterDay
+        var currentDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+
+        if (currentDay != lastEnterDay){
+            PreferencesProvider.lastEnterDay = currentDay
+            counter ++
+
+            if (counter > PreferencesProvider.MAX_PATH_COUNTER){
+                counter = 0
+            }
+
+            PreferencesProvider.pathCounter = counter
+        }
+
+
+        var listPaths = arrayListOf(FIRST_FILE, SECOND_FILE, THIRD_FILE)
+        return listPaths[counter]
     }
 
     fun getLD(): MutableLiveData<List<Sign>> {

@@ -151,4 +151,19 @@ object PreferencesProvider {
         get() = getInstance()?.getBoolean(IS_SETUPED_TAG, false)!!
         set(value) = editor { it?.putBoolean(IS_SETUPED_TAG, value) }!!
 
+
+    private const val PATH_COUNTER_TAG = "PATH_COUNTER_TAG"
+    const val MAX_PATH_COUNTER = 2
+
+    var pathCounter: Int
+        get() = getInstance()?.getInt(PATH_COUNTER_TAG, 0)!!
+        set(value) = editor { it?.putInt(PATH_COUNTER_TAG, value) }!!
+
+
+    private const val LAST_ENTER_DAY_TAG = "LAST_ENTER_DAY_TAG"
+
+    var lastEnterDay: Int
+        get() = getInstance()?.getInt(LAST_ENTER_DAY_TAG, -1)!!
+        set(value) = editor { it?.putInt(LAST_ENTER_DAY_TAG, value) }!!
+
 }
