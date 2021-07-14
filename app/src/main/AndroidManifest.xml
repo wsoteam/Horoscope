@@ -3,7 +3,6 @@
     package="com.wsoteam.horoscopes">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
     <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
@@ -21,7 +20,6 @@
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -31,11 +29,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".bl.BlActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BL"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/fb_login_protocol_scheme" />
@@ -44,8 +44,6 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
-
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -62,14 +60,12 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_key" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
         <activity
-            android:name="com.wsoteam.horoscopes.SplashActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
             <intent-filter>
@@ -78,9 +74,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <!--<activity
+        <!--
+<activity
             android:name="com.wsoteam.horoscopes.presentation.crystals.shop.ListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
@@ -89,47 +84,36 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
-
-
+        </activity>
+        -->
         <activity
             android:name=".presentation.form.FormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Form" />
-
         <activity
             android:name=".presentation.premium.PremiumHostActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Premium" />
-
         <activity
             android:name=".presentation.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
-
         <activity
             android:name=".presentation.onboarding.AppsTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
-
         <activity
             android:name=".presentation.onboarding.SubscriptionTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
-
         <activity
             android:name=".presentation.onboarding.PrivacyPoliceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
-
         <activity
             android:name=".presentation.onboarding.EnterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/EnterActivityStyle">
-
-        </activity>
-
-
+            android:theme="@style/EnterActivityStyle"></activity>
         <activity
             android:name=".presentation.premium.PaySuccessActivity"
             android:screenOrientation="portrait"
@@ -138,22 +122,18 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
-
         <activity
             android:name=".presentation.crystals.StoriesOnboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
-
         <activity
             android:name=".presentation.settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
-
         <activity
             android:name=".presentation.stories.StoriesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
-
 
         <service
             android:name=".notification.NotificationService"
@@ -166,8 +146,6 @@
                 <action android:name="com.wsoteam.horoscopes.Config.ACTION_SHARE" />
             </intent-filter>
         </receiver>
-
-
         <receiver
             android:name=".notification.BootReceiver"
             android:enabled="true"

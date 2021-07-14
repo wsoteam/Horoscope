@@ -18,6 +18,7 @@ import com.android.installreferrer.api.InstallReferrerStateListener
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.wsoteam.horoscopes.bl.BlActivity
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
@@ -57,6 +58,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     var isAdLoaded = false
 
 
+
     private fun postGoNext(i: Int, tag: String) {
         counter += i
         L.log("postGoNext -- $counter -- $tag")
@@ -68,7 +70,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
     }
 
-    private fun goNext() {
+    private fun goBlack(){
+        intent = Intent(this@SplashActivity, BlActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun goNext() { //
         L.log("goNext")
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
@@ -113,6 +121,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //goBlack()
         BannerFrequency.runSetup()
         if (!PreferencesProvider.isSetuped) {
             AppEventsLogger
@@ -127,6 +136,14 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             .of(this)
             .get(MainVM::class.java)
         vm.preLoadData()
+
+        vm = ViewModelProviders.of(this).get(MainVM::class.java)
+        vm.getStatusLD().observe(this, Observer {
+            when (it) {
+                MainVM.BLACK -> openBlack()
+                MainVM.WHITE -> openWhite()
+            }
+        })
 
 
 

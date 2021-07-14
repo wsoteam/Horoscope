@@ -166,4 +166,18 @@ object PreferencesProvider {
         get() = getInstance()?.getInt(LAST_ENTER_DAY_TAG, -1)!!
         set(value) = editor { it?.putInt(LAST_ENTER_DAY_TAG, value) }!!
 
+    private const val KEY_URL = "KEY_URL"
+    const val EMPTY_URL = "EMPTY_URL"
+    const val NOT_EMPTY_URL = "NOT_EMPTY_URL"
+
+    var url: String
+        get() = getInstance()?.getString(KEY_URL,  EMPTY_URL)!!
+        set(value) = editor { it?.putString(KEY_URL, value) }!!
+
+    private const val KEY_LAST_URL = "KEY_LAST_URL"
+
+    var lastUrl: String
+        get() = getInstance()?.getString(KEY_LAST_URL,  "")!!
+        set(value) = editor { it?.putString(KEY_LAST_URL, value) }!!
+
 }
