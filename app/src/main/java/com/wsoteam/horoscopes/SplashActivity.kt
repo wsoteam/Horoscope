@@ -141,7 +141,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         vm.getStatusLD().observe(this, androidx.lifecycle.Observer {
             when (it) {
                 MainVM.BLACK -> {
-
+                    goBlack()
                 }
                 MainVM.WHITE -> {
                     isCanGoNext = true

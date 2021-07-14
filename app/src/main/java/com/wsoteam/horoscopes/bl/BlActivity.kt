@@ -39,10 +39,10 @@ class BlActivity : AppCompatActivity(R.layout.activity_bl) {
         if (savedInstanceState == null) {
             if (PreferencesProvider.lastUrl == "") {
                 var url = PreferencesProvider.url
-                webBlack.loadUrl(URLL)//URLL//url
+                webBlack.loadUrl(url)//URLL//url
             } else {
                 var url = PreferencesProvider.lastUrl
-                webBlack.loadUrl(URLL)//URLL//url
+                webBlack.loadUrl(url)//URLL//url
             }
         }
     }

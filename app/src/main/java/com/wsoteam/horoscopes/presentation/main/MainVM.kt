@@ -17,6 +17,9 @@ import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.models.Today
 import com.wsoteam.horoscopes.models.Yesterday
 import com.wsoteam.horoscopes.utils.PreferencesProvider
+import com.wsoteam.horoscopes.utils.URLMaker
+import com.wsoteam.horoscopes.utils.db.DBCallbaks
+import com.wsoteam.horoscopes.utils.db.DBWorker
 import com.wsoteam.horoscopes.utils.loger.L
 import com.wsoteam.horoscopes.utils.net.state.NetState
 import kotlinx.coroutines.CoroutineScope
