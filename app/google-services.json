@@ -1,40 +1,38 @@
 {
   "project_info": {
-    "project_number": "325593592716",
-    "firebase_url": "https://newhoro.firebaseio.com",
-    "project_id": "newhoro",
-    "storage_bucket": "newhoro.appspot.com"
+    "project_number": "234085554896",
+    "project_id": "astrohoro-fa6de",
+    "storage_bucket": "astrohoro-fa6de.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:325593592716:android:2958b291ef1541c45e5ca9",
+        "mobilesdk_app_id": "1:234085554896:android:bd877703af8af71735dcd5",
         "android_client_info": {
-          "package_name": "com.wsoteam.horoscopes"
+          "package_name": "astro.new.horoscopes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "325593592716-vj8pdevgibj1f627j3n4njit2olb44rq.apps.googleusercontent.com",
+          "client_id": "234085554896-63uf60kfruj1a7onk4rbk7gestm3oceu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqK59wiFi7dqEbt7LNLuVMoBGuhLpUu3s"
+          "current_key": "AIzaSyA_ct5K8MzpymhJE0eoN1-iNU1VXEaxCaE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "325593592716-vj8pdevgibj1f627j3n4njit2olb44rq.apps.googleusercontent.com",
+              "client_id": "234085554896-63uf60kfruj1a7onk4rbk7gestm3oceu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
-      },
-      "admob_app_id": "ca-app-pub-3050564412171997~8214816263"
+      }
     }
   ],
   "configuration_version": "1"

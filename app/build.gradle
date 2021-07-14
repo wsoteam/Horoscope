@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.wsoteam.horoscopes"
+        applicationId "astro.new.horoscopes"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 17
@@ -106,4 +106,8 @@ dependencies {
 
     implementation "com.squareup.moshi:moshi:1.9.1"
     implementation "com.squareup.moshi:moshi-kotlin:1.9.1"
+
+    //Naming
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+    implementation 'com.appsflyer:af-android-sdk:6.2.3'
 }

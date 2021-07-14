@@ -57,12 +57,13 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     lateinit var vm: MainVM
     var isAdLoaded = false
 
+    var isCanGoNext = false
 
 
     private fun postGoNext(i: Int, tag: String) {
         counter += i
         L.log("postGoNext -- $counter -- $tag")
-        if (counter >= MAX) {
+        if (counter >= MAX && isCanGoNext) {
             if (!isNextScreenLoading) {
                 isNextScreenLoading = true
                 goNext()
@@ -137,11 +138,15 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             .get(MainVM::class.java)
         vm.preLoadData()
 
-        vm = ViewModelProviders.of(this).get(MainVM::class.java)
-        vm.getStatusLD().observe(this, Observer {
+        vm.getStatusLD().observe(this, androidx.lifecycle.Observer {
             when (it) {
-                MainVM.BLACK -> openBlack()
-                MainVM.WHITE -> openWhite()
+                MainVM.BLACK -> {
+
+                }
+                MainVM.WHITE -> {
+                    isCanGoNext = true
+                    postGoNext(1, "")
+                }
             }
         })
 
