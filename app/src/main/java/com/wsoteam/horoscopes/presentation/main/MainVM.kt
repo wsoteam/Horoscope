@@ -186,9 +186,9 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             val conversionDataListener = object : AppsFlyerConversionListener {
                 override fun onConversionDataSuccess(data: MutableMap<String, Any>?) {
                     data?.let { cvData ->
-                        /*cvData.map {
+                        cvData.map {
                             Log.e("LOL", "conversion_attribute:  ${it.key} = ${it.value}")
-                        }*/
+                        }
 
                         naming = (data!![CAMPAIGN_TAG] ?: "empty") as String
                         goNext()

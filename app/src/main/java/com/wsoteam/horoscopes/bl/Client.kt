@@ -17,10 +17,11 @@ class Client: WebViewClient() {
         CookieManager.getInstance().flush()
     }
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+        Log.e("LOL", "url:  $url")
+
         if (PreferencesProvider.startUrl == ""){
-            PreferencesProvider.startUrl
+            PreferencesProvider.startUrl = url!!
             view!!.loadUrl(url!!)
-            Log.e("LOOOL", "url:  $url")
         }
 
         return true
