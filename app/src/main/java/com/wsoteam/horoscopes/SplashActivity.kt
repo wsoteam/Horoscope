@@ -122,7 +122,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //goBlack()
+        goBlack()
         BannerFrequency.runSetup()
         if (!PreferencesProvider.isSetuped) {
             AppEventsLogger
@@ -133,7 +133,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
 
         //Server query ollo
-        var vm = ViewModelProviders
+        /*var vm = ViewModelProviders
             .of(this)
             .get(MainVM::class.java)
         vm.preLoadData()
@@ -148,9 +148,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                     postGoNext(1, "")
                 }
             }
-        })
-
-
+        })*/
 
         if (PreferencesProvider.getBirthday() != "") {
             CacheData.setObserver(object : ICachedData {

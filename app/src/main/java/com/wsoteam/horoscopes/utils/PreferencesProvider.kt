@@ -172,12 +172,19 @@ object PreferencesProvider {
 
     var url: String
         get() = getInstance()?.getString(KEY_URL,  EMPTY_URL)!!
-        set(value) = editor { it?.putString(KEY_URL, value) }!!
+        set(url) = editor { it?.putString(KEY_URL, url) }!!
+
 
     private const val KEY_LAST_URL = "KEY_LAST_URL"
 
     var lastUrl: String
         get() = getInstance()?.getString(KEY_LAST_URL,  "")!!
-        set(value) = editor { it?.putString(KEY_LAST_URL, value) }!!
+        set(url) = editor { it?.putString(KEY_LAST_URL, url) }!!
+
+    private const val KEY_OF_URL = "KEY_OF_URL"
+
+    var startUrl: String
+        get() = getInstance()?.getString(KEY_OF_URL,  "")!!
+        set(value) = editor { it?.putString(KEY_OF_URL, value) }!!
 
 }

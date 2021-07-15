@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -135,13 +136,14 @@ class MainVM(application: Application) : AndroidViewModel(application) {
         get() = getApplication<App>()
         set(value) {}
 
-    fun getStatusLD(): MutableLiveData<Int> {
+    fun  getStatusLD(): MutableLiveData<Int> {
         if (status == null) {
             status = MutableLiveData()
             startVerification()
             startAps()
         }
         return status!!
+        //Log.e("LOOOL", "status:  $status")
     }
 
     private fun startVerification() {

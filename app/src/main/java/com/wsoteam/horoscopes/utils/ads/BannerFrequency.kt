@@ -23,7 +23,7 @@ object BannerFrequency {
     }
 
     private fun requestPercent(onResult: (Int) -> Unit) {
-        FirebaseDatabase.getInstance()
+        FirebaseDatabase.getInstance("https://astrohoro-fa6de-default-rtdb.firebaseio.com/")
             .reference
             .child("percent")
             .addListenerForSingleValueEvent(object : ValueEventListener {

@@ -6,6 +6,7 @@ import android.util.Log
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.wsoteam.horoscopes.utils.PreferencesProvider
 
 class Client: WebViewClient() {
 
@@ -14,6 +15,15 @@ class Client: WebViewClient() {
         CookieManager.getInstance().setAcceptCookie(true)
         CookieManager.getInstance().acceptCookie()
         CookieManager.getInstance().flush()
+    }
+    override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+        if (PreferencesProvider.startUrl == ""){
+            PreferencesProvider.startUrl
+            view!!.loadUrl(url!!)
+            Log.e("LOOOL", "url:  $url")
+        }
+
+        return true
     }
 
 }
