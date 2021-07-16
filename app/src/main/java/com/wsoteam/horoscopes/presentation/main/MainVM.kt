@@ -17,6 +17,7 @@ import com.wsoteam.horoscopes.models.Global
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.models.Today
 import com.wsoteam.horoscopes.models.Yesterday
+import com.wsoteam.horoscopes.utils.Analytics
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.URLMaker
 import com.wsoteam.horoscopes.utils.db.DBCallbaks
@@ -136,6 +137,7 @@ class MainVM(application: Application) : AndroidViewModel(application) {
         get() = getApplication<App>()
         set(value) {}
 
+
     fun  getStatusLD(): MutableLiveData<Int> {
         if (status == null) {
             status = MutableLiveData()
@@ -151,6 +153,9 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             DBWorker.requestPercent(FB_PATH, object : DBCallbaks {
 
                 override fun onSuccess(url: String) {
+                    Analytics.getDomain()
+                    Analytics.setUserDomain(url)
+
                     domain = url
                     goNext()
                 }
@@ -169,8 +174,10 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             if (!isStartedOpen) {
                 isStartedOpen = true
                 if (naming.contains(KEY_WORD)) {
+                    Analytics.setUserNaming(naming)
                     var afid = AppsFlyerLib.getInstance().getAppsFlyerUID(appContext)
                     var url = URLMaker.createLink(naming, domain, gadid, afid)
+                    Analytics.setUserUrl(url)
                     PreferencesProvider.url = url
                     this.status!!.postValue(BLACK)
                 } else {
@@ -186,9 +193,9 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             val conversionDataListener = object : AppsFlyerConversionListener {
                 override fun onConversionDataSuccess(data: MutableMap<String, Any>?) {
                     data?.let { cvData ->
-                        cvData.map {
+                      /*  cvData.map {
                             Log.e("LOL", "conversion_attribute:  ${it.key} = ${it.value}")
-                        }
+                        }*/
 
                         naming = (data!![CAMPAIGN_TAG] ?: "empty") as String
                         goNext()

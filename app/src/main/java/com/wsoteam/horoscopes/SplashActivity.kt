@@ -27,6 +27,7 @@ import com.wsoteam.horoscopes.presentation.main.CacheData
 import com.wsoteam.horoscopes.presentation.main.ICachedData
 import com.wsoteam.horoscopes.presentation.main.MainVM
 import com.wsoteam.horoscopes.presentation.onboarding.EnterActivity
+import com.wsoteam.horoscopes.utils.Analytics
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.ads.AdCallbacks
 import com.wsoteam.horoscopes.utils.ads.AdWorker
@@ -72,6 +73,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun goBlack(){
+        Analytics.openBlack()
         intent = Intent(this@SplashActivity, BlActivity::class.java)
         startActivity(intent)
         finish()
@@ -79,6 +81,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun goNext() { //
         L.log("goNext")
+        Analytics.openWhite()
         var intent: Intent
         if (PreferencesProvider.getName() != "" && PreferencesProvider.getBirthday() != "") {
             intent = Intent(this, MainActivity::class.java)
@@ -100,7 +103,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun getKey(){
         val info: PackageInfo
         try {
-            info = packageManager.getPackageInfo("com.wsoteam.horoscopes", PackageManager.GET_SIGNATURES)
+            info = packageManager.getPackageInfo("astro.new.horoscopes", PackageManager.GET_SIGNATURES)
             for (signature in info.signatures) {
                 var md: MessageDigest
                 md = MessageDigest.getInstance("SHA")
@@ -123,6 +126,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //goBlack()
+        Analytics.open()
         BannerFrequency.runSetup()
         if (!PreferencesProvider.isSetuped) {
             AppEventsLogger
