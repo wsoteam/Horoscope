@@ -125,8 +125,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //goBlack()
-        //
         Analytics.open()
         BannerFrequency.runSetup()
         if (!PreferencesProvider.isSetuped) {
@@ -166,28 +164,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         bindRetention()
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
-        NativeProvider.loadNative()
         bindTest()
         refreshNotifications()
-        AdWorker.init(this)
-        if (PreferencesProvider.getBirthday() != "") {
-            AdWorker.isNeedShowInter = true
-            AdWorker.adCallbacks = object : AdCallbacks {
-                override fun onAdClosed() {
-                    Log.e("LOL", "onAdClosed")
-                    postGoNext(2, "onAdClosed")
-                    AdWorker.unSubscribe()
-                }
-
-                override fun onAdLoaded() {
-                    Log.e("LOL", "onAdLoaded")
-                    MAX++
-                    isAdLoaded = true
-                }
-            }
-        }else{
-            postGoNext(2, "firstEnter")
-        }
         try {
             trackUser()
         } catch (ex: Exception) {

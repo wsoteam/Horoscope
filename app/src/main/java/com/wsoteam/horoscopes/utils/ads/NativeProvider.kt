@@ -20,7 +20,7 @@ object NativeProvider {
     var counter = 0
 
     fun loadNative(){
-        adLoader = AdLoader
+        /*adLoader = AdLoader
             .Builder(App.getInstance(), App.getInstance().getString(R.string.native_ad))
             .forUnifiedNativeAd { nativeAD ->
                 bufferAdsList.add(nativeAD)
@@ -34,7 +34,7 @@ object NativeProvider {
                     }
                 }
             }).build()
-        adLoader?.loadAds(AdRequest.Builder().build(), NATIVE_ITEMS_MAX)
+        adLoader?.loadAds(AdRequest.Builder().build(), NATIVE_ITEMS_MAX)*/
     }
 
     private fun endLoading() {

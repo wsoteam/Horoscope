@@ -21,7 +21,7 @@ object AdWorker {
 
 
     fun init(context: Context?){
-        if (context == null) return
+        /*if (context == null) return
         MobileAds.initialize(context) {
             isInit = true
             mInterstitialAd = InterstitialAd(context)
@@ -61,7 +61,7 @@ object AdWorker {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private fun reload(){
