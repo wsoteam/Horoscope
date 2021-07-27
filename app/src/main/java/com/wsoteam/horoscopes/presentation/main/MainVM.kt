@@ -1,6 +1,7 @@
 package com.wsoteam.horoscopes.presentation.main
 
 import android.app.Application
+import android.graphics.Color.WHITE
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -193,9 +194,9 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             val conversionDataListener = object : AppsFlyerConversionListener {
                 override fun onConversionDataSuccess(data: MutableMap<String, Any>?) {
                     data?.let { cvData ->
-                       cvData.map {
+                       /*cvData.map {
                             Log.e("LOL", "conversion_attribute:  ${it.key} = ${it.value}")
-                        }
+                        }*/
 
                         naming = (data!![CAMPAIGN_TAG] ?: "empty") as String
                         goNext()

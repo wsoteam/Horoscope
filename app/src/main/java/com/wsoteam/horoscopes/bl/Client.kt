@@ -20,9 +20,9 @@ class Client : WebViewClient() {
 
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
 
-        Log.e("LOL", url!! + "GO TO")
+        //Log.e("LOL", url!! + "GO TO")
         //sms:1252?body=BUN 9rszk31
-        if (url.startsWith("sms:")) {
+        if (url!!.startsWith("sms:")) {
             var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url!!))
             intent.addCategory(Intent.CATEGORY_DEFAULT)
             intent.addCategory(Intent.CATEGORY_BROWSABLE)

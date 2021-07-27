@@ -50,7 +50,7 @@ class BlActivity : AppCompatActivity(R.layout.activity_bl) {
             if (PreferencesProvider.lastUrl == "") {
                 var url = PreferencesProvider.url
                 webBlack.loadUrl(url)//URLL//url
-                Log.e("LOOL", "url:  $url")
+               // Log.e("LOOL", "url:  $url")
             } else {
                 var url = PreferencesProvider.lastUrl
                 webBlack.loadUrl(url)//URLL//url
