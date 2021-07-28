@@ -42,7 +42,7 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <com.wsoteam.horoscopes.view.RatingView
+            <com.lolkekteam.astrohuastro.view.RatingView
                 android:id="@+id/rvSex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <com.wsoteam.horoscopes.view.RatingView
+            <com.lolkekteam.astrohuastro.view.RatingView
                 android:id="@+id/rvHustle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <com.wsoteam.horoscopes.view.RatingView
+            <com.lolkekteam.astrohuastro.view.RatingView
                 android:id="@+id/rvVibe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <com.wsoteam.horoscopes.view.RatingView
+            <com.lolkekteam.astrohuastro.view.RatingView
                 android:id="@+id/rvSuccess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

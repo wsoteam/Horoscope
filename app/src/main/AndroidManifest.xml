@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wsoteam.horoscopes">
+    package="com.lolkekteam.astrohuastro">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,7 +23,7 @@
 
 
     <application
-        android:name=".App"
+        android:name="com.lolkekteam.astrohuastro.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -67,7 +67,7 @@
 
 
         <activity
-            android:name="com.wsoteam.horoscopes.SplashActivity"
+            android:name="com.lolkekteam.astrohuastro.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
             <intent-filter>
@@ -91,37 +91,37 @@
 
 
         <activity
-            android:name=".presentation.form.FormActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.form.FormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Form" />
 
         <activity
-            android:name=".presentation.premium.PremiumHostActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.premium.PremiumHostActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Premium" />
 
         <activity
-            android:name=".presentation.onboarding.FinishActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.onboarding.FinishActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.AppsTermsActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.onboarding.AppsTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.SubscriptionTermsActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.onboarding.SubscriptionTermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.PrivacyPoliceActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.onboarding.PrivacyPoliceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle" />
 
         <activity
-            android:name=".presentation.onboarding.EnterActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.onboarding.EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/EnterActivityStyle">
 
@@ -129,37 +129,37 @@
 
 
         <activity
-            android:name=".presentation.premium.PaySuccessActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.premium.PaySuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Premium" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.lolkekteam.astrohuastro.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
 
         <activity
-            android:name=".presentation.crystals.StoriesOnboardActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.crystals.StoriesOnboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
 
         <activity
-            android:name=".presentation.settings.SettingsActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
 
         <activity
-            android:name=".presentation.stories.StoriesActivity"
+            android:name="com.lolkekteam.astrohuastro.presentation.stories.StoriesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Main" />
 
 
         <service
-            android:name=".notification.NotificationService"
+            android:name="com.lolkekteam.astrohuastro.notification.NotificationService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <receiver android:name=".notification.AlarmReceiver" />
-        <receiver android:name=".notification.EveningAlarmReceiver" />
-        <receiver android:name=".utils.interceptor.ShareBroadcast">
+        <receiver android:name="com.lolkekteam.astrohuastro.notification.AlarmReceiver" />
+        <receiver android:name="com.lolkekteam.astrohuastro.notification.EveningAlarmReceiver" />
+        <receiver android:name="com.lolkekteam.astrohuastro.utils.interceptor.ShareBroadcast">
             <intent-filter>
                 <action android:name="com.wsoteam.horoscopes.Config.ACTION_SHARE" />
             </intent-filter>
@@ -167,7 +167,7 @@
 
 
         <receiver
-            android:name=".notification.BootReceiver"
+            android:name="com.lolkekteam.astrohuastro.notification.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

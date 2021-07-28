@@ -1,0 +1,66 @@
+package com.lolkekteam.astrohuastro.presentation.main
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.lolkekteam.astrohuastro.models.Sign
+import com.lolkekteam.astrohuastro.utils.loger.L
+import com.lolkekteam.astrohuastro.utils.net.RepositoryGets
+import com.lolkekteam.astrohuastro.utils.net.state.NetState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import java.util.*
+
+class MainVM : ViewModel() {
+
+    private val PT_LOCALE = "pt"
+
+    private var job = Job()
+    private val vmScope = CoroutineScope(Dispatchers.Main + job)
+
+    private val dataLD = MutableLiveData<List<Sign>>()
+
+    fun preLoadData() {
+        L.log("preLoadData")
+        if (NetState.isConnected()) {
+            job = vmScope.launch {
+                CacheData.setCachedData(getData())
+            }
+        }
+    }
+
+    fun reloadData() {
+        L.log("reloadData")
+        if (NetState.isConnected()) {
+            job = vmScope.launch {
+                dataLD.value = getData()
+            }
+        }
+    }
+
+    fun setupCachedData() {
+        L.log("setupCachedData")
+        if (CacheData.getCachedData() != null) {
+            dataLD.value = CacheData.getCachedData()
+            CacheData.clearCache()
+        } else {
+            reloadData()
+        }
+    }
+
+    private suspend fun getData(): List<Sign> {
+        L.log("getData")
+        return if (Locale.getDefault().language == PT_LOCALE){
+            RepositoryGets.getAPI().getPTData().await()
+        }else{
+            RepositoryGets.getAPI().getData().await()
+        }
+    }
+
+    fun getLD(): MutableLiveData<List<Sign>> {
+        L.log("getLD")
+        return dataLD
+    }
+
+}

@@ -82,7 +82,7 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <com.wsoteam.horoscopes.view.WrapVP
+    <com.lolkekteam.astrohuastro.view.WrapVP
         android:id="@+id/vpHoroscope"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -1,0 +1,61 @@
+package com.lolkekteam.astrohuastro.presentation.premium
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.lolkekteam.astrohuastro.Config
+import com.lolkekteam.astrohuastro.MainActivity
+import com.lolkekteam.astrohuastro.R
+import com.lolkekteam.astrohuastro.utils.PreferencesProvider
+import com.lolkekteam.astrohuastro.utils.analytics.Analytic
+import com.lolkekteam.astrohuastro.utils.remote.ABConfig
+import kotlinx.android.synthetic.main.premium_host_activity.*
+
+class PremiumHostActivity : AppCompatActivity(R.layout.premium_host_activity) {
+
+    var open_from = ""
+    var version = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
+        version = PreferencesProvider.getVersionIndex()
+        open_from = intent.getStringExtra(Config.OPEN_PREM)
+
+        var choicedFragment: Fragment = PremiumFragment()
+        if (PreferencesProvider.getVersion() == ABConfig.A) {
+            choicedFragment = PremiumFragmentSlide()
+            ivClose.visibility = View.INVISIBLE
+        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flContainer, choicedFragment)
+            .commit()
+
+
+        ivClose.setOnClickListener {
+            if (open_from == Config.OPEN_PREM_FROM_REG) {
+                openNextScreen()
+            } else {
+                onBackPressed()
+            }
+        }
+    }
+
+    private fun openNextScreen() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
+    }
+
+    override fun onBackPressed() {
+        if (open_from == Config.OPEN_PREM_FROM_REG) {
+            openNextScreen()
+        } else {
+            super.onBackPressed()
+        }
+
+    }
+}
