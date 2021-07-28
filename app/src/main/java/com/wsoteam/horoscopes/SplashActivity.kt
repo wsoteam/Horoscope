@@ -16,8 +16,6 @@ import com.amplitude.api.Amplitude
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.facebook.appevents.AppEventsLogger
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.wsoteam.horoscopes.models.Sign
 import com.wsoteam.horoscopes.notification.AlarmReceiver
 import com.wsoteam.horoscopes.notification.EveningAlarmReceiver
@@ -137,28 +135,11 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         bindRetention()
         Analytic.start()
         PreferencesProvider.setBeforePremium(Analytic.start_premium)
-        NativeProvider.loadNative()
         bindTest()
         refreshNotifications()
-        AdWorker.init(this)
-        if (PreferencesProvider.getBirthday() != "") {
-            AdWorker.isNeedShowInter = true
-            AdWorker.adCallbacks = object : AdCallbacks {
-                override fun onAdClosed() {
-                    Log.e("LOL", "onAdClosed")
-                    postGoNext(2, "onAdClosed")
-                    AdWorker.unSubscribe()
-                }
 
-                override fun onAdLoaded() {
-                    Log.e("LOL", "onAdLoaded")
-                    MAX++
-                    isAdLoaded = true
-                }
-            }
-        }else{
             postGoNext(2, "firstEnter")
-        }
+
         try {
             trackUser()
         } catch (ex: Exception) {
@@ -257,7 +238,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
 
     private fun bindTest() {
-        val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        /*val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
         firebaseRemoteConfig.setDefaults(R.xml.default_config)
 
         firebaseRemoteConfig.fetch(3600).addOnCompleteListener { task ->
@@ -271,16 +252,19 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
                 firebaseRemoteConfig.getString(ABConfig.REQUEST_STRING),
                 firebaseRemoteConfig.getLong(ABConfig.REQUEST_STRING_PRICE).toInt()
             )
-        }
+        }*/
+        setABTestConfig(
+            "",
+            1)
     }
 
     private fun setABTestConfig(version: String, priceIndex: Int) {
-        L.log("set test")
+       /* L.log("set test")
         L.log("$priceIndex")
         PreferencesProvider.setVersion(version)
         PreferencesProvider.priceIndex = priceIndex
         Analytic.setABVersion(version, priceIndex)
-        Analytic.setVersion()
+        Analytic.setVersion()*/
         postGoNext(1, "setABTestConfig")
     }
 
@@ -305,10 +289,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        AdWorker.unSubscribe()
-    }
 
     private fun trackUser() {
         var client = InstallReferrerClient.newBuilder(this).build()
@@ -332,7 +312,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     }
 
     private fun sendAnal(s: String) {
-        val clickId = getClickId(s)
+        /*val clickId = getClickId(s)
         var mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         var bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.CAMPAIGN, clickId)
@@ -344,7 +324,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         bundle.putString(FirebaseAnalytics.Param.VALUE, clickId)
         mFirebaseAnalytics.logEvent("traffic_id", bundle)
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.CAMPAIGN_DETAILS, bundle)*/
 
         postGoNext(1, "sendAnal")
     }

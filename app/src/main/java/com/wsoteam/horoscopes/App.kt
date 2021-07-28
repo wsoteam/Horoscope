@@ -12,6 +12,7 @@ import com.wsoteam.horoscopes.utils.SubscriptionProvider
 import com.wsoteam.horoscopes.utils.id.Creator
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
+import kek.wsoteam.horoscopes.BuildConfig
 
 class App : MultiDexApplication() {
 

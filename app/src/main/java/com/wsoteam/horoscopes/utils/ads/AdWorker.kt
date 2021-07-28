@@ -2,7 +2,6 @@ package com.wsoteam.horoscopes.utils.ads
 
 import android.content.Context
 import androidx.core.R
-import com.google.android.gms.ads.*
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.FBAnalytic
@@ -11,7 +10,7 @@ import kotlin.random.Random
 
 object AdWorker {
 
-    private var mInterstitialAd: InterstitialAd? = null
+   /* private var mInterstitialAd: InterstitialAd? = null
     private var isInit = false
     var isNeedShowInter = false
     var isFailedLoad = false
@@ -112,5 +111,5 @@ object AdWorker {
 
     fun showInterIsNeed(){
         if(isNeedShowInter) showInter()
-    }
+    }*/
 }

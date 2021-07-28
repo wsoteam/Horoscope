@@ -3,7 +3,6 @@ package com.wsoteam.horoscopes.presentation.onboarding
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.form.FormActivity
 import com.wsoteam.horoscopes.utils.InAppCallback
@@ -39,7 +38,6 @@ class SubscriptionTermsActivity: AppCompatActivity(R.layout.subscription_terms_a
 
     private fun handlInApp() {
         Analytic.makePurchase("new_onboard", "new_onboard")
-        FirebaseAnalytics.getInstance(this).logEvent("trial", null)
         FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
         startActivity(Intent(this, FormActivity::class.java))

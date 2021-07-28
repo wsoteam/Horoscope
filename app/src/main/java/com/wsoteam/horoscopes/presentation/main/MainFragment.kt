@@ -100,7 +100,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         if (timer == null) {
             timer = object : CountDownTimer(200, 100) {
                 override fun onFinish() {
-                    AdWorker.showInter()
                     timer = null
                 }
 

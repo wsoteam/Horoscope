@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.google.android.gms.ads.AdRequest
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
@@ -210,7 +209,6 @@ class BallFragment : Fragment(R.layout.fragment_magic_ball) {
                         override fun onAnimationEnd(animation: Animator?) {
                             setButtonEnabled(true)
                             if (PreferencesProvider.isADEnabled()) {
-                                AdWorker.showInter()
                             }
                         }
 

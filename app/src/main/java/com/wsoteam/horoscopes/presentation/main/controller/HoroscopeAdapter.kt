@@ -3,7 +3,6 @@ package com.wsoteam.horoscopes.presentation.main.controller
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.wsoteam.horoscopes.utils.PreferencesProvider
 import kotlin.random.Random
 
@@ -11,7 +10,6 @@ class HoroscopeAdapter(
     val text: String,
     val matches: List<Int>,
     val ratings: List<Int>,
-    var nativeList: ArrayList<UnifiedNativeAd>,
     var isLocked: Boolean,
     var iGetPrem: IGetPrem
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -24,11 +22,7 @@ class HoroscopeAdapter(
     var nativeDiff = 0
     var counter = 0
 
-    init {
-        if (nativeList.isNotEmpty()) {
-            nativeDiff++
-        }
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -62,7 +56,6 @@ class HoroscopeAdapter(
             TEXT_TYPE -> (holder as TextVH).bind(text, isLocked)
             MATCH_TYPE -> (holder as MatchVH).bind(matches[0], matches[1], matches[2])
             MOOD_TYPE -> (holder as MoodVH).bind(ratings[0], ratings[1], ratings[2], ratings[3], false)
-            AD_TYPE -> (holder as NativeVH).bind(nativeList[Random.nextInt(3)])
         }
     }
 
@@ -70,15 +63,12 @@ class HoroscopeAdapter(
     override fun getItemViewType(position: Int): Int {
         return if (isLocked) {
             TEXT_TYPE
-        } else if (nativeList.isNotEmpty() || position == 0) {
+        } else if ( position == 0) {
             position
         } else {
             position + 1
         }
     }
 
-    fun insertAds(listAds: ArrayList<UnifiedNativeAd>) {
-        nativeList = listAds
-        notifyDataSetChanged()
-    }
+
 }

@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
-import com.google.android.gms.ads.AdRequest
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -104,7 +103,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(true)
         if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
-            adView.visibility = View.VISIBLE
         }
     }
 
@@ -124,7 +122,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         window.statusBarColor = Color.rgb(199, 189, 179)
         changeNavigationState(false)
         Analytic.showPrem(PreferencesProvider.getBeforePremium()!!)
-        adView.visibility = View.GONE
     }
 
     fun openBallFragment() {
@@ -144,7 +141,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         window.statusBarColor = Color.rgb(0, 0, 0)
         changeNavigationState(false)
         if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
-            adView.visibility = View.VISIBLE
         }
     }
 
@@ -183,8 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         SubscriptionProvider.startGettingPrice(Config.ID_PRICE)
         if (PreferencesProvider.isADEnabled() && BannerFrequency.needShow()) {
-            adView.visibility = View.VISIBLE
-            adView.loadAd(AdRequest.Builder().build())
+
         }
         supportFragmentManager.beginTransaction().replace(R.id.flContainer, LoadFragment()).commit()
         if (PreferencesProvider.isADEnabled()) {
@@ -275,7 +270,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .commit()
             vm.reloadData()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            AdWorker.init(this)
         } else {
             NetState.showNetLost(this)
         }

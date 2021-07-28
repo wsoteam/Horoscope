@@ -1,7 +1,7 @@
 package com.wsoteam.horoscopes.utils.net
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.wsoteam.horoscopes.BuildConfig
+import kek.wsoteam.horoscopes.BuildConfig
 import com.wsoteam.horoscopes.Config
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

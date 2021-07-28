@@ -8,7 +8,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.facebook.appevents.AppEventsConstants
 import com.facebook.appevents.AppEventsLogger
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
@@ -42,7 +41,6 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
-        FirebaseAnalytics.getInstance(requireContext()).logEvent("trial", null)
         FBAnalytic.logTrial(activity!!)
         PreferencesProvider.setADStatus(false)
         openNextScreen()

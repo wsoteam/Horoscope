@@ -6,7 +6,6 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.wsoteam.horoscopes.Config
 import com.wsoteam.horoscopes.MainActivity
 import com.wsoteam.horoscopes.R
@@ -107,7 +106,6 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
-        FirebaseAnalytics.getInstance(requireContext()).logEvent("trial", null)
         FBAnalytic.logTrial(activity!!)
         PreferencesProvider.setADStatus(false)
         openNextScreen()

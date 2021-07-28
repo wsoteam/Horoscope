@@ -47,7 +47,6 @@ class NoAttemptsDialogFragment : SupportBlurDialogFragment() {
 
         view.findViewById<View>(R.id.actionClose).setOnClickListener {
             dismiss()
-            AdWorker.showInter()
         }
         view.findViewById<View>(R.id.actionPremium).setOnClickListener {  }
         time = view.findViewById(R.id.timer)

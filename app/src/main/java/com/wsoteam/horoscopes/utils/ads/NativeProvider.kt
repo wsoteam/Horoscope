@@ -1,18 +1,8 @@
 package com.wsoteam.horoscopes.utils.ads
 
-import android.content.Context
-import android.util.Log
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdLoader
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.formats.UnifiedNativeAd
-import com.wsoteam.horoscopes.App
-import com.wsoteam.horoscopes.R
-import kotlin.random.Random
-
 object NativeProvider {
 
-    var adsList: ArrayList<UnifiedNativeAd> = arrayListOf()
+    /*var adsList: ArrayList<UnifiedNativeAd> = arrayListOf()
     var bufferAdsList: ArrayList<UnifiedNativeAd> = arrayListOf()
     var nativeSpeaker: NativeSpeaker? = null
     var adLoader: AdLoader? = null
@@ -57,5 +47,5 @@ object NativeProvider {
     fun refreshNativeAd(context: Context) {
         nativeSpeaker = null
         //loadNative(context)
-    }
+    }*/
 }
