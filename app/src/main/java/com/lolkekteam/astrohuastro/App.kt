@@ -5,8 +5,6 @@ import androidx.multidex.MultiDexApplication
 import com.qonversion.android.sdk.Qonversion
 import com.lolkekteam.astrohuastro.utils.SubscriptionProvider
 import com.lolkekteam.astrohuastro.utils.id.Creator
-import com.yandex.metrica.YandexMetrica
-import com.yandex.metrica.YandexMetricaConfig
 
 class App : MultiDexApplication() {
 
@@ -17,11 +15,6 @@ class App : MultiDexApplication() {
         super.onCreate()
         sInstance = this
         SubscriptionProvider.init(this)
-        val config =
-            YandexMetricaConfig.newConfigBuilder(getString(R.string.yam_id)).build()
-        YandexMetrica.activate(applicationContext, config)
-        YandexMetrica.enableActivityAutoTracking(this)
-
 
         applicationHandler =  Handler(applicationContext.mainLooper)
 

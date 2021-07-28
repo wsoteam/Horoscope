@@ -12,8 +12,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
-import com.android.installreferrer.api.InstallReferrerClient
-import com.android.installreferrer.api.InstallReferrerStateListener
 import com.lolkekteam.astrohuastro.models.Sign
 import com.lolkekteam.astrohuastro.notification.AlarmReceiver
 import com.lolkekteam.astrohuastro.notification.EveningAlarmReceiver
@@ -279,7 +277,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
 
     private fun trackUser() {
-        var client = InstallReferrerClient.newBuilder(this).build()
+       /* var client = InstallReferrerClient.newBuilder(this).build()
         client.startConnection(object : InstallReferrerStateListener {
             override fun onInstallReferrerSetupFinished(responseCode: Int) {
                 when (responseCode) {
@@ -296,7 +294,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             override fun onInstallReferrerServiceDisconnected() {
                 sendAnal("onInstallReferrerServiceDisconnected")
             }
-        })
+        })*/
     }
 
     private fun sendAnal(s: String) {
