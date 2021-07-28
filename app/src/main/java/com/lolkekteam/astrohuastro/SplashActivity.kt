@@ -14,7 +14,6 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
-import com.facebook.appevents.AppEventsLogger
 import com.lolkekteam.astrohuastro.models.Sign
 import com.lolkekteam.astrohuastro.notification.AlarmReceiver
 import com.lolkekteam.astrohuastro.notification.EveningAlarmReceiver
@@ -108,10 +107,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
         super.onCreate(savedInstanceState)
         BannerFrequency.runSetup()
         if (!PreferencesProvider.isSetuped) {
-            AppEventsLogger
-                .newLogger(this)
-                .logEvent("fb_mobile_first_app_launch")
-            FBAnalytic.logFirstLaunch(this)
             PreferencesProvider.isSetuped = true
         }
 
@@ -225,8 +220,6 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             PreferencesProvider.firstEnter = currentDay
         } else {
             when (currentDay - PreferencesProvider.firstEnter) {
-                2 -> FBAnalytic.logTwoDays(this)
-                7 -> FBAnalytic.logSevenDays(this)
             }
         }
     }

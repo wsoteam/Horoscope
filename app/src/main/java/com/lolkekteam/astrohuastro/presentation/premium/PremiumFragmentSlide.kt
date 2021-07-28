@@ -105,7 +105,6 @@ class PremiumFragmentSlide : Fragment(R.layout.premium_slide_fragment) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
-        FBAnalytic.logTrial(activity!!)
         PreferencesProvider.setADStatus(false)
         openNextScreen()
     }

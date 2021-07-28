@@ -38,7 +38,6 @@ class SubscriptionTermsActivity: AppCompatActivity(R.layout.subscription_terms_a
 
     private fun handlInApp() {
         Analytic.makePurchase("new_onboard", "new_onboard")
-        FBAnalytic.logTrial(this)
         PreferencesProvider.setADStatus(false)
         startActivity(Intent(this, FormActivity::class.java))
         finishAffinity()

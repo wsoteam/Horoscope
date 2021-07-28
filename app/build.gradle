@@ -58,7 +58,6 @@ dependencies {
 
     implementation 'com.yandex.android:mobmetricalib:3.16.1'
 
-    implementation 'com.amplitude:android-sdk:2.23.2'
 
     implementation "android.arch.lifecycle:extensions:1.0.0"
     annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
@@ -72,9 +71,7 @@ dependencies {
 
     implementation "android.arch.lifecycle:extensions:1.0.0"
     annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
-    implementation 'com.bugsee:bugsee-android:+'
 
-    implementation 'com.amplitude:android-sdk:2.23.2'
 
     implementation 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
 /*
@@ -83,11 +80,8 @@ dependencies {
 
     implementation 'com.github.tizisdeepan:dots:1.0.1'
 
-    implementation 'com.bugfender.sdk:android:3.+'
     implementation 'com.qonversion.android.sdk:sdk:1.0.6'
     /*implementation 'com.smartlook.recording:app:1.6.1-native'*/
 
-    implementation 'com.facebook.android:facebook-android-sdk:7.1.0'
-    implementation 'com.userexperior:userexperior-android:+'
 
 }

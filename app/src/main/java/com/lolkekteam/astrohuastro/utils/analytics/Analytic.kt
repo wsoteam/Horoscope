@@ -1,12 +1,5 @@
 package com.lolkekteam.astrohuastro.utils.analytics
 
-import android.util.Log
-import com.amplitude.api.Amplitude
-import com.amplitude.api.Identify
-import com.yandex.metrica.YandexMetrica
-import org.json.JSONException
-import org.json.JSONObject
-
 object Analytic {
     private val make_purchase = "make_purchase"
     private val ad_click = "ad_click"
@@ -68,87 +61,64 @@ object Analytic {
     private val CRASH_ATTR = "CRASH_ATTR"
 
     fun crashAttr() {
-        Amplitude.getInstance().logEvent(CRASH_ATTR)
-        //Smartlook.trackCustomEvent(CRASH_ATTR)
+
 
     }
 
     fun start() {
-        Amplitude.getInstance().logEvent(START)
-        //Smartlook.trackCustomEvent(START)
-        YandexMetrica.reportEvent(START)
+
     }
 
 
     fun touchBalls() {
-        Amplitude.getInstance().logEvent(ASK_BALL)
-        //Smartlook.trackCustomEvent(ASK_BALL)
+
 
     }
 
 
     fun showBalls() {
-        Amplitude.getInstance().logEvent(BALL_PAGE)
-        //Smartlook.trackCustomEvent(BALL_PAGE)
+
 
     }
 
     fun changeSign() {
-        Amplitude.getInstance().logEvent(OTHER_SIGN)
-        //Smartlook.trackCustomEvent(OTHER_SIGN)
+
 
     }
 
     fun share(pack : String) {
-        val eventProperties = JSONObject()
-        try {
-            eventProperties.put(id, pack)
-        } catch (exception: JSONException) {
-            exception.printStackTrace()
-        }
 
-        Amplitude.getInstance().logEvent(SHARE_SOCIAL, eventProperties)
-        //Smartlook.trackCustomEvent(SHARE_SOCIAL, eventProperties)
     }
 
     fun openSettings() {
-        Amplitude.getInstance().logEvent(SETTINGS)
-        //Smartlook.trackCustomEvent(SETTINGS)
+
 
     }
 
     fun setVersion() {
-        Amplitude.getInstance().logEvent(set_ver)
-        //Smartlook.trackCustomEvent(set_ver)
-        YandexMetrica.reportEvent(set_ver)
+
     }
 
     fun clickAD() {
-        Amplitude.getInstance().logEvent(ad_click)
-        //Smartlook.trackCustomEvent(ad_click)
 
     }
 
     fun openFromNotif() {
-        Amplitude.getInstance().logEvent(open_from_notif)
-        //Smartlook.trackCustomEvent(open_from_notif)
+
 
     }
 
     fun openFromEveningNotif() {
-        Amplitude.getInstance().logEvent(open_from_evening_notif)
         //Smartlook.trackCustomEvent(open_from_evening_notif)
 
     }
 
     fun showNotif() {
-        Amplitude.getInstance().logEvent(show_notif)
         //Smartlook.trackCustomEvent(show_notif)
 
     }
 
     fun showEveningNotif() {
-        Amplitude.getInstance().logEvent(show_evening_notif)
         //Smartlook.trackCustomEvent(show_evening_notif)
 
     }
@@ -156,18 +126,15 @@ object Analytic {
     //////////Identify
 
     fun setBirthday(birth: String) {
-        var identify = Identify().set(BIRTHDAY, birth)
-        Amplitude.getInstance().identify(identify)
+
     }
 
     fun setSign(sign: String) {
-        var identify = Identify().set(SIGN, sign)
-        Amplitude.getInstance().identify(identify)
+
     }
 
     fun setABVersion(version: String, priceIndex : Int) {
-        var identify = Identify().set(AB, version).set(PRICE, priceIndex)
-        Amplitude.getInstance().identify(identify)
+
     }
 
     /*3 дня:
@@ -179,51 +146,17 @@ object Analytic {
     /////////Composite
 
     fun showHoro(index: Int) {
-        var property = when (index) {
-            0 -> yesterday
-            1 -> today
-            2 -> tommorow
-            3 -> week
-            4 -> month
-            5 -> year
-            else -> "error"
-        }
-        val eventProperties = JSONObject()
-        try {
-            eventProperties.put(horoscope_type, property)
-        } catch (exception: JSONException) {
-            exception.printStackTrace()
-        }
-        Amplitude.getInstance().logEvent(HOROSCOPE, eventProperties)
-        //Smartlook.trackCustomEvent(HOROSCOPE, eventProperties)
+
 
     }
 
     fun showPrem(property: String) {
-        Log.e("LOL", "showPrem")
-        val eventProperties = JSONObject()
-        try {
-            eventProperties.put(premium_page_from, property)
-        } catch (exception: JSONException) {
-            exception.printStackTrace()
-        }
-        Amplitude.getInstance().logEvent(PREMIUM_PAGE, eventProperties)
-        //Smartlook.trackCustomEvent(PREMIUM_PAGE, eventProperties)
+
 
     }
 
     fun makePurchase(property: String, wherePurchase: String) {
-        val eventProperties = JSONObject()
-        try {
-            eventProperties.put(trial_from, property)
-            eventProperties.put(where, wherePurchase)
-        } catch (exception: JSONException) {
-            exception.printStackTrace()
-        }
-        Amplitude.getInstance().logEvent(PREMIUM_TRIAL, eventProperties)
-        YandexMetrica.reportEvent("trial")
-        YandexMetrica.reportEvent("trial_make")
-        //Smartlook.trackCustomEvent(PREMIUM_TRIAL, eventProperties)
+
 
     }
 

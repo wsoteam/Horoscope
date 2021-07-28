@@ -37,7 +37,6 @@ class PremiumFragment : Fragment(R.layout.premium_fragment) {
 
     private fun handlInApp() {
         Analytic.makePurchase(PreferencesProvider.getBeforePremium()!!, getPlacement())
-        FBAnalytic.logTrial(activity!!)
         PreferencesProvider.setADStatus(false)
         openNextScreen()
     }
