@@ -1,40 +1,39 @@
 {
   "project_info": {
-    "project_number": "325593592716",
-    "firebase_url": "https://newhoro.firebaseio.com",
-    "project_id": "newhoro",
-    "storage_bucket": "newhoro.appspot.com"
+    "project_number": "453946759492",
+    "project_id": "horoscop-4ead4",
+    "storage_bucket": "horoscop-4ead4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:325593592716:android:2958b291ef1541c45e5ca9",
+        "mobilesdk_app_id": "1:453946759492:android:d1ddb3969644d9c5dc9f11",
         "android_client_info": {
           "package_name": "com.wsoteam.horoscopes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "325593592716-vj8pdevgibj1f627j3n4njit2olb44rq.apps.googleusercontent.com",
+          "client_id": "453946759492-q4tce4pstpsj5ev7999js8t8manfee2h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqK59wiFi7dqEbt7LNLuVMoBGuhLpUu3s"
+          "current_key": "AIzaSyB6YVinYD1nfTCoxEbMLQGwUIFvbk9g6Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "325593592716-vj8pdevgibj1f627j3n4njit2olb44rq.apps.googleusercontent.com",
+              "client_id": "453946759492-q4tce4pstpsj5ev7999js8t8manfee2h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
       },
-      "admob_app_id": "ca-app-pub-8902008334809270~3424873295"
+      "admob_app_id": "ca-app-pub-1873663308511790~3189013072"
     }
   ],
   "configuration_version": "1"

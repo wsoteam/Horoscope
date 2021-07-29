@@ -22,7 +22,7 @@ object BannerFrequency {
     }
 
     private fun requestPercent(onResult: (Int) -> Unit) {
-        FirebaseDatabase.getInstance()
+        FirebaseDatabase.getInstance("https://horoscop-4ead4-default-rtdb.firebaseio.com/")
             .reference
             .child("percent")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -40,4 +40,5 @@ object BannerFrequency {
     fun needShow() : Boolean{
         return Random.nextInt(100) < PreferencesProvider.banPercent
     }
+
 }
