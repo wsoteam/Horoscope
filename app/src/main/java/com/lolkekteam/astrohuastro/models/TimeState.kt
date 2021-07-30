@@ -1,7 +1,8 @@
 package com.lolkekteam.astrohuastro.models
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-
+@Keep
 abstract class TimeState (
     @SerializedName("text")
     var text : String,
