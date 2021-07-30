@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_7_30_21,_11_20_AM_[Default_Changelist]" date="1627644038797" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_30_21,_11_20_AM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 7/30/21, 11:20 AM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="app/src/main/res/drawable/back_allert.png" />
+    <option name="AFTER_PATH" value="app/src/main/res/drawable/back_allert.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_30_21,_11_20_AM_[Default_Changelist]/back_allert.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/src/main/res/drawable/img_therd_prem.png" />
+    <option name="AFTER_PATH" value="app/src/main/res/drawable/img_therd_prem.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_30_21,_11_20_AM_[Default_Changelist]/img_therd_prem.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/src/main/res/drawable/blur.jpg" />
+    <option name="AFTER_PATH" value="app/src/main/res/drawable/blur.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_30_21,_11_20_AM_[Default_Changelist]/blur.jpg" />
+  </binary>
+</changelist>
