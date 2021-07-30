@@ -1,8 +1,9 @@
 package com.lolkekteam.astrohuastro.models
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-
+@Keep
 data class Tomorrow(
     @SerializedName("text")
     override var text : String,
