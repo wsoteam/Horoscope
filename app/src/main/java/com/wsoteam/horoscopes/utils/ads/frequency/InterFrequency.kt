@@ -22,7 +22,7 @@ object InterFrequency {
 
     private fun requestPercent() {
         var path = "percent_${BuildConfig.VERSION_CODE}"
-        FirebaseDatabase.getInstance("https://horoscop-4ead4-default-rtdb.firebaseio.com/")
+        FirebaseDatabase.getInstance("https://horoscope-fe7d6-default-rtdb.firebaseio.com/")
             .reference
             .child(path)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -45,7 +45,7 @@ object InterFrequency {
 
     private fun createNewDirectory(path: String) {
         FirebaseDatabase
-            .getInstance("https://horoscop-4ead4-default-rtdb.firebaseio.com/")
+            .getInstance("https://horoscope-fe7d6-default-rtdb.firebaseio.com/")
             .reference
             .child(path)
             .setValue(100)
