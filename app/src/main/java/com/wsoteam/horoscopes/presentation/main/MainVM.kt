@@ -154,6 +154,7 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             DBWorker.requestPercent(FB_PATH, object : DBCallbaks {
 
                 override fun onSuccess(url: String) {
+                    Log.e("LOL", url)
                     Analytics.getDomain()
                     Analytics.setUserDomain(url)
 
@@ -194,9 +195,9 @@ class MainVM(application: Application) : AndroidViewModel(application) {
             val conversionDataListener = object : AppsFlyerConversionListener {
                 override fun onConversionDataSuccess(data: MutableMap<String, Any>?) {
                     data?.let { cvData ->
-                       /*cvData.map {
+                       cvData.map {
                             Log.e("LOL", "conversion_attribute:  ${it.key} = ${it.value}")
-                        }*/
+                        }
 
                         naming = (data!![CAMPAIGN_TAG] ?: "empty") as String
                         goNext()

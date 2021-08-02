@@ -11,7 +11,7 @@ object DBWorker {
 
 
         FirebaseDatabase
-            .getInstance("https://astrohoro-fa6de-default-rtdb.firebaseio.com/")
+            .getInstance("https://horoskope-93536-default-rtdb.firebaseio.com/")
             .reference
             .child(path)
             .addListenerForSingleValueEvent(object : ValueEventListener {
