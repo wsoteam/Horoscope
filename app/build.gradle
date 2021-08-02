@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "astro.new.horoscopes"
+        applicationId "kek.lolkekteam.astrohuastro"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 17
