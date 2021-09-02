@@ -23,7 +23,7 @@ object NativeProvider {
         ETimer.trackStart(ETimer.LOAD_NATIVE)
         CustomTimer.startNativeTimer()
         adLoader = AdLoader
-            .Builder(App.getInstance(), App.getInstance().getString(R.string.native_ad))
+            .Builder(App.getInstance(), "")
             .forUnifiedNativeAd { nativeAD ->
                 bufferAdsList.add(nativeAD)
                 if (!adLoader!!.isLoading) {

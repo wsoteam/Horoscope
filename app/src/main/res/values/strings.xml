@@ -8,11 +8,10 @@
     <string name="native_ad" translatable="false">ca-app-pub-3940256099942544/8135179316</string>
     <string name="reward_video" translatable="false">ca-app-pub-3940256099942544/5224354917</string>-->
 
-    <string name="admob_key" translatable="false">ca-app-pub-2881420955312303~4489151291</string>
-    <string name="interstitial_id" translatable="false">ca-app-pub-2881420955312303/8314853846</string>
-    <string name="banner_id" translatable="false">ca-app-pub-2881420955312303/6923742949</string>
-    <string name="native_ad" translatable="false">ca-app-pub-2881420955312303/8731648632</string>
-    <string name="reward_video" translatable="false">ca-app-pub-2881420955312303/3926044513</string>
+    <string name="admob_key" translatable="false">ca-app-pub-8902008334809270~3424873295</string>
+    <string name="interstitial_id" translatable="false">ca-app-pub-8902008334809270/7172546616</string>
+    <string name="banner_id" translatable="false">ca-app-pub-8902008334809270/8485628286</string>
+    <string name="reward_video" translatable="false">ca-app-pub-8902008334809270/4040553603</string>
 
     <string name="yam_id" translatable="false">22acc77d-d70e-4ae7-a529-44366e9ed22f</string>
     <!--<string name="amplitude_id">3031a61ead2f7482d87c899794cec751</string>-->
