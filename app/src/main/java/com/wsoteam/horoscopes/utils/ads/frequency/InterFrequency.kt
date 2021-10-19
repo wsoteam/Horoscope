@@ -10,6 +10,7 @@ import com.wsoteam.horoscopes.utils.PreferencesProvider
 import com.wsoteam.horoscopes.utils.analytics.Analytic
 
 object InterFrequency {
+
     private var hasRequest = false
     private val NEED_LOAD = true
 
