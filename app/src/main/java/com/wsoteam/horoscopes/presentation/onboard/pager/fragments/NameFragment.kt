@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.wsoteam.horoscopes.R
 import com.wsoteam.horoscopes.presentation.onboard.HostActivity
