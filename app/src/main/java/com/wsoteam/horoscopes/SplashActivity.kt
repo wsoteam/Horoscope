@@ -352,9 +352,13 @@ class SplashActivity : AppCompatActivity() {
             resources.obtainTypedArray(R.array.imgs_signs)
                 .getResourceId(index, -1)
         )
-        tvTitleStories.text = "${getString(R.string.my_horoscope_on)} ${Calendar.getInstance()
-            .get(Calendar.DAY_OF_MONTH)} ${Calendar.getInstance()
-            .getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US)}"
+        tvTitleStories.text = "${getString(R.string.my_horoscope_on)} ${
+            Calendar.getInstance()
+                .get(Calendar.DAY_OF_MONTH)
+        } ${
+            Calendar.getInstance()
+                .getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US)
+        }"
         tvTextStories.setText(getCutText(it[index].today.text))
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -363,7 +367,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    /*private fun makeImage() {
+    private fun makeImage() {
         var view = findViewById<View>(R.id.llParentLayout)
         view.isDrawingCacheEnabled = true
         view.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
@@ -372,8 +376,9 @@ class SplashActivity : AppCompatActivity() {
         view.isDrawingCacheEnabled = false
 
         PreferencesProvider.screenURI = uri.toString()
-        postGoNext(1, "screenURI")
-    }*/
+
+
+    }
 
     private fun getCutText(text: String): String {
         var array = text.split(".")
@@ -418,7 +423,8 @@ class SplashActivity : AppCompatActivity() {
 
     private fun bindTest() {
         val firebaseRemoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        var config = FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(3600).build()
+        var config =
+            FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(3600).build()
         firebaseRemoteConfig.setConfigSettingsAsync(config)
         firebaseRemoteConfig.setDefaultsAsync(R.xml.default_config)
         firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener { task ->
@@ -439,7 +445,7 @@ class SplashActivity : AppCompatActivity() {
     ) {
         L.log("set test")
         var defaultVersion = ABConfig.DATE_NEED
-        if (version != null && version != ""){
+        if (version != null && version != "") {
             defaultVersion = version
         }
         PreferencesProvider.isMultipleRewardAd = defaultVersion
